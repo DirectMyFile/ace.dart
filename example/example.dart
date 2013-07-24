@@ -26,6 +26,9 @@ main() {
   print('useWorker: ${editor.session.useWorker}');
   print('wrapLimit: ${editor.session.wrapLimit}');
   print('newLineMode: ${editor.session.newLineMode}');
+  print('screenWidth: ${editor.session.screenWidth}');
+  print('scrollLeft: ${editor.session.scrollLeft}');
+  print('scrollTop: ${editor.session.scrollTop}');
   
   editor.onBlur.listen((_) => print('BLUR'));  
   editor.onFocus.listen((_) => print('FOCUS'));

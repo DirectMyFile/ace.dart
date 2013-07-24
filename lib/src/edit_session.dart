@@ -13,6 +13,16 @@ class EditSession {
     get overwrite => _proxy.getOverwrite();
     set overwrite(bool overwrite) => _proxy.setOverwrite(overwrite);
   
+  int get screenWidth => _proxy.getScreenWidth();
+  
+  int
+    get scrollLeft => _proxy.getScrollLeft();
+    set scrollLeft(int scrollLeft) => _proxy.setScrollLeft(scrollLeft);  
+    
+  int
+    get scrollTop => _proxy.getScrollTop();
+    set scrollTop(int scrollTop) => _proxy.setScrollTop(scrollTop);
+    
   int
     get tabSize => _proxy.getTabSize();
     set tabSize(int tabSize) => _proxy.setTabSize(tabSize);
