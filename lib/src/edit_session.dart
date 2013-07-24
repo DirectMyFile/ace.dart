@@ -5,6 +5,10 @@ class EditSession {
   
   int get length => _proxy.getLength();
   
+  String
+    get newLineMode => _proxy.getNewLineMode();
+    set newLineMode(String newLineMode) => _proxy.setNewLineMode(newLineMode);
+  
   bool
     get overwrite => _proxy.getOverwrite();
     set overwrite(bool overwrite) => _proxy.setOverwrite(overwrite);
