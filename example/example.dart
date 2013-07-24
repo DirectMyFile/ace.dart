@@ -29,6 +29,7 @@ main() {
   print('screenWidth: ${editor.session.screenWidth}');
   print('scrollLeft: ${editor.session.scrollLeft}');
   print('scrollTop: ${editor.session.scrollTop}');
+  print('tabString: ${editor.session.tabString}');
   
   editor.onBlur.listen((_) => print('BLUR'));  
   editor.onFocus.listen((_) => print('FOCUS'));

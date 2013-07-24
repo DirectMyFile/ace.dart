@@ -27,6 +27,8 @@ class EditSession {
     get tabSize => _proxy.getTabSize();
     set tabSize(int tabSize) => _proxy.setTabSize(tabSize);
     
+  String get tabString => _proxy.getTabString();
+    
   bool
     get useSoftTabs => _proxy.getUseSoftTabs();
     set useSoftTabs(bool useSoftTabs) => _proxy.setUseSoftTabs(useSoftTabs);
