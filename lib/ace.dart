@@ -10,5 +10,6 @@ part 'src/editor.dart';
 part 'src/edit_session.dart';
 part 'src/range.dart';
 part 'src/search.dart';
+part 'src/selection.dart';
 
 Editor edit(String elementId) => new Editor._(js.context.ace.edit(elementId));

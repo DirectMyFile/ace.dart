@@ -72,6 +72,8 @@ class Editor {
     get scrollSpeed => _proxy.getScrollSpeed();
     set scrollSpeed(int scrollSpeed) => _proxy.setScrollSpeed(scrollSpeed);
     
+  Range get selectionRange => new Range._fromProxy(_proxy.getSelectionRange());
+    
   String
     get theme => _proxy.getTheme();
     set theme(String theme) => _proxy.setTheme(theme);

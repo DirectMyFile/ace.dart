@@ -30,6 +30,13 @@ class Range {
   Range._fromProxy(js.Proxy p)
       : this(p.start.row, p.start.column, p.end.row, p.end.column);
   
+  bool operator ==(Object other) {
+    if(identical(this, other)) return true;
+    if(other is! Range) return false; 
+    return start == other.start && end == other.end;
+  }  
+  int get hashCode => start.hashCode ^ end.hashCode;
+  
   js.Proxy _toProxy() {
     // TODO(rms): create a new js.Proxy using js Range ctor function
   }
