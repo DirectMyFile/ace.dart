@@ -3,6 +3,7 @@ library ace;
 import 'dart:async';
 import 'package:js/js.dart' as js;
 
+part 'src/anchor.dart';
 part 'src/delta.dart';
 part 'src/document.dart';
 part 'src/editor.dart';
