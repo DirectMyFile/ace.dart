@@ -11,3 +11,9 @@ void testEditElementById() {
   expect(editor, isNotNull);
   expect(editor.readOnly, isFalse);
 }
+
+@Test()
+@ExpectThrows()
+void testEditElementBadIdThrows() {  
+  final Editor a = edit("snarf");
+}

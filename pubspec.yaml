@@ -7,6 +7,6 @@ documentation: http://ace.ajax.org/
 dependencies:
   js: '>=0.0.23'
 dev_dependencies:
-  bench: '>=0.2.1'
+  bench: '>=0.2.2'
   browser: '>=0.6.5'
   unittest: '>=0.6.5'
