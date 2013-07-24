@@ -17,6 +17,7 @@ main() {
   print('highlightActiveLine: ${editor.highlightActiveLine}');
   print('highlightGutterLine: ${editor.highlightGutterLine}');
   print('highlightSelectedWord: ${editor.highlightSelectedWord}');
+  print('showInvisibles: ${editor.showInvisibles}');
   
   print('----EditSession----');
   print('length: ${editor.session.length}');
