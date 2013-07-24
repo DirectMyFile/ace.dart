@@ -37,3 +37,21 @@ void testFocusEditor() {
   }));
   editor.focus();  
 }
+
+@Test()
+void testEditorValue() {
+  final Editor editor = edit('editor');
+  expect(editor.value, isEmpty);
+  // 0 = select all
+  editor.setValue('snarf', 0);
+  expect(editor.value, equals('snarf'));
+  expect(editor.cursorPosition, equals(new Point(0,5))); 
+  // -1 = document start
+  editor.setValue('start', -1);
+  expect(editor.value, equals('start'));
+  expect(editor.cursorPosition, equals(new Point(0,0)));  
+  // 1 = document end
+  editor.setValue('end', 1);
+  expect(editor.value, equals('end'));
+  expect(editor.cursorPosition, equals(new Point(0,3)));
+}
