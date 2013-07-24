@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ace Example</title>
+    <style type="text/css" media="screen">
+    #editor { 
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+    </style>
+  </head> 
+  <body>   
+    <div id="editor">
+      void foo(items) {
+        var x = "All this is syntax highlighted";
+        return x;
+      }
+    </div>    
+    <script type="text/javascript" src="packages/browser/dart.js"></script>
+    <script type="text/javascript" src="packages/browser/interop.js"></script>
+    <script type="text/javascript" src="packages/js/dart_interop.js"></script>
+    <script type="text/javascript" charset="utf-8" src="packages/ace/src/js/ace.js"></script>
+    <script type="application/dart" src="example.dart"></script>
+  </body>
+</html>

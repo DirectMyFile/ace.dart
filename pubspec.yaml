@@ -1,0 +1,11 @@
+name: ace
+version: 0.0.1-dev
+author: Ross Smith <ross.dart.lang@gmail.com>
+description: High performance code editor for the web.
+homepage: https://github.com/rmsmith/ace.dart
+documentation: http://ace.ajax.org/
+dependencies:
+  js: '>=0.0.23'
+dev_dependencies:
+  browser: '>=0.6.5'
+  unittest: '>=0.6.5'
