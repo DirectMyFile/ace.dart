@@ -4,6 +4,14 @@ class Point {
   final int row;
   final int column;
   Point(this.row, this.column);
+  Point._fromProxy(js.Proxy p) : this(p.row, p.column);  
+  bool operator ==(Object other) {
+    if(identical(this, other)) return true;
+    if(other is! Point) return false; 
+    return row == other.row && column == other.column;
+  }  
+  int get hashCode => row.hashCode ^ column.hashCode;
+  String toString() => 'Point: [${row}/${column}]';
 }
 
 class Range {
