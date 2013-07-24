@@ -24,6 +24,7 @@ main() {
   print('tabSize: ${editor.session.tabSize}');
   print('useSoftTabs: ${editor.session.useSoftTabs}');
   print('useWorker: ${editor.session.useWorker}');
+  print('wrapLimit: ${editor.session.wrapLimit}');
   
   editor.onBlur.listen((_) => print('BLUR'));  
   editor.onFocus.listen((_) => print('FOCUS'));
