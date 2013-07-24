@@ -6,6 +6,8 @@ import 'package:bench/meta.dart';
 import 'package:unittest/unittest.dart';
 
 @Test()
-void testSomething() {
-  expect(true, isTrue);
+void testEditElementById() {
+  final Editor editor = edit("editor");
+  expect(editor, isNotNull);
+  expect(editor.readOnly, isFalse);
 }
