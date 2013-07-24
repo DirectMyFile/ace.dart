@@ -30,6 +30,8 @@ class Editor {
   
   String get copyText => _proxy.getCopyText();
   
+  Point get cursorPosition => new Point._fromProxy(_proxy.getCursorPosition());
+  
   int
     get dragDelay => _proxy.getDragDelay();
     set dragDelay(int dragDelay) => _proxy.setDragDelay(dragDelay);
@@ -74,6 +76,8 @@ class Editor {
     get theme => _proxy.getTheme();
     set theme(String theme) => _proxy.setTheme(theme);
   
+  String get value => _proxy.getValue();
+    
   Editor._(js.Proxy proxy) : _proxy = js.retain(proxy) {
     _jsOnBlur = new js.Callback.many((_,__) => _onBlur.add(this));
     _jsOnChange = new js.Callback.many((e,__) {
@@ -134,5 +138,13 @@ class Editor {
   void navigateWordLeft() => _proxy.navigateWordLeft();
   void navigateWordRight() => _proxy.navigateWordRight();
   void resize(bool force) => _proxy.resize(force);
+  String setValue(String val, int cursorPos) {
+    assert(cursorPos >= -1 && cursorPos <= 1);
+    return _proxy.setValue(val, cursorPos);
+  }
   void toggleOverwrite() => _proxy.toggleOverwrite();
+  void toLowerCase() => _proxy.toLowerCase();
+  void toUpperCase() => _proxy.toUpperCase();
+  void transposeLetters() => _proxy.transposeLetters();
+  void updateSelectionMarkers() => _proxy.updateSelectionMarkers();
 }
