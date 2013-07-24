@@ -1,4 +1,4 @@
-library ace.example;
+library ace.example.editor;
 
 import 'package:ace/ace.dart' as ace;
 
