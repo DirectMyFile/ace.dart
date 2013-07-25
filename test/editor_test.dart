@@ -79,3 +79,15 @@ void testEditorBlockIndent() {
   editor.blockIndent();
   expect(editor.cursorPosition, equals(new Point(0,4)));
 }
+
+@Test()
+void testEditorBlockOutdent() {
+  final Editor editor = edit(html.query('#editor'));
+  editor.setValue(sampleText, -1);
+  expect(editor.cursorPosition, equals(new Point(0,0)));
+  editor.session.tabSize = 4;
+  editor.blockIndent();
+  expect(editor.cursorPosition, equals(new Point(0,4)));
+  editor.blockOutdent();
+  expect(editor.cursorPosition, equals(new Point(0,0)));
+}
