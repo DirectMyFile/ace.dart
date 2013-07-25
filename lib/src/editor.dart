@@ -18,15 +18,7 @@ class Editor {
   Stream<Delta> get onChange => _onChange.stream;
   Stream<String> get onCopy => _onCopy.stream;
   Stream get onFocus => _onFocus.stream;
-  Stream<String> get onPaste => _onPaste.stream;
-  
-  EditSession _session;
-  EditSession get session {
-    if (_session == null) {
-      _session = new EditSession._(_proxy.getSession());
-    }
-    return _session;
-  }
+  Stream<String> get onPaste => _onPaste.stream;  
   
   String get copyText => _proxy.getCopyText();
   
@@ -74,6 +66,14 @@ class Editor {
     
   Selection get selection => new Selection._(_proxy.getSelection());
   Range get selectionRange => new Range._fromProxy(_proxy.getSelectionRange());
+  
+  EditSession _session;
+  EditSession get session {
+    if (_session == null) {
+      _session = new EditSession._(_proxy.getSession());
+    }
+    return _session;
+  }
   
   bool
     get showInvisibles => _proxy.getShowInvisibles();
