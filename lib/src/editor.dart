@@ -72,6 +72,7 @@ class Editor {
     get scrollSpeed => _proxy.getScrollSpeed();
     set scrollSpeed(int scrollSpeed) => _proxy.setScrollSpeed(scrollSpeed);
     
+  Selection get selection => new Selection._(_proxy.getSelection());
   Range get selectionRange => new Range._fromProxy(_proxy.getSelectionRange());
   
   bool

@@ -7,6 +7,8 @@ class Selection {
   bool get isEmpty => _proxy.isEmpty();
   bool get isMultiLine => _proxy.isMultiLine();
   
+  Range get range => new Range._fromProxy(_proxy.getRange());
+  
   Selection._(js.Proxy proxy) : _proxy = js.retain(proxy);
   
   void dispose() {
