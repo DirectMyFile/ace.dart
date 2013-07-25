@@ -121,6 +121,7 @@ class Editor {
   }
   
   void alignCursors() => _proxy.alignCursors();
+  void blockIndent() => _proxy.blockIndent();
   void blockOutdent() => _proxy.blockOutdent();
   void blur() => _proxy.blur();
   void centerSelection() => _proxy.centerSelection();
