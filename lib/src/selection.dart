@@ -31,4 +31,27 @@ class Selection {
   void moveCursorShortWordRight() => _proxy.moveCursorShortWordRight();
   void moveCursorTo(int row, int column, bool keepDesiredColumn) =>
       _proxy.moveCursorTo(row, column, keepDesiredColumn);
+  void moveCursorToScreen(int row, int column, bool keepDesiredColumn) =>
+      _proxy.moveCursorToScreen(row, column, keepDesiredColumn);
+  void moveCursorUp() => _proxy.moveCursorUp();
+  void moveCursorWordLeft() => _proxy.moveCursorWordLeft();
+  void moveCursorWordRight() => _proxy.moveCursorWordRight();
+  void selectAll() => _proxy.selectAll();
+  void selectAWord() => _proxy.selectAWord();
+  void selectDown() => _proxy.selectDown();
+  void selectFileEnd() => _proxy.selectFileEnd();
+  void selectFileStart() => _proxy.selectFileStart();
+  void selectLeft() => _proxy.selectLeft();
+  void selectLine() => _proxy.selectLine();
+  void selectLineEnd() => _proxy.selectLineEnd();
+  void selectLineStart() => _proxy.selectLineStart();
+  void selectRight() => _proxy.selectRight();
+  void selectTo(int row, int column) => _proxy.selectTo(row, column);
+  void selectUp() => _proxy.selectUp();
+  void selectWord() => _proxy.selectWord();
+  void selectWordLeft() => _proxy.selectWordLeft();
+  void selectWordRight() => _proxy.selectWordRight();
+  void setSelectionAnchor(int row, int column) =>
+      _proxy.setSelectionAnchor(row, column);
+  void shiftSelection(int columns) => _proxy.shiftSelection(columns);
 }
