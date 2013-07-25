@@ -26,4 +26,9 @@ class Selection {
   void moveCursorLineStart() => _proxy.moveCursorLineStart();
   void moveCursorLongWordLeft() => _proxy.moveCursorLongWordLeft();
   void moveCursorLongWordRight() => _proxy.moveCursorLongWordRight();
+  void moveCursorRight() => _proxy.moveCursorRight();
+  void moveCursorShortWordLeft() => _proxy.moveCursorShortWordLeft();
+  void moveCursorShortWordRight() => _proxy.moveCursorShortWordRight();
+  void moveCursorTo(int row, int column, bool keepDesiredColumn) =>
+      _proxy.moveCursorTo(row, column, keepDesiredColumn);
 }
