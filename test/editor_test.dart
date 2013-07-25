@@ -1,26 +1,27 @@
 @Group()
 library ace.test.editor;
 
+import 'dart:html' as html;
 import 'package:ace/ace.dart';
 import 'package:bench/meta.dart';
 import 'package:unittest/unittest.dart';
 
 @Test()
 void testEditElementById() {
-  final Editor editor = edit("editor");
+  final Editor editor = edit(html.query('#editor'));
   expect(editor, isNotNull);
   expect(editor.readOnly, isFalse);
 }
 
 @Test()
 @ExpectThrows()
-void testEditElementBadIdThrows() {  
-  final Editor a = edit("snarf");
+void testEditNullThrows() {  
+  final Editor a = edit(null);
 }
 
 @Test()
 void testBlurEditor() {
-  final Editor editor = edit('editor');  
+  final Editor editor = edit(html.query('#editor'));
   editor.focus();
   editor.onBlur.listen(expectAsync1((e) {
     expect(e, equals(editor));
@@ -30,7 +31,7 @@ void testBlurEditor() {
 
 @Test()
 void testFocusEditor() {
-  final Editor editor = edit('editor');  
+  final Editor editor = edit(html.query('#editor'));
   editor.blur();
   editor.onFocus.listen(expectAsync1((e) {
     expect(e, equals(editor));
@@ -40,7 +41,7 @@ void testFocusEditor() {
 
 @Test()
 void testEditorValue() {
-  final Editor editor = edit('editor');
+  final Editor editor = edit(html.query('#editor'));
   expect(editor.value, isEmpty);
   // 0 = select all
   editor.setValue('snarf', 0);
