@@ -7,7 +7,7 @@ import 'package:bench/meta.dart';
 import 'package:unittest/unittest.dart';
 
 @Test()
-void testEditElementById() {
+void testEditElement() {
   final Editor editor = edit(html.query('#editor'));
   expect(editor, isNotNull);
   expect(editor.readOnly, isFalse);
