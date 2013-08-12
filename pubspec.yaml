@@ -5,8 +5,8 @@ description: High performance code editor for the web.
 homepage: https://github.com/rmsmith/ace.dart
 documentation: http://ace.ajax.org/
 dependencies:
-  js: '>=0.0.23'
+  js: '>=0.0.24'
 dev_dependencies:
-  bench: '>=0.2.2'
-  browser: '>=0.6.5'
-  unittest: '>=0.6.5'
+  bench: '>=0.2.4'
+  browser: '>=0.6.13'
+  unittest: '>=0.6.13'
