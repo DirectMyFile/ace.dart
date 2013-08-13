@@ -11,7 +11,7 @@ Please consult our [API documentation][api] as well as the
 
 ## Status
 
-This project is in its wee infancy.
+This project is in its wee infancy and no version has been published yet.
 
 ## Agenda
 
