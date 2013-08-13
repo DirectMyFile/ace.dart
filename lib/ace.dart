@@ -13,7 +13,10 @@ part 'src/range.dart';
 part 'src/search.dart';
 part 'src/selection.dart';
 
+// TODO(rms): recommend that the js package return `dynamic`.
+get _context => js.context as dynamic;
+
 Editor edit(html.Element element) {
   assert(element != null);
-  return new Editor._(js.context.ace.edit(element));
+  return new Editor._(_context.ace.edit(element));
 }

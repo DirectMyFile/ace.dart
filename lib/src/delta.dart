@@ -4,7 +4,7 @@ abstract class Delta {
   final String action;
   final Range range;
   
-  factory Delta._for(js.Proxy data) {
+  factory Delta._for(data) {
     switch(data.action) {
       case 'insertLines': return new InsertLinesDelta._(data);
       case 'insertText': return new InsertTextDelta._(data);
@@ -19,14 +19,14 @@ abstract class Delta {
 
 class InsertLinesDelta extends Delta {  
   //final Iterable<String> lines;
-  InsertLinesDelta._(js.Proxy data) 
+  InsertLinesDelta._(data) 
     : super._(data.action, data.range);
     //, lines = data.lines
 }
 
 class InsertTextDelta extends Delta {
   final String text;  
-  InsertTextDelta._(js.Proxy data) 
+  InsertTextDelta._(data) 
     : super._(data.action, data.range)
     , text = data.text;
 }
@@ -34,7 +34,7 @@ class InsertTextDelta extends Delta {
 class RemoveLinesDelta extends Delta {  
   //final Iterable<String> lines;
   final String nl;
-  RemoveLinesDelta._(js.Proxy data) 
+  RemoveLinesDelta._(data) 
     : super._(data.action, data.range)
     //, lines = data.lines
     , nl = data.nl;
@@ -42,7 +42,7 @@ class RemoveLinesDelta extends Delta {
 
 class RemoveTextDelta extends Delta {
   final String text;  
-  RemoveTextDelta._(js.Proxy data) 
+  RemoveTextDelta._(data) 
     : super._(data.action, data.range)
     , text = data.text;
 }

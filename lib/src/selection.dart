@@ -1,7 +1,7 @@
 part of ace;
 
 class Selection {
-  js.Proxy _proxy;
+  var _proxy;
   
   bool get isBackwards => _proxy.isBackwards();
   bool get isEmpty => _proxy.isEmpty();

@@ -4,7 +4,7 @@ class Point {
   final int row;
   final int column;
   Point(this.row, this.column);
-  Point._fromProxy(js.Proxy p) : this(p.row, p.column);  
+  Point._fromProxy(p) : this(p.row, p.column);  
   bool operator ==(Object other) {
     if(identical(this, other)) return true;
     if(other is! Point) return false; 
@@ -27,7 +27,7 @@ class Range {
   
   Range.fromPoints(this.start, this.end);
   
-  Range._fromProxy(js.Proxy p)
+  Range._fromProxy(p)
       : this(p.start.row, p.start.column, p.end.row, p.end.column);
   
   bool operator ==(Object other) {

@@ -1,7 +1,7 @@
 part of ace;
 
 class Editor {  
-  js.Proxy _proxy;
+  var _proxy;
   js.Callback _jsOnBlur;
   js.Callback _jsOnChange;
   js.Callback _jsOnCopy;

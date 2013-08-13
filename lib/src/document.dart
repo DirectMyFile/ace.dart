@@ -1,7 +1,7 @@
 part of ace;
 
 class Document {
-  js.Proxy _proxy;
+  var _proxy;
   
   int get length => _proxy.getLength();
   
