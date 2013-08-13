@@ -36,8 +36,8 @@ to the javascript, we benefit from all of the wonderful contributions to Ace.js.
 
 ## Note to Contributors
 
-This project is a core part of my (yet unpublished) application.  I am very open 
-to contributions, but be forewarned that I will provide a lot of constructive 
+This project is a core part of my (yet unpublished) application.  I am open to 
+contributions, but be forewarned that I will provide a lot of constructive 
 criticism and that I expect high test coverage.  I have no interest in building 
 a framework or integrating unnecessary dependencies.
 
