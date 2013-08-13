@@ -8,7 +8,7 @@ This project is in its wee infancy.
 
 ## Agenda
 
-The plan for this project is to implement a tight wrapper around [ace-builds][] 
+The plan for this project is to implement a thin wrapper around [ace-builds][] 
 up until the 1.0 release of Dart.  Until the Dart vm lands in a stable version 
 of Chrome there is no compelling reason to re-write large portions in Dart 
 code.  By keeping only a thin wrapper to the javascript, we benefit from all of
