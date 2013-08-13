@@ -2,6 +2,8 @@
 
 A [Dart][dart] wrapper for [Ace][ace].
 
+[![Build Status](https://drone.io/github.com/rmsmith/ace.dart/status.png)][badge]
+
 ## Status
 
 This project is in its wee infancy.
@@ -26,6 +28,7 @@ follows [semantic versioning][]._
 
 [ace]: http://ace.ajax.org/
 [ace-builds]: https://github.com/ajaxorg/ace-builds/
+[badge]: https://drone.io/github.com/rmsmith/ace.dart/latest
 [dart]: http://www.dartlang.org/
 [license]: https://github.com/rmsmith/fields/blob/master/LICENSE
 [semantic versioning]: http://semver.org/
