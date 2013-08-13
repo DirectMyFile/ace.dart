@@ -23,9 +23,8 @@ class Range {
   }  
   int get hashCode => start.hashCode ^ end.hashCode;
   
-  js.Proxy _toProxy() {
-    // TODO(rms): create a new js.Proxy using js Range ctor function
-  }
+  js.Proxy _toProxy() => new js.Proxy(_context.ace.Range, 
+      start.row, start.column, end.row, end.column);
   
   String toString() => 
       'Range: [${start.row}/${start.column}] -> [${end.row}/${end.column}]';
