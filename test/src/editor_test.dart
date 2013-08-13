@@ -45,6 +45,7 @@ void testBlurEditor() {
   editor.focus();
   editor.onBlur.listen(expectAsync1((e) {
     expect(e, equals(editor));
+    expect(editor.isFocused, isFalse);
   }));    
   editor.blur();
 }
@@ -55,6 +56,7 @@ void testFocusEditor() {
   editor.blur();
   editor.onFocus.listen(expectAsync1((e) {
     expect(e, equals(editor));
+    expect(editor.isFocused, isTrue);
   }));
   editor.focus();
 }
