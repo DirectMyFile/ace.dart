@@ -1,7 +1,6 @@
 part of ace;
 
-class Editor {  
-  var _proxy;
+class Editor extends _HasProxy {
   js.Callback _jsOnBlur;
   js.Callback _jsOnChange;
   js.Callback _jsOnCopy;
@@ -86,7 +85,7 @@ class Editor {
   
   String get value => _proxy.getValue();
     
-  Editor._(js.Proxy proxy) : _proxy = js.retain(proxy) {
+  Editor._(js.Proxy proxy) : super(proxy) {
     _jsOnBlur = new js.Callback.many((_,__) => _onBlur.add(this));
     _jsOnChange = new js.Callback.many((e,__) {
       Delta delta = new Delta._for(e.data);
@@ -102,8 +101,7 @@ class Editor {
     _proxy.on('paste', _jsOnPaste);
   }
   
-  void dispose() {
-    assert(_proxy != null);
+  void onDispose() {
     if (_session != null) _session.dispose();
     _onBlur.close();
     _onChange.close();
@@ -116,8 +114,6 @@ class Editor {
     _jsOnFocus.dispose();
     _jsOnPaste.dispose();
     _proxy.destroy();
-    js.release(_proxy);
-    _proxy = null;
   }
   
   void alignCursors() => _proxy.alignCursors();

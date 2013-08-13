@@ -1,7 +1,6 @@
 part of ace;
 
-class EditSession {
-  var _proxy;
+class EditSession extends _HasProxy {
   
   int get length => _proxy.getLength();
   
@@ -43,16 +42,10 @@ class EditSession {
     
   int get wrapLimit => _proxy.getWrapLimit();
     
-  EditSession._(js.Proxy proxy) : _proxy = js.retain(proxy) {
+  EditSession._(js.Proxy proxy) : super(proxy) {
     // TODO(rms): add event listeners and expose as Streams
   }
-  
-  void dispose() {
-    assert(_proxy != null);
-    js.release(_proxy);
-    _proxy = null;
-  }
-    
+      
   void addGutterDecoration(int row, String className) =>
       _proxy.addGutterDecoration(row, className);
   void clearAnnotations() => _proxy.clearAnnotations();
