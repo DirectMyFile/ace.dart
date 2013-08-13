@@ -1,4 +1,4 @@
-@Group()
+@Group('Editor')
 library ace.test.editor;
 
 import 'dart:html' as html;
@@ -15,6 +15,16 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
 fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
 culpa qui officia deserunt mollit anim id est laborum.
 ''';
+
+@Setup
+void setup() {
+  html.document.body.append(new html.Element.div()..id = 'editor');
+}
+
+@Teardown
+void teardown() {
+  html.document.body.children.remove(html.query('#editor'));
+}
 
 @Test()
 void testEditElement() {
@@ -46,7 +56,7 @@ void testFocusEditor() {
   editor.onFocus.listen(expectAsync1((e) {
     expect(e, equals(editor));
   }));
-  editor.focus();  
+  editor.focus();
 }
 
 @Test()
