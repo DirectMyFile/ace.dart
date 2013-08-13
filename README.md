@@ -7,7 +7,7 @@ A [Dart][dart] wrapper for [Ace][ace].
 ## Documentation
 
 Please consult our [API documentation][api] as well as the 
-[Ace API documentation][ace-api].
+[Ace API reference][ace-api].
 
 ## Status
 
