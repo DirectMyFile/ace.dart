@@ -101,7 +101,7 @@ class Editor extends _HasProxy {
     _proxy.on('paste', _jsOnPaste);
   }
   
-  void onDispose() {
+  void _onDispose() {
     if (_session != null) _session.dispose();
     _onBlur.close();
     _onChange.close();

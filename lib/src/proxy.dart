@@ -7,10 +7,10 @@ abstract class _HasProxy {
   
   void dispose() {
     assert(_proxy != null);
-    onDispose();
+    _onDispose();
     js.release(_proxy);
     _proxy = null;
   }
   
-  void onDispose() {}
+  void _onDispose() {}
 }
