@@ -34,7 +34,7 @@ Until the Dart vm lands in a stable version of Chrome there is no compelling
 reason to re-write large portions in Dart code.  By maintaining a thin wrapper 
 to the javascript, we benefit from all of the wonderful contributions to Ace.js.
 
-## Note to Contributors
+## Contributing
 
 Contributions are welcome, but please understand that I will provide a lot of 
 constructive criticism and that I expect high test coverage.  I am very cautious 
