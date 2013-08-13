@@ -38,8 +38,8 @@ to the javascript, we benefit from all of the wonderful contributions to Ace.js.
 
 This project is a core part of my (yet unpublished) application.  I am open to 
 contributions, but be forewarned that I will provide a lot of constructive 
-criticism and that I expect high test coverage.  I have no interest in 
-frameworks or integrating unnecessary dependencies.
+criticism and that I expect high test coverage.  I am very cautious regarding
+the addition of any framework or external dependency.
 
 _Ace.dart uses the MIT license as described in the [LICENSE][license] file, and 
 follows [semantic versioning][]._
