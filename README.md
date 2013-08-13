@@ -17,7 +17,7 @@ to the javascript, we benefit from all of the wonderful contributions to Ace.js.
 ## Note to Contributors
 
 This project is not a toy, as I am using this in an application which I plan to
-publish.  I am very open to contributors, but be forewarned that I will provide
+publish.  I am very open to contributions, but be forewarned that I will provide
 a lot of constructive criticism and that I expect lots of unit tests.  I have 
 no interest in building a framework or integrating unnecessary dependencies.
 
