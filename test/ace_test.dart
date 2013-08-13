@@ -1,4 +1,4 @@
-library ace.test.browser;
+library ace.test;
 
 import 'package:bench/bench.dart' as bench;
 import 'package:unittest/html_enhanced_config.dart';
