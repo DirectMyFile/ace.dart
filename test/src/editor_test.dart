@@ -40,6 +40,38 @@ void testEditNullThrows() {
 }
 
 @Test()
+void testDisposeEditor() {
+  final noop0 = (){};
+  final noop1 = (_){};
+  final Editor editor = edit(html.query('#editor'));  
+  expect(editor.isDisposed, isFalse);
+  // We expect all the editor's streams to close.
+  editor.onBlur.listen(noop1, onDone: expectAsync0(noop0));
+  editor.onChange.listen(noop1, onDone: expectAsync0(noop0));
+  editor.onCopy.listen(noop1, onDone: expectAsync0(noop0));
+  editor.onFocus.listen(noop1, onDone: expectAsync0(noop0));
+  editor.onPaste.listen(noop1, onDone: expectAsync0(noop0));
+  editor.dispose();
+  expect(editor.isDisposed, isTrue);
+}
+
+@Test()
+@ExpectThrows()
+void testDisposeEditorTwiceThrows() {
+  final Editor editor = edit(html.query('#editor'));
+  editor.dispose();
+  editor.dispose();
+}
+
+@Test()
+@ExpectThrows(isNoSuchMethodError)
+void testCallMethodOnDisposedEditorThrows() {
+  final Editor editor = edit(html.query('#editor'));
+  editor.dispose();
+  editor.blur();
+}
+
+@Test()
 void testBlurEditor() {
   final Editor editor = edit(html.query('#editor'));
   editor.focus();
