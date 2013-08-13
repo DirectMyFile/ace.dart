@@ -13,6 +13,19 @@ Please consult our [API documentation][api] as well as the
 
 This project is in its wee infancy and no version has been published yet.
 
+## Usage
+
+```dart
+import 'dart:html';
+import 'package:ace/ace.dart' as ace;
+
+main() {
+  var editor = ace.edit(query('#editor'))
+      ..theme = "ace/theme/monokai"
+      ..session.setMode("ace/mode/dart");
+}
+```
+
 ## Agenda
 
 The plan for this project is to implement a thin wrapper around [ace-builds][].  
