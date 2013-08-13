@@ -6,8 +6,8 @@ A [Dart][dart] wrapper for [Ace][ace].
 
 ## Documentation
 
-Please consult the [API documentation][api] as well as the 
-[Ace documentation][ace].
+Please consult our [API documentation][api] as well as the 
+[Ace API documentation][ace-api].
 
 ## Status
 
@@ -32,6 +32,7 @@ _Ace.dart uses the MIT license as described in the [LICENSE][license] file, and
 follows [semantic versioning][]._
 
 [ace]: http://ace.ajax.org/
+[ace-api]: http://ace.ajax.org/#nav=api
 [ace-builds]: https://github.com/ajaxorg/ace-builds/
 [api]: http://rmsmith.github.com/ace.dart/ace.html
 [badge]: https://drone.io/github.com/rmsmith/ace.dart/latest
