@@ -63,7 +63,17 @@ class Document extends _HasProxy {
   Point insertNewLine(Point position) =>
       new Point._(_proxy.insertNewLine(position._toProxy()));
   
-  /// Returns true if [text] is a newline character.  That is, one of `\r\n`, 
+  /// Returns `true` if [text] is a newline character.  That is, one of `\r\n`, 
   /// `\r` or `\n`.
   bool isNewLine(String text) => _proxy.isNewLine(text);      
+  
+  /// Converts the given [position] in this document to the character's index.
+  /// Index refers to the "absolute position" of a character in this document.
+  /// For example:
+  ///     var x = 0; // 10 characters, plus one for newline
+  ///     var y = -1;
+  /// Here, `y` has an index of `15`; `11` characters for the first row, and 5 
+  /// characters until `y` in the second row.    
+  int positionToIndex(Point position, int startRow) =>
+      _proxy.positionToIndex(position._toProxy(), startRow);
 }

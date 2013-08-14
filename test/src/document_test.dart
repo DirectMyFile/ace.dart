@@ -92,3 +92,10 @@ void testNewLineMode() {
   document.newLineMode = 'auto';
   expect(document.newLineMode, 'auto');
 }
+
+@Test()
+void testPositionToIndex() {
+  expect(document.positionToIndex(new Point(1, 0), 0),
+      // + 1 for the newline character
+      equals(sampleTextLine0.length + 1));
+}
