@@ -1,5 +1,12 @@
 part of ace;
 
+/// Encapsulation of an [Editor]'s state.
+/// 
+/// An instance of [EditSession] stores all of the data about an [Editor]'s 
+/// state, thus providing a means to change editor state dynamically.
+/// 
+/// An instance of [EditSession] may be attached to only one [Document].  An
+/// instance of [Document] may be attached to more than one [EditSession].
 class EditSession extends _HasProxy {
   
   int get length => _proxy.getLength();
