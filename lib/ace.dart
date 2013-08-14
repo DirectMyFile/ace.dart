@@ -14,6 +14,7 @@ part 'src/proxy.dart';
 part 'src/range.dart';
 part 'src/search.dart';
 part 'src/selection.dart';
+part 'src/virtual_renderer.dart';
 
 // TODO(rms): recommend that `js.context` have type `dynamic` to avoid warnings.
 get _context => js.context;

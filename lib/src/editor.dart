@@ -1,5 +1,11 @@
 part of ace;
 
+/// The main entry point into the Ace functionality.
+/// 
+/// An [Editor] manages an [EditSession] (which in turn manages a [Document]), 
+/// as well as the [VirtualRenderer], which draws everything to the screen.
+/// Event sessions dealing with the mouse and keyboard are bubbled up from the
+/// [Document] to the [Editor], which decides what to do with them.
 class Editor extends _HasProxy {
   js.Callback _jsOnBlur;
   js.Callback _jsOnChange;
