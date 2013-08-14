@@ -74,7 +74,7 @@ class Editor extends _HasProxy {
   Selection get selection => new Selection._(_proxy.getSelection());
   Range get selectionRange => new Range._fromProxy(_proxy.getSelectionRange());
   
-  /// The current [EditSession] being used; setting a new session emits an 
+  /// The current [EditSession] being used; setting a new session fires an 
   /// [onChangeSession] event.
   EditSession
     get session => new EditSession._(_proxy.getSession());

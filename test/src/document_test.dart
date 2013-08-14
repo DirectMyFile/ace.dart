@@ -48,3 +48,15 @@ void testInsert() {
   final point = document.insert(new Point(0, 0), 'snarf');
   expect(point, equals(new Point(0, 5)));
 }
+
+@Test()
+void testInsertInLine() {
+  document.onChange.listen(expectAsync1((Delta delta) {
+    expect(delta, const isInstanceOf<InsertTextDelta>());
+    expect(delta.range, equals(new Range(0,0,0,5)));
+    InsertTextDelta insertTextDelta = delta;
+    expect(insertTextDelta.text, equals('snarf'));    
+  }));
+  final point = document.insertInLine(new Point(0, 0), 'snarf');
+  expect(point, equals(new Point(0, 5)));
+}

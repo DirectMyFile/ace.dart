@@ -41,7 +41,13 @@ class Document extends _HasProxy {
   String getLine(int row) => _proxy.getLine(row);
   
   /// Inserts a block of [text] at the given [position] and returns a point at
-  /// the end of the inserted text.
+  /// the end of the inserted text.  This method also fires an [onChange] event.
   Point insert(Point position, String text) =>
       new Point._(_proxy.insert(position._toProxy(), text));
+  
+  /// Inserts [text] into the [position] at the current row and returns a point
+  /// at the end of the inserted text.  This method also fires an [onChange]
+  /// event.
+  Point insertInLine(Point position, String text) =>
+      new Point._(_proxy.insertInLine(position._toProxy(), text));
 }
