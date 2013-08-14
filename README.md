@@ -22,17 +22,9 @@ main() {
 }
 ```
 
-## Agenda
-
-The plan for this project is to implement a thin wrapper around [ace-builds][].  
-
-Until the Dart vm lands in a stable version of Chrome there is no compelling 
-reason to re-write large portions in Dart code.  By maintaining a thin wrapper 
-to the javascript, we benefit from all of the wonderful contributions to Ace.js.
-
 ## Goals
 
-- 100% of public API exposed as Dart code.
+- 100% of the [ace-builds][] public API exposed as Dart code.
 - 100% unit test coverage.
 - Minimize external dependencies and code size of the library.
 
