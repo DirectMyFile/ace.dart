@@ -9,7 +9,15 @@ part of ace;
 /// instance of [Document] may be attached to more than one [EditSession].
 class EditSession extends _HasProxy {
   
+  Document
+    get document => new Document._(_proxy.getDocument());
+    set document(Document document) => throw new UnimplementedError();
+  
   int get length => _proxy.getLength();
+  
+  Mode
+    get mode => new Mode._(_proxy.getMode());
+    set mode(Mode mode) => throw new UnimplementedError();
   
   String
     get newLineMode => _proxy.getNewLineMode();

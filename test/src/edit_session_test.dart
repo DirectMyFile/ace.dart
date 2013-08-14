@@ -1,5 +1,5 @@
-@Group('Document')
-library ace.test.document;
+@Group('EditSession')
+library ace.test.edit_session;
 
 import 'package:ace/ace.dart';
 import 'package:bench/meta.dart';
@@ -15,12 +15,17 @@ fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
 culpa qui officia deserunt mollit anim id est laborum.
 ''';
 
-Document document;
-// TODO(rms): figure out how to invoke the js `new Document(text)` ctor...
-@Setup
-setup() => document = createEditSession(sampleText, 'ace/mode/dart').document;
+@Test()
+void testCreateEditSession() {  
+  final EditSession session = createEditSession(sampleText, 'ace/mode/dart');
+  expect(session, isNotNull); 
+  expect(session.value, equals(sampleText));
+}
 
 @Test()
-void testGetLength() {
-  expect(document.length, equals(7));
+void testGetDocument() {
+  final EditSession session = createEditSession(sampleText, 'ace/mode/dart');
+  var document = session.document;
+  expect(document, const isInstanceOf<Document>());
+  expect(document.value, equals(sampleText));
 }

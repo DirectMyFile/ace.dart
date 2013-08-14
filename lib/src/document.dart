@@ -8,6 +8,7 @@ part of ace;
 /// An instance of [Document] may be attached to more than one [EditSession].
 class Document extends _HasProxy {
   
+  /// The number of rows in this document.
   int get length => _proxy.getLength();
   
   String get newLineCharacter => _proxy.getNewLineCharacter();
