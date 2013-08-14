@@ -15,7 +15,7 @@ part 'src/range.dart';
 part 'src/search.dart';
 part 'src/selection.dart';
 
-// TODO(rms): recommend that the js package return `dynamic` to avoid warnings.
+// TODO(rms): recommend that `js.context` have type `dynamic` to avoid warnings.
 get _context => js.context;
 
 Editor edit(html.Element element) {
