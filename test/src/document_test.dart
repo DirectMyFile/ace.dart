@@ -72,3 +72,15 @@ void testInsertNewLine() {
   final point = document.insertNewLine(new Point(0, 0));
   expect(point, equals(new Point(1, 0)));
 }
+
+@Test()
+void testNewLineMode() {
+  document.newLineMode = 'windows';
+  expect(document.newLineMode, 'windows');
+  expect(document.newLineCharacter, '\r\n');
+  document.newLineMode = 'unix';
+  expect(document.newLineMode, 'unix');
+  expect(document.newLineCharacter, '\n');
+  document.newLineMode = 'auto';
+  expect(document.newLineMode, 'auto');
+}

@@ -19,9 +19,15 @@ class Document extends _HasProxy {
   /// The number of rows in this document.
   int get length => _proxy.getLength();
   
+  /// The current newline character, based on the current [newLineMode].
   String get newLineCharacter => _proxy.getNewLineCharacter();
-  String get newLineMode => _proxy.getNewLineMode();
-  
+    
+  // TODO(rms): enum
+  /// The new line mode.  May be one of `windows`, `unix` or `auto`.  
+  String 
+    get newLineMode => _proxy.getNewLineMode();
+    set newLineMode(String newLineMode) => _proxy.setNewLineMode(newLineMode);
+    
   String
     get value => _proxy.getValue();
     set value(String text) => _proxy.setValue(text);
