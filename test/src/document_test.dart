@@ -43,3 +43,25 @@ void testGetAllLines() {
                           'laborum.'));
   expect(lines[6], equals(''));
 }
+
+@Test()
+void testGetLine() {
+  expect(document.getLine(0), 
+      equals('Lorem ipsum dolor sit amet, consectetur '
+             'adipisicing elit, sed do eiusmod tempor'));
+  expect(document.getLine(1), 
+      equals('incididunt ut labore et dolore magna aliqua. Ut '
+             'enim ad minim veniam, quis'));
+  expect(document.getLine(2), 
+      equals('nostrud exercitation ullamco laboris nisi ut '
+             'aliquip ex ea commodo consequat. '));
+  expect(document.getLine(3), 
+      equals('Duis aute irure dolor in reprehenderit in '
+             'voluptate velit esse cillum dolore eu '));
+  expect(document.getLine(4), 
+      equals('fugiat nulla pariatur. Excepteur sint occaecat '
+             'cupidatat non proident, sunt in '));
+  expect(document.getLine(5), 
+      equals('culpa qui officia deserunt mollit anim id est laborum.'));
+  expect(document.getLine(6), equals(''));
+}

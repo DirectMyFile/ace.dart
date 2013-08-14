@@ -24,5 +24,6 @@ class Document extends _HasProxy {
   
   Document._(js.Proxy proxy) : super(proxy);
     
+  /// Returns a verbatim copy of the given line [row] as it is in this document.
   String getLine(int row) => _proxy.getLine(row);
 }
