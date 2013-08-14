@@ -29,7 +29,7 @@ class Editor extends _HasProxy {
   
   String get copyText => _proxy.getCopyText();
   
-  Point get cursorPosition => new Point._fromProxy(_proxy.getCursorPosition());
+  Point get cursorPosition => new Point._(_proxy.getCursorPosition());
   
   int
     get dragDelay => _proxy.getDragDelay();

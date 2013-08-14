@@ -4,7 +4,7 @@ class Point {
   final int row;
   final int column;
   Point(this.row, this.column);
-  Point._fromProxy(p) : this(p.row, p.column);  
+  Point._(proxy) : this(proxy.row, proxy.column);  
   bool operator ==(Object other) {
     if(identical(this, other)) return true;
     if(other is! Point) return false; 

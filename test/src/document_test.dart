@@ -45,5 +45,6 @@ void testInsert() {
     InsertTextDelta insertTextDelta = delta;
     expect(insertTextDelta.text, equals('snarf'));    
   }));
-  document.insert(new Point(0, 0), 'snarf');
+  final point = document.insert(new Point(0, 0), 'snarf');
+  expect(point, equals(new Point(0, 5)));
 }

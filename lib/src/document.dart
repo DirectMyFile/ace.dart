@@ -40,8 +40,8 @@ class Document extends _HasProxy {
   /// Returns a verbatim copy of the given line [row] as it is in this document.
   String getLine(int row) => _proxy.getLine(row);
   
-  /// Inserts a block of [text] at the given [position].
-  void insert(Point position, String text) {
-    _proxy.insert(position._toProxy(), text);
-  }
+  /// Inserts a block of [text] at the given [position] and returns a point at
+  /// the end of the inserted text.
+  Point insert(Point position, String text) =>
+      new Point._(_proxy.insert(position._toProxy(), text));
 }
