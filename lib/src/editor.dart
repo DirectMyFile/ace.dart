@@ -21,6 +21,8 @@ class Editor extends _HasProxy {
   
   Stream get onBlur => _onBlur.stream;
   Stream<Delta> get onChange => _onChange.stream;
+  Stream/*<TODO: SessionChangeEvent>*/ get onChangeSession => 
+      throw new UnimplementedError();
   Stream<String> get onCopy => _onCopy.stream;
   Stream get onFocus => _onFocus.stream;
   Stream<String> get onPaste => _onPaste.stream;  
@@ -72,7 +74,9 @@ class Editor extends _HasProxy {
   Selection get selection => new Selection._(_proxy.getSelection());
   Range get selectionRange => new Range._fromProxy(_proxy.getSelectionRange());
   
-  EditSession 
+  /// The current [EditSession] being used; setting a new session emits an 
+  /// [onChangeSession] event.
+  EditSession
     get session => new EditSession._(_proxy.getSession());
     set session(EditSession session) => throw new UnimplementedError();
   
