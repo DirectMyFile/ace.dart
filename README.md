@@ -9,10 +9,6 @@ A [Dart][dart] wrapper for [Ace][ace].
 Please consult our [API documentation][api] as well as the 
 [Ace API reference][ace-api].
 
-## Status
-
-This project is in its wee infancy and no version has been published yet.
-
 ## Usage
 
 ```dart
@@ -34,12 +30,11 @@ Until the Dart vm lands in a stable version of Chrome there is no compelling
 reason to re-write large portions in Dart code.  By maintaining a thin wrapper 
 to the javascript, we benefit from all of the wonderful contributions to Ace.js.
 
-## Contributing
+## Goals
 
-Contributions are welcome, but please understand that I will provide a lot of 
-constructive criticism and that I expect high test coverage.  I am very cautious 
-regarding the addition of any framework or external dependency and wish to keep 
-this library as light as possible.
+- 100% of public API exposed as Dart code.
+- 100% unit test coverage.
+- Minimize external dependencies and code size of the library.
 
 _Ace.dart uses the MIT license as described in the [LICENSE][license] file, and 
 follows [semantic versioning][]._
