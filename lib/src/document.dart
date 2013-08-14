@@ -72,8 +72,11 @@ class Document extends _HasProxy {
   /// For example:
   ///     var x = 0; // 10 characters, plus one for newline
   ///     var y = -1;
-  /// Here, `y` has an index of `15`; `11` characters for the first row, and 5 
-  /// characters until `y` in the second row.    
+  /// Here, `y` has an index of `15`; `10` characters for the first row, a
+  /// newline character, and `5` characters until `y` in the second row.    
   int positionToIndex(Point position, int startRow) =>
       _proxy.positionToIndex(position._toProxy(), startRow);
+  
+  /// Removes the given [range] from this document.
+  Point remove(Range range) => new Point._(_proxy.remove(range._toProxy()));
 }
