@@ -36,3 +36,14 @@ void testGetLine() {
   expect(document.getLine(3), equals(sampleTextLine3));
   expect(document.getLine(4), equals(sampleTextLine4));
 }
+
+@Test()
+void testInsert() {
+  document.onChange.listen(expectAsync1((Delta delta) {
+    expect(delta, const isInstanceOf<InsertTextDelta>());
+    expect(delta.range, equals(new Range(0,0,0,5)));
+    InsertTextDelta insertTextDelta = delta;
+    expect(insertTextDelta.text, equals('snarf'));    
+  }));
+  document.insert(new Point(0, 0), 'snarf');
+}

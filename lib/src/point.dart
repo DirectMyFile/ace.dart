@@ -11,5 +11,6 @@ class Point {
     return row == other.row && column == other.column;
   }  
   int get hashCode => row.hashCode ^ column.hashCode;
+  js.Proxy _toProxy() => js.map({'row': row, 'column': column});
   String toString() => 'Point: [${row}/${column}]';
 }
