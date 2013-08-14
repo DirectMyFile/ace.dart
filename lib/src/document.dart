@@ -50,4 +50,10 @@ class Document extends _HasProxy {
   /// event.
   Point insertInLine(Point position, String text) =>
       new Point._(_proxy.insertInLine(position._toProxy(), text));
+  
+  /// Inserts a [newLineCharacter] into this document at the current row's 
+  /// position and returns a point at the end of the insertion.  This method 
+  /// also fires an [onChange] event.
+  Point insertNewLine(Point position) =>
+      new Point._(_proxy.insertNewLine(position._toProxy()));
 }
