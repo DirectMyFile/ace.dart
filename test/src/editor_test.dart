@@ -5,16 +5,7 @@ import 'dart:html' as html;
 import 'package:ace/ace.dart';
 import 'package:bench/meta.dart';
 import 'package:unittest/unittest.dart';
-
-final String sampleText =
-'''
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
-culpa qui officia deserunt mollit anim id est laborum.
-''';
+import 'sample_text.dart';
 
 @Setup
 void setup() {
@@ -157,7 +148,7 @@ void testNavigateLineEnd() {
   editor.setValue(sampleText, -1);
   expect(editor.cursorPosition, equals(new Point(0,0)));
   editor.navigateLineEnd();
-  expect(editor.cursorPosition, equals(new Point(0,79)));
+  expect(editor.cursorPosition, equals(new Point(0,73)));
 }
 
 @Test()
@@ -167,11 +158,9 @@ void testRemoveToLineEnd() {
   expect(editor.cursorPosition, equals(new Point(0,0)));
   editor.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());
-    expect(delta.range, equals(new Range(0,0,0,79)));
+    expect(delta.range, equals(new Range(0,0,0,73)));
     RemoveTextDelta removeTextDelta = delta;    
-    expect(removeTextDelta.text, 
-        equals('Lorem ipsum dolor sit amet, consectetur adipisicing elit, '
-        'sed do eiusmod tempor'));
+    expect(removeTextDelta.text, equals(sampleTextLine0));
   })); 
   editor.removeToLineEnd();
   expect(editor.cursorPosition, equals(new Point(0, 0)));
@@ -184,11 +173,9 @@ void testRemoveToLineStart() {
   editor.navigateLineEnd();
   editor.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());
-    expect(delta.range, equals(new Range(0,0,0,79)));
+    expect(delta.range, equals(new Range(0,0,0,73)));
     RemoveTextDelta removeTextDelta = delta;    
-    expect(removeTextDelta.text, 
-        equals('Lorem ipsum dolor sit amet, consectetur adipisicing elit, '
-        'sed do eiusmod tempor'));
+    expect(removeTextDelta.text, equals(sampleTextLine0));
   })); 
   editor.removeToLineStart();
   expect(editor.cursorPosition, equals(new Point(0, 0)));
@@ -198,15 +185,15 @@ void testRemoveToLineStart() {
 void testRemoveWordLeft() {
   final Editor editor = edit(html.query('#editor'));
   editor.setValue(sampleText, 1);
-  expect(editor.cursorPosition, equals(new Point(6,0)));  
+  expect(editor.cursorPosition, equals(new Point(5,76)));  
   editor.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());
-    expect(delta.range, equals(new Range(5,54,6,0)));
+    expect(delta.range, equals(new Range(5,75,5,76)));
     RemoveTextDelta removeTextDelta = delta;
-    expect(removeTextDelta.text, equals('\n'));
-  }));  
+    expect(removeTextDelta.text, equals('.'));
+  }));
   editor.removeWordLeft();
-  expect(editor.cursorPosition, equals(new Point(5, 54)));  
+  expect(editor.cursorPosition, equals(new Point(5, 75)));  
 }
 
 @Test()

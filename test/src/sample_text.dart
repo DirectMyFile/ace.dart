@@ -18,9 +18,10 @@ const String sampleTextLine4 =
 const String sampleTextLine5 =
 'non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
 
-final String sampleText = sampleTextLine0 + '\n' + 
-                          sampleTextLine1 + '\n' + 
-                          sampleTextLine2 + '\n' +
-                          sampleTextLine3 + '\n' +
-                          sampleTextLine4 + '\n' +
-                          sampleTextLine5;
+const String sampleText = 
+'''$sampleTextLine0
+$sampleTextLine1
+$sampleTextLine2
+$sampleTextLine3
+$sampleTextLine4
+$sampleTextLine5''';
