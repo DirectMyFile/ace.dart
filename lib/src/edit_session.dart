@@ -1,6 +1,6 @@
 part of ace;
 
-/// Encapsulation of an [Editor]'s state.
+/// Encapsulates the state of an [Editor].
 /// 
 /// An instance of [EditSession] stores all of the data about an [Editor]'s 
 /// state, thus providing a means to change editor state dynamically.
