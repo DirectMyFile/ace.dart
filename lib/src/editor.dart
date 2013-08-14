@@ -72,13 +72,9 @@ class Editor extends _HasProxy {
   Selection get selection => new Selection._(_proxy.getSelection());
   Range get selectionRange => new Range._fromProxy(_proxy.getSelectionRange());
   
-  EditSession _session;
-  EditSession get session {
-    if (_session == null) {
-      _session = new EditSession._(_proxy.getSession());
-    }
-    return _session;
-  }
+  EditSession 
+    get session => new EditSession._(_proxy.getSession());
+    set session(EditSession session) => throw new UnimplementedError();
   
   bool
     get showInvisibles => _proxy.getShowInvisibles();
@@ -108,7 +104,6 @@ class Editor extends _HasProxy {
   }
   
   void _onDispose() {
-    if (_session != null) _session.dispose();
     _onBlur.close();
     _onChange.close();
     _onCopy.close();
