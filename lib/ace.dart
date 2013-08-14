@@ -16,7 +16,7 @@ part 'src/search.dart';
 part 'src/selection.dart';
 
 // TODO(rms): recommend that the js package return `dynamic` to avoid warnings.
-get _context => js.context as dynamic;
+get _context => js.context;
 
 Editor edit(html.Element element) {
   assert(element != null);
