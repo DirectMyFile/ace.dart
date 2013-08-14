@@ -74,6 +74,14 @@ void testInsertNewLine() {
 }
 
 @Test()
+void testIsNewLine() {
+  expect(document.isNewLine('\r\n'), isTrue);
+  expect(document.isNewLine('\r'), isTrue);
+  expect(document.isNewLine('\n'), isTrue);
+  expect(document.isNewLine('\n\r'), isFalse);
+}
+
+@Test()
 void testNewLineMode() {
   document.newLineMode = 'windows';
   expect(document.newLineMode, 'windows');

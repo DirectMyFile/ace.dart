@@ -62,4 +62,8 @@ class Document extends _HasProxy {
   /// also fires an [onChange] event.
   Point insertNewLine(Point position) =>
       new Point._(_proxy.insertNewLine(position._toProxy()));
+  
+  /// Returns true if [text] is a newline character.  That is, one of `\r\n`, 
+  /// `\r` or `\n`.
+  bool isNewLine(String text) => _proxy.isNewLine(text);      
 }
