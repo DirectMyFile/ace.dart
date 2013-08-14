@@ -152,6 +152,49 @@ void testInsert() {
 }
 
 @Test()
+void testNavigateLineEnd() {
+  final Editor editor = edit(html.query('#editor'));
+  editor.setValue(sampleText, -1);
+  expect(editor.cursorPosition, equals(new Point(0,0)));
+  editor.navigateLineEnd();
+  expect(editor.cursorPosition, equals(new Point(0,79)));
+}
+
+@Test()
+void testRemoveToLineEnd() {
+  final Editor editor = edit(html.query('#editor'));
+  editor.setValue(sampleText, -1);
+  expect(editor.cursorPosition, equals(new Point(0,0)));
+  editor.onChange.listen(expectAsync1((Delta delta) {
+    expect(delta, const isInstanceOf<RemoveTextDelta>());
+    expect(delta.range, equals(new Range(0,0,0,79)));
+    RemoveTextDelta removeTextDelta = delta;    
+    expect(removeTextDelta.text, 
+        equals('Lorem ipsum dolor sit amet, consectetur adipisicing elit, '
+        'sed do eiusmod tempor'));
+  })); 
+  editor.removeToLineEnd();
+  expect(editor.cursorPosition, equals(new Point(0, 0)));
+}
+
+@Test()
+void testRemoveToLineStart() {
+  final Editor editor = edit(html.query('#editor'));
+  editor.setValue(sampleText, -1);
+  editor.navigateLineEnd();
+  editor.onChange.listen(expectAsync1((Delta delta) {
+    expect(delta, const isInstanceOf<RemoveTextDelta>());
+    expect(delta.range, equals(new Range(0,0,0,79)));
+    RemoveTextDelta removeTextDelta = delta;    
+    expect(removeTextDelta.text, 
+        equals('Lorem ipsum dolor sit amet, consectetur adipisicing elit, '
+        'sed do eiusmod tempor'));
+  })); 
+  editor.removeToLineStart();
+  expect(editor.cursorPosition, equals(new Point(0, 0)));
+}
+
+@Test()
 void testRemoveWordLeft() {
   final Editor editor = edit(html.query('#editor'));
   editor.setValue(sampleText, 1);

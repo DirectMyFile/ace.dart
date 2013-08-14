@@ -136,13 +136,21 @@ class Editor extends _HasProxy {
   void navigateFileEnd() => _proxy.navigateFileEnd();
   void navigateFileStart() => _proxy.navigateFileStart();
   void navigateLeft(int times) => _proxy.navigateLeft(times);
+  /// Move the [cursorPosition] to the end of the current line.
+  /// Note that this does de-select the current [selection].
   void navigateLineEnd() => _proxy.navigateLineEnd();
   void navigateLineStart() => _proxy.navigateLineStart();
   void navigateRight(int times) => _proxy.navigateRight(times);
   void navigateTo(int row, int column) => _proxy.navigateTo(row, column);
   void navigateUp(int times) => _proxy.navigateUp(times);
   void navigateWordLeft() => _proxy.navigateWordLeft();
-  void navigateWordRight() => _proxy.navigateWordRight();  
+  void navigateWordRight() => _proxy.navigateWordRight();
+  /// Remove all of the words to the right of the current [selection], until the 
+  /// end of the line.
+  void removeToLineEnd() => _proxy.removeToLineEnd();
+  /// Removes all of the words to the left of the current [selection], until the 
+  /// start of the line.
+  void removeToLineStart() => _proxy.removeToLineStart();
   /// Remove the word directly to the left of the current [selection].
   void removeWordLeft() => _proxy.removeWordLeft();
   /// Remove the word directly to the right of the current [selection].
