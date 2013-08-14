@@ -10,6 +10,9 @@ class Document extends _HasProxy {
   
   int get length => _proxy.getLength();
   
+  String get newLineCharacter => _proxy.getNewLineCharacter();
+  String get newLineMode => _proxy.getNewLineMode();
+  
   String
     get value => _proxy.getValue();
     set value(String text) => _proxy.setValue(text);
