@@ -2,6 +2,7 @@ library ace;
 
 import 'dart:async';
 import 'dart:html' as html;
+import 'dart:json' as json;
 import 'package:js/js.dart' as js;
 
 part 'src/_.dart';

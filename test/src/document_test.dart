@@ -24,3 +24,22 @@ setup() => document = createEditSession(sampleText, 'ace/mode/dart').document;
 void testGetLength() {
   expect(document.length, equals(7));
 }
+
+@Test()
+void testGetAllLines() {
+  final lines = document.allLines;
+  expect(lines.length, equals(7));
+  expect(lines[0], equals('Lorem ipsum dolor sit amet, consectetur '
+                          'adipisicing elit, sed do eiusmod tempor'));
+  expect(lines[1], equals('incididunt ut labore et dolore magna aliqua. Ut '
+                          'enim ad minim veniam, quis'));
+  expect(lines[2], equals('nostrud exercitation ullamco laboris nisi ut '
+                          'aliquip ex ea commodo consequat. '));
+  expect(lines[3], equals('Duis aute irure dolor in reprehenderit in '
+                          'voluptate velit esse cillum dolore eu '));
+  expect(lines[4], equals('fugiat nulla pariatur. Excepteur sint occaecat '
+                          'cupidatat non proident, sunt in '));
+  expect(lines[5], equals('culpa qui officia deserunt mollit anim id est '
+                          'laborum.'));
+  expect(lines[6], equals(''));
+}

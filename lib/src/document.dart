@@ -8,6 +8,10 @@ part of ace;
 /// An instance of [Document] may be attached to more than one [EditSession].
 class Document extends _HasProxy {
   
+  /// All lines in this document.
+  Iterable<String> get allLines =>
+      json.parse(_context.JSON.stringify(_proxy.getAllLines()));
+  
   /// The number of rows in this document.
   int get length => _proxy.getLength();
   
