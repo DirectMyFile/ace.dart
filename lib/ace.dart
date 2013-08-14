@@ -16,6 +16,7 @@ part 'src/search.dart';
 part 'src/selection.dart';
 part 'src/virtual_renderer.dart';
 
+/// Embed an Ace [Editor] instance into the DOM, at the given [element].
 Editor edit(html.Element element) {
   assert(element != null);
   return new Editor._(_context.ace.edit(element));
