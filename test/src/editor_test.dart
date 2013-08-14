@@ -40,7 +40,7 @@ void testEditNullThrows() {
 }
 
 @Test()
-void testDisposeEditor() {
+void testDispose() {
   final noop0 = (){};
   final noop1 = (_){};
   final Editor editor = edit(html.query('#editor'));  
@@ -57,7 +57,7 @@ void testDisposeEditor() {
 
 @Test()
 @ExpectThrows()
-void testDisposeEditorTwiceThrows() {
+void testDisposeTwiceThrows() {
   final Editor editor = edit(html.query('#editor'));
   editor.dispose();
   editor.dispose();
@@ -72,7 +72,7 @@ void testCallMethodOnDisposedEditorThrows() {
 }
 
 @Test()
-void testBlurEditor() {
+void testBlur() {
   final Editor editor = edit(html.query('#editor'));
   editor.focus();
   editor.onBlur.listen(expectAsync1((e) {
@@ -83,7 +83,7 @@ void testBlurEditor() {
 }
 
 @Test()
-void testFocusEditor() {
+void testFocus() {
   final Editor editor = edit(html.query('#editor'));
   editor.blur();
   editor.onFocus.listen(expectAsync1((e) {
@@ -94,7 +94,7 @@ void testFocusEditor() {
 }
 
 @Test()
-void testEditorValue() {
+void testValue() {
   final Editor editor = edit(html.query('#editor'));
   expect(editor.value, isEmpty);
   // 0 = select all
@@ -115,7 +115,7 @@ void testEditorValue() {
 }
 
 @Test()
-void testEditorBlockIndent() {
+void testBlockIndent() {
   final Editor editor = edit(html.query('#editor'));
   editor.setValue(sampleText, -1);
   expect(editor.cursorPosition, equals(new Point(0,0)));
@@ -125,7 +125,7 @@ void testEditorBlockIndent() {
 }
 
 @Test()
-void testEditorBlockOutdent() {
+void testBlockOutdent() {
   final Editor editor = edit(html.query('#editor'));
   editor.setValue(sampleText, -1);
   expect(editor.cursorPosition, equals(new Point(0,0)));
@@ -134,4 +134,19 @@ void testEditorBlockOutdent() {
   expect(editor.cursorPosition, equals(new Point(0,4)));
   editor.blockOutdent();
   expect(editor.cursorPosition, equals(new Point(0,0)));
+}
+
+@Test()
+void testInsert() {
+  final Editor editor = edit(html.query('#editor'));
+  editor.setValue(sampleText, -1);
+  expect(editor.cursorPosition, equals(new Point(0,0)));
+  editor.onChange.listen(expectAsync1((Delta delta) {
+    expect(delta, const isInstanceOf<InsertTextDelta>());
+    expect(delta.range, equals(new Range(0,0,0,5)));
+    InsertTextDelta insertTextDelta = delta;
+    expect(insertTextDelta.text, equals('snarf'));    
+  }));
+  editor.insert('snarf');
+  expect(editor.cursorPosition, equals(new Point(0,5)));
 }
