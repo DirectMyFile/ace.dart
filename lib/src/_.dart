@@ -1,5 +1,8 @@
 part of ace;
 
+// TODO(rms): recommend that `js.context` have type `dynamic` to avoid warnings.
+get _context => js.context;
+
 abstract class _HasProxy {
   var _proxy;
 
