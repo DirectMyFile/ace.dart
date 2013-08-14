@@ -99,3 +99,15 @@ void testPositionToIndex() {
       // + 1 for the newline character
       equals(sampleTextLine0.length + 1));
 }
+
+@Test()
+void testRemove() {
+  document.onChange.listen(expectAsync1((Delta delta) {
+    expect(delta, const isInstanceOf<RemoveTextDelta>());
+    expect(delta.range, equals(new Range(0,0,0,10)));
+    RemoveTextDelta removeTextDelta = delta;
+    expect(removeTextDelta.text, equals(sampleTextLine0.substring(0,10)));    
+  }));
+  final point = document.remove(new Range(0, 0, 0, 10));
+  expect(point, equals(new Point(0, 0)));
+}
