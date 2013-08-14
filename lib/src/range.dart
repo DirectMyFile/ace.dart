@@ -1,10 +1,16 @@
 part of ace;
 
+/// A region within an [Editor].
+/// 
+/// A [Range] can be thought of as a rectangle from a [start] point to an [end]
+/// point.
 class Range {
   final Point start;
   final Point end;
-  
+
+  /// Returns _true_ if this range's [start] point equals its [end] point.
   bool get isEmpty => start.row == end.row && start.column == end.column;
+  /// Returns _true_ if this range spans across multiple lines.
   bool get isMultiLine => start.row != end.row;
   
   Range(int startRow, int startColumn, int endRow, int endColumn)
