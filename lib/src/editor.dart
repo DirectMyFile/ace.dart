@@ -129,6 +129,7 @@ class Editor extends _HasProxy {
   void gotoPageDown() => _proxy.gotoPageDown();
   void gotoPageUp() => _proxy.gotoPageUp();
   void indent() => _proxy.indent();
+  /// Insert [text] at the current [cursorPosition].
   void insert(String text) => _proxy.insert(text);
   bool isRowFullyVisible(int row) => _proxy.isRowFullyVisible(row);
   bool isRowVisible(int row) => _proxy.isRowVisible(row);
@@ -141,7 +142,11 @@ class Editor extends _HasProxy {
   void navigateTo(int row, int column) => _proxy.navigateTo(row, column);
   void navigateUp(int times) => _proxy.navigateUp(times);
   void navigateWordLeft() => _proxy.navigateWordLeft();
-  void navigateWordRight() => _proxy.navigateWordRight();
+  void navigateWordRight() => _proxy.navigateWordRight();  
+  /// Remove the word directly to the left of the current [selection].
+  void removeWordLeft() => _proxy.removeWordLeft();
+  /// Remove the word directly to the right of the current [selection].
+  void removeWordRight() => _proxy.removeWordRight();  
   void resize(bool force) => _proxy.resize(force);
   String setValue(String val, int cursorPos) {
     assert(cursorPos >= -1 && cursorPos <= 1);

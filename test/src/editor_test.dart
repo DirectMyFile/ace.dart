@@ -150,3 +150,33 @@ void testInsert() {
   editor.insert('snarf');
   expect(editor.cursorPosition, equals(new Point(0,5)));
 }
+
+@Test()
+void testRemoveWordLeft() {
+  final Editor editor = edit(html.query('#editor'));
+  editor.setValue(sampleText, 1);
+  expect(editor.cursorPosition, equals(new Point(6,0)));  
+  editor.onChange.listen(expectAsync1((Delta delta) {
+    expect(delta, const isInstanceOf<RemoveTextDelta>());
+    expect(delta.range, equals(new Range(5,54,6,0)));
+    RemoveTextDelta removeTextDelta = delta;
+    expect(removeTextDelta.text, equals('\n'));
+  }));  
+  editor.removeWordLeft();
+  expect(editor.cursorPosition, equals(new Point(5, 54)));  
+}
+
+@Test()
+void testRemoveWordRight() {
+  final Editor editor = edit(html.query('#editor'));
+  editor.setValue(sampleText, -1);
+  expect(editor.cursorPosition, equals(new Point(0,0)));
+  editor.onChange.listen(expectAsync1((Delta delta) {
+    expect(delta, const isInstanceOf<RemoveTextDelta>());
+    expect(delta.range, equals(new Range(0,0,0,5)));
+    RemoveTextDelta removeTextDelta = delta;
+    expect(removeTextDelta.text, equals('Lorem'));
+  })); 
+  editor.removeWordRight();
+  expect(editor.cursorPosition, equals(new Point(0, 0)));  
+}
