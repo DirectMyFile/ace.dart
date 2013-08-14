@@ -1,6 +1,6 @@
 # Ace.dart
 
-A [Dart][dart] wrapper for [Ace][ace].
+[Dart language][dart] bindings for [Ace][ace].
 
 [![Build Status](https://drone.io/github.com/rmsmith/ace.dart/status.png)][badge]
 
