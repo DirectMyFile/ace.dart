@@ -16,6 +16,15 @@ part 'src/search.dart';
 part 'src/selection.dart';
 part 'src/virtual_renderer.dart';
 
+/// Creates a new [EditSession] and returns the associated [Document].
+/// 
+/// A new [Document] is created with the given [text] and language [mode].
+Document createEditSession(String text, String mode) {
+  assert(text != null);
+  assert(mode != null);
+  return new Document._( _context.ace.createEditSession(text, mode));
+}
+
 /// Embed an Ace [Editor] instance into the DOM, at the given [element].
 Editor edit(html.Element element) {
   assert(element != null);

@@ -24,9 +24,9 @@ main() {
 
 ## Goals
 
-- 100% of the [ace-builds][] public API exposed as Dart code.
+- 100% of the public API exposed and documented in Dart.
 - 100% unit test coverage.
-- Minimize external dependencies and code size of the library.
+- Minimize code size of the library and avoid external dependencies.
 
 _Ace.dart uses the MIT license as described in the [LICENSE][license] file, and 
 follows [semantic versioning][]._
