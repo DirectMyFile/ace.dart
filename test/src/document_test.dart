@@ -184,3 +184,23 @@ void testReplace() {
   final point = document.replace(new Range(0, 10, 0, 20), 'snarf');
   expect(point, equals(new Point(0, 15)));
 }
+
+@Test()
+void testApplyDeltas() {
+  final observedDeltas = new List<Delta>();
+  final applyToNewDocument = () {
+    var newDocument = new Document(sampleText);
+    expect(newDocument.allLines, isNot(equals(document.allLines)));        
+    newDocument.onChange.listen(expectAsync1((_) {}, count: 3));    
+    newDocument.applyDeltas(observedDeltas);
+    expect(newDocument.allLines, equals(document.allLines));
+  };    
+  int observedDeltaCount = 0;
+  document.onChange.listen(expectAsync1((Delta delta) { 
+      observedDeltas.add(delta);
+      if (++observedDeltaCount == 3) applyToNewDocument();
+  }, count: 3));  
+  document.insertLines(0, ['foo', 'bar']);  
+  document.removeNewLine(4);
+  document.insertNewLine(new Point(0, 2));  
+}

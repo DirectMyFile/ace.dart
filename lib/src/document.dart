@@ -47,6 +47,10 @@ class Document extends _HasProxy {
     _jsOnChange.dispose();
   }
   
+  /// Applies all of the given [deltas] to this document in the order given.
+  void applyDeltas(Iterable<Delta> deltas) =>
+      _proxy.applyDeltas(js.array(deltas.map((delta) => delta._toProxy())));
+  
   /// Returns a verbatim copy of the given line [row] as it is in this document.
   String getLine(int row) => _proxy.getLine(row);
   
