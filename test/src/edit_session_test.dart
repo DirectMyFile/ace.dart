@@ -174,3 +174,15 @@ void testGetUndoManager() {
   // The $defaultUndoManager in ace.js is just an object which does not define
   // hasUndo / hasRedo, so we cannot test those methods here.
 }
+
+@Test()
+void testNewLineMode() {
+  session.newLineMode = 'windows';
+  expect(session.newLineMode, 'windows');
+  expect(session.document.newLineCharacter, '\r\n');
+  session.newLineMode = 'unix';
+  expect(session.newLineMode, 'unix');
+  expect(session.document.newLineCharacter, '\n');
+  session.newLineMode = 'auto';
+  expect(session.document.newLineMode, 'auto');
+}
