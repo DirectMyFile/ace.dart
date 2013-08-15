@@ -18,10 +18,10 @@ abstract class Delta {
 }
 
 class InsertLinesDelta extends Delta {  
-  //final Iterable<String> lines;
+  final Iterable<String> lines;
   InsertLinesDelta._(data) 
-    : super._(data.action, data.range);
-    //, lines = data.lines
+    : super._(data.action, data.range)
+    , lines = json.parse(_context.JSON.stringify(data.lines));
 }
 
 class InsertTextDelta extends Delta {

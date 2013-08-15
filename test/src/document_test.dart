@@ -61,6 +61,19 @@ void testInsertInLine() {
 }
 
 @Test()
+void testInsertLines() {
+  document.onChange.listen(expectAsync1((Delta delta) {
+    expect(delta, const isInstanceOf<InsertLinesDelta>());
+    expect(delta.range, equals(new Range(0,0,2,0)));
+    InsertLinesDelta insertLinesDelta = delta;
+    expect(insertLinesDelta.lines.length, equals(2));
+    expect(insertLinesDelta.lines, equals(['foo', 'bar']));
+  }));
+  final point = document.insertLines(0, ['foo', 'bar']);
+  expect(point, equals(new Point(2, 0)));
+}
+
+@Test()
 void testInsertNewLine() {
   document.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<InsertTextDelta>());
