@@ -95,7 +95,12 @@ class EditSession extends _HasProxy {
   /// If the [useSoftTabs] is `true`, this will be a series of [tabSize] spaces; 
   /// otherwise it is equal to `'\t'`.
   String get tabString => _proxy.getTabString();
-    
+  
+  /// The current [UndoManager].
+  UndoManager
+    get undoManager => new UndoManager._(_proxy.getUndoManager());
+    set undoManager(UndoManager undoManager) => throw new UnimplementedError();
+  
   /// Whether or not to use soft tabs.  
   /// 
   /// A _true_ value means soft tabs are being used.  Using soft tabs means to
@@ -196,7 +201,7 @@ class EditSession extends _HasProxy {
   int duplicateLines(int firstRow, int lastRow) =>
       _proxy.duplicateLines(firstRow, lastRow);
   Range getAWordRange(int row, int column) =>
-      new Range._fromProxy(_proxy.getAWordRange(row, column));
+      new Range._(_proxy.getAWordRange(row, column));
   String getLine(int row) => _proxy.getLine(row);
   int getRowLength(int row) => _proxy.getRowLength(row);
   void indentRows(int startRow, int endRow, String indentString) =>

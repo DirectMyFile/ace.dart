@@ -19,8 +19,8 @@ class Range {
   
   Range.fromPoints(this.start, this.end);
   
-  Range._fromProxy(p)
-      : this(p.start.row, p.start.column, p.end.row, p.end.column);
+  Range._(proxy) : this(proxy.start.row, proxy.start.column, 
+                        proxy.end.row, proxy.end.column);
   
   bool operator ==(Object other) {
     if(identical(this, other)) return true;

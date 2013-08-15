@@ -5,7 +5,7 @@ class Selection extends _HasProxy {
   bool get isBackwards => _proxy.isBackwards();
   bool get isEmpty => _proxy.isEmpty();
   bool get isMultiLine => _proxy.isMultiLine();  
-  Range get range => new Range._fromProxy(_proxy.getRange());
+  Range get range => new Range._(_proxy.getRange());
   
   Selection._(js.Proxy proxy) : super(proxy);
     

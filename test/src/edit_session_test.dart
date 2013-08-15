@@ -166,3 +166,11 @@ void testToggleOverwrite() {
   })); 
   session.toggleOverwrite();
 }
+
+@Test()
+void testGetUndoManager() {
+  final undoManager = session.undoManager;
+  expect(undoManager, isNotNull);
+  // The $defaultUntoManager in ace.js is just an object which does not define
+  // hasUndo / hasRedo, so we cannot test for them here.
+}

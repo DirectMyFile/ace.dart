@@ -12,7 +12,7 @@ abstract class Delta {
       default: throw new UnsupportedError('Unknown action: ${data.action}');
     }
   }  
-  Delta._(this.action, js.Proxy r): range = new Range._fromProxy(r);
+  Delta._(this.action, js.Proxy r): range = new Range._(r);
   js.Proxy _toProxy() => js.map({'action': action, 'range': range._toProxy()});
 }
 
