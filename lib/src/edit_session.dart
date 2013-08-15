@@ -9,13 +9,18 @@ part of ace;
 /// instance of [Document] may be attached to more than one [EditSession].
 class EditSession extends _HasProxy {
   js.Callback _jsOnChangeTabSize;
+  js.Callback _jsOnChangeWrapLimit;
   js.Callback _jsOnChangeWrapMode;
   
   final _onChangeTabSize = new StreamController.broadcast();
+  final _onChangeWrapLimit = new StreamController.broadcast();
   final _onChangeWrapMode = new StreamController.broadcast();
   
   /// Fired whenever the [tabSize] changes.
   Stream get onChangeTabSize => _onChangeTabSize.stream;
+  
+  /// Fired whenever the [wrapLimit] changes.
+  Stream get onChangeWrapLimit => _onChangeWrapLimit.stream;
   
   /// Fired whenever the [useWrapMode] changes.
   Stream get onChangeWrapMode => _onChangeWrapMode.stream;
@@ -91,8 +96,19 @@ class EditSession extends _HasProxy {
     get value => _proxy.getValue();
     set value(String text) => _proxy.setValue(text);
     
+  /// The current wrap limit.
   int get wrapLimit => _proxy.getWrapLimit();
-    
+  // TODO(rms): there is a _proxy.setWrapLimit(limit) but it calls through to
+  // `setWrapLimitRange(limit, limit)` which doesn't set the value of wrapLimit?
+  
+  /// Returns a map that defines the minimum and maximum of the [wrapLimit].
+  /// 
+  /// The map contains the keys `min` and `max`:
+  ///     { min: wrapLimitRange_min, max: wrapLimitRange_max }
+  // TODO(rms): define a class for this data.
+  Map get wrapLimitRange => 
+      json.parse(_context.JSON.stringify(_proxy.getWrapLimitRange()));
+  
   /// Creates a new EditSession and associates it with the given [document] and 
   /// text [mode].
   EditSession(Document document, String mode) : this._(
@@ -101,21 +117,30 @@ class EditSession extends _HasProxy {
   EditSession._(js.Proxy proxy) : super(proxy) {
     _jsOnChangeTabSize = 
         new js.Callback.many((_,__) => _onChangeTabSize.add(this));
+    _jsOnChangeWrapLimit = 
+        new js.Callback.many((_,__) => _onChangeWrapLimit.add(this));
     _jsOnChangeWrapMode = 
         new js.Callback.many((_,__) => _onChangeWrapMode.add(this));
     _proxy.on('changeTabSize', _jsOnChangeTabSize);
+    _proxy.on('changeWrapLimit', _jsOnChangeWrapLimit);
     _proxy.on('changeWrapMode', _jsOnChangeWrapMode);
   }
   
   void _onDispose() {
     _onChangeTabSize.close();
+    _onChangeWrapLimit.close();
     _onChangeWrapMode.close();
     _jsOnChangeTabSize.dispose();
+    _jsOnChangeWrapLimit.dispose();
     _jsOnChangeWrapMode.dispose();
   }
       
   void addGutterDecoration(int row, String className) =>
       _proxy.addGutterDecoration(row, className);
+  
+  bool adjustWrapLimit(int desiredLimit, int printMargin) =>
+      _proxy.adjustWrapLimit(desiredLimit, printMargin);
+  
   void clearAnnotations() => _proxy.clearAnnotations();
   void clearBreakpoint(int row) => _proxy.clearBreakpoint(row);
   void clearBreakpoints() => _proxy.clearBreakpoints();
@@ -136,6 +161,17 @@ class EditSession extends _HasProxy {
   int moveLinesUp(int firstRow, int lastRow) =>
       _proxy.moveLinesUp(firstRow, lastRow);
   void setMode(String mode) => _proxy.setMode(mode);
+  
+  /// Sets the boundaries of line wrap. 
+  /// 
+  /// Either value can be `null` to have an unconstrained wrap, or, they can be 
+  /// the same number to pin the [wrapLimit].  The [min] wrap value specifies
+  /// the left side wrap and the [max] wrap value specifies the right side wrap.
+  /// If a new value for [min] or [max] is set then this method fires an 
+  /// [onChangeWrapMode] event.
+  void setWrapLimitRange({int min, int max}) => 
+      _proxy.setWrapLimitRange(min, max);
+  
   void toggleOverwrite() => _proxy.toggleOverwrite();
   String toString() => _proxy.toString();
 }

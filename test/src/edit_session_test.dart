@@ -29,6 +29,7 @@ void testDispose() {
   final noop1 = (_){};
   expect(session.isDisposed, isFalse);
   session.onChangeTabSize.listen(noop1, onDone: expectAsync0(noop0));
+  session.onChangeWrapLimit.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeWrapMode.listen(noop1, onDone: expectAsync0(noop0));
   session.dispose();
   expect(session.isDisposed, isTrue);
@@ -79,4 +80,42 @@ void testUseWrapMode() {
   expect(session.useWrapMode, isTrue);
   session.useWrapMode = false;
   expect(session.useWrapMode, isFalse);
+}
+
+@Test()
+void testSetWrapLimitRange() {
+  session.onChangeWrapMode.listen(expectAsync1((_) {    
+    expect(session.wrapLimitRange['min'], equals(63));
+    expect(session.wrapLimitRange['max'], equals(65));
+  }));
+  session.setWrapLimitRange(min: 63, max: 65);
+}
+
+@Test()
+void testSetWrapLimitRangeMin() {
+  session.onChangeWrapMode.listen(expectAsync1((_) {    
+    expect(session.wrapLimitRange['min'], equals(63));
+    expect(session.wrapLimitRange['max'], equals(null));
+  }));
+  session.setWrapLimitRange(min: 63);
+}
+
+@Test()
+void testSetWrapLimitRangeMax() {
+  session.onChangeWrapMode.listen(expectAsync1((_) {    
+    expect(session.wrapLimitRange['min'], equals(null));
+    expect(session.wrapLimitRange['max'], equals(65));
+  }));
+  session.setWrapLimitRange(max: 65);
+}
+
+@Test()
+void testAdjustWrapLimit() {
+  session.useWrapMode = true;
+  session.setWrapLimitRange(min: 63, max: 65);  
+  session.onChangeWrapLimit.listen(expectAsync1((_) {    
+    expect(session.wrapLimit, equals(64));
+  }));  
+  expect(session.adjustWrapLimit(64, 80), isTrue);
+  expect(session.wrapLimit, equals(64));
 }
