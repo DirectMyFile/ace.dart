@@ -67,6 +67,7 @@ class EditSession extends _HasProxy {
     get overwrite => _proxy.getOverwrite();
     set overwrite(bool overwrite) => _proxy.setOverwrite(overwrite);
   
+  /// Returns the width of the screen.
   int get screenWidth => _proxy.getScreenWidth();
   
   /// The value of the distance between the left of the editor and the leftmost 
