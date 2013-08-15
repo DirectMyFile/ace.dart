@@ -29,3 +29,13 @@ void testGetDocument() {
   expect(document, const isInstanceOf<Document>());
   expect(document.value, equals(sampleText));
 }
+
+@Test()
+void testValue() {
+  final text = 'do re me fa so la ti do';
+  session.value = text;
+  expect(session.value, equals(text));
+  expect(session.document.value, equals(text));
+  session.document.value = sampleText;
+  expect(session.value, equals(sampleText));
+}

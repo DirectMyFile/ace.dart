@@ -51,6 +51,7 @@ class EditSession extends _HasProxy {
     get useWorker => _proxy.getUseWorker();
     set useWorker(bool useWorker) => _proxy.setUseWorker(useWorker);
     
+  /// The current [document.value].
   String
     get value => _proxy.getValue();
     set value(String text) => _proxy.setValue(text);

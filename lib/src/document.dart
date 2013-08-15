@@ -12,7 +12,7 @@ class Document extends _HasProxy {
   /// Fired whenever this document changes.
   Stream<Delta> get onChange => _onChange.stream;
   
-  /// All lines in this document.
+  /// All the lines in this document.
   Iterable<String> get allLines =>
       json.parse(_context.JSON.stringify(_proxy.getAllLines()));
   
@@ -28,6 +28,8 @@ class Document extends _HasProxy {
     get newLineMode => _proxy.getNewLineMode();
     set newLineMode(String newLineMode) => _proxy.setNewLineMode(newLineMode);
     
+  /// All the lines in this document as a single string, split by the 
+  /// [newLineCharacter].  
   String
     get value => _proxy.getValue();
     set value(String text) => _proxy.setValue(text);
