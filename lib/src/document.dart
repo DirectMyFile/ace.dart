@@ -100,4 +100,8 @@ class Document extends _HasProxy {
   /// returns the removed lines.  This method also fires an [onChange] event.
   Iterable<String> removeLines(int startRow, int endRow) =>
       json.parse(_context.JSON.stringify(_proxy.removeLines(startRow, endRow)));
+  
+  /// Removes the [newLineCharacter] between the given [row] and the row 
+  /// immediately following it.  This method also fires an [onChange] event.
+  void removeNewLine(int row) => _proxy.removeNewLine(row);
 }

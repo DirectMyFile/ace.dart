@@ -150,3 +150,14 @@ void testRemoveLines() {
   expect(lines[0], equals(sampleTextLine2));
   expect(lines[1], equals(sampleTextLine3));
 }
+
+@Test()
+void testRemoveNewLine() {
+  document.onChange.listen(expectAsync1((Delta delta) {
+    expect(delta, const isInstanceOf<RemoveTextDelta>());
+    expect(delta.range, equals(new Range(3,sampleTextLine3.length,4,0)));
+    RemoveTextDelta removeTextDelta = delta;
+    expect(removeTextDelta.text, equals(document.newLineCharacter));    
+  }));
+  document.removeNewLine(3);  
+}
