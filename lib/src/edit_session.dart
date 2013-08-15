@@ -9,15 +9,20 @@ part of ace;
 /// instance of [Document] may be attached to more than one [EditSession].
 class EditSession extends _HasProxy {
   js.Callback _jsOnChangeTabSize;
+  js.Callback _jsOnChangeScrollLeft;
   js.Callback _jsOnChangeWrapLimit;
   js.Callback _jsOnChangeWrapMode;
   
   final _onChangeTabSize = new StreamController.broadcast();
+  final _onChangeScrollLeft = new StreamController<int>.broadcast();
   final _onChangeWrapLimit = new StreamController.broadcast();
   final _onChangeWrapMode = new StreamController.broadcast();
   
   /// Fired whenever the [tabSize] changes.
   Stream get onChangeTabSize => _onChangeTabSize.stream;
+  
+  /// Fired whenever the [scrollLeft] changes.
+  Stream<int> get onChangeScrollLeft => _onChangeScrollLeft.stream;
   
   /// Fired whenever the [wrapLimit] changes.
   Stream get onChangeWrapLimit => _onChangeWrapLimit.stream;
@@ -46,6 +51,9 @@ class EditSession extends _HasProxy {
   
   int get screenWidth => _proxy.getScreenWidth();
   
+  /// The value of the distance between the left of the editor and the leftmost 
+  /// part of the visible content.  Setting this to a new value fires an
+  /// [onChangeScrollLeft] event.
   int
     get scrollLeft => _proxy.getScrollLeft();
     set scrollLeft(int scrollLeft) => _proxy.setScrollLeft(scrollLeft);  
@@ -57,8 +65,8 @@ class EditSession extends _HasProxy {
   /// The number of spaces that define a soft tab.
   /// 
   /// For example, a tab size of `4` combined with [useSoftTabs] will transform
-  /// the soft tabs to be equivalent to four spaces.  This method also fires an 
-  /// [onChangeTabSize] event.
+  /// the soft tabs to be equivalent to four spaces.  Setting this to a new
+  /// value fires an [onChangeTabSize] event.
   int
     get tabSize => _proxy.getTabSize();
     set tabSize(int tabSize) => _proxy.setTabSize(tabSize);
@@ -118,20 +126,25 @@ class EditSession extends _HasProxy {
   EditSession._(js.Proxy proxy) : super(proxy) {
     _jsOnChangeTabSize = 
         new js.Callback.many((_,__) => _onChangeTabSize.add(this));
+    _jsOnChangeScrollLeft = 
+        new js.Callback.many((e,__) => _onChangeScrollLeft.add(e));
     _jsOnChangeWrapLimit = 
         new js.Callback.many((_,__) => _onChangeWrapLimit.add(this));
     _jsOnChangeWrapMode = 
         new js.Callback.many((_,__) => _onChangeWrapMode.add(this));
     _proxy.on('changeTabSize', _jsOnChangeTabSize);
+    _proxy.on('changeScrollLeft', _jsOnChangeScrollLeft);
     _proxy.on('changeWrapLimit', _jsOnChangeWrapLimit);
     _proxy.on('changeWrapMode', _jsOnChangeWrapMode);
   }
   
   void _onDispose() {
     _onChangeTabSize.close();
+    _onChangeScrollLeft.close();
     _onChangeWrapLimit.close();
     _onChangeWrapMode.close();
     _jsOnChangeTabSize.dispose();
+    _jsOnChangeScrollLeft.dispose();
     _jsOnChangeWrapLimit.dispose();
     _jsOnChangeWrapMode.dispose();
   }
