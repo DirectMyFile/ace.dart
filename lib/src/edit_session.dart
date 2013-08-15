@@ -212,7 +212,11 @@ class EditSession extends _HasProxy {
       _proxy.duplicateLines(firstRow, lastRow);
   Range getAWordRange(int row, int column) =>
       new Range._(_proxy.getAWordRange(row, column));
+  
+  /// Returns a verbatim copy of the given line [row] as it is in the current 
+  /// [document].
   String getLine(int row) => _proxy.getLine(row);
+  
   int getRowLength(int row) => _proxy.getRowLength(row);
   void indentRows(int startRow, int endRow, String indentString) =>
       _proxy.indentRows(startRow, endRow, indentString);
