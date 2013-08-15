@@ -201,3 +201,14 @@ testGetAWordRange() {
   final range = session.getAWordRange(0, 0);
   expect(range, equals(new Range(0,0,0,6)));
 }
+
+@Test()
+void testGetRowLength() {
+  expect(session.getRowLength(0), 1);
+  int desiredLimit = 20;
+  session.useWrapMode = true;  
+  expect(session.adjustWrapLimit(desiredLimit, 80), isTrue);
+  expect(session.wrapLimit, equals(desiredLimit));
+  expect(session.getRowLength(0), 
+      equals((sampleTextLine0.length / desiredLimit).ceil()));
+}

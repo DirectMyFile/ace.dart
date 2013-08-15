@@ -221,7 +221,9 @@ class EditSession extends _HasProxy {
   /// [document].
   String getLine(int row) => _proxy.getLine(row);
   
+  /// Returns the number of screen rows in a wrapped line for the given [row].
   int getRowLength(int row) => _proxy.getRowLength(row);
+  
   void indentRows(int startRow, int endRow, String indentString) =>
       _proxy.indentRows(startRow, endRow, indentString);
   int moveLinesDown(int firstRow, int lastRow) =>
