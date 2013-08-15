@@ -196,3 +196,8 @@ void testGetLine() {
   expect(session.getLine(4), equals(sampleTextLine4));
 }
 
+@Test()
+testGetAWordRange() {
+  final range = session.getAWordRange(0, 0);
+  expect(range, equals(new Range(0,0,0,6)));
+}

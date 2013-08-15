@@ -210,6 +210,10 @@ class EditSession extends _HasProxy {
       _proxy.documentToScreenRow(docRow, docColumn);
   int duplicateLines(int firstRow, int lastRow) =>
       _proxy.duplicateLines(firstRow, lastRow);
+  
+  /// Gets the [Range] of a word, including its right whitespace.
+  /// 
+  /// Start from the given [row] and [column].
   Range getAWordRange(int row, int column) =>
       new Range._(_proxy.getAWordRange(row, column));
   
