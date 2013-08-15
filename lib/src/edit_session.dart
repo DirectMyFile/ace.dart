@@ -67,6 +67,9 @@ class EditSession extends _HasProxy {
     get overwrite => _proxy.getOverwrite();
     set overwrite(bool overwrite) => _proxy.setOverwrite(overwrite);
   
+  /// Returns the length of the screen.
+  int get screenLength => _proxy.getScreenLength();
+    
   /// Returns the width of the screen.
   int get screenWidth => _proxy.getScreenWidth();
   
