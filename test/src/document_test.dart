@@ -204,3 +204,18 @@ void testApplyDeltas() {
   document.removeNewLine(4);
   document.insertNewLine(new Point(0, 2));  
 }
+
+@Test()
+void testRevertDeltas() {
+  final deltas = new List<Delta>();
+  int observedDeltaCount = 0;
+  document.onChange.listen(expectAsync1((Delta delta) {    
+    if (++observedDeltaCount <= 3) deltas.add(delta);
+    if (observedDeltaCount == 3) document.revertDeltas(deltas);
+    if (observedDeltaCount == 6) expect(document.value, equals(sampleText));
+  }, count: 6));
+  document.insertLines(0, ['foo', 'bar']);  
+  document.removeNewLine(4);
+  document.insertNewLine(new Point(0, 2));
+  expect(document.value, isNot(equals(sampleText)));
+}

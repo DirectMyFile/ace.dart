@@ -113,4 +113,9 @@ class Document extends _HasProxy {
   /// a point at the end of the new text.
   Point replace(Range range, String text) => 
       new Point._(_proxy.replace(range._toProxy(), text));
+  
+  /// Reverts all of the given [deltas] to this document in reverse of the 
+  /// order given.
+  void revertDeltas(Iterable<Delta> deltas) => 
+      _proxy.revertDeltas(js.array(deltas.map((delta) => delta._toProxy())));
 }
