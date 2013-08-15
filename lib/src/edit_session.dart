@@ -9,9 +9,16 @@ part of ace;
 /// instance of [Document] may be attached to more than one [EditSession].
 class EditSession extends _HasProxy {
   js.Callback _jsOnChangeTabSize;
+  js.Callback _jsOnChangeWrapMode;
+  
   final _onChangeTabSize = new StreamController.broadcast();
+  final _onChangeWrapMode = new StreamController.broadcast();
+  
   /// Fired whenever the [tabSize] changes.
   Stream get onChangeTabSize => _onChangeTabSize.stream;
+  
+  /// Fired whenever the [useWrapMode] changes.
+  Stream get onChangeWrapMode => _onChangeWrapMode.stream;
   
   Document
     get document => new Document._(_proxy.getDocument());
@@ -64,9 +71,20 @@ class EditSession extends _HasProxy {
     get useSoftTabs => _proxy.getUseSoftTabs();
     set useSoftTabs(bool useSoftTabs) => _proxy.setUseSoftTabs(useSoftTabs);
     
+  /// Whether or not this EditSession uses a worker.
+  /// 
+  /// A _true_ value means to use a worker.
   bool
     get useWorker => _proxy.getUseWorker();
     set useWorker(bool useWorker) => _proxy.setUseWorker(useWorker);
+    
+  /// Whether or not line wrapping is enabled. 
+  /// 
+  /// A _true_ value means to line wrap.  Setting a new value fires an 
+  /// [onChangeWrapMode] event.
+  bool
+    get useWrapMode => _proxy.getUseWrapMode();
+    set useWrapMode(bool useWrapMode) => _proxy.setUseWrapMode(useWrapMode);
     
   /// The current [document.value].
   String
@@ -83,12 +101,17 @@ class EditSession extends _HasProxy {
   EditSession._(js.Proxy proxy) : super(proxy) {
     _jsOnChangeTabSize = 
         new js.Callback.many((_,__) => _onChangeTabSize.add(this));
+    _jsOnChangeWrapMode = 
+        new js.Callback.many((_,__) => _onChangeWrapMode.add(this));
     _proxy.on('changeTabSize', _jsOnChangeTabSize);
+    _proxy.on('changeWrapMode', _jsOnChangeWrapMode);
   }
   
   void _onDispose() {
     _onChangeTabSize.close();
+    _onChangeWrapMode.close();
     _jsOnChangeTabSize.dispose();
+    _jsOnChangeWrapMode.dispose();
   }
       
   void addGutterDecoration(int row, String className) =>

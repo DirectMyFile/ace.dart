@@ -29,6 +29,7 @@ void testDispose() {
   final noop1 = (_){};
   expect(session.isDisposed, isFalse);
   session.onChangeTabSize.listen(noop1, onDone: expectAsync0(noop0));
+  session.onChangeWrapMode.listen(noop1, onDone: expectAsync0(noop0));
   session.dispose();
   expect(session.isDisposed, isTrue);
 }
@@ -67,4 +68,15 @@ void testUseSoftTabs() {
   session.useSoftTabs = false;
   expect(session.useSoftTabs, isFalse);
   expect(session.tabString, equals('\t'));
+}
+
+@Test()
+void testUseWrapMode() {
+  session.onChangeWrapMode.listen(expectAsync1((_){}, count: 2));
+  session.useWrapMode = true;
+  expect(session.useWrapMode, isTrue);
+  session.useWrapMode = true; // Should not fire an event.
+  expect(session.useWrapMode, isTrue);
+  session.useWrapMode = false;
+  expect(session.useWrapMode, isFalse);
 }
