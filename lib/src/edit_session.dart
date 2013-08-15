@@ -8,26 +8,31 @@ part of ace;
 /// An instance of [EditSession] may be attached to only one [Document].  An
 /// instance of [Document] may be attached to more than one [EditSession].
 class EditSession extends _HasProxy {
-  js.Callback _jsOnChangeTabSize;
+  js.Callback _jsOnChangeOverwrite;
   js.Callback _jsOnChangeScrollLeft;
   js.Callback _jsOnChangeScrollTop;
+  js.Callback _jsOnChangeTabSize;
   js.Callback _jsOnChangeWrapLimit;
   js.Callback _jsOnChangeWrapMode;
-  
-  final _onChangeTabSize = new StreamController.broadcast();
+    
+  final _onChangeOverwrite = new StreamController.broadcast();
   final _onChangeScrollLeft = new StreamController<int>.broadcast();
   final _onChangeScrollTop = new StreamController<int>.broadcast();
+  final _onChangeTabSize = new StreamController.broadcast();
   final _onChangeWrapLimit = new StreamController.broadcast();
   final _onChangeWrapMode = new StreamController.broadcast();
-  
-  /// Fired whenever the [tabSize] changes.
-  Stream get onChangeTabSize => _onChangeTabSize.stream;
+      
+  /// Fired whenever the [overwrite] changes.
+  Stream get onChangeOverwrite => _onChangeOverwrite.stream;
   
   /// Fired whenever the [scrollLeft] changes.
   Stream<int> get onChangeScrollLeft => _onChangeScrollLeft.stream;
   
   /// Fired whenever the [scrollTop] changes.
   Stream<int> get onChangeScrollTop => _onChangeScrollTop.stream;
+  
+  /// Fired whenever the [tabSize] changes.
+  Stream get onChangeTabSize => _onChangeTabSize.stream;
   
   /// Fired whenever the [wrapLimit] changes.
   Stream get onChangeWrapLimit => _onChangeWrapLimit.stream;
@@ -51,6 +56,11 @@ class EditSession extends _HasProxy {
     get newLineMode => _proxy.getNewLineMode();
     set newLineMode(String newLineMode) => _proxy.setNewLineMode(newLineMode);
   
+  /// Whether or not overwrite is enabled in this session.
+  /// 
+  /// A _true_ value means overwrite is enabled.  Any text that is entered will
+  /// write over any text after it.  Setting this to a new value fires an
+  /// [onChangeOverwrite] event.
   bool
     get overwrite => _proxy.getOverwrite();
     set overwrite(bool overwrite) => _proxy.setOverwrite(overwrite);
@@ -132,33 +142,38 @@ class EditSession extends _HasProxy {
   EditSession(Document document, String mode) : this._(
       new js.Proxy(_context.ace.EditSession, document._proxy, mode));
   
-  EditSession._(js.Proxy proxy) : super(proxy) {
-    _jsOnChangeTabSize = 
-        new js.Callback.many((_,__) => _onChangeTabSize.add(this));
+  EditSession._(js.Proxy proxy) : super(proxy) {    
+    _jsOnChangeOverwrite = 
+        new js.Callback.many((_,__) => _onChangeOverwrite.add(this));
     _jsOnChangeScrollLeft = 
         new js.Callback.many((e,__) => _onChangeScrollLeft.add(e));
     _jsOnChangeScrollTop = 
         new js.Callback.many((e,__) => _onChangeScrollTop.add(e));
+    _jsOnChangeTabSize = 
+        new js.Callback.many((_,__) => _onChangeTabSize.add(this));
     _jsOnChangeWrapLimit = 
         new js.Callback.many((_,__) => _onChangeWrapLimit.add(this));
     _jsOnChangeWrapMode = 
         new js.Callback.many((_,__) => _onChangeWrapMode.add(this));
-    _proxy.on('changeTabSize', _jsOnChangeTabSize);
+    _proxy.on('changeOverwrite', _jsOnChangeOverwrite);
     _proxy.on('changeScrollLeft', _jsOnChangeScrollLeft);
     _proxy.on('changeScrollTop', _jsOnChangeScrollTop);
+    _proxy.on('changeTabSize', _jsOnChangeTabSize);
     _proxy.on('changeWrapLimit', _jsOnChangeWrapLimit);
     _proxy.on('changeWrapMode', _jsOnChangeWrapMode);
   }
   
   void _onDispose() {
-    _onChangeTabSize.close();
+    _onChangeOverwrite.close();
     _onChangeScrollLeft.close();
     _onChangeScrollTop.close();
+    _onChangeTabSize.close();
     _onChangeWrapLimit.close();
-    _onChangeWrapMode.close();
-    _jsOnChangeTabSize.dispose();
+    _onChangeWrapMode.close();   
+    _jsOnChangeOverwrite.dispose();
     _jsOnChangeScrollLeft.dispose();
     _jsOnChangeScrollTop.dispose();
+    _jsOnChangeTabSize.dispose();
     _jsOnChangeWrapLimit.dispose();
     _jsOnChangeWrapMode.dispose();
   }
@@ -202,6 +217,8 @@ class EditSession extends _HasProxy {
   void setWrapLimitRange({int min, int max}) => 
       _proxy.setWrapLimitRange(min, max);
   
+  /// Sets the value of [overwrite] to the opposite of its current value.
   void toggleOverwrite() => _proxy.toggleOverwrite();
+  
   String toString() => _proxy.toString();
 }

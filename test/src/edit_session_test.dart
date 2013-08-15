@@ -28,9 +28,10 @@ void testDispose() {
   final noop0 = (){};
   final noop1 = (_){};
   expect(session.isDisposed, isFalse);
-  session.onChangeTabSize.listen(noop1, onDone: expectAsync0(noop0));
+  session.onChangeOverwrite.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeScrollLeft.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeScrollTop.listen(noop1, onDone: expectAsync0(noop0));
+  session.onChangeTabSize.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeWrapLimit.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeWrapMode.listen(noop1, onDone: expectAsync0(noop0));
   session.dispose();
@@ -146,4 +147,22 @@ void testSetScrollTop() {
     expect(session.scrollTop, equals(42));
   })); 
   session.scrollTop = 42;
+}
+
+@Test()
+void testSetOverwrite() {
+  final bool initialValue = session.overwrite;
+  session.onChangeOverwrite.listen(expectAsync1((_) {
+    expect(session.overwrite, isNot(initialValue));
+  })); 
+  session.overwrite = !initialValue;
+}
+
+@Test()
+void testToggleOverwrite() {
+  final bool initialValue = session.overwrite;
+  session.onChangeOverwrite.listen(expectAsync1((_) {
+    expect(session.overwrite, isNot(initialValue));
+  })); 
+  session.toggleOverwrite();
 }
