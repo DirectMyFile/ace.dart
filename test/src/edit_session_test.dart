@@ -24,6 +24,16 @@ void testCreateEditSession() {
 }
 
 @Test()
+void testDispose() {
+  final noop0 = (){};
+  final noop1 = (_){};
+  expect(session.isDisposed, isFalse);
+  session.onChangeTabSize.listen(noop1, onDone: expectAsync0(noop0));
+  session.dispose();
+  expect(session.isDisposed, isTrue);
+}
+
+@Test()
 void testGetDocument() {
   var document = session.document;
   expect(document, const isInstanceOf<Document>());
@@ -38,4 +48,12 @@ void testValue() {
   expect(session.document.value, equals(text));
   session.document.value = sampleText;
   expect(session.value, equals(sampleText));
+}
+
+@Test()
+void testSetTabSize() {
+  session.onChangeTabSize.listen(expectAsync1((_) {    
+    expect(session.tabSize, equals(7));    
+  }));
+  session.tabSize = 7;
 }

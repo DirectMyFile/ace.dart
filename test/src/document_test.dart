@@ -11,6 +11,16 @@ Document document;
 setup() => document = new Document(sampleText);
 
 @Test()
+void testDispose() {
+  final noop0 = (){};
+  final noop1 = (_){};
+  expect(document.isDisposed, isFalse);
+  document.onChange.listen(noop1, onDone: expectAsync0(noop0));
+  document.dispose();
+  expect(document.isDisposed, isTrue);
+}
+
+@Test()
 void testGetLength() {
   expect(document.length, equals(6));
 }

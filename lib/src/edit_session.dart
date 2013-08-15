@@ -8,6 +8,10 @@ part of ace;
 /// An instance of [EditSession] may be attached to only one [Document].  An
 /// instance of [Document] may be attached to more than one [EditSession].
 class EditSession extends _HasProxy {
+  js.Callback _jsOnChangeTabSize;
+  final _onChangeTabSize = new StreamController.broadcast();
+  /// Fired whenever the [tabSize] changes.
+  Stream get onChangeTabSize => _onChangeTabSize.stream;
   
   Document
     get document => new Document._(_proxy.getDocument());
@@ -37,6 +41,11 @@ class EditSession extends _HasProxy {
     get scrollTop => _proxy.getScrollTop();
     set scrollTop(int scrollTop) => _proxy.setScrollTop(scrollTop);
     
+  /// The number of spaces that define a soft tab.
+  /// 
+  /// For example, a tab size of `4` combined with [useSoftTabs] will transform
+  /// the soft tabs to be equivalent to four spaces.  This method also fires an 
+  /// [onChangeTabSize] event.
   int
     get tabSize => _proxy.getTabSize();
     set tabSize(int tabSize) => _proxy.setTabSize(tabSize);
@@ -64,7 +73,14 @@ class EditSession extends _HasProxy {
       new js.Proxy(_context.ace.EditSession, document._proxy, mode));
   
   EditSession._(js.Proxy proxy) : super(proxy) {
-    // TODO(rms): add event listeners and expose as Streams
+    _jsOnChangeTabSize = 
+        new js.Callback.many((_,__) => _onChangeTabSize.add(this));
+    _proxy.on('changeTabSize', _jsOnChangeTabSize);
+  }
+  
+  void _onDispose() {
+    _onChangeTabSize.close();
+    _jsOnChangeTabSize.dispose();
   }
       
   void addGutterDecoration(int row, String className) =>
