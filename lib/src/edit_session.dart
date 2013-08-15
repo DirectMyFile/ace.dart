@@ -50,8 +50,16 @@ class EditSession extends _HasProxy {
     get tabSize => _proxy.getTabSize();
     set tabSize(int tabSize) => _proxy.setTabSize(tabSize);
     
+  /// Returns the current value for tabs.
+  /// 
+  /// If the [useSoftTabs] is `true`, this will be a series of [tabSize] spaces; 
+  /// otherwise it is equal to `'\t'`.
   String get tabString => _proxy.getTabString();
     
+  /// Whether or not to use soft tabs.  
+  /// 
+  /// A _true_ value means soft tabs are being used.  Using soft tabs means to
+  /// use spaces instead of the tab character `\t`.
   bool
     get useSoftTabs => _proxy.getUseSoftTabs();
     set useSoftTabs(bool useSoftTabs) => _proxy.setUseSoftTabs(useSoftTabs);

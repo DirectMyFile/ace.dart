@@ -57,3 +57,14 @@ void testSetTabSize() {
   }));
   session.tabSize = 7;
 }
+
+@Test()
+void testUseSoftTabs() {
+  session.useSoftTabs = true;
+  session.tabSize = 5;
+  expect(session.useSoftTabs, isTrue);
+  expect(session.tabString, equals('     '));
+  session.useSoftTabs = false;
+  expect(session.useSoftTabs, isFalse);
+  expect(session.tabString, equals('\t'));
+}
