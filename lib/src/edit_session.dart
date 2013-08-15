@@ -101,6 +101,10 @@ class EditSession extends _HasProxy {
     get undoManager => new UndoManager._(_proxy.getUndoManager());
     set undoManager(UndoManager undoManager) => throw new UnimplementedError();
   
+  /// Whether or not the range of an undo or redo operation is selected.
+  // TODO(rms) there is no `getUndoSelect()` in ace.js; send a pull request.
+  set undoSelect(bool enable) => _proxy.setUndoSelect(enable);
+    
   /// Whether or not to use soft tabs.  
   /// 
   /// A _true_ value means soft tabs are being used.  Using soft tabs means to
