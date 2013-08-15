@@ -43,6 +43,11 @@ void testGetDocument() {
 }
 
 @Test()
+void testGetLength() {
+  expect(session.length, equals(6));
+}
+
+@Test()
 void testValue() {
   final text = 'do re me fa so la ti do';
   session.value = text;

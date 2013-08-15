@@ -29,6 +29,7 @@ class EditSession extends _HasProxy {
     get document => new Document._(_proxy.getDocument());
     set document(Document document) => throw new UnimplementedError();
   
+  /// Returns the current [document.length].
   int get length => _proxy.getLength();
   
   Mode
@@ -138,6 +139,8 @@ class EditSession extends _HasProxy {
   void addGutterDecoration(int row, String className) =>
       _proxy.addGutterDecoration(row, className);
   
+  // TODO(rms): undocumented and complex in ace.js, but a key ingredient in the
+  // line wrapping code so we should deduce some documentation...
   bool adjustWrapLimit(int desiredLimit, int printMargin) =>
       _proxy.adjustWrapLimit(desiredLimit, printMargin);
   
