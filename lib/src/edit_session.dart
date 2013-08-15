@@ -57,6 +57,11 @@ class EditSession extends _HasProxy {
     
   int get wrapLimit => _proxy.getWrapLimit();
     
+  /// Creates a new EditSession and associates it with the given [document] and 
+  /// text [mode].
+  EditSession(Document document, String mode) : this._(
+      new js.Proxy(_context.ace.EditSession, document._proxy, mode));
+  
   EditSession._(js.Proxy proxy) : super(proxy) {
     // TODO(rms): add event listeners and expose as Streams
   }

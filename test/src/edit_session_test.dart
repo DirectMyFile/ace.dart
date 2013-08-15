@@ -6,16 +6,25 @@ import 'package:bench/meta.dart';
 import 'package:unittest/unittest.dart';
 import 'sample_text.dart';
 
+EditSession session;
+@Setup
+setup() => session = new EditSession(new Document(sampleText), 'ace/mode/text');
+
+@Test()
+void testEditSessionCtor() {
+  expect(session, isNotNull);
+  expect(session.value, equals(sampleText));  
+}
+
 @Test()
 void testCreateEditSession() {  
-  final EditSession session = createEditSession(sampleText, 'ace/mode/dart');
+  session = createEditSession(sampleText, 'ace/mode/dart');
   expect(session, isNotNull); 
   expect(session.value, equals(sampleText));
 }
 
 @Test()
 void testGetDocument() {
-  final EditSession session = createEditSession(sampleText, 'ace/mode/dart');
   var document = session.document;
   expect(document, const isInstanceOf<Document>());
   expect(document.value, equals(sampleText));
