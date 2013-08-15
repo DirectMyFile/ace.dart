@@ -7,9 +7,8 @@ import 'package:unittest/unittest.dart';
 import 'sample_text.dart';
 
 Document document;
-// TODO(rms): figure out how to invoke the js `new Document(text)` ctor...
 @Setup
-setup() => document = createEditSession(sampleText, 'ace/mode/dart').document;
+setup() => document = new Document(sampleText);
 
 @Test()
 void testGetLength() {

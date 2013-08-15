@@ -31,7 +31,11 @@ class Document extends _HasProxy {
   String
     get value => _proxy.getValue();
     set value(String text) => _proxy.setValue(text);
-  
+
+  /// Creates a new Document with the given [text], if any, or else it is empty.
+  Document([String text = '']) : this._(
+      new js.Proxy(_context.ace.define.modules['ace/document'].Document, text));
+    
   Document._(js.Proxy proxy) : super(proxy) {
     _jsOnChange = new js.Callback.many((e,__) => 
         _onChange.add(new Delta._for(e.data)));
