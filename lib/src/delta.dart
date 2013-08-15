@@ -32,11 +32,11 @@ class InsertTextDelta extends Delta {
 }
 
 class RemoveLinesDelta extends Delta {  
-  //final Iterable<String> lines;
+  final Iterable<String> lines;
   final String nl;
   RemoveLinesDelta._(data) 
     : super._(data.action, data.range)
-    //, lines = data.lines
+    , lines = json.parse(_context.JSON.stringify(data.lines))
     , nl = data.nl;
 }
 
