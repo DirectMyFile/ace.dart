@@ -10,11 +10,13 @@ part of ace;
 class EditSession extends _HasProxy {
   js.Callback _jsOnChangeTabSize;
   js.Callback _jsOnChangeScrollLeft;
+  js.Callback _jsOnChangeScrollTop;
   js.Callback _jsOnChangeWrapLimit;
   js.Callback _jsOnChangeWrapMode;
   
   final _onChangeTabSize = new StreamController.broadcast();
   final _onChangeScrollLeft = new StreamController<int>.broadcast();
+  final _onChangeScrollTop = new StreamController<int>.broadcast();
   final _onChangeWrapLimit = new StreamController.broadcast();
   final _onChangeWrapMode = new StreamController.broadcast();
   
@@ -23,6 +25,9 @@ class EditSession extends _HasProxy {
   
   /// Fired whenever the [scrollLeft] changes.
   Stream<int> get onChangeScrollLeft => _onChangeScrollLeft.stream;
+  
+  /// Fired whenever the [scrollTop] changes.
+  Stream<int> get onChangeScrollTop => _onChangeScrollTop.stream;
   
   /// Fired whenever the [wrapLimit] changes.
   Stream get onChangeWrapLimit => _onChangeWrapLimit.stream;
@@ -58,6 +63,9 @@ class EditSession extends _HasProxy {
     get scrollLeft => _proxy.getScrollLeft();
     set scrollLeft(int scrollLeft) => _proxy.setScrollLeft(scrollLeft);  
     
+  /// The value of the distance between the top of the editor and the topmost 
+  /// part of the visible content.  Setting this to a new value fires an
+  /// [onChangeScrollTop] event.
   int
     get scrollTop => _proxy.getScrollTop();
     set scrollTop(int scrollTop) => _proxy.setScrollTop(scrollTop);
@@ -128,12 +136,15 @@ class EditSession extends _HasProxy {
         new js.Callback.many((_,__) => _onChangeTabSize.add(this));
     _jsOnChangeScrollLeft = 
         new js.Callback.many((e,__) => _onChangeScrollLeft.add(e));
+    _jsOnChangeScrollTop = 
+        new js.Callback.many((e,__) => _onChangeScrollTop.add(e));
     _jsOnChangeWrapLimit = 
         new js.Callback.many((_,__) => _onChangeWrapLimit.add(this));
     _jsOnChangeWrapMode = 
         new js.Callback.many((_,__) => _onChangeWrapMode.add(this));
     _proxy.on('changeTabSize', _jsOnChangeTabSize);
     _proxy.on('changeScrollLeft', _jsOnChangeScrollLeft);
+    _proxy.on('changeScrollTop', _jsOnChangeScrollTop);
     _proxy.on('changeWrapLimit', _jsOnChangeWrapLimit);
     _proxy.on('changeWrapMode', _jsOnChangeWrapMode);
   }
@@ -141,10 +152,12 @@ class EditSession extends _HasProxy {
   void _onDispose() {
     _onChangeTabSize.close();
     _onChangeScrollLeft.close();
+    _onChangeScrollTop.close();
     _onChangeWrapLimit.close();
     _onChangeWrapMode.close();
     _jsOnChangeTabSize.dispose();
     _jsOnChangeScrollLeft.dispose();
+    _jsOnChangeScrollTop.dispose();
     _jsOnChangeWrapLimit.dispose();
     _jsOnChangeWrapMode.dispose();
   }

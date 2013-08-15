@@ -30,6 +30,7 @@ void testDispose() {
   expect(session.isDisposed, isFalse);
   session.onChangeTabSize.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeScrollLeft.listen(noop1, onDone: expectAsync0(noop0));
+  session.onChangeScrollTop.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeWrapLimit.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeWrapMode.listen(noop1, onDone: expectAsync0(noop0));
   session.dispose();
@@ -133,4 +134,13 @@ void testSetScrollLeft() {
     expect(session.scrollLeft, equals(13));
   })); 
   session.scrollLeft = 13;
+}
+
+@Test()
+void testSetScrollTop() {
+  session.onChangeScrollTop.listen(expectAsync1((int scrollTop) {
+    expect(scrollTop, equals(42));
+    expect(session.scrollTop, equals(42));
+  })); 
+  session.scrollTop = 42;
 }
