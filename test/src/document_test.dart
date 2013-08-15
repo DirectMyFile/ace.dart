@@ -110,3 +110,15 @@ void testRemove() {
   final point = document.remove(new Range(0, 0, 0, 10));
   expect(point, equals(new Point(0, 0)));
 }
+
+@Test()
+void testRemoveInLine() {
+  document.onChange.listen(expectAsync1((Delta delta) {
+    expect(delta, const isInstanceOf<RemoveTextDelta>());
+    expect(delta.range, equals(new Range(0,10,0,20)));
+    RemoveTextDelta removeTextDelta = delta;
+    expect(removeTextDelta.text, equals(sampleTextLine0.substring(10,20)));    
+  }));
+  final point = document.removeInLine(0, 10, 20);
+  expect(point, equals(new Point(0, 10)));
+}

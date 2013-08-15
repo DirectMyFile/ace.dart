@@ -83,4 +83,10 @@ class Document extends _HasProxy {
   
   /// Removes the given [range] from this document.
   Point remove(Range range) => new Point._(_proxy.remove(range._toProxy()));
+  
+  /// Removes the range specified by [row/startColumn] -> [row/endColumn] and 
+  /// returns the removed [range.start] point.  This method also fires an
+  /// [onChange] event.
+  Point removeInLine(int row, int startColumn, int endColumn) =>
+      new Point._(_proxy.removeInLine(row, startColumn, endColumn));
 }
