@@ -38,10 +38,13 @@ void testDispose() {
 }
 
 @Test()
-void testGetDocument() {
-  var document = session.document;
-  expect(document, const isInstanceOf<Document>());
-  expect(document.value, equals(sampleText));
+void testDocument() {
+  expect(session.document, const isInstanceOf<Document>());
+  expect(session.document.value, equals(sampleText));
+  final newText = 'do re me fa so la ti do';
+  session.document = new Document(newText);
+  expect(session.document.value, equals(newText));
+  expect(session.value, equals(newText));
 }
 
 @Test()

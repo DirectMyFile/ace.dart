@@ -35,9 +35,10 @@ class EditSession extends _HasProxy {
   /// Fired whenever the [useWrapMode] changes.
   Stream get onChangeWrapMode => _onChangeWrapMode.stream;
   
+  /// The current [Document] associated with this session.
   Document
     get document => new Document._(_proxy.getDocument());
-    set document(Document document) => throw new UnimplementedError();
+    set document(Document document) => _proxy.setDocument(document._proxy);
   
   /// Returns the current [document.length].
   int get length => _proxy.getLength();
@@ -93,7 +94,7 @@ class EditSession extends _HasProxy {
     get useSoftTabs => _proxy.getUseSoftTabs();
     set useSoftTabs(bool useSoftTabs) => _proxy.setUseSoftTabs(useSoftTabs);
     
-  /// Whether or not this EditSession uses a worker.
+  /// Whether or not this session uses a worker.
   /// 
   /// A _true_ value means to use a worker.
   bool
