@@ -161,3 +161,26 @@ void testRemoveNewLine() {
   }));
   document.removeNewLine(3);  
 }
+
+@Test()
+void testReplace() {
+  int onChangeCount = 0;
+  document.onChange.listen(expectAsync1((Delta delta) {    
+    switch (onChangeCount++) {
+      case 0:
+        expect(delta, const isInstanceOf<RemoveTextDelta>());
+        expect(delta.range, equals(new Range(0,10,0,20)));
+        RemoveTextDelta removeTextDelta = delta;
+        expect(removeTextDelta.text, equals(sampleTextLine0.substring(10,20)));
+        break;
+      case 1:
+        expect(delta, const isInstanceOf<InsertTextDelta>());
+        expect(delta.range, equals(new Range(0,10,0,15)));
+        InsertTextDelta insertTextDelta = delta;
+        expect(insertTextDelta.text, equals('snarf'));
+        break;
+    }
+  }, count: 2));
+  final point = document.replace(new Range(0, 10, 0, 20), 'snarf');
+  expect(point, equals(new Point(0, 15)));
+}

@@ -104,4 +104,9 @@ class Document extends _HasProxy {
   /// Removes the [newLineCharacter] between the given [row] and the row 
   /// immediately following it.  This method also fires an [onChange] event.
   void removeNewLine(int row) => _proxy.removeNewLine(row);
+  
+  /// Replaces a given [range] in this document with the new [text] and returns
+  /// a point at the end of the new text.
+  Point replace(Range range, String text) => 
+      new Point._(_proxy.replace(range._toProxy(), text));
 }
