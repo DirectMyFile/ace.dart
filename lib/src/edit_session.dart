@@ -234,8 +234,11 @@ class EditSession extends _HasProxy {
   int moveLinesDown(int firstRow, int lastRow) =>
       _proxy.moveLinesDown(firstRow, lastRow);
   
+  /// Shifts all of the lines in the [document] from [firstRow] to [lastRow],
+  /// inclusive, up one row.
   int moveLinesUp(int firstRow, int lastRow) =>
       _proxy.moveLinesUp(firstRow, lastRow);
+  
   void setMode(String mode) => _proxy.setMode(mode);
   
   /// Sets the boundaries of line wrap. 

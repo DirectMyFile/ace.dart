@@ -227,12 +227,33 @@ void testIndentRows() {
 }
 
 @Test()
-void testMoveLinesDown() {
+void testMoveLinesDown() {  
+  final verify = () {
+    expect(session.getLine(0), equals(sampleTextLine0));
+    expect(session.getLine(1), equals(sampleTextLine3));
+    expect(session.getLine(2), equals(sampleTextLine1));
+    expect(session.getLine(3), equals(sampleTextLine2));
+    expect(session.getLine(4), equals(sampleTextLine4));
+    expect(session.getLine(5), equals(sampleTextLine5));
+  };
   session.moveLinesDown(1, 2);
-  expect(session.getLine(0), equals(sampleTextLine0));
-  expect(session.getLine(1), equals(sampleTextLine3));
-  expect(session.getLine(2), equals(sampleTextLine1));
-  expect(session.getLine(3), equals(sampleTextLine2));
-  expect(session.getLine(4), equals(sampleTextLine4));
-  expect(session.getLine(5), equals(sampleTextLine5));
+  verify();
+  session.moveLinesDown(5, 5);
+  verify();
+}
+
+@Test()
+void testMoveLinesUp() {
+  final verify = () {
+    expect(session.getLine(0), equals(sampleTextLine0));
+    expect(session.getLine(1), equals(sampleTextLine1));
+    expect(session.getLine(2), equals(sampleTextLine3));
+    expect(session.getLine(3), equals(sampleTextLine2));
+    expect(session.getLine(4), equals(sampleTextLine4));
+    expect(session.getLine(5), equals(sampleTextLine5));
+  };
+  session.moveLinesUp(3, 3);
+  verify();
+  session.moveLinesUp(0, 0);
+  verify();
 }
