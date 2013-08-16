@@ -7,9 +7,11 @@ import 'package:bench/meta.dart';
 import 'package:unittest/unittest.dart';
 import 'sample_text.dart';
 
+Editor editor;
 @Setup
 void setup() {
   html.document.body.append(new html.Element.div()..id = 'editor');
+  editor = edit(html.query('#editor'))..setValue(sampleText, -1);
 }
 
 @Teardown
@@ -21,7 +23,6 @@ void teardown() {
 void testEditElement() {
   final Editor editor = edit(html.query('#editor'));
   expect(editor, isNotNull);
-  expect(editor.readOnly, isFalse);
 }
 
 @Test()
@@ -34,9 +35,7 @@ void testEditNullThrows() {
 void testDispose() {
   final noop0 = (){};
   final noop1 = (_){};
-  final Editor editor = edit(html.query('#editor'));  
   expect(editor.isDisposed, isFalse);
-  // We expect all the editor's streams to close.
   editor.onBlur.listen(noop1, onDone: expectAsync0(noop0));
   editor.onChange.listen(noop1, onDone: expectAsync0(noop0));
   editor.onCopy.listen(noop1, onDone: expectAsync0(noop0));
@@ -49,7 +48,6 @@ void testDispose() {
 @Test()
 @ExpectThrows()
 void testDisposeTwiceThrows() {
-  final Editor editor = edit(html.query('#editor'));
   editor.dispose();
   editor.dispose();
 }
@@ -57,14 +55,12 @@ void testDisposeTwiceThrows() {
 @Test()
 @ExpectThrows(isNoSuchMethodError)
 void testCallMethodOnDisposedEditorThrows() {
-  final Editor editor = edit(html.query('#editor'));
   editor.dispose();
   editor.blur();
 }
 
 @Test()
 void testBlur() {
-  final Editor editor = edit(html.query('#editor'));
   editor.focus();
   editor.onBlur.listen(expectAsync1((e) {
     expect(e, equals(editor));
@@ -75,7 +71,6 @@ void testBlur() {
 
 @Test()
 void testFocus() {
-  final Editor editor = edit(html.query('#editor'));
   editor.blur();
   editor.onFocus.listen(expectAsync1((e) {
     expect(e, equals(editor));
@@ -86,8 +81,7 @@ void testFocus() {
 
 @Test()
 void testValue() {
-  final Editor editor = edit(html.query('#editor'));
-  expect(editor.value, isEmpty);
+  expect(editor.value, equals(sampleText));
   // 0 = select all
   editor.setValue('snarf', 0);
   expect(editor.value, equals('snarf'));
@@ -107,8 +101,6 @@ void testValue() {
 
 @Test()
 void testBlockIndent() {
-  final Editor editor = edit(html.query('#editor'));
-  editor.setValue(sampleText, -1);
   expect(editor.cursorPosition, equals(new Point(0,0)));
   editor.session.tabSize = 4;
   editor.blockIndent();
@@ -117,8 +109,6 @@ void testBlockIndent() {
 
 @Test()
 void testBlockOutdent() {
-  final Editor editor = edit(html.query('#editor'));
-  editor.setValue(sampleText, -1);
   expect(editor.cursorPosition, equals(new Point(0,0)));
   editor.session.tabSize = 4;
   editor.blockIndent();
@@ -129,8 +119,6 @@ void testBlockOutdent() {
 
 @Test()
 void testInsert() {
-  final Editor editor = edit(html.query('#editor'));
-  editor.setValue(sampleText, -1);
   expect(editor.cursorPosition, equals(new Point(0,0)));
   editor.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<InsertTextDelta>());
@@ -144,17 +132,21 @@ void testInsert() {
 
 @Test()
 void testNavigateLineEnd() {
-  final Editor editor = edit(html.query('#editor'));
-  editor.setValue(sampleText, -1);
   expect(editor.cursorPosition, equals(new Point(0,0)));
   editor.navigateLineEnd();
-  expect(editor.cursorPosition, equals(new Point(0,73)));
+  expect(editor.cursorPosition, equals(new Point(0, sampleTextLine0.length)));
+}
+
+@Test()
+void testNavigateLineStart() {
+  editor.navigateLineEnd();
+  expect(editor.cursorPosition, equals(new Point(0, sampleTextLine0.length)));
+  editor.navigateLineStart();
+  expect(editor.cursorPosition, equals(new Point(0, 0)));
 }
 
 @Test()
 void testRemoveToLineEnd() {
-  final Editor editor = edit(html.query('#editor'));
-  editor.setValue(sampleText, -1);
   expect(editor.cursorPosition, equals(new Point(0,0)));
   editor.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());
@@ -168,8 +160,6 @@ void testRemoveToLineEnd() {
 
 @Test()
 void testRemoveToLineStart() {
-  final Editor editor = edit(html.query('#editor'));
-  editor.setValue(sampleText, -1);
   editor.navigateLineEnd();
   editor.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());
@@ -183,7 +173,6 @@ void testRemoveToLineStart() {
 
 @Test()
 void testRemoveWordLeft() {
-  final Editor editor = edit(html.query('#editor'));
   editor.setValue(sampleText, 1);
   expect(editor.cursorPosition, equals(new Point(5,76)));  
   editor.onChange.listen(expectAsync1((Delta delta) {
@@ -198,8 +187,6 @@ void testRemoveWordLeft() {
 
 @Test()
 void testRemoveWordRight() {
-  final Editor editor = edit(html.query('#editor'));
-  editor.setValue(sampleText, -1);
   expect(editor.cursorPosition, equals(new Point(0,0)));
   editor.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());

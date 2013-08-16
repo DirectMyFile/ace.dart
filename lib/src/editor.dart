@@ -134,32 +134,44 @@ class Editor extends _HasProxy {
   void gotoPageDown() => _proxy.gotoPageDown();
   void gotoPageUp() => _proxy.gotoPageUp();
   void indent() => _proxy.indent();
+  
   /// Insert [text] at the current [cursorPosition].
   void insert(String text) => _proxy.insert(text);
+  
   bool isRowFullyVisible(int row) => _proxy.isRowFullyVisible(row);
   bool isRowVisible(int row) => _proxy.isRowVisible(row);
   void navigateFileEnd() => _proxy.navigateFileEnd();
   void navigateFileStart() => _proxy.navigateFileStart();
   void navigateLeft(int times) => _proxy.navigateLeft(times);
+  
   /// Move the [cursorPosition] to the end of the current line.
   /// Note that this does de-select the current [selection].
   void navigateLineEnd() => _proxy.navigateLineEnd();
+  
+  /// Move the [cursorPosition] to the start of the current line.
+  /// Note that this does de-select the current [selection].
   void navigateLineStart() => _proxy.navigateLineStart();
+  
   void navigateRight(int times) => _proxy.navigateRight(times);
   void navigateTo(int row, int column) => _proxy.navigateTo(row, column);
   void navigateUp(int times) => _proxy.navigateUp(times);
   void navigateWordLeft() => _proxy.navigateWordLeft();
   void navigateWordRight() => _proxy.navigateWordRight();
+  
   /// Remove all of the words to the right of the current [selection], until the 
   /// end of the line.
   void removeToLineEnd() => _proxy.removeToLineEnd();
+  
   /// Removes all of the words to the left of the current [selection], until the 
   /// start of the line.
   void removeToLineStart() => _proxy.removeToLineStart();
+  
   /// Remove the word directly to the left of the current [selection].
   void removeWordLeft() => _proxy.removeWordLeft();
+  
   /// Remove the word directly to the right of the current [selection].
   void removeWordRight() => _proxy.removeWordRight();  
+  
   void resize(bool force) => _proxy.resize(force);
   String setValue(String val, int cursorPos) {
     assert(cursorPos >= -1 && cursorPos <= 1);
