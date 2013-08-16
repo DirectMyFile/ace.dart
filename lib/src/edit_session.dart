@@ -47,6 +47,14 @@ class EditSession extends _HasProxy {
   /// Fired whenever the [useWrapMode] changes.
   Stream get onChangeWrapMode => _onChangeWrapMode.stream;
   
+  /// A map from row index to CSS class name for all of the breakpoints in the 
+  /// current [document].
+  /// 
+  /// A value of _null_ for any given row index indicates that no breakpoint is
+  /// set for that row.
+  Map<int, String> get breakpoints =>
+      json.parse(_context.JSON.stringify(_proxy.getBreakpoints())).asMap();
+  
   /// The current [Document] associated with this session.
   Document
     get document => new Document._(_proxy.getDocument());
@@ -265,6 +273,11 @@ class EditSession extends _HasProxy {
   void removeGutterDecoration(int row, String className) =>
       _proxy.removeGutterDecoration(row, className);
   
+  /// Sets a breakpoint on the given [row] using the optional CSS [className]
+  /// and fires an [onChangeBreakPoint] event.
+  void setBreakpoint(int row, {String className: 'ace_breakpoint'}) =>
+      _proxy.setBreakpoint(row, className);
+    
   void setMode(String mode) => _proxy.setMode(mode);
   
   /// Sets the boundaries of line wrap. 

@@ -302,3 +302,24 @@ void testRemoveGutterDecoration() {
   session.onChangeBreakpoint.listen(expectAsync1((_){})); 
   session.removeGutterDecoration(0, 'cssnarf');
 }
+
+@Test() 
+void testGetBreakpoints() {
+  expect(session.breakpoints, isEmpty);
+}
+
+@Test()
+void testSetBreakpoint() {
+  session.onChangeBreakpoint.listen(expectAsync1((_) {
+    expect(session.breakpoints[2], equals('ace_breakpoint'));
+  }));  
+  session.setBreakpoint(2);
+}
+
+@Test()
+void testSetBreakpointWithClassName() {
+  session.onChangeBreakpoint.listen(expectAsync1((_) {
+    expect(session.breakpoints[4], equals('fancy_breakpoint'));
+  }));  
+  session.setBreakpoint(4, className: 'fancy_breakpoint');
+}
