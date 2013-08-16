@@ -8,6 +8,7 @@ part of ace;
 /// An instance of [EditSession] may be attached to only one [Document].  An
 /// instance of [Document] may be attached to more than one [EditSession].
 class EditSession extends _HasProxy {
+  js.Callback _jsOnChangeBreakpoint;
   js.Callback _jsOnChangeOverwrite;
   js.Callback _jsOnChangeScrollLeft;
   js.Callback _jsOnChangeScrollTop;
@@ -15,13 +16,19 @@ class EditSession extends _HasProxy {
   js.Callback _jsOnChangeWrapLimit;
   js.Callback _jsOnChangeWrapMode;
     
+  final _onChangeBreakpoint = new StreamController.broadcast();
   final _onChangeOverwrite = new StreamController.broadcast();
   final _onChangeScrollLeft = new StreamController<int>.broadcast();
   final _onChangeScrollTop = new StreamController<int>.broadcast();
   final _onChangeTabSize = new StreamController.broadcast();
   final _onChangeWrapLimit = new StreamController.broadcast();
   final _onChangeWrapMode = new StreamController.broadcast();
-      
+  
+  /// Fired whenever the gutter changes, either by setting or removing
+  /// breakpoints, or when the gutter decorations change.
+  // TODO(rms): why isn't this called onChangeGutter then?
+  Stream get onChangeBreakpoint => _onChangeBreakpoint.stream;
+  
   /// Fired whenever the [overwrite] changes.
   Stream get onChangeOverwrite => _onChangeOverwrite.stream;
   
@@ -159,6 +166,8 @@ class EditSession extends _HasProxy {
       new js.Proxy(_context.ace.EditSession, document._proxy, mode));
   
   EditSession._(js.Proxy proxy) : super(proxy) {    
+    _jsOnChangeBreakpoint =
+        new js.Callback.many((_,__) => _onChangeBreakpoint.add(this));
     _jsOnChangeOverwrite = 
         new js.Callback.many((_,__) => _onChangeOverwrite.add(this));
     _jsOnChangeScrollLeft = 
@@ -171,6 +180,7 @@ class EditSession extends _HasProxy {
         new js.Callback.many((_,__) => _onChangeWrapLimit.add(this));
     _jsOnChangeWrapMode = 
         new js.Callback.many((_,__) => _onChangeWrapMode.add(this));
+    _proxy.on('changeBreakpoint', _jsOnChangeBreakpoint);
     _proxy.on('changeOverwrite', _jsOnChangeOverwrite);
     _proxy.on('changeScrollLeft', _jsOnChangeScrollLeft);
     _proxy.on('changeScrollTop', _jsOnChangeScrollTop);
@@ -180,12 +190,14 @@ class EditSession extends _HasProxy {
   }
   
   void _onDispose() {
+    _onChangeBreakpoint.close();
     _onChangeOverwrite.close();
     _onChangeScrollLeft.close();
     _onChangeScrollTop.close();
     _onChangeTabSize.close();
     _onChangeWrapLimit.close();
     _onChangeWrapMode.close();   
+    _jsOnChangeBreakpoint.dispose();
     _jsOnChangeOverwrite.dispose();
     _jsOnChangeScrollLeft.dispose();
     _jsOnChangeScrollTop.dispose();
@@ -193,7 +205,8 @@ class EditSession extends _HasProxy {
     _jsOnChangeWrapLimit.dispose();
     _jsOnChangeWrapMode.dispose();
   }
-      
+  
+  /// Adds the given CSS [className] to the given [row].
   void addGutterDecoration(int row, String className) =>
       _proxy.addGutterDecoration(row, className);
   
@@ -247,6 +260,10 @@ class EditSession extends _HasProxy {
   /// inclusive, up one row.
   int moveLinesUp(int firstRow, int lastRow) =>
       _proxy.moveLinesUp(firstRow, lastRow);
+  
+  /// Removes the given CSS [className] from the given [row].
+  void removeGutterDecoration(int row, String className) =>
+      _proxy.removeGutterDecoration(row, className);
   
   void setMode(String mode) => _proxy.setMode(mode);
   

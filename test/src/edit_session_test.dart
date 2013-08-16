@@ -28,6 +28,7 @@ void testDispose() {
   final noop0 = (){};
   final noop1 = (_){};
   expect(session.isDisposed, isFalse);
+  session.onChangeBreakpoint.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeOverwrite.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeScrollLeft.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeScrollTop.listen(noop1, onDone: expectAsync0(noop0));
@@ -288,4 +289,16 @@ void testDuplicateLines() {
   expect(session.getLine(6), equals(sampleTextLine3));
   expect(session.getLine(7), equals(sampleTextLine4));
   expect(session.getLine(8), equals(sampleTextLine5));  
+}
+
+@Test()
+void testAddGutterDecoration() {
+  session.onChangeBreakpoint.listen(expectAsync1((_){})); 
+  session.addGutterDecoration(0, 'cssnarf');
+}
+
+@Test()
+void testRemoveGutterDecoration() {
+  session.onChangeBreakpoint.listen(expectAsync1((_){})); 
+  session.removeGutterDecoration(0, 'cssnarf');
 }
