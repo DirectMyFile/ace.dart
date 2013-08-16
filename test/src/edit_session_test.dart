@@ -61,6 +61,11 @@ void testGetTextRange() {
 }
 
 @Test()
+void testGetWordRange() {
+  expect(session.getWordRange(0, 0), equals(new Range(0, 0, 0, 5)));
+}
+
+@Test()
 void testValue() {
   final text = 'do re me fa so la ti do';
   session.value = text;

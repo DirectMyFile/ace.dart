@@ -260,6 +260,11 @@ class EditSession extends _HasProxy {
   /// Returns all of the text within the given [range] of the [document].
   String getTextRange(Range range) => _proxy.getTextRange(range._toProxy());
   
+  /// Returns the [Range] of the first word boundary it finds starting at the
+  /// given [row] and [column].
+  Range getWordRange(int row, int column) => 
+      new Range._(_proxy.getWordRange(row, column));      
+  
   /// Indents all of the rows from [startRow] to [endRow], inclusive, by 
   /// prefixing each row with the given [indentString].
   void indentRows(int startRow, int endRow, String indentString) =>
