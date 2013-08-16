@@ -19,12 +19,22 @@ class Editor extends _HasProxy {
   final _onFocus = new StreamController.broadcast();
   final _onPaste = new StreamController<String>.broadcast();
   
+  /// Fired whenever this editor has been blurred.
   Stream get onBlur => _onBlur.stream;
+  
+  /// Fired whenever the [session.document] changes.
   Stream<Delta> get onChange => _onChange.stream;
+  
   Stream/*<TODO: SessionChangeEvent>*/ get onChangeSession => 
       throw new UnimplementedError();
+  
+  /// Fired whenever text is copied.
   Stream<String> get onCopy => _onCopy.stream;
+  
+  /// Fired whenever this editor comes into focus.
   Stream get onFocus => _onFocus.stream;
+  
+  /// Fired whenever text is pasted.
   Stream<String> get onPaste => _onPaste.stream;  
   
   String get copyText => _proxy.getCopyText();
@@ -52,6 +62,7 @@ class Editor extends _HasProxy {
     set highlightSelectedWord(bool highlightSelectedWord) =>
         _proxy.setHighlightSelectedWord(highlightSelectedWord);
     
+  /// Returns _true_ if this editor is in focus.
   bool get isFocused => _proxy.isFocused();
   
   bool
