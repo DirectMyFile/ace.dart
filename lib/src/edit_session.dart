@@ -270,6 +270,9 @@ class EditSession extends _HasProxy {
   void indentRows(int startRow, int endRow, String indentString) =>
       _proxy.indentRows(startRow, endRow, indentString);
   
+  /// Returns _true_ if the character at the given [position] is a soft tab.
+  bool isTabStop(Point position) => _proxy.isTabStop(position._toProxy());
+  
   /// Shifts all of the lines in the [document] from [firstRow] to [lastRow],
   /// inclusive, down one row.
   int moveLinesDown(int firstRow, int lastRow) =>

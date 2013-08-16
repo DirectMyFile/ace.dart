@@ -95,6 +95,18 @@ void testUseSoftTabs() {
 }
 
 @Test()
+void testIsTabStop() {
+  session.useSoftTabs = true;
+  session.tabSize = 7;
+  for (int i = 0; i < sampleTextLine0.length; i++) {
+    if (i % session.tabSize == 0) 
+      expect(session.isTabStop(new Point(0, i)), isTrue);
+    else
+      expect(session.isTabStop(new Point(0, i)), isFalse);
+  }
+}
+
+@Test()
 void testUseWrapMode() {
   session.onChangeWrapMode.listen(expectAsync1((_){}, count: 2));
   session.useWrapMode = true;
