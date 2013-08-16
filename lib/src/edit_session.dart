@@ -229,7 +229,7 @@ class EditSession extends _HasProxy {
   /// [onChangeBreakPoint] event.
   void clearBreakpoint(int row) => _proxy.clearBreakpoint(row);
   
-  /// Removes all breakpoints on all rows and fires an [onChangeBreakPoint] 
+  /// Removes all [breakpoints] on all rows and fires an [onChangeBreakPoint] 
   /// event.
   void clearBreakpoints() => _proxy.clearBreakpoints();
   
@@ -283,7 +283,11 @@ class EditSession extends _HasProxy {
   /// and fires an [onChangeBreakPoint] event.
   void setBreakpoint(int row, {String className: 'ace_breakpoint'}) =>
       _proxy.setBreakpoint(row, className);
-    
+  
+  /// Sets a breakpoint on all of the given [rows] and fires an 
+  /// [onChangeBreakpoint] event.
+  void setBreakpoints(List<int> rows) => _proxy.setBreakpoints(js.array(rows));
+  
   void setMode(String mode) => _proxy.setMode(mode);
   
   /// Sets the boundaries of line wrap. 
