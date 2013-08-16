@@ -189,12 +189,8 @@ void testNewLineMode() {
 
 @Test()
 void testGetLine() {
-  expect(session.getLine(0), equals(sampleTextLine0));
-  expect(session.getLine(1), equals(sampleTextLine1));
-  expect(session.getLine(2), equals(sampleTextLine2));
-  expect(session.getLine(3), equals(sampleTextLine3));
-  expect(session.getLine(4), equals(sampleTextLine4));
-  expect(session.getLine(5), equals(sampleTextLine5));
+  for (int i = 0; i < sampleTextLineCount - 1; i++)
+    expect(session.getLine(i), equals(sampleTextLines[i]));
 }
 
 @Test()

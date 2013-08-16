@@ -29,21 +29,14 @@ void testGetLength() {
 void testGetAllLines() {
   final lines = document.allLines;
   expect(lines.length, equals(6));
-  expect(lines[0], equals(sampleTextLine0));
-  expect(lines[1], equals(sampleTextLine1));
-  expect(lines[2], equals(sampleTextLine2));
-  expect(lines[3], equals(sampleTextLine3));
-  expect(lines[4], equals(sampleTextLine4));
-  expect(lines[5], equals(sampleTextLine5));
+  for (int i = 0; i < sampleTextLineCount - 1; i++)
+    expect(lines[i], equals(sampleTextLines[i]));
 }
 
 @Test()
 void testGetLine() {
-  expect(document.getLine(0), equals(sampleTextLine0));
-  expect(document.getLine(1), equals(sampleTextLine1));
-  expect(document.getLine(2), equals(sampleTextLine2));
-  expect(document.getLine(3), equals(sampleTextLine3));
-  expect(document.getLine(4), equals(sampleTextLine4));
+  for (int i = 0; i < sampleTextLineCount - 1; i++)
+    expect(document.getLine(i), equals(sampleTextLines[i]));
 }
 
 @Test()

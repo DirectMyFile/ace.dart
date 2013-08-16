@@ -1,5 +1,7 @@
 library ace.test.sample_text;
 
+const int sampleTextLineCount = 6;
+
 const String sampleTextLine0 = 
 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod ';
 
@@ -25,3 +27,10 @@ $sampleTextLine2
 $sampleTextLine3
 $sampleTextLine4
 $sampleTextLine5''';
+
+const List<String> sampleTextLines = const [ sampleTextLine0 
+                                           , sampleTextLine1 
+                                           , sampleTextLine2
+                                           , sampleTextLine3
+                                           , sampleTextLine4
+                                           , sampleTextLine5 ];
