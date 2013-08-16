@@ -100,6 +100,7 @@ class Editor extends _HasProxy {
     get theme => _proxy.getTheme();
     set theme(String theme) => _proxy.setTheme(theme);
   
+  /// Returns the current [session.value].
   String get value => _proxy.getValue();
     
   Editor._(js.Proxy proxy) : super(proxy) {
