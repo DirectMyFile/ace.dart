@@ -118,6 +118,11 @@ void testBlockOutdent() {
 }
 
 @Test()
+void testFirstVisibleRow() {
+  expect(editor.firstVisibleRow, equals(0));
+}
+
+@Test()
 void testInsert() {
   expect(editor.cursorPosition, equals(new Point(0,0)));
   editor.onChange.listen(expectAsync1((Delta delta) {

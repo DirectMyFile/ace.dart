@@ -39,12 +39,14 @@ class Editor extends _HasProxy {
   
   String get copyText => _proxy.getCopyText();
   
+  /// The current position of the cursor.
   Point get cursorPosition => new Point._(_proxy.getCursorPosition());
   
   int
     get dragDelay => _proxy.getDragDelay();
     set dragDelay(int dragDelay) => _proxy.setDragDelay(dragDelay);
   
+  /// The index of the first visible row.
   int get firstVisibleRow => _proxy.getFirstVisibleRow();
   
   bool
