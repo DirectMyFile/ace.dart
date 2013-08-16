@@ -122,8 +122,13 @@ class Editor extends _HasProxy {
   }
   
   void alignCursors() => _proxy.alignCursors();
+  
+  /// Indents the current line by the current [session.tabSize].
   void blockIndent() => _proxy.blockIndent();
+  
+  /// Outdents the current line by the current [session.tabSize].
   void blockOutdent() => _proxy.blockOutdent();
+  
   void blur() => _proxy.blur();
   void centerSelection() => _proxy.centerSelection();
   void clearSelection() => _proxy.clearSelection();
