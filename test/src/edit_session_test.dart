@@ -194,6 +194,7 @@ void testGetLine() {
   expect(session.getLine(2), equals(sampleTextLine2));
   expect(session.getLine(3), equals(sampleTextLine3));
   expect(session.getLine(4), equals(sampleTextLine4));
+  expect(session.getLine(5), equals(sampleTextLine5));
 }
 
 @Test()
@@ -211,4 +212,20 @@ void testGetRowLength() {
   expect(session.wrapLimit, equals(desiredLimit));
   expect(session.getRowLength(0), 
       equals((sampleTextLine0.length / desiredLimit).ceil()));
+}
+
+@Test()
+void testIndentRows() {
+  final prefix = 'I_AM_YOUR_PREFIX';
+  session.indentRows(3, 4, prefix);
+  expect(session.getLine(0), equals(sampleTextLine0));
+  expect(session.getLine(1), equals(sampleTextLine1));
+  expect(session.getLine(2), equals(sampleTextLine2));
+  expect(session.getLine(3).startsWith(prefix), isTrue);
+  expect(session.getLine(3).length, 
+      equals(sampleTextLine3.length + prefix.length));
+  expect(session.getLine(4).startsWith(prefix), isTrue);
+  expect(session.getLine(4).length, 
+      equals(sampleTextLine4.length + prefix.length));
+  expect(session.getLine(5), equals(sampleTextLine5));
 }
