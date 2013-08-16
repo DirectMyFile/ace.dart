@@ -340,6 +340,29 @@ void testRemove() {
 }
 
 @Test()
+void testReplace() {
+  int onChangeCount = 0;
+  session.onChange.listen(expectAsync1((Delta delta) {    
+    switch (onChangeCount++) {
+      case 0:
+        expect(delta, const isInstanceOf<RemoveTextDelta>());
+        expect(delta.range, equals(new Range(3,7,3,42)));
+        RemoveTextDelta removeTextDelta = delta;
+        expect(removeTextDelta.text, equals(sampleTextLine3.substring(7,42)));
+        break;
+      case 1:
+        expect(delta, const isInstanceOf<InsertTextDelta>());
+        expect(delta.range, equals(new Range(3,7,3,13)));
+        InsertTextDelta insertTextDelta = delta;
+        expect(insertTextDelta.text, equals('pardon'));
+        break;
+    }
+  }, count: 2));
+  final point = session.replace(new Range(3, 7, 3, 42), 'pardon');
+  expect(point, equals(new Point(3, 13)));
+}
+
+@Test()
 void testAddGutterDecoration() {
   session.onChangeBreakpoint.listen(expectAsync1((_){})); 
   session.addGutterDecoration(0, 'cssnarf');

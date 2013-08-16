@@ -308,6 +308,11 @@ class EditSession extends _HasProxy {
   void removeGutterDecoration(int row, String className) =>
       _proxy.removeGutterDecoration(row, className);
   
+  /// Replaces a given [range] in the [document] with the new [text] and returns
+  /// a point at the end of the new text.
+  Point replace(Range range, String text) => 
+      new Point._(_proxy.replace(range._toProxy(), text));
+  
   /// Sets a breakpoint on the given [row] using the optional CSS [className]
   /// and fires an [onChangeBreakPoint] event.
   void setBreakpoint(int row, {String className: 'ace_breakpoint'}) =>
