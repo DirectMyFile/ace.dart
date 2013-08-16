@@ -42,6 +42,7 @@ class Editor extends _HasProxy {
   /// The current position of the cursor.
   Point get cursorPosition => new Point._(_proxy.getCursorPosition());
   
+  /// The current mouse drag delay, in milliseconds.
   int
     get dragDelay => _proxy.getDragDelay();
     set dragDelay(int dragDelay) => _proxy.setDragDelay(dragDelay);

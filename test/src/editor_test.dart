@@ -210,3 +210,9 @@ void testPrintMarginColumn() {
   editor.printMarginColumn = 42;
   expect(editor.printMarginColumn, equals(42));
 }
+
+@Test()
+void testDragDelay() {
+  editor.dragDelay = 42;
+  expect(editor.dragDelay, equals(42));
+}
