@@ -301,6 +301,9 @@ class EditSession extends _HasProxy {
   int moveLinesUp(int firstRow, int lastRow) =>
       _proxy.moveLinesUp(firstRow, lastRow);
   
+  /// Removes the given [range] from the current [document].
+  Point remove(Range range) => new Point._(_proxy.remove(range._toProxy()));
+  
   /// Removes the given CSS [className] from the given [row].
   void removeGutterDecoration(int row, String className) =>
       _proxy.removeGutterDecoration(row, className);
