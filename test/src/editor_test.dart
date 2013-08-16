@@ -135,6 +135,7 @@ void testNavigateLineEnd() {
   expect(editor.cursorPosition, equals(new Point(0,0)));
   editor.navigateLineEnd();
   expect(editor.cursorPosition, equals(new Point(0, sampleTextLine0.length)));
+  expect(editor.selection.isEmpty, isTrue);
 }
 
 @Test()
@@ -143,6 +144,7 @@ void testNavigateLineStart() {
   expect(editor.cursorPosition, equals(new Point(0, sampleTextLine0.length)));
   editor.navigateLineStart();
   expect(editor.cursorPosition, equals(new Point(0, 0)));
+  expect(editor.selection.isEmpty, isTrue);
 }
 
 @Test()
