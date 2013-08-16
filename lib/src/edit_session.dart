@@ -205,12 +205,16 @@ class EditSession extends _HasProxy {
   void clearBreakpoint(int row) => _proxy.clearBreakpoint(row);
   void clearBreakpoints() => _proxy.clearBreakpoints();
   
-  /// Returns the screen column for the given [docRow] and [docColumn].
-  int documentToScreenColumn(int docRow, int docColumn) =>
-      _proxy.documentToScreenColumn(docRow, docColumn);
+  /// Returns the screen column for the given [row] and [column] of the current
+  /// [document].
+  int documentToScreenColumn(int row, int column) =>
+      _proxy.documentToScreenColumn(row, column);
   
-  int documentToScreenRow(int docRow, int docColumn) =>
-      _proxy.documentToScreenRow(docRow, docColumn);
+  /// Returns the screen row for the given [row] and [column] of the current
+  /// [document].
+  int documentToScreenRow(int row, int column) => 
+      _proxy.documentToScreenRow(row, column);
+  
   int duplicateLines(int firstRow, int lastRow) =>
       _proxy.duplicateLines(firstRow, lastRow);
   

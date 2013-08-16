@@ -266,3 +266,12 @@ void testDocumentToScreenColumn() {
   expect(session.wrapLimit, equals(desiredLimit));
   expect(session.documentToScreenColumn(0, 41), equals(1));  
 }
+
+@Test()
+void testDocumentToScreenRow() {
+  int desiredLimit = 20;
+  session.useWrapMode = true;  
+  expect(session.adjustWrapLimit(desiredLimit, 80), isTrue);
+  expect(session.wrapLimit, equals(desiredLimit));
+  expect(session.documentToScreenRow(0, 41), equals(2));  
+}
