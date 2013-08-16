@@ -275,3 +275,17 @@ void testDocumentToScreenRow() {
   expect(session.wrapLimit, equals(desiredLimit));
   expect(session.documentToScreenRow(0, 41), equals(2));  
 }
+
+@Test() 
+void testDuplicateLines() {
+  session.duplicateLines(0, 2);
+  expect(session.getLine(0), equals(sampleTextLine0));
+  expect(session.getLine(1), equals(sampleTextLine1));
+  expect(session.getLine(2), equals(sampleTextLine2));
+  expect(session.getLine(3), equals(sampleTextLine0));
+  expect(session.getLine(4), equals(sampleTextLine1));
+  expect(session.getLine(5), equals(sampleTextLine2));
+  expect(session.getLine(6), equals(sampleTextLine3));
+  expect(session.getLine(7), equals(sampleTextLine4));
+  expect(session.getLine(8), equals(sampleTextLine5));  
+}

@@ -52,8 +52,9 @@ class EditSession extends _HasProxy {
     get mode => new Mode._(_proxy.getMode());
     set mode(Mode mode) => throw new UnimplementedError();
   
-  // TODO(rms): enum
+  
   /// The new line mode.  May be one of `windows`, `unix` or `auto`.
+  // TODO(rms): enum
   String
     get newLineMode => _proxy.getNewLineMode();
     set newLineMode(String newLineMode) => _proxy.setNewLineMode(newLineMode);
@@ -215,6 +216,7 @@ class EditSession extends _HasProxy {
   int documentToScreenRow(int row, int column) => 
       _proxy.documentToScreenRow(row, column);
   
+  /// Duplicates all of the text from [firstRow] to [lastRow], inclusive.
   int duplicateLines(int firstRow, int lastRow) =>
       _proxy.duplicateLines(firstRow, lastRow);
   

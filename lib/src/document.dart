@@ -21,9 +21,9 @@ class Document extends _HasProxy {
   
   /// The current newline character, based on the current [newLineMode].
   String get newLineCharacter => _proxy.getNewLineCharacter();
-    
+      
+  /// The new line mode.  May be one of `windows`, `unix` or `auto`.
   // TODO(rms): enum
-  /// The new line mode.  May be one of `windows`, `unix` or `auto`.  
   String 
     get newLineMode => _proxy.getNewLineMode();
     set newLineMode(String newLineMode) => _proxy.setNewLineMode(newLineMode);
