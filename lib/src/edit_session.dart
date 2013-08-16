@@ -204,8 +204,11 @@ class EditSession extends _HasProxy {
   void clearAnnotations() => _proxy.clearAnnotations();
   void clearBreakpoint(int row) => _proxy.clearBreakpoint(row);
   void clearBreakpoints() => _proxy.clearBreakpoints();
+  
+  /// Returns the screen column for the given [docRow] and [docColumn].
   int documentToScreenColumn(int docRow, int docColumn) =>
       _proxy.documentToScreenColumn(docRow, docColumn);
+  
   int documentToScreenRow(int docRow, int docColumn) =>
       _proxy.documentToScreenRow(docRow, docColumn);
   int duplicateLines(int firstRow, int lastRow) =>
