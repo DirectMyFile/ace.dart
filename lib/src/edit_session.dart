@@ -229,8 +229,11 @@ class EditSession extends _HasProxy {
   void indentRows(int startRow, int endRow, String indentString) =>
       _proxy.indentRows(startRow, endRow, indentString);
   
+  /// Shifts all of the lines in the [document] from [firstRow] to [lastRow],
+  /// inclusive, down one row.
   int moveLinesDown(int firstRow, int lastRow) =>
       _proxy.moveLinesDown(firstRow, lastRow);
+  
   int moveLinesUp(int firstRow, int lastRow) =>
       _proxy.moveLinesUp(firstRow, lastRow);
   void setMode(String mode) => _proxy.setMode(mode);

@@ -225,3 +225,14 @@ void testIndentRows() {
       equals(sampleTextLine4.length + prefix.length));
   expect(session.getLine(5), equals(sampleTextLine5));
 }
+
+@Test()
+void testMoveLinesDown() {
+  session.moveLinesDown(1, 2);
+  expect(session.getLine(0), equals(sampleTextLine0));
+  expect(session.getLine(1), equals(sampleTextLine3));
+  expect(session.getLine(2), equals(sampleTextLine1));
+  expect(session.getLine(3), equals(sampleTextLine2));
+  expect(session.getLine(4), equals(sampleTextLine4));
+  expect(session.getLine(5), equals(sampleTextLine5));
+}
