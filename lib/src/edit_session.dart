@@ -222,8 +222,6 @@ class EditSession extends _HasProxy {
   bool adjustWrapLimit(int desiredLimit, int printMargin) =>
       _proxy.adjustWrapLimit(desiredLimit, printMargin);
   
-  void clearAnnotations() => _proxy.clearAnnotations();
-  
   /// Removes a breakpoint on the given [row] and fires an 
   /// [onChangeBreakPoint] event.
   void clearBreakpoint(int row) => _proxy.clearBreakpoint(row);
@@ -258,6 +256,9 @@ class EditSession extends _HasProxy {
   
   /// Returns the number of screen rows in a wrapped line for the given [row].
   int getRowLength(int row) => _proxy.getRowLength(row);
+  
+  /// Returns all of the text within the given [range] of the [document].
+  String getTextRange(Range range) => _proxy.getTextRange(range._toProxy());
   
   /// Indents all of the rows from [startRow] to [endRow], inclusive, by 
   /// prefixing each row with the given [indentString].
