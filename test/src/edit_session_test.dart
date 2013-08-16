@@ -323,3 +323,25 @@ void testSetBreakpointWithClassName() {
   }));  
   session.setBreakpoint(4, className: 'fancy_breakpoint');
 }
+
+@Test()
+void testClearBreakpoint() {
+  session.setBreakpoint(3);
+  expect(session.breakpoints[3], isNotNull);
+  session.onChangeBreakpoint.listen(expectAsync1((_) {
+    expect(session.breakpoints[3], isNull);
+  }));
+  session.clearBreakpoint(3);
+}
+
+@Test()
+void testClearBreakpoints() {
+  session.setBreakpoint(1);
+  session.setBreakpoint(4);
+  expect(session.breakpoints[1], isNotNull);
+  expect(session.breakpoints[4], isNotNull);
+  session.onChangeBreakpoint.listen(expectAsync1((_) {
+    expect(session.breakpoints, isEmpty);
+  }));
+  session.clearBreakpoints();
+}

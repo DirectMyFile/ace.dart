@@ -224,7 +224,13 @@ class EditSession extends _HasProxy {
       _proxy.adjustWrapLimit(desiredLimit, printMargin);
   
   void clearAnnotations() => _proxy.clearAnnotations();
+  
+  /// Removes a breakpoint on the given [row] and fires an 
+  /// [onChangeBreakPoint] event.
   void clearBreakpoint(int row) => _proxy.clearBreakpoint(row);
+  
+  /// Removes all breakpoints on all rows and fires an [onChangeBreakPoint] 
+  /// event.
   void clearBreakpoints() => _proxy.clearBreakpoints();
   
   /// Returns the screen column for the given [row] and [column] of the current
