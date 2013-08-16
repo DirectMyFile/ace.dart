@@ -204,3 +204,9 @@ void testRemoveWordRight() {
   editor.removeWordRight();
   expect(editor.cursorPosition, equals(new Point(0, 0)));  
 }
+
+@Test()
+void testPrintMarginColumn() {
+  editor.printMarginColumn = 42;
+  expect(editor.printMarginColumn, equals(42));
+}

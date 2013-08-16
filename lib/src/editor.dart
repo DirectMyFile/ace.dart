@@ -71,6 +71,7 @@ class Editor extends _HasProxy {
     get overwrite => _proxy.getOverwrite();
     set overwrite(bool overwrite) => _proxy.setOverwrite(overwrite);
   
+  /// The column number of where the print margin is.
   int
     get printMarginColumn => _proxy.getPrintMarginColumn();
     set printMarginColumn(int printMarginColumn) => 
