@@ -84,6 +84,7 @@ class Editor extends _HasProxy {
   
   VirtualRenderer get renderer => new VirtualRenderer._(_proxy.renderer);
   
+  /// The current mouse scroll speed, in milliseconds.
   int
     get scrollSpeed => _proxy.getScrollSpeed();
     set scrollSpeed(int scrollSpeed) => _proxy.setScrollSpeed(scrollSpeed);

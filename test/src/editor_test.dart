@@ -216,3 +216,9 @@ void testDragDelay() {
   editor.dragDelay = 42;
   expect(editor.dragDelay, equals(42));
 }
+
+@Test()
+void testScrollSpeed() {
+  editor.dragDelay = 7;
+  expect(editor.dragDelay, equals(7));
+}
