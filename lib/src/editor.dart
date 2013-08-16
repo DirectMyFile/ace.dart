@@ -50,6 +50,7 @@ class Editor extends _HasProxy {
   /// The index of the first visible row.
   int get firstVisibleRow => _proxy.getFirstVisibleRow();
   
+  /// Whether or not the current line should be highlighted.
   bool
     get highlightActiveLine => _proxy.getHighlightActiveLine();
     set highlightActiveLine(bool highlightActiveLine) =>

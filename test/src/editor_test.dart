@@ -222,3 +222,12 @@ void testScrollSpeed() {
   editor.dragDelay = 7;
   expect(editor.dragDelay, equals(7));
 }
+
+
+@Test()
+void testHighlightActiveLine() {
+  editor.highlightActiveLine = true;
+  expect(editor.highlightActiveLine, isTrue);
+  editor.highlightActiveLine = false;
+  expect(editor.highlightActiveLine, isFalse);
+}
