@@ -62,7 +62,7 @@ class Editor extends _HasProxy {
     set highlightSelectedWord(bool highlightSelectedWord) =>
         _proxy.setHighlightSelectedWord(highlightSelectedWord);
     
-  /// Returns _true_ if this editor is in focus.
+  /// Returns _true_ if current [textInput] is in focus.
   bool get isFocused => _proxy.isFocused();
   
   bool
@@ -77,6 +77,8 @@ class Editor extends _HasProxy {
   bool
     get readOnly => _proxy.getReadOnly();
     set readOnly(bool readOnly) => _proxy.setReadOnly(readOnly);
+  
+  VirtualRenderer get renderer => new VirtualRenderer._(_proxy.renderer);
   
   int
     get scrollSpeed => _proxy.getScrollSpeed();
@@ -96,6 +98,8 @@ class Editor extends _HasProxy {
     set showInvisibles(bool showInvisibles) => 
         _proxy.setShowInvisibles(showInvisibles);
   
+  TextInput get textInput => new TextInput._(_proxy.textInput);
+    
   String
     get theme => _proxy.getTheme();
     set theme(String theme) => _proxy.setTheme(theme);
@@ -141,13 +145,18 @@ class Editor extends _HasProxy {
   /// Outdents the current line by the current [session.tabSize].
   void blockOutdent() => _proxy.blockOutdent();
   
+  /// Blurs the current [textInput].
   void blur() => _proxy.blur();
+  
   void centerSelection() => _proxy.centerSelection();
   void clearSelection() => _proxy.clearSelection();
   int copyLinesDown() => _proxy.copyLinesDown();
   int copyLinesUp() => _proxy.copyLinesUp();
   void exitMultiSelectMode() => _proxy.exitMultiSelectMode();
+  
+  /// Brings the current [textInput] into focus.
   void focus() => _proxy.focus();
+  
   void gotoPageDown() => _proxy.gotoPageDown();
   void gotoPageUp() => _proxy.gotoPageUp();
   void indent() => _proxy.indent();
