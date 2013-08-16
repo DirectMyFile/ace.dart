@@ -66,8 +66,7 @@ class EditSession extends _HasProxy {
   Mode
     get mode => new Mode._(_proxy.getMode());
     set mode(Mode mode) => throw new UnimplementedError();
-  
-  
+    
   /// The new line mode.  May be one of `windows`, `unix` or `auto`.
   // TODO(rms): enum
   String
