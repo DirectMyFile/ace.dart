@@ -8,6 +8,7 @@ part of ace;
 /// An instance of [EditSession] may be attached to only one [Document].  An
 /// instance of [Document] may be attached to more than one [EditSession].
 class EditSession extends _HasProxy {
+  js.Callback _jsOnChange;
   js.Callback _jsOnChangeBreakpoint;
   js.Callback _jsOnChangeOverwrite;
   js.Callback _jsOnChangeScrollLeft;
@@ -16,6 +17,7 @@ class EditSession extends _HasProxy {
   js.Callback _jsOnChangeWrapLimit;
   js.Callback _jsOnChangeWrapMode;
     
+  final _onChange = new StreamController<Delta>.broadcast();
   final _onChangeBreakpoint = new StreamController.broadcast();
   final _onChangeOverwrite = new StreamController.broadcast();
   final _onChangeScrollLeft = new StreamController<int>.broadcast();
@@ -23,6 +25,9 @@ class EditSession extends _HasProxy {
   final _onChangeTabSize = new StreamController.broadcast();
   final _onChangeWrapLimit = new StreamController.broadcast();
   final _onChangeWrapMode = new StreamController.broadcast();
+  
+  /// Fired whenever the [document] changes.
+  Stream<Delta> get onChange => _onChange.stream;
   
   /// Fired whenever the gutter changes, either by setting or removing
   /// breakpoints, or when the gutter decorations change.
@@ -173,6 +178,8 @@ class EditSession extends _HasProxy {
       new js.Proxy(_context.ace.EditSession, document._proxy, mode));
   
   EditSession._(js.Proxy proxy) : super(proxy) {    
+    _jsOnChange = new js.Callback.many((e,__) => 
+        _onChange.add(new Delta._for(e.data)));
     _jsOnChangeBreakpoint =
         new js.Callback.many((_,__) => _onChangeBreakpoint.add(this));
     _jsOnChangeOverwrite = 
@@ -187,6 +194,7 @@ class EditSession extends _HasProxy {
         new js.Callback.many((_,__) => _onChangeWrapLimit.add(this));
     _jsOnChangeWrapMode = 
         new js.Callback.many((_,__) => _onChangeWrapMode.add(this));
+    _proxy.on('change', _jsOnChange);
     _proxy.on('changeBreakpoint', _jsOnChangeBreakpoint);
     _proxy.on('changeOverwrite', _jsOnChangeOverwrite);
     _proxy.on('changeScrollLeft', _jsOnChangeScrollLeft);
@@ -197,6 +205,7 @@ class EditSession extends _HasProxy {
   }
   
   void _onDispose() {
+    _onChange.close();
     _onChangeBreakpoint.close();
     _onChangeOverwrite.close();
     _onChangeScrollLeft.close();
@@ -204,6 +213,7 @@ class EditSession extends _HasProxy {
     _onChangeTabSize.close();
     _onChangeWrapLimit.close();
     _onChangeWrapMode.close();   
+    _jsOnChange.dispose();
     _jsOnChangeBreakpoint.dispose();
     _jsOnChangeOverwrite.dispose();
     _jsOnChangeScrollLeft.dispose();
@@ -269,6 +279,11 @@ class EditSession extends _HasProxy {
   /// prefixing each row with the given [indentString].
   void indentRows(int startRow, int endRow, String indentString) =>
       _proxy.indentRows(startRow, endRow, indentString);
+  
+  /// Inserts a block of [text] at the given [position] and returns a point at
+  /// the end of the inserted text.  This method also fires an [onChange] event.
+  Point insert(Point position, String text) =>
+      new Point._(_proxy.insert(position._toProxy(), text));
   
   /// Returns _true_ if the character at the given [position] is a tab stop.
   /// 

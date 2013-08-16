@@ -28,6 +28,7 @@ void testDispose() {
   final noop0 = (){};
   final noop1 = (_){};
   expect(session.isDisposed, isFalse);
+  session.onChange.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeBreakpoint.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeOverwrite.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeScrollLeft.listen(noop1, onDone: expectAsync0(noop0));
@@ -248,6 +249,18 @@ void testIndentRows() {
   expect(session.getLine(4).length, 
       equals(sampleTextLine4.length + prefix.length));
   expect(session.getLine(5), equals(sampleTextLine5));
+}
+
+@Test()
+void testInsert() {
+  session.onChange.listen(expectAsync1((Delta delta) {
+    expect(delta, const isInstanceOf<InsertTextDelta>());
+    expect(delta.range, equals(new Range(0,0,0,5)));
+    InsertTextDelta insertTextDelta = delta;
+    expect(insertTextDelta.text, equals('snarf'));    
+  }));
+  final point = session.insert(new Point(0, 0), 'snarf');
+  expect(point, equals(new Point(0, 5)));
 }
 
 @Test()
