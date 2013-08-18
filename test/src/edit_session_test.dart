@@ -14,6 +14,7 @@ setup() => session = new EditSession(new Document(sampleText), 'ace/mode/text');
 void testEditSessionCtor() {
   expect(session, isNotNull);
   expect(session.value, equals(sampleText));  
+  expect(false, isTrue); // TODO(rms): remove this hack, for testing drone fails
 }
 
 @Test()
