@@ -53,6 +53,10 @@ class Document extends _HasProxy {
   void applyDeltas(Iterable<Delta> deltas) =>
       _proxy.applyDeltas(js.array(deltas.map((delta) => delta._toProxy())));
   
+  /// Creates a new [Anchor] to define a floating point in this document.
+  Anchor createAnchor(int row, int column) =>
+      new Anchor._(_proxy.createAnchor(row, column));
+  
   /// Returns a verbatim copy of the given line [row] as it is in this document.
   String getLine(int row) => _proxy.getLine(row);
   

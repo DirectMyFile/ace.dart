@@ -222,3 +222,10 @@ void testRevertDeltas() {
   document.insertNewLine(new Point(0, 2));
   expect(document.value, isNot(equals(sampleText)));
 }
+
+@Test()
+void testCreateAnchor() {
+  final Anchor anchor = document.createAnchor(1, 42);
+  expect(anchor, isNotNull);
+  expect(anchor.position, equals(new Point(1, 42)));
+}

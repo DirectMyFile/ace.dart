@@ -29,8 +29,10 @@ class Anchor extends _HasProxy {
   /// Creates a new Anchor and associates it with the given [document] at the
   /// given [row] and [column] starting position.
   Anchor(Document document, int row, int column) 
-    : super(new js.Proxy(_context.ace.define.modules['ace/anchor'].Anchor, 
-        document._proxy, row, column)) {
+    : this._(new js.Proxy(_context.ace.define.modules['ace/anchor'].Anchor, 
+        document._proxy, row, column));
+  
+  Anchor._(proxy) : super(proxy) {
     _jsOnChange = new js.Callback.many((e,__) =>
         _onChange.add(new AnchorChangeEvent._(
             new Point._(e.old), new Point._(e.value))));
