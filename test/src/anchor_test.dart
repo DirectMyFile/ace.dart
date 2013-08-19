@@ -6,11 +6,38 @@ import 'package:bench/meta.dart';
 import 'package:unittest/unittest.dart';
 import 'sample_text.dart';
 
+Anchor anchor;
+Document document;
+
+@Setup
+setup() {
+  document = new Document(sampleText);
+  anchor = new Anchor(document, 0, 0); 
+}
+
 @Test()
 void testAnchorCtor() {
-  final Document doc = new Document(sampleText);
-  final Anchor anchor = new Anchor(doc, 0, 0);
+  final Anchor anchor = new Anchor(document, 0, 0);
   expect(anchor, isNotNull);
   expect(anchor.position, equals(new Point(0, 0)));
-  expect(anchor.document.value, equals(doc.value));
+  expect(anchor.document.value, equals(document.value));
+}
+
+@Test()
+void testAnchorDispose() {
+  final noop0 = (){};
+  final noop1 = (_){};
+  expect(anchor.isDisposed, isFalse);
+  anchor.onChange.listen(noop1, onDone: expectAsync0(noop0));
+  anchor.dispose();
+  expect(anchor.isDisposed, isTrue);
+}
+
+@Test()
+void testAnchorSetPosition() {
+  anchor.onChange.listen((AnchorChangeEvent ev) {
+    expect(ev.oldPosition, equals(new Point(0, 0)));
+    expect(ev.newPosition, equals(new Point(2, 14)));
+  });
+  anchor.setPosition(2, 14, true);
 }
