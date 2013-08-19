@@ -31,7 +31,7 @@ class SearchOptions {
   /// defaults to `false`.
   final bool wrap;
   
-  const SearchOptions({this.backwards: false,
+  SearchOptions({this.backwards: false,
                        this.caseSensitive: false,
                        this.needle: '',
                        this.range,
@@ -47,14 +47,23 @@ class SearchOptions {
       backwards: m['backwards'] == null ? false : m['backwards'],
       caseSensitive: m['caseSensitive'] == null ? false : m['caseSensitive'],
       needle: m['needle'] == null ? '' : m['needle'],
-      range: m['range'] == null ? null : new Range._(m['range']),
+      range: m['range'] == null ? null : new Range._(js.map(m['range'])),
       regExp: m['regExp'] == null ? false : m['regExp'],
       skipCurrent: m['skipCurrent'] == null ? false : m['skipCurrent'],
-      start: m['start'] == null ? null : new Range._(m['start']),
+      start: m['start'] == null ? null : new Range._(js.map(m['start'])),
       wholeWord: m['wholeWord'] == null ? false : m['wholeWord'],
       wrap: m['wrap'] == null ? false : m['wrap']);
   
-  js.Proxy _toProxy() => throw new UnimplementedError();
+  js.Proxy _toProxy() =>
+      js.map({ 'backwards': backwards,
+               'caseSensitive': caseSensitive,
+               'needle': needle,
+               'range': range == null ? null : range._toProxy(),
+               'regExp': regExp,
+               'skipCurrent': skipCurrent,
+               'start': start == null ? null : start._toProxy(),
+               'wholeWord': wholeWord,
+               'wrap': wrap });
 }
 
 /// Handles text searches within a [Document].
@@ -63,8 +72,9 @@ class Search extends _HasProxy {
   /// The current [SearchOptions].
   SearchOptions
     get options => new SearchOptions._(_proxy.getOptions());
-    set options(SearchOptions options) => throw new UnimplementedError();
+    set options(SearchOptions options) => _proxy.setOptions(options._toProxy());
   
-  Search() 
+  /// Creates a new Search with default [SearchOptions]. 
+  Search()
     : super(new js.Proxy(_context.ace.define.modules['ace/search'].Search));   
 }
