@@ -9,6 +9,7 @@ import 'src/edit_session_test.dart';
 import 'src/point_test.dart';
 import 'src/range_test.dart';
 import 'src/search_test.dart';
+import 'src/selection_test.dart';
 
 main() {
   useHtmlEnhancedConfiguration();

@@ -7,6 +7,12 @@ class Selection extends _HasProxy {
   bool get isMultiLine => _proxy.isMultiLine();  
   Range get range => new Range._(_proxy.getRange());
   
+  /// Creates a new [Selection] for the given [session].
+  Selection(EditSession session) 
+    : this._(new js.Proxy(
+        _context.ace.define.modules['ace/selection'].Selection, 
+        session._proxy));
+  
   Selection._(js.Proxy proxy) : super(proxy);
     
   void mergeOverlappingRanges() => _proxy.mergeOverlappingRanges();
