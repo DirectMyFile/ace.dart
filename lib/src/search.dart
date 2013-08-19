@@ -90,7 +90,7 @@ class Search extends _HasProxy {
     return range == null ? null : new Range._(range);
   }
   
-  /// Searches for all occurances of [options.needle] in the given [session]. 
+  /// Searches for all occurrences  of [options.needle] in the given [session]. 
   /// 
   /// This method returns a [Range] iterable of all the text occurrences that
   /// match the [options].  If the [options.needle] is not found, the iterable
