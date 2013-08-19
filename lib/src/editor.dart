@@ -198,19 +198,24 @@ class Editor extends _HasProxy {
   /// Note that this does de-select the current [selection].
   void navigateLineStart() => _proxy.navigateLineStart();
   
-  /// Move the cursor right in the document the specified number of times.
-  /// Note that this does de-select the current [selection].
+  /// Move the [cursorPosition] right in the document the specified number of 
+  /// times.  Note that this does de-select the current [selection].
   void navigateRight(int times) => _proxy.navigateRight(times);
   
-  /// Move the cursor to the specified [row] and [column].
+  /// Move the [cursorPosition] to the specified [row] and [column].
   /// Note that this does de-select the current selection.
   void navigateTo(int row, int column) => _proxy.navigateTo(row, column);
   
-  /// Move the cursor up in the document the specified number of times.
-  /// Note that this does de-select the current [selection].
+  /// Move the [cursorPosition] up in the document the specified number of 
+  /// times.  Note that this does de-select the current [selection].
   void navigateUp(int times) => _proxy.navigateUp(times);
   
+  /// Move the [cursorPosition] to the word immediately to its left. 
+  /// Note that this does de-select the current [selection].
   void navigateWordLeft() => _proxy.navigateWordLeft();
+  
+  /// Move the [cursorPosition] to the word immediately to its right. 
+  /// Note that this does de-select the current [selection].
   void navigateWordRight() => _proxy.navigateWordRight();
   
   /// Remove all of the words to the right of the current [selection], until the 

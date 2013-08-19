@@ -32,3 +32,11 @@ const List<String> sampleTextLines = const [ sampleTextLine0
                                            , sampleTextLine3
                                            , sampleTextLine4
                                            , sampleTextLine5 ];
+
+final Map<int, List<String>> sampleTextWords = 
+    sampleTextLines
+        .map((line) => new RegExp(r'(\w+)').allMatches(line)
+            .map((match) => match.group(0))
+            .toList(growable: false))
+        .toList(growable: false)
+        .asMap();

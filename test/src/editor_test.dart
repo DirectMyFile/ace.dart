@@ -217,6 +217,27 @@ void testNavigateUp() {
 }
 
 @Test()
+void testNavigateWordLeft() {
+  editor.navigateLineEnd();
+  editor.navigateLeft(1); // Navigate left of the line's trailing space char
+  expect(editor.cursorPosition, 
+      equals(new Point(0, sampleTextLine0.length - 1)));
+  editor.navigateWordLeft();
+  final lastLineWord = sampleTextWords[0][sampleTextWords[0].length - 1];  
+  expect(editor.cursorPosition, 
+      equals(new Point(0, sampleTextLine0.length - 1 - lastLineWord.length)));
+  expect(editor.selection.isEmpty, isTrue);
+}
+
+@Test()
+void testNavigateWordRight() {
+  expect(editor.cursorPosition, equals(new Point(0, 0)));
+  editor.navigateWordRight();
+  expect(editor.cursorPosition, equals(new Point(0, 5)));
+  expect(editor.selection.isEmpty, isTrue);
+}
+
+@Test()
 void testRemoveToLineEnd() {
   expect(editor.cursorPosition, equals(new Point(0,0)));
   editor.onChange.listen(expectAsync1((Delta delta) {
