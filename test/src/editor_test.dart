@@ -136,6 +136,14 @@ void testInsert() {
 }
 
 @Test()
+void testNavigateDown() {
+  expect(editor.cursorPosition, equals(new Point(0, 0)));
+  editor.navigateDown(3);
+  expect(editor.cursorPosition, equals(new Point(3, 0)));
+  expect(editor.selection.isEmpty, isTrue);
+}
+
+@Test()
 void testNavigateFileEnd() {
   expect(editor.cursorPosition, equals(new Point(0,0)));
   editor.navigateFileEnd();
@@ -196,6 +204,15 @@ void testNavigateTo() {
   expect(editor.cursorPosition, equals(new Point(0,0)));
   editor.navigateTo(4, 25);
   expect(editor.cursorPosition, equals(new Point(4, 25)));
+  expect(editor.selection.isEmpty, isTrue);
+}
+
+@Test()
+void testNavigateUp() {
+  editor.navigateDown(4);
+  expect(editor.cursorPosition, equals(new Point(4, 0)));
+  editor.navigateUp(2);
+  expect(editor.cursorPosition, equals(new Point(2, 0)));
   expect(editor.selection.isEmpty, isTrue);
 }
 

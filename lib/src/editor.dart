@@ -173,6 +173,10 @@ class Editor extends _HasProxy {
   bool isRowFullyVisible(int row) => _proxy.isRowFullyVisible(row);
   bool isRowVisible(int row) => _proxy.isRowVisible(row);
   
+  /// Move the cursor down in the document the specified number of times.
+  /// Note that this does de-select the current [selection].
+  void navigateDown(int times) => _proxy.navigateDown(times);
+  
   /// Move the cursor to the end of the current document.
   /// Note that this does de-select the current [selection].
   void navigateFileEnd() => _proxy.navigateFileEnd();
@@ -201,7 +205,10 @@ class Editor extends _HasProxy {
   /// Note that this does de-select the current selection.
   void navigateTo(int row, int column) => _proxy.navigateTo(row, column);
   
+  /// Move the cursor up in the document the specified number of times.
+  /// Note that this does de-select the current [selection].
   void navigateUp(int times) => _proxy.navigateUp(times);
+  
   void navigateWordLeft() => _proxy.navigateWordLeft();
   void navigateWordRight() => _proxy.navigateWordRight();
   
