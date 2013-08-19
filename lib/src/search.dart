@@ -21,7 +21,7 @@ class SearchOptions {
   /// `false`.
   final bool skipCurrent;
   
-  /// The starting [Range] or cursor position to begin the search.
+  /// The starting [Range] to begin the search.
   final Range start;
   
   /// Whether the search matches only on whole words; defaults to `false`.

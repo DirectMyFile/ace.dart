@@ -72,3 +72,18 @@ void testFindCaseSensitive() {
       caseSensitive: true);
   expect(search.find(session), isNull);
 }
+
+@Test()
+void testFindStartAfterNeedle() {
+  search.options = new SearchOptions(needle: 'Lorem',
+      start: new Range(0, 6, 0, 6));
+  expect(search.find(session), isNull);
+}
+
+@Test()
+void testFindBackwards() {
+  search.options = new SearchOptions(needle: 'Lorem',
+      backwards: true,
+      start: new Range(0, sampleTextLine0.length, 0, sampleTextLine0.length));
+  expect(search.find(session), equals(new Range(0, 0, 0, 5)));  
+}
