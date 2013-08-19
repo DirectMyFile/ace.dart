@@ -136,6 +136,16 @@ void testInsert() {
 }
 
 @Test()
+void testNavigateLeft() {
+  editor.navigateLineEnd();
+  expect(editor.cursorPosition, equals(new Point(0, sampleTextLine0.length)));
+  editor.navigateLeft(17);
+  expect(editor.cursorPosition, 
+      equals(new Point(0, sampleTextLine0.length - 17)));
+  expect(editor.selection.isEmpty, isTrue);
+}
+
+@Test()
 void testNavigateLineEnd() {
   expect(editor.cursorPosition, equals(new Point(0,0)));
   editor.navigateLineEnd();

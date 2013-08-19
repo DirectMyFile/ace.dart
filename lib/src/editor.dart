@@ -174,6 +174,9 @@ class Editor extends _HasProxy {
   bool isRowVisible(int row) => _proxy.isRowVisible(row);
   void navigateFileEnd() => _proxy.navigateFileEnd();
   void navigateFileStart() => _proxy.navigateFileStart();
+  
+  /// Move the cursor left in the document the specified number of times.
+  /// Note that this does de-select the current [selection].
   void navigateLeft(int times) => _proxy.navigateLeft(times);
   
   /// Move the [cursorPosition] to the end of the current line.
