@@ -22,4 +22,13 @@ void testSelectionCtor() {
   expect(selection.cursor, equals(new Point(0, 0)));
 }
 
-
+@Test()
+void testDispose() {
+  final noop0 = (){};
+  final noop1 = (_){};
+  expect(selection.isDisposed, isFalse);
+  selection.onChangeCursor.listen(noop1, onDone: expectAsync0(noop0));
+  selection.onChangeSelection.listen(noop1, onDone: expectAsync0(noop0));
+  selection.dispose();
+  expect(selection.isDisposed, isTrue);
+}

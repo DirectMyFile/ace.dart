@@ -7,6 +7,11 @@ part of ace;
 /// coordinates representing the coordinates as they appear in the document 
 /// before applying soft wrap and folding.
 class Selection extends _HasProxy {
+  js.Callback _jsOnChangeCursor;
+  js.Callback _jsOnChangeSelection;
+  
+  final _onChangeCursor = new StreamController.broadcast();
+  final _onChangeSelection = new StreamController.broadcast();
   
   /// The current position of the cursor.
   Point get cursor => new Point._(_proxy.getCursor());
@@ -14,6 +19,13 @@ class Selection extends _HasProxy {
   bool get isBackwards => _proxy.isBackwards();
   bool get isEmpty => _proxy.isEmpty();
   bool get isMultiLine => _proxy.isMultiLine();  
+  
+  /// Fired whenever the [cursor] position changes.
+  Stream get onChangeCursor => _onChangeCursor.stream;
+  
+  /// Fired whenever the cursor selection changes.
+  Stream get onChangeSelection => _onChangeSelection.stream;
+  
   Range get range => new Range._(_proxy.getRange());
   
   /// Creates a new [Selection] for the given [session].
@@ -22,7 +34,21 @@ class Selection extends _HasProxy {
         _context.ace.define.modules['ace/selection'].Selection, 
         session._proxy));
   
-  Selection._(js.Proxy proxy) : super(proxy);
+  Selection._(js.Proxy proxy) : super(proxy) {
+    _jsOnChangeCursor =
+        new js.Callback.many((_,__) => _onChangeCursor.add(this));
+    _jsOnChangeSelection =
+        new js.Callback.many((_,__) => _onChangeSelection.add(this));
+    _proxy.on('changeCursor', _jsOnChangeCursor);
+    _proxy.on('changeSelection', _jsOnChangeSelection);
+  }
+  
+  void _onDispose() {
+    _onChangeCursor.close();
+    _onChangeSelection.close();
+    _jsOnChangeCursor.dispose();
+    _jsOnChangeSelection.dispose();
+  }
     
   void mergeOverlappingRanges() => _proxy.mergeOverlappingRanges();
   void moveCursorBy(int rows, int columns) => 
