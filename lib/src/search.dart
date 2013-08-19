@@ -32,14 +32,14 @@ class SearchOptions {
   final bool wrap;
   
   SearchOptions({this.backwards: false,
-                       this.caseSensitive: false,
-                       this.needle: '',
-                       this.range,
-                       this.regExp: false,
-                       this.skipCurrent: false,
-                       this.start,
-                       this.wholeWord: false,
-                       this.wrap: false});  
+                 this.caseSensitive: false,
+                 this.needle: '',
+                 this.range,
+                 this.regExp: false,
+                 this.skipCurrent: false,
+                 this.start,
+                 this.wholeWord: false,
+                 this.wrap: false});  
   
   SearchOptions._(proxy) : this.__(json.parse(_context.JSON.stringify(proxy)));    
   
@@ -76,5 +76,17 @@ class Search extends _HasProxy {
   
   /// Creates a new Search with default [SearchOptions]. 
   Search()
-    : super(new js.Proxy(_context.ace.define.modules['ace/search'].Search));   
+    : super(new js.Proxy(_context.ace.define.modules['ace/search'].Search));
+  
+  /// Searches for [options.needle] in the given [session]. 
+  /// 
+  /// If the [options.needle] is found, this method returns the [Range] where 
+  /// the text first occurs.  Otherwise, it returns `null`.
+  /// 
+  /// If [options.backwards] is `true`, the search goes backwards in the 
+  /// [session].
+  Range find(EditSession session) {
+    final range = _proxy.find(session._proxy);
+    return range == null ? null : new Range._(range);
+  }
 }

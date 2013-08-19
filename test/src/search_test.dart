@@ -51,3 +51,24 @@ void testSetOptions() {
   expect(search.options.wholeWord, isTrue);
   expect(search.options.wrap, isTrue);
 }
+
+@Test()
+void testFind() {
+  search.options = new SearchOptions(needle: 'Lorem');
+  expect(search.find(session), equals(new Range(0, 0, 0, 5)));  
+}
+
+@Test()
+void testFindMissingNeedle() {
+  search.options = new SearchOptions(needle: 'not gonna find me');
+  expect(search.find(session), isNull);
+}
+
+@Test()
+void testFindCaseSensitive() {
+  search.options = new SearchOptions(needle: 'lorem');
+  expect(search.find(session), equals(new Range(0, 0, 0, 5)));
+  search.options = new SearchOptions(needle: 'lorem',
+      caseSensitive: true);
+  expect(search.find(session), isNull);
+}
