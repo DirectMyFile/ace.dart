@@ -57,6 +57,7 @@ class SearchOptions {
   js.Proxy _toProxy() => throw new UnimplementedError();
 }
 
+/// Handles text searches within a [Document].
 class Search extends _HasProxy {
   
   /// The current [SearchOptions].
