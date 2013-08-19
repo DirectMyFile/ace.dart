@@ -21,7 +21,6 @@ void testCreateEditSession() {
   session = createEditSession(sampleText, 'ace/mode/dart');
   expect(session, isNotNull); 
   expect(session.value, equals(sampleText));
-  expect(false, isTrue);
 }
 
 @Test()
