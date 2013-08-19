@@ -1,6 +1,15 @@
 part of ace;
 
+/// Encapsulates the current [cursor] position and the text selection of an 
+/// [EditSession].
+/// 
+/// The positions (row and column) used in a selection are in [Document] 
+/// coordinates representing the coordinates as they appear in the document 
+/// before applying soft wrap and folding.
 class Selection extends _HasProxy {
+  
+  /// The current position of the cursor.
+  Point get cursor => _proxy.getCursor();
   
   bool get isBackwards => _proxy.isBackwards();
   bool get isEmpty => _proxy.isEmpty();
