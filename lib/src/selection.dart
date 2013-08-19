@@ -17,7 +17,11 @@ class Selection extends _HasProxy {
   Point get cursor => new Point._(_proxy.getCursor());
   
   bool get isBackwards => _proxy.isBackwards();
+  
+  /// Returns `true` if this selection is empty.
   bool get isEmpty => _proxy.isEmpty();
+  
+  /// Returns `true` if this selection is multi-line.
   bool get isMultiLine => _proxy.isMultiLine();  
   
   /// Fired whenever the [cursor] position changes.
