@@ -136,6 +136,27 @@ void testInsert() {
 }
 
 @Test()
+void testNavigateFileEnd() {
+  expect(editor.cursorPosition, equals(new Point(0,0)));
+  editor.navigateFileEnd();
+  final lastTextLine = sampleTextLines.length - 1;
+  expect(editor.cursorPosition, 
+      equals(new Point(lastTextLine, sampleTextLines[lastTextLine].length)));
+  expect(editor.selection.isEmpty, isTrue);
+}
+
+@Test()
+void testNavigateFileStart() {
+  editor.navigateFileEnd();
+  final lastTextLine = sampleTextLines.length - 1;
+  expect(editor.cursorPosition, 
+      equals(new Point(lastTextLine, sampleTextLines[lastTextLine].length)));
+  editor.navigateFileStart();
+  expect(editor.cursorPosition, equals(new Point(0,0)));  
+  expect(editor.selection.isEmpty, isTrue);
+}
+
+@Test()
 void testNavigateLeft() {
   editor.navigateLineEnd();
   expect(editor.cursorPosition, equals(new Point(0, sampleTextLine0.length)));

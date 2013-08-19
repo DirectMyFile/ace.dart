@@ -1,7 +1,5 @@
 library ace.test.sample_text;
 
-const int sampleTextLineCount = 6;
-
 const String sampleTextLine0 = 
 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod ';
 

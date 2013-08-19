@@ -214,7 +214,7 @@ void testNewLineMode() {
 
 @Test()
 void testGetLine() {
-  for (int i = 0; i < sampleTextLineCount - 1; i++)
+  for (int i = 0; i < sampleTextLines.length - 1; i++)
     expect(session.getLine(i), equals(sampleTextLines[i]));
 }
 
