@@ -192,6 +192,14 @@ void testNavigateRight() {
 }
 
 @Test()
+void testNavigateTo() {
+  expect(editor.cursorPosition, equals(new Point(0,0)));
+  editor.navigateTo(4, 25);
+  expect(editor.cursorPosition, equals(new Point(4, 25)));
+  expect(editor.selection.isEmpty, isTrue);
+}
+
+@Test()
 void testRemoveToLineEnd() {
   expect(editor.cursorPosition, equals(new Point(0,0)));
   editor.onChange.listen(expectAsync1((Delta delta) {

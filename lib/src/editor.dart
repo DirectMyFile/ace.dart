@@ -197,7 +197,10 @@ class Editor extends _HasProxy {
   /// Note that this does de-select the current [selection].
   void navigateRight(int times) => _proxy.navigateRight(times);
   
+  /// Move the cursor to the specified [row] and [column].
+  /// Note that this does de-select the current selection.
   void navigateTo(int row, int column) => _proxy.navigateTo(row, column);
+  
   void navigateUp(int times) => _proxy.navigateUp(times);
   void navigateWordLeft() => _proxy.navigateWordLeft();
   void navigateWordRight() => _proxy.navigateWordRight();
