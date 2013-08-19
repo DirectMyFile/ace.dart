@@ -89,4 +89,16 @@ class Search extends _HasProxy {
     final range = _proxy.find(session._proxy);
     return range == null ? null : new Range._(range);
   }
+  
+  /// Searches for all occurances of [options.needle] in the given [session]. 
+  /// 
+  /// This method returns a [Range] iterable of all the text occurrences that
+  /// match the [options].  If the [options.needle] is not found, the iterable
+  /// will be empty.
+  /// 
+  /// If [options.backwards] is `true`, the search goes backwards in the 
+  /// [session].
+  Iterable<Range> findAll(EditSession session) => 
+      json.parse(_context.JSON.stringify(_proxy.findAll(session._proxy)))
+        .map((range) => new Range._(js.map(range)));
 }

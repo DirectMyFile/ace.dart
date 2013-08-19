@@ -87,3 +87,31 @@ void testFindBackwards() {
       start: new Range(0, sampleTextLine0.length, 0, sampleTextLine0.length));
   expect(search.find(session), equals(new Range(0, 0, 0, 5)));  
 }
+
+@Test()
+void testFindAll() {
+  search.options = new SearchOptions(needle: 'ut');
+  final ranges = search.findAll(session);
+  expect(ranges.length, equals(4));
+  expect(ranges.elementAt(0), equals(new Range(1, 18, 1, 20)));
+  expect(ranges.elementAt(1), equals(new Range(1, 52, 1, 54)));
+  expect(ranges.elementAt(2), equals(new Range(2, 48, 2, 50)));
+  expect(ranges.elementAt(3), equals(new Range(3, 17, 3, 19)));
+}
+
+@Test()
+void testFindAllWholeWord() {
+  search.options = new SearchOptions(needle: 'ut',
+      wholeWord: true);
+  final ranges = search.findAll(session);
+  expect(ranges.length, equals(3));
+  expect(ranges.elementAt(0), equals(new Range(1, 18, 1, 20)));
+  expect(ranges.elementAt(1), equals(new Range(1, 52, 1, 54)));
+  expect(ranges.elementAt(2), equals(new Range(2, 48, 2, 50)));
+}
+
+@Test()
+void testFindAllMissingNeedle() {
+  search.options = new SearchOptions(needle: 'not gonna find me');
+  expect(search.findAll(session), isEmpty);
+}
