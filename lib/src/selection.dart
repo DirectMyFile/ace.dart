@@ -9,7 +9,7 @@ part of ace;
 class Selection extends _HasProxy {
   
   /// The current position of the cursor.
-  Point get cursor => _proxy.getCursor();
+  Point get cursor => new Point._(_proxy.getCursor());
   
   bool get isBackwards => _proxy.isBackwards();
   bool get isEmpty => _proxy.isEmpty();

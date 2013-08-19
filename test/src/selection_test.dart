@@ -19,4 +19,7 @@ setup() {
 void testSelectionCtor() {
   final Selection selection = new Selection(session);
   expect(selection, isNotNull);
+  expect(selection.cursor, equals(new Point(0, 0)));
 }
+
+
