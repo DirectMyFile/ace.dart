@@ -69,6 +69,7 @@ class Editor extends _HasProxy {
   /// Returns _true_ if current [textInput] is in focus.
   bool get isFocused => _proxy.isFocused();
   
+  /// The current [session.overwrite].
   bool
     get overwrite => _proxy.getOverwrite();
     set overwrite(bool overwrite) => _proxy.setOverwrite(overwrite);
@@ -231,7 +232,10 @@ class Editor extends _HasProxy {
     assert(cursorPos >= -1 && cursorPos <= 1);
     return _proxy.setValue(val, cursorPos);
   }
+  
+  /// Sets the value of [overwrite] to the opposite of its current value.
   void toggleOverwrite() => _proxy.toggleOverwrite();
+  
   void toLowerCase() => _proxy.toLowerCase();
   void toUpperCase() => _proxy.toUpperCase();
   void transposeLetters() => _proxy.transposeLetters();

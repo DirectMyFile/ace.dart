@@ -295,3 +295,21 @@ void testHighlightActiveLine() {
   editor.highlightActiveLine = false;
   expect(editor.highlightActiveLine, isFalse);
 }
+
+@Test()
+void testSetOverwrite() {
+  final bool initialValue = editor.overwrite;
+  editor.session.onChangeOverwrite.listen(expectAsync1((_) {
+    expect(editor.overwrite, isNot(initialValue));
+  })); 
+  editor.overwrite = !initialValue;
+}
+
+@Test()
+void testToggleOverwrite() {
+  final bool initialValue = editor.overwrite;
+  editor.session.onChangeOverwrite.listen(expectAsync1((_) {
+    expect(editor.overwrite, isNot(initialValue));
+  })); 
+  editor.toggleOverwrite();
+}
