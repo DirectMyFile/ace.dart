@@ -60,3 +60,18 @@ void testMoveCursorTo() {
   }));
   selection.moveCursorTo(4, 42, false);
 }
+
+@Test()
+void testSelectAll() {
+  expect(selection.cursor, equals(new Point(0, 0)));
+  expect(selection.range, equals(new Range(0, 0, 0, 0)));
+  // TODO(rms): investigate why `onChangeSelection` fires 2 times.
+  selection.onChangeSelection.listen(expectAsync1((_) {}, count: 2));
+  selection.onChangeCursor.listen(expectAsync1((_) {}));
+  selection.selectAll();
+  Point endPoint = new Point(sampleTextLines.length - 1, 
+      sampleTextLines[sampleTextLines.length - 1].length);
+  expect(selection.cursor, equals(endPoint));
+  expect(selection.range, 
+      equals(new Range.fromPoints(new Point(0, 0), endPoint)));
+}

@@ -88,7 +88,10 @@ class Selection extends _HasProxy {
   void moveCursorUp() => _proxy.moveCursorUp();
   void moveCursorWordLeft() => _proxy.moveCursorWordLeft();
   void moveCursorWordRight() => _proxy.moveCursorWordRight();
+  
+  /// Selects all the text in the document.
   void selectAll() => _proxy.selectAll();
+  
   void selectAWord() => _proxy.selectAWord();
   void selectDown() => _proxy.selectDown();
   void selectFileEnd() => _proxy.selectFileEnd();
