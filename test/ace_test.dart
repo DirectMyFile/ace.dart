@@ -13,5 +13,5 @@ import 'src/selection_test.dart';
 
 main() {
   useHtmlEnhancedConfiguration();
-  bench.main();
+  bench.reflectTests();
 }

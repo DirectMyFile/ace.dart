@@ -2,7 +2,7 @@
 library ace.test.anchor;
 
 import 'package:ace/ace.dart';
-import 'package:bench/meta.dart';
+import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 import 'sample_text.dart';
 
