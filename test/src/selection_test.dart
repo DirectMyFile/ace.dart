@@ -52,3 +52,11 @@ void testMoveCursorBy() {
   }, count: 2));
   selection.moveCursorBy(3, 20);  
 }
+
+@Test()
+void testMoveCursorTo() {
+  selection.onChangeCursor.listen(expectAsync1((_) {
+    expect(selection.cursor, equals(new Point(4, 42)));
+  }));
+  selection.moveCursorTo(4, 42, false);
+}

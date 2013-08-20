@@ -75,8 +75,14 @@ class Selection extends _HasProxy {
   void moveCursorRight() => _proxy.moveCursorRight();
   void moveCursorShortWordLeft() => _proxy.moveCursorShortWordLeft();
   void moveCursorShortWordRight() => _proxy.moveCursorShortWordRight();
+  
+  /// Moves the cursor to the given [row] and [column].
+  /// 
+  /// If [keepDesiredColumn] is `true`, the cursor move does not respect the
+  /// previous column.
   void moveCursorTo(int row, int column, bool keepDesiredColumn) =>
       _proxy.moveCursorTo(row, column, keepDesiredColumn);
+  
   void moveCursorToScreen(int row, int column, bool keepDesiredColumn) =>
       _proxy.moveCursorToScreen(row, column, keepDesiredColumn);
   void moveCursorUp() => _proxy.moveCursorUp();
