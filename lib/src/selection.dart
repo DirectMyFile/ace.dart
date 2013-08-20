@@ -92,7 +92,9 @@ class Selection extends _HasProxy {
   /// Selects all the text in the document.
   void selectAll() => _proxy.selectAll();
   
+  /// Selects a word, including its right whitespace.
   void selectAWord() => _proxy.selectAWord();
+  
   void selectDown() => _proxy.selectDown();
   void selectFileEnd() => _proxy.selectFileEnd();
   void selectFileStart() => _proxy.selectFileStart();
