@@ -8,7 +8,8 @@ class Point {
   bool operator ==(Object other) {
     if(identical(this, other)) return true;
     if(other is! Point) return false; 
-    return row == other.row && column == other.column;
+    final o = other;
+    return row == o.row && column == o.column;
   }  
   int get hashCode => row.hashCode ^ column.hashCode;
   js.Proxy _toProxy() => js.map({'row': row, 'column': column});

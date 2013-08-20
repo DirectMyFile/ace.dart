@@ -25,7 +25,8 @@ class Range {
   bool operator ==(Object other) {
     if(identical(this, other)) return true;
     if(other is! Range) return false; 
-    return start == other.start && end == other.end;
+    final o = other;
+    return start == o.start && end == o.end;
   }  
   int get hashCode => start.hashCode ^ end.hashCode;
   
