@@ -34,3 +34,21 @@ void testDispose() {
   selection.dispose();
   expect(selection.isDisposed, isTrue);
 }
+
+@Test()
+void testMoveCursorBy() {
+  expect(selection.cursor, equals(new Point(0, 0)));
+  int changeCount = 0;
+  selection.onChangeCursor.listen(expectAsync1((_) {
+    switch (changeCount++) {
+      case 0:
+        expect(selection.cursor, equals(new Point(3, 20)));
+        selection.moveCursorBy(-1, -19);
+        break;
+      case 1:
+        expect(selection.cursor, equals(new Point(2, 1)));
+        break;
+    }   
+  }, count: 2));
+  selection.moveCursorBy(3, 20);  
+}

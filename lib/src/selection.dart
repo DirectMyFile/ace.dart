@@ -55,8 +55,15 @@ class Selection extends _HasProxy {
   }
     
   void mergeOverlappingRanges() => _proxy.mergeOverlappingRanges();
+  
+  /// Moves the [cursor] position by the given number of [rows] and [columns]
+  /// relative to its current position.
+  /// 
+  /// Negative values for [rows] or [columns] move the [cursor] backwards in the
+  /// document.
   void moveCursorBy(int rows, int columns) => 
       _proxy.moveCursorBy(rows, columns);
+  
   void moveCursorDown() => _proxy.moveCursorDown();
   void moveCursorFileEnd() => _proxy.moveCursorFileEnd();
   void moveCursorFileStart() => _proxy.moveCursorFileStart();
