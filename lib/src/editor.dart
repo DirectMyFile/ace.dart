@@ -1,5 +1,14 @@
 part of ace;
 
+// TODO(rms): investigate the errors when using this event class:
+//class EditSessionChangeEvent {
+//  /// The old [EditSession].
+//  final EditSession oldSession;  
+//  /// The new [EditSession].
+//  final EditSession newSession;  
+//  EditSessionChangeEvent._(this.oldSession, this.newSession);
+//}
+
 /// The main entry point into the Ace functionality.
 /// 
 /// An [Editor] manages an [EditSession] (which in turn manages a [Document]), 
@@ -9,12 +18,15 @@ part of ace;
 class Editor extends _HasProxy {
   js.Callback _jsOnBlur;
   js.Callback _jsOnChange;
+  js.Callback _jsOnChangeSession;
   js.Callback _jsOnCopy;
   js.Callback _jsOnFocus;
   js.Callback _jsOnPaste;
   
   final _onBlur = new StreamController.broadcast();
   final _onChange = new StreamController<Delta>.broadcast();
+  final _onChangeSession = 
+      new StreamController/*<EditSessionChangeEvent>*/.broadcast();
   final _onCopy = new StreamController<String>.broadcast();
   final _onFocus = new StreamController.broadcast();
   final _onPaste = new StreamController<String>.broadcast();
@@ -25,8 +37,9 @@ class Editor extends _HasProxy {
   /// Fired whenever the [session.document] changes.
   Stream<Delta> get onChange => _onChange.stream;
   
-  Stream/*<TODO: SessionChangeEvent>*/ get onChangeSession => 
-      throw new UnimplementedError();
+  /// Fired whenever the [session] changes.
+  Stream/*<EditSessionChangeEvent>*/ get onChangeSession => 
+      _onChangeSession.stream;
   
   /// Fired whenever text is copied.
   Stream<String> get onCopy => _onCopy.stream;
@@ -98,7 +111,7 @@ class Editor extends _HasProxy {
   /// [onChangeSession] event.
   EditSession
     get session => new EditSession._(_proxy.getSession());
-    set session(EditSession session) => throw new UnimplementedError();
+    set session(EditSession session) => _proxy.setSession(session._proxy);
   
   bool
     get showInvisibles => _proxy.getShowInvisibles();
@@ -116,15 +129,20 @@ class Editor extends _HasProxy {
     
   Editor._(js.Proxy proxy) : super(proxy) {
     _jsOnBlur = new js.Callback.many((_,__) => _onBlur.add(this));
-    _jsOnChange = new js.Callback.many((e,__) {
-      Delta delta = new Delta._for(e.data);
-      _onChange.add(delta); 
+    _jsOnChange = new js.Callback.many((e,__) =>
+        _onChange.add(new Delta._for(e.data)));
+    _jsOnChangeSession = new js.Callback.many((e,__) {
+      _onChangeSession.add(null);
+//      _onChangeSession.add(new EditSessionChangeEvent._(
+//          new EditSession._(e.oldSession),
+//          new EditSession._(e.session))); 
     });
     _jsOnCopy = new js.Callback.many((e,__) => _onCopy.add(e));
     _jsOnFocus = new js.Callback.many((_,__) => _onFocus.add(this));
     _jsOnPaste = new js.Callback.many((e,__) => _onPaste.add(e));
     _proxy.on('blur', _jsOnBlur);
     _proxy.on('change', _jsOnChange);
+    _proxy.on('changeSession', _jsOnChangeSession);
     _proxy.on('copy', _jsOnCopy);
     _proxy.on('focus', _jsOnFocus);
     _proxy.on('paste', _jsOnPaste);
@@ -133,11 +151,13 @@ class Editor extends _HasProxy {
   void _onDispose() {
     _onBlur.close();
     _onChange.close();
+    _onChangeSession.close();
     _onCopy.close();
     _onFocus.close();
     _onPaste.close();
     _jsOnBlur.dispose();
     _jsOnChange.dispose();
+    _jsOnChangeSession.dispose();
     _jsOnCopy.dispose();
     _jsOnFocus.dispose();
     _jsOnPaste.dispose();

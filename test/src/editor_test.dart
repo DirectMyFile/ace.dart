@@ -38,6 +38,7 @@ void testDispose() {
   expect(editor.isDisposed, isFalse);
   editor.onBlur.listen(noop1, onDone: expectAsync0(noop0));
   editor.onChange.listen(noop1, onDone: expectAsync0(noop0));
+  editor.onChangeSession.listen(noop1, onDone: expectAsync0(noop0));
   editor.onCopy.listen(noop1, onDone: expectAsync0(noop0));
   editor.onFocus.listen(noop1, onDone: expectAsync0(noop0));
   editor.onPaste.listen(noop1, onDone: expectAsync0(noop0));
@@ -333,4 +334,14 @@ void testToggleOverwrite() {
     expect(editor.overwrite, isNot(initialValue));
   })); 
   editor.toggleOverwrite();
+}
+
+@Test()
+void testSetSession() {
+  final EditSession initialSession = editor.session;
+  final EditSession newSession = createEditSession('snarf', 'ace/mode/text');
+  editor.onChangeSession.listen(expectAsync1((/*EditSessionChangeEvent ev*/_) {
+    // TODO(rms): expect the correct session event args
+  })); 
+  editor.session = newSession;
 }
