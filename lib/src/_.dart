@@ -17,4 +17,6 @@ abstract class _HasProxy {
   }
   
   void _onDispose() {}
+  
+  String toString() => _context.JSON.stringify(_proxy);
 }
