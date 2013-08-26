@@ -12,7 +12,8 @@ EditSession session;
 @Setup
 setup() {
   search = new Search();
-  session = new EditSession(new Document(sampleText), 'ace/mode/text');
+  session = new EditSession(new Document(sampleText), 
+      new Mode('ace/mode/text'));
 }
 
 @Test()

@@ -4,6 +4,7 @@ import 'dart:async';
 import 'dart:html' as html;
 import 'dart:json' as json;
 import 'package:js/js.dart' as js;
+import 'package:mime/mime.dart';
 
 part 'src/_.dart';
 part 'src/anchor.dart';
@@ -21,10 +22,10 @@ part 'src/undo_manager.dart';
 part 'src/virtual_renderer.dart';
 
 /// Creates a new [EditSession] with the given [text] and language [mode].
-EditSession createEditSession(String text, String mode) {
+EditSession createEditSession(String text, Mode mode) {
   assert(text != null);
   assert(mode != null);
-  return new EditSession._( _context.ace.createEditSession(text, mode));
+  return new EditSession._( _context.ace.createEditSession(text, mode._mode));
 }
 
 /// Embed an Ace [Editor] instance into the DOM, at the given [element].

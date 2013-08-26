@@ -14,10 +14,10 @@ setup() => document = new Document(sampleText);
 void testDispose() {
   final noop0 = (){};
   final noop1 = (_){};
-  expect(document.isDisposed, isFalse);
+  expect(document.hasProxy, isTrue);
   document.onChange.listen(noop1, onDone: expectAsync0(noop0));
   document.dispose();
-  expect(document.isDisposed, isTrue);
+  expect(document.hasProxy, isFalse);
 }
 
 @Test()

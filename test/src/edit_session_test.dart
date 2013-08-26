@@ -8,7 +8,8 @@ import 'sample_text.dart';
 
 EditSession session;
 @Setup
-setup() => session = new EditSession(new Document(sampleText), 'ace/mode/text');
+setup() => session = new EditSession(new Document(sampleText), 
+    new Mode('ace/mode/text'));
 
 @Test()
 void testEditSessionCtor() {
@@ -18,7 +19,7 @@ void testEditSessionCtor() {
 
 @Test()
 void testCreateEditSession() {  
-  session = createEditSession(sampleText, 'ace/mode/dart');
+  session = createEditSession(sampleText, new Mode('ace/mode/dart'));
   expect(session, isNotNull); 
   expect(session.value, equals(sampleText));
 }
@@ -27,7 +28,7 @@ void testCreateEditSession() {
 void testDispose() {
   final noop0 = (){};
   final noop1 = (_){};
-  expect(session.isDisposed, isFalse);
+  expect(session.hasProxy, isTrue);
   session.onChange.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeBreakpoint.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeOverwrite.listen(noop1, onDone: expectAsync0(noop0));
@@ -37,7 +38,7 @@ void testDispose() {
   session.onChangeWrapLimit.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeWrapMode.listen(noop1, onDone: expectAsync0(noop0));
   session.dispose();
-  expect(session.isDisposed, isTrue);
+  expect(session.hasProxy, isFalse);
 }
 
 @Test()

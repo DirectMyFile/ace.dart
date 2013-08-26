@@ -35,7 +35,7 @@ void testEditNullThrows() {
 void testDispose() {
   final noop0 = (){};
   final noop1 = (_){};
-  expect(editor.isDisposed, isFalse);
+  expect(editor.hasProxy, isTrue);
   editor.onBlur.listen(noop1, onDone: expectAsync0(noop0));
   editor.onChange.listen(noop1, onDone: expectAsync0(noop0));
   editor.onChangeSession.listen(noop1, onDone: expectAsync0(noop0));
@@ -43,7 +43,7 @@ void testDispose() {
   editor.onFocus.listen(noop1, onDone: expectAsync0(noop0));
   editor.onPaste.listen(noop1, onDone: expectAsync0(noop0));
   editor.dispose();
-  expect(editor.isDisposed, isTrue);
+  expect(editor.hasProxy, isFalse);
 }
 
 @Test()
@@ -339,7 +339,8 @@ void testToggleOverwrite() {
 @Test()
 void testSetSession() {
   final EditSession initialSession = editor.session;
-  final EditSession newSession = createEditSession('snarf', 'ace/mode/text');
+  final EditSession newSession = createEditSession('snarf', 
+      new Mode('ace/mode/text'));
   editor.onChangeSession.listen(expectAsync1((/*EditSessionChangeEvent ev*/_) {
     // TODO(rms): expect the correct session event args
   })); 

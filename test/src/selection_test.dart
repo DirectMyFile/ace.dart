@@ -11,7 +11,8 @@ Selection selection;
 
 @Setup
 setup() {
-  session = new EditSession(new Document(sampleText), 'ace/mode/text');
+  session = new EditSession(new Document(sampleText), 
+      new Mode('ace/mode/text'));
   selection = new Selection(session);
 }
 
@@ -28,11 +29,11 @@ void testSelectionCtor() {
 void testDispose() {
   final noop0 = (){};
   final noop1 = (_){};
-  expect(selection.isDisposed, isFalse);
+  expect(selection.hasProxy, isTrue);
   selection.onChangeCursor.listen(noop1, onDone: expectAsync0(noop0));
   selection.onChangeSelection.listen(noop1, onDone: expectAsync0(noop0));
   selection.dispose();
-  expect(selection.isDisposed, isTrue);
+  expect(selection.hasProxy, isFalse);
 }
 
 @Test()

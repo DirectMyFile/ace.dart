@@ -68,9 +68,10 @@ class EditSession extends _HasProxy {
   /// Returns the current [document.length].
   int get length => _proxy.getLength();
   
+  /// The current [Mode] of this session.
   Mode
     get mode => new Mode._(_proxy.getMode());
-    set mode(Mode mode) => throw new UnimplementedError();
+    set mode(Mode mode) => _proxy.setMode(mode._mode);
     
   /// The new line mode.  May be one of `windows`, `unix` or `auto`.
   // TODO(rms): enum
@@ -174,8 +175,8 @@ class EditSession extends _HasProxy {
   
   /// Creates a new EditSession and associates it with the given [document] and 
   /// text [mode].
-  EditSession(Document document, String mode) : this._(
-      new js.Proxy(_context.ace.EditSession, document._proxy, mode));
+  EditSession(Document document, Mode mode) : this._(
+      new js.Proxy(_context.ace.EditSession, document._proxy, mode._mode));
   
   EditSession._(js.Proxy proxy) : super(proxy) {    
     _jsOnChange = new js.Callback.many((e,__) => 
@@ -321,8 +322,6 @@ class EditSession extends _HasProxy {
   /// Sets a breakpoint on all of the given [rows] and fires an 
   /// [onChangeBreakpoint] event.
   void setBreakpoints(List<int> rows) => _proxy.setBreakpoints(js.array(rows));
-  
-  void setMode(String mode) => _proxy.setMode(mode);
   
   /// Sets the boundaries of line wrap. 
   /// 
