@@ -17,6 +17,7 @@ const Map<String, String> _extensionMap = const {
   'py'        : 'python',
   'rb'        : 'ruby',
   'scss'      : 'scss',
+  'ts'        : 'typescript',
   'xml'       : 'xml',
   'yaml'      : 'yaml'
 };
