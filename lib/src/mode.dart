@@ -8,6 +8,7 @@ const Map<String, String> _mimeTypeToMode = const {
   'application/xml'         : 'xml',
   'text/css'                : 'css',
   'text/html'               : 'html',
+  'text/x-java-source'      : 'java',
   'text/x-markdown'         : 'markdown'
 };
 
