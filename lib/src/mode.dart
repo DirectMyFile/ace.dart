@@ -1,14 +1,22 @@
 part of ace;
 
 const Map<String, String> _extensionMap = const {
+  'bat'       : 'batchfile',
+  'cpp'       : 'c_cpp',
+  'cs'        : 'csharp',
   'css'       : 'css',
   'dart'      : 'dart',  
+  'h'         : 'c_cpp',
   'html'      : 'html',
   'java'      : 'java',
   'js'        : 'javascript',
   'json'      : 'json',
   'markdown'  : 'markdown',
   'md'        : 'markdown',
+  'properties': 'properties',
+  'py'        : 'python',
+  'rb'        : 'ruby',
+  'scss'      : 'scss',
   'xml'       : 'xml',
   'yaml'      : 'yaml'
 };
@@ -25,7 +33,7 @@ class Mode extends _HasProxy {
   
   get _mode => _proxy != null ? _proxy : _modePath;
   
-  /// Creates a mode for the given [filePath], based on its resolved mime type.
+  /// Creates a mode for the given [filePath], based on its file extension.
   factory Mode.forFile(String filePath) {
     final ext = _ext(filePath);
     var mode = _extensionMap[ext];
