@@ -5,6 +5,7 @@ const Map<String, String> _mimeTypeToMode = const {
   'application/dart'        : 'dart',
   'application/javascript'  : 'javascript',
   'application/json'        : 'json',
+  'application/xml'         : 'xml',
   'text/css'                : 'css',
   'text/html'               : 'html',
   'text/x-markdown'         : 'markdown'
