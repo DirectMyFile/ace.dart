@@ -6,7 +6,8 @@ const Map<String, String> _mimeTypeToMode = const {
   'application/javascript'  : 'javascript',
   'application/json'        : 'json',
   'text/css'                : 'css',
-  'text/html'               : 'html'  
+  'text/html'               : 'html',
+  'text/x-markdown'         : 'markdown'
 };
 
 class Mode extends _HasProxy {  
