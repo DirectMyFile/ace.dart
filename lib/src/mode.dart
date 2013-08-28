@@ -47,6 +47,10 @@ class Mode extends _HasProxy {
   /// 
   /// The [modePath] is a path such as `ace/mode/text`.
   Mode(String modePath) : super.async(new Future<js.Proxy>(() {
+    // TODO(rms): throw ArgumentError if modePath is not a value in our
+    // _extensionMap?  would be able to give the user a much better error that
+    // way I believe.. otherwise ace.js will try to load a resource that does
+    // not exist.
     final completer = new Completer<js.Proxy>();
     _context.ace.config.loadModule(js.array(['mode', modePath]), 
         new js.Callback.once((module) {
