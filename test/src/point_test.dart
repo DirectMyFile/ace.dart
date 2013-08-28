@@ -1,4 +1,4 @@
-@Group('Point')
+@TestGroup('Point')
 library ace.test.point;
 
 import 'package:ace/ace.dart';

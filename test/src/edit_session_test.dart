@@ -1,4 +1,4 @@
-@Group('EditSession')
+@TestGroup('EditSession')
 library ace.test.edit_session;
 
 import 'package:ace/ace.dart';

@@ -8,6 +8,6 @@ dependencies:
   js: '>=0.0.24'
   mime: '>=0.6.21'
 dev_dependencies:
-  bench: '>=0.2.8'
+  bench: '>=0.2.9'
   browser: '>=0.6.21'
   unittest: '>=0.6.21'

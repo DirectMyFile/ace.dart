@@ -1,4 +1,4 @@
-@Group('Document')
+@TestGroup('Document')
 library ace.test.document;
 
 import 'package:ace/ace.dart';

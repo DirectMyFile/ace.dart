@@ -1,4 +1,4 @@
-@Group('Anchor')
+@TestGroup('Anchor')
 library ace.test.anchor;
 
 import 'package:ace/ace.dart';

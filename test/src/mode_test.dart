@@ -1,4 +1,4 @@
-@Group('Mode')
+@TestGroup('Mode')
 library ace.test.mode;
 
 import 'package:ace/ace.dart';
