@@ -4,7 +4,6 @@ import 'dart:async';
 import 'dart:html' as html;
 import 'dart:json' as json;
 import 'package:js/js.dart' as js;
-import 'package:mime/mime.dart';
 
 part 'src/_.dart';
 part 'src/anchor.dart';

@@ -1,26 +1,34 @@
 part of ace;
 
-// TODO(rms): this map is very incomplete
-const Map<String, String> _mimeTypeToMode = const {
-  'application/dart'        : 'dart',
-  'application/javascript'  : 'javascript',
-  'application/json'        : 'json',
-  'application/xml'         : 'xml',
-  'text/css'                : 'css',
-  'text/html'               : 'html',
-  'text/x-java-source'      : 'java',
-  'text/x-markdown'         : 'markdown'
+const Map<String, String> _extensionMap = const {
+  'css'       : 'css',
+  'dart'      : 'dart',  
+  'html'      : 'html',
+  'java'      : 'java',
+  'js'        : 'javascript',
+  'json'      : 'json',
+  'markdown'  : 'markdown',
+  'md'        : 'markdown',
+  'xml'       : 'xml',
+  'yaml'      : 'yaml'
 };
 
-class Mode extends _HasProxy {  
+String _ext(String path) {
+  int index = path.lastIndexOf('.');
+  if (index < 0 || index + 1 >= path.length) return path;
+  return path.substring(index + 1).toLowerCase();
+}
+
+class Mode extends _HasProxy {
+  
   final String _modePath;
   
   get _mode => _proxy != null ? _proxy : _modePath;
   
   /// Creates a mode for the given [filePath], based on its resolved mime type.
   factory Mode.forFile(String filePath) {
-    final mimeType = lookupMimeType(filePath);
-    var mode = _mimeTypeToMode[mimeType];
+    final ext = _ext(filePath);
+    var mode = _extensionMap[ext];
     if (mode == null) mode = 'text';
     return new Mode('ace/mode/$mode');
   }
