@@ -17,7 +17,8 @@ void testCreateModeFromModePath() {
   verifyMode('ace/mode/csharp');
   verifyMode('ace/mode/css');
   verifyMode('ace/mode/dart');
-  verifyMode('ace/mode/javascript');
+  verifyMode('ace/mode/html');
+  verifyMode('ace/mode/javascript');  
   verifyMode('ace/mode/text');  
 }
 
@@ -33,5 +34,6 @@ void testCreateModeFromFilePath() {
   verifyMode('vm/gc.cs');
   verifyMode('twit/boot.css');
   verifyMode('ftw.dart');
-  verifyMode('some/legacy.js');
+  verifyMode('browser.html');
+  verifyMode('some/legacy.js');  
 }
