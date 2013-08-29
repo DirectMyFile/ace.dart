@@ -222,7 +222,7 @@ void testGetLine() {
 @Test()
 testGetAWordRange() {
   final range = session.getAWordRange(0, 0);
-  expect(range, equals(new Range(0,0,0,6)));
+  expect(range, equals(new Range(0, 0, 0, 6)));
 }
 
 @Test()
@@ -256,11 +256,11 @@ void testIndentRows() {
 void testInsert() {
   session.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<InsertTextDelta>());
-    expect(delta.range, equals(new Range(0,0,0,5)));
+    expect(delta.range, equals(new Range(0, 0, 0, 5)));
     InsertTextDelta insertTextDelta = delta;
     expect(insertTextDelta.text, equals('snarf'));    
   }));
-  final point = session.insert(new Point(0, 0), 'snarf');
+  final point = session.insert(const Point(0, 0), 'snarf');
   expect(point, equals(new Point(0, 5)));
 }
 
@@ -332,12 +332,12 @@ void testDuplicateLines() {
 void testRemove() {
   session.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());
-    expect(delta.range, equals(new Range(0,0,0,10)));
+    expect(delta.range, equals(new Range(0, 0, 0, 10)));
     RemoveTextDelta removeTextDelta = delta;
-    expect(removeTextDelta.text, equals(sampleTextLine0.substring(0,10)));    
+    expect(removeTextDelta.text, equals(sampleTextLine0.substring(0, 10)));    
   }));
   final point = session.remove(new Range(0, 0, 0, 10));
-  expect(point, equals(new Point(0, 0)));
+  expect(point, equals(const Point(0, 0)));
 }
 
 @Test()
@@ -347,20 +347,20 @@ void testReplace() {
     switch (onChangeCount++) {
       case 0:
         expect(delta, const isInstanceOf<RemoveTextDelta>());
-        expect(delta.range, equals(new Range(3,7,3,42)));
+        expect(delta.range, equals(new Range(3, 7, 3, 42)));
         RemoveTextDelta removeTextDelta = delta;
-        expect(removeTextDelta.text, equals(sampleTextLine3.substring(7,42)));
+        expect(removeTextDelta.text, equals(sampleTextLine3.substring(7, 42)));
         break;
       case 1:
         expect(delta, const isInstanceOf<InsertTextDelta>());
-        expect(delta.range, equals(new Range(3,7,3,13)));
+        expect(delta.range, equals(new Range(3, 7, 3, 13)));
         InsertTextDelta insertTextDelta = delta;
         expect(insertTextDelta.text, equals('pardon'));
         break;
     }
   }, count: 2));
   final point = session.replace(new Range(3, 7, 3, 42), 'pardon');
-  expect(point, equals(new Point(3, 13)));
+  expect(point, equals(const Point(3, 13)));
 }
 
 @Test()

@@ -86,36 +86,36 @@ void testValue() {
   // 0 = select all
   editor.setValue('snarf', 0);
   expect(editor.value, equals('snarf'));
-  expect(editor.cursorPosition, equals(new Point(0,5))); 
+  expect(editor.cursorPosition, equals(const Point(0,5))); 
   expect(editor.selectionRange, equals(new Range(0,0,0,5)));
   // -1 = document start
   editor.setValue('start', -1);
   expect(editor.value, equals('start'));
-  expect(editor.cursorPosition, equals(new Point(0,0)));
+  expect(editor.cursorPosition, equals(const Point(0,0)));
   expect(editor.selectionRange, equals(new Range(0,0,0,0)));
   // 1 = document end
   editor.setValue('end', 1);
   expect(editor.value, equals('end'));
-  expect(editor.cursorPosition, equals(new Point(0,3)));
+  expect(editor.cursorPosition, equals(const Point(0,3)));
   expect(editor.selectionRange, equals(new Range(0,3,0,3)));
 }
 
 @Test()
 void testBlockIndent() {
-  expect(editor.cursorPosition, equals(new Point(0,0)));
+  expect(editor.cursorPosition, equals(const Point(0,0)));
   editor.session.tabSize = 4;
   editor.blockIndent();
-  expect(editor.cursorPosition, equals(new Point(0,4)));
+  expect(editor.cursorPosition, equals(const Point(0,4)));
 }
 
 @Test()
 void testBlockOutdent() {
-  expect(editor.cursorPosition, equals(new Point(0,0)));
+  expect(editor.cursorPosition, equals(const Point(0,0)));
   editor.session.tabSize = 4;
   editor.blockIndent();
-  expect(editor.cursorPosition, equals(new Point(0,4)));
+  expect(editor.cursorPosition, equals(const Point(0,4)));
   editor.blockOutdent();
-  expect(editor.cursorPosition, equals(new Point(0,0)));
+  expect(editor.cursorPosition, equals(const Point(0,0)));
 }
 
 @Test()
@@ -125,7 +125,7 @@ void testFirstVisibleRow() {
 
 @Test()
 void testInsert() {
-  expect(editor.cursorPosition, equals(new Point(0,0)));
+  expect(editor.cursorPosition, equals(const Point(0,0)));
   editor.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<InsertTextDelta>());
     expect(delta.range, equals(new Range(0,0,0,5)));
@@ -133,20 +133,20 @@ void testInsert() {
     expect(insertTextDelta.text, equals('snarf'));    
   }));
   editor.insert('snarf');
-  expect(editor.cursorPosition, equals(new Point(0,5)));
+  expect(editor.cursorPosition, equals(const Point(0,5)));
 }
 
 @Test()
 void testNavigateDown() {
-  expect(editor.cursorPosition, equals(new Point(0, 0)));
+  expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.navigateDown(3);
-  expect(editor.cursorPosition, equals(new Point(3, 0)));
+  expect(editor.cursorPosition, equals(const Point(3, 0)));
   expect(editor.selection.isEmpty, isTrue);
 }
 
 @Test()
 void testNavigateFileEnd() {
-  expect(editor.cursorPosition, equals(new Point(0,0)));
+  expect(editor.cursorPosition, equals(const Point(0,0)));
   editor.navigateFileEnd();
   final lastTextLine = sampleTextLines.length - 1;
   expect(editor.cursorPosition, 
@@ -161,7 +161,7 @@ void testNavigateFileStart() {
   expect(editor.cursorPosition, 
       equals(new Point(lastTextLine, sampleTextLines[lastTextLine].length)));
   editor.navigateFileStart();
-  expect(editor.cursorPosition, equals(new Point(0,0)));  
+  expect(editor.cursorPosition, equals(const Point(0,0)));  
   expect(editor.selection.isEmpty, isTrue);
 }
 
@@ -177,7 +177,7 @@ void testNavigateLeft() {
 
 @Test()
 void testNavigateLineEnd() {
-  expect(editor.cursorPosition, equals(new Point(0,0)));
+  expect(editor.cursorPosition, equals(const Point(0,0)));
   editor.navigateLineEnd();
   expect(editor.cursorPosition, equals(new Point(0, sampleTextLine0.length)));
   expect(editor.selection.isEmpty, isTrue);
@@ -188,32 +188,32 @@ void testNavigateLineStart() {
   editor.navigateLineEnd();
   expect(editor.cursorPosition, equals(new Point(0, sampleTextLine0.length)));
   editor.navigateLineStart();
-  expect(editor.cursorPosition, equals(new Point(0, 0)));
+  expect(editor.cursorPosition, equals(const Point(0, 0)));
   expect(editor.selection.isEmpty, isTrue);
 }
 
 @Test()
 void testNavigateRight() {
-  expect(editor.cursorPosition, equals(new Point(0,0)));
+  expect(editor.cursorPosition, equals(const Point(0,0)));
   editor.navigateRight(6);
-  expect(editor.cursorPosition, equals(new Point(0, 6)));
+  expect(editor.cursorPosition, equals(const Point(0, 6)));
   expect(editor.selection.isEmpty, isTrue);
 }
 
 @Test()
 void testNavigateTo() {
-  expect(editor.cursorPosition, equals(new Point(0,0)));
+  expect(editor.cursorPosition, equals(const Point(0,0)));
   editor.navigateTo(4, 25);
-  expect(editor.cursorPosition, equals(new Point(4, 25)));
+  expect(editor.cursorPosition, equals(const Point(4, 25)));
   expect(editor.selection.isEmpty, isTrue);
 }
 
 @Test()
 void testNavigateUp() {
   editor.navigateDown(4);
-  expect(editor.cursorPosition, equals(new Point(4, 0)));
+  expect(editor.cursorPosition, equals(const Point(4, 0)));
   editor.navigateUp(2);
-  expect(editor.cursorPosition, equals(new Point(2, 0)));
+  expect(editor.cursorPosition, equals(const Point(2, 0)));
   expect(editor.selection.isEmpty, isTrue);
 }
 
@@ -232,23 +232,23 @@ void testNavigateWordLeft() {
 
 @Test()
 void testNavigateWordRight() {
-  expect(editor.cursorPosition, equals(new Point(0, 0)));
+  expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.navigateWordRight();
-  expect(editor.cursorPosition, equals(new Point(0, 5)));
+  expect(editor.cursorPosition, equals(const Point(0, 5)));
   expect(editor.selection.isEmpty, isTrue);
 }
 
 @Test()
 void testRemoveToLineEnd() {
-  expect(editor.cursorPosition, equals(new Point(0,0)));
+  expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());
-    expect(delta.range, equals(new Range(0,0,0,73)));
+    expect(delta.range, equals(new Range(0, 0, 0, 73)));
     RemoveTextDelta removeTextDelta = delta;    
     expect(removeTextDelta.text, equals(sampleTextLine0));
   })); 
   editor.removeToLineEnd();
-  expect(editor.cursorPosition, equals(new Point(0, 0)));
+  expect(editor.cursorPosition, equals(const Point(0, 0)));
 }
 
 @Test()
@@ -256,39 +256,39 @@ void testRemoveToLineStart() {
   editor.navigateLineEnd();
   editor.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());
-    expect(delta.range, equals(new Range(0,0,0,73)));
+    expect(delta.range, equals(new Range(0, 0, 0, 73)));
     RemoveTextDelta removeTextDelta = delta;    
     expect(removeTextDelta.text, equals(sampleTextLine0));
   })); 
   editor.removeToLineStart();
-  expect(editor.cursorPosition, equals(new Point(0, 0)));
+  expect(editor.cursorPosition, equals(const Point(0, 0)));
 }
 
 @Test()
 void testRemoveWordLeft() {
   editor.setValue(sampleText, 1);
-  expect(editor.cursorPosition, equals(new Point(5,76)));  
+  expect(editor.cursorPosition, equals(const Point(5, 76)));  
   editor.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());
-    expect(delta.range, equals(new Range(5,75,5,76)));
+    expect(delta.range, equals(new Range(5, 75, 5, 76)));
     RemoveTextDelta removeTextDelta = delta;
     expect(removeTextDelta.text, equals('.'));
   }));
   editor.removeWordLeft();
-  expect(editor.cursorPosition, equals(new Point(5, 75)));  
+  expect(editor.cursorPosition, equals(const Point(5, 75)));  
 }
 
 @Test()
 void testRemoveWordRight() {
-  expect(editor.cursorPosition, equals(new Point(0,0)));
+  expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());
-    expect(delta.range, equals(new Range(0,0,0,5)));
+    expect(delta.range, equals(new Range(0, 0, 0, 5)));
     RemoveTextDelta removeTextDelta = delta;
     expect(removeTextDelta.text, equals('Lorem'));
   })); 
   editor.removeWordRight();
-  expect(editor.cursorPosition, equals(new Point(0, 0)));  
+  expect(editor.cursorPosition, equals(const Point(0, 0)));  
 }
 
 @Test()
@@ -350,8 +350,8 @@ void testSetSession() {
 @Test()
 void testGetCopyText() {
   editor.selection.selectLineEnd();
-  final start = new Point(0,0);
-  final end = new Point(0,sampleTextLine0.length);
+  final start = const Point(0, 0);
+  final end = new Point(0, sampleTextLine0.length);
   expect(editor.cursorPosition, equals(end));
   expect(editor.selectionRange, equals(new Range.fromPoints(start, end)));  
   editor.onCopy.listen((String copyText) {

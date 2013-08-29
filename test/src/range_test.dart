@@ -16,7 +16,7 @@ void testRangeCtor() {
 
 @Test()
 void testRangeFromPointsCtor() {
-  final range = new Range.fromPoints(new Point(1, 1), new Point(2, 2));
+  final range = new Range.fromPoints(const Point(1, 1), const Point(2, 2));
   expect(range.start.row, equals(1));
   expect(range.start.column, equals(1));
   expect(range.end.row, equals(2));

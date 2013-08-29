@@ -19,7 +19,7 @@ setup() {
 void testAnchorCtor() {
   final Anchor anchor = new Anchor(document, 0, 0);
   expect(anchor, isNotNull);
-  expect(anchor.position, equals(new Point(0, 0)));
+  expect(anchor.position, equals(const Point(0, 0)));
   expect(anchor.document.value, equals(document.value));
 }
 
@@ -36,8 +36,8 @@ void testAnchorDispose() {
 @Test()
 void testAnchorSetPosition() {
   anchor.onChange.listen((AnchorChangeEvent ev) {
-    expect(ev.oldPosition, equals(new Point(0, 0)));
-    expect(ev.newPosition, equals(new Point(2, 14)));
+    expect(ev.oldPosition, equals(const Point(0, 0)));
+    expect(ev.newPosition, equals(const Point(2, 14)));
   });
   anchor.setPosition(2, 14, true);
 }

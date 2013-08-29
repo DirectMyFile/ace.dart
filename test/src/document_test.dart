@@ -43,49 +43,49 @@ void testGetLine() {
 void testInsert() {
   document.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<InsertTextDelta>());
-    expect(delta.range, equals(new Range(0,0,0,5)));
+    expect(delta.range, equals(new Range(0, 0, 0, 5)));
     InsertTextDelta insertTextDelta = delta;
     expect(insertTextDelta.text, equals('snarf'));    
   }));
-  final point = document.insert(new Point(0, 0), 'snarf');
-  expect(point, equals(new Point(0, 5)));
+  final point = document.insert(const Point(0, 0), 'snarf');
+  expect(point, equals(const Point(0, 5)));
 }
 
 @Test()
 void testInsertInLine() {
   document.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<InsertTextDelta>());
-    expect(delta.range, equals(new Range(0,0,0,5)));
+    expect(delta.range, equals(new Range(0, 0, 0, 5)));
     InsertTextDelta insertTextDelta = delta;
     expect(insertTextDelta.text, equals('snarf'));    
   }));
-  final point = document.insertInLine(new Point(0, 0), 'snarf');
-  expect(point, equals(new Point(0, 5)));
+  final point = document.insertInLine(const Point(0, 0), 'snarf');
+  expect(point, equals(const Point(0, 5)));
 }
 
 @Test()
 void testInsertLines() {
   document.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<InsertLinesDelta>());
-    expect(delta.range, equals(new Range(0,0,2,0)));
+    expect(delta.range, equals(new Range(0, 0, 2, 0)));
     InsertLinesDelta insertLinesDelta = delta;
     expect(insertLinesDelta.lines.length, equals(2));
     expect(insertLinesDelta.lines, equals(['foo', 'bar']));
   }));
   final point = document.insertLines(0, ['foo', 'bar']);
-  expect(point, equals(new Point(2, 0)));
+  expect(point, equals(const Point(2, 0)));
 }
 
 @Test()
 void testInsertNewLine() {
   document.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<InsertTextDelta>());
-    expect(delta.range, equals(new Range(0,0,1,0)));
+    expect(delta.range, equals(new Range(0, 0, 1, 0)));
     InsertTextDelta insertTextDelta = delta;
     expect(insertTextDelta.text, equals(document.newLineCharacter));    
   }));
-  final point = document.insertNewLine(new Point(0, 0));
-  expect(point, equals(new Point(1, 0)));
+  final point = document.insertNewLine(const Point(0, 0));
+  expect(point, equals(const Point(1, 0)));
 }
 
 @Test()
@@ -110,7 +110,7 @@ void testNewLineMode() {
 
 @Test()
 void testPositionToIndex() {
-  expect(document.positionToIndex(new Point(1, 0), 0),
+  expect(document.positionToIndex(const Point(1, 0), 0),
       // + 1 for the newline character
       equals(sampleTextLine0.length + 1));
 }
@@ -119,31 +119,31 @@ void testPositionToIndex() {
 void testRemove() {
   document.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());
-    expect(delta.range, equals(new Range(0,0,0,10)));
+    expect(delta.range, equals(new Range(0, 0, 0, 10)));
     RemoveTextDelta removeTextDelta = delta;
-    expect(removeTextDelta.text, equals(sampleTextLine0.substring(0,10)));    
+    expect(removeTextDelta.text, equals(sampleTextLine0.substring(0, 10)));    
   }));
   final point = document.remove(new Range(0, 0, 0, 10));
-  expect(point, equals(new Point(0, 0)));
+  expect(point, equals(const Point(0, 0)));
 }
 
 @Test()
 void testRemoveInLine() {
   document.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());
-    expect(delta.range, equals(new Range(0,10,0,20)));
+    expect(delta.range, equals(new Range(0, 10, 0, 20)));
     RemoveTextDelta removeTextDelta = delta;
-    expect(removeTextDelta.text, equals(sampleTextLine0.substring(10,20)));    
+    expect(removeTextDelta.text, equals(sampleTextLine0.substring(10, 20)));    
   }));
   final point = document.removeInLine(0, 10, 20);
-  expect(point, equals(new Point(0, 10)));
+  expect(point, equals(const Point(0, 10)));
 }
 
 @Test()
 void testRemoveLines() {
   document.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<RemoveLinesDelta>());
-    expect(delta.range, equals(new Range(2,0,4,0)));
+    expect(delta.range, equals(new Range(2, 0, 4, 0)));
     RemoveLinesDelta removeLinesDelta = delta;
     expect(removeLinesDelta.lines.length, equals(2));
     expect(removeLinesDelta.lines, equals([sampleTextLine2, sampleTextLine3]));
@@ -158,7 +158,7 @@ void testRemoveLines() {
 void testRemoveNewLine() {
   document.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());
-    expect(delta.range, equals(new Range(3,sampleTextLine3.length,4,0)));
+    expect(delta.range, equals(new Range(3, sampleTextLine3.length, 4, 0)));
     RemoveTextDelta removeTextDelta = delta;
     expect(removeTextDelta.text, equals(document.newLineCharacter));    
   }));
@@ -172,20 +172,20 @@ void testReplace() {
     switch (onChangeCount++) {
       case 0:
         expect(delta, const isInstanceOf<RemoveTextDelta>());
-        expect(delta.range, equals(new Range(0,10,0,20)));
+        expect(delta.range, equals(new Range(0, 10, 0, 20)));
         RemoveTextDelta removeTextDelta = delta;
-        expect(removeTextDelta.text, equals(sampleTextLine0.substring(10,20)));
+        expect(removeTextDelta.text, equals(sampleTextLine0.substring(10, 20)));
         break;
       case 1:
         expect(delta, const isInstanceOf<InsertTextDelta>());
-        expect(delta.range, equals(new Range(0,10,0,15)));
+        expect(delta.range, equals(new Range(0, 10, 0, 15)));
         InsertTextDelta insertTextDelta = delta;
         expect(insertTextDelta.text, equals('snarf'));
         break;
     }
   }, count: 2));
   final point = document.replace(new Range(0, 10, 0, 20), 'snarf');
-  expect(point, equals(new Point(0, 15)));
+  expect(point, equals(const Point(0, 15)));
 }
 
 @Test()
@@ -205,7 +205,7 @@ void testApplyDeltas() {
   }, count: 3));  
   document.insertLines(0, ['foo', 'bar']);  
   document.removeNewLine(4);
-  document.insertNewLine(new Point(0, 2));  
+  document.insertNewLine(const Point(0, 2));  
 }
 
 @Test()
@@ -219,7 +219,7 @@ void testRevertDeltas() {
   }, count: 6));
   document.insertLines(0, ['foo', 'bar']);  
   document.removeNewLine(4);
-  document.insertNewLine(new Point(0, 2));
+  document.insertNewLine(const Point(0, 2));
   expect(document.value, isNot(equals(sampleText)));
 }
 
@@ -227,5 +227,5 @@ void testRevertDeltas() {
 void testCreateAnchor() {
   final Anchor anchor = document.createAnchor(1, 42);
   expect(anchor, isNotNull);
-  expect(anchor.position, equals(new Point(1, 42)));
+  expect(anchor.position, equals(const Point(1, 42)));
 }

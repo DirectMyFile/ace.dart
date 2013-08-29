@@ -20,7 +20,7 @@ setup() {
 void testSelectionCtor() {
   final Selection selection = new Selection(session);
   expect(selection, isNotNull);
-  expect(selection.cursor, equals(new Point(0, 0)));
+  expect(selection.cursor, equals(const Point(0, 0)));
   expect(selection.isEmpty, isTrue);
   expect(selection.isMultiLine, isFalse);
 }
@@ -38,16 +38,16 @@ void testDispose() {
 
 @Test()
 void testMoveCursorBy() {
-  expect(selection.cursor, equals(new Point(0, 0)));
+  expect(selection.cursor, equals(const Point(0, 0)));
   int changeCount = 0;
   selection.onChangeCursor.listen(expectAsync1((_) {
     switch (changeCount++) {
       case 0:
-        expect(selection.cursor, equals(new Point(3, 20)));
+        expect(selection.cursor, equals(const Point(3, 20)));
         selection.moveCursorBy(-1, -19);
         break;
       case 1:
-        expect(selection.cursor, equals(new Point(2, 1)));
+        expect(selection.cursor, equals(const Point(2, 1)));
         break;
     }   
   }, count: 2));
@@ -57,7 +57,7 @@ void testMoveCursorBy() {
 @Test()
 void testMoveCursorTo() {
   selection.onChangeCursor.listen(expectAsync1((_) {
-    expect(selection.cursor, equals(new Point(4, 42)));
+    expect(selection.cursor, equals(const Point(4, 42)));
   }));
   selection.moveCursorTo(4, 42, false);
 }
