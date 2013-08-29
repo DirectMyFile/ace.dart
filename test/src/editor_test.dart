@@ -346,3 +346,17 @@ void testSetSession() {
   })); 
   editor.session = newSession;
 }
+
+@Test()
+void testGetCopyText() {
+  editor.selection.selectLineEnd();
+  final start = new Point(0,0);
+  final end = new Point(0,sampleTextLine0.length);
+  expect(editor.cursorPosition, equals(end));
+  expect(editor.selectionRange, equals(new Range.fromPoints(start, end)));  
+  editor.onCopy.listen((String copyText) {
+    expect(copyText, equals(sampleTextLine0));
+  });
+  final String copyText = editor.copyText;
+  expect(copyText, equals(sampleTextLine0));
+}

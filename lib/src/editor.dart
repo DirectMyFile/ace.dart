@@ -50,6 +50,7 @@ class Editor extends _HasProxy {
   /// Fired whenever text is pasted.
   Stream<String> get onPaste => _onPaste.stream;  
   
+  /// The string of text in the current [selectionRange].
   String get copyText => _proxy.getCopyText();
   
   /// The current position of the cursor.
