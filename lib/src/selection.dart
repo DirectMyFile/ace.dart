@@ -1,7 +1,7 @@
 part of ace;
 
-/// Encapsulates the current [cursor] position and the text selection of an 
-/// [EditSession].
+/// Encapsulates the current [cursor] position and the current text selection 
+/// [range] of an [EditSession].
 /// 
 /// The positions (row and column) used in a selection are in [Document] 
 /// coordinates representing the coordinates as they appear in the document 
@@ -30,6 +30,7 @@ class Selection extends _HasProxy {
   /// Fired whenever the cursor selection changes.
   Stream get onChangeSelection => _onChangeSelection.stream;
   
+  /// The current [Range] of the selected text.
   Range get range => new Range._(_proxy.getRange());
   
   /// Creates a new [Selection] for the given [session].
