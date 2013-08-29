@@ -10,6 +10,7 @@ class Range implements Comparable<Range> {
 
   /// Returns _true_ if this range's [start] point equals its [end] point.
   bool get isEmpty => start.row == end.row && start.column == end.column;
+  
   /// Returns _true_ if this range spans across multiple lines.
   bool get isMultiLine => start.row != end.row;
   
@@ -27,7 +28,8 @@ class Range implements Comparable<Range> {
     if(other is! Range) return false; 
     final o = other;
     return start == o.start && end == o.end;
-  }  
+  }
+  
   int get hashCode => start.hashCode ^ end.hashCode;
   
   /// Compares the given [row] and [column] with this range.
