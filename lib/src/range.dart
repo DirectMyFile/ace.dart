@@ -65,6 +65,7 @@ class Range implements Comparable<Range> {
   
   int comparePoint(Point point) => compare(point.row, point.column);
   
+  // TODO(rms): figure this out and document + test it
   int compareRange(Range range) {
     var cmp,
         end = range.end,
