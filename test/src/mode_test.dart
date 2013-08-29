@@ -21,7 +21,16 @@ void testCreateModeFromModePath() {
   verifyMode('ace/mode/java'); 
   verifyMode('ace/mode/javascript'); 
   verifyMode('ace/mode/json');
-  verifyMode('ace/mode/text');  
+  verifyMode('ace/mode/markdown');
+  verifyMode('ace/mode/properties');
+  verifyMode('ace/mode/python');
+  verifyMode('ace/mode/ruby');
+  verifyMode('ace/mode/scss');
+  verifyMode('ace/mode/sh');
+  verifyMode('ace/mode/text');
+  verifyMode('ace/mode/typescript');
+  verifyMode('ace/mode/xml');
+  verifyMode('ace/mode/yaml');
 }
 
 @Test()
@@ -40,4 +49,14 @@ void testCreateModeFromFilePath() {
   verifyMode('midp/midlet.java');
   verifyMode('some/legacy.js');  
   verifyMode('data.json');
+  verifyMode('README.md');
+  verifyMode('CHANGELOG.markdown');
+  verifyMode('build.properties');
+  verifyMode('goog/devserver.py');
+  verifyMode('converter.rb');
+  verifyMode('converter.scss');
+  verifyMode('run.sh');
+  verifyMode('omg.ts');
+  verifyMode('verbose.xml');
+  verifyMode('pubspec.yaml');
 }
