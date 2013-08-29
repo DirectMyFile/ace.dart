@@ -96,6 +96,7 @@ class Selection extends _HasProxy {
   /// Selects a word, including its right whitespace.
   void selectAWord() => _proxy.selectAWord();
   
+  /// Selects down one row.
   void selectDown() => _proxy.selectDown();
   
   /// Selects to the end of the document.
@@ -120,7 +121,10 @@ class Selection extends _HasProxy {
   void selectRight() => _proxy.selectRight();
   
   void selectTo(int row, int column) => _proxy.selectTo(row, column);
+  
+  /// Selects up one row.
   void selectUp() => _proxy.selectUp();
+  
   void selectWord() => _proxy.selectWord();
   void selectWordLeft() => _proxy.selectWordLeft();
   void selectWordRight() => _proxy.selectWordRight();

@@ -100,6 +100,19 @@ void testSelectAWord() {
 }
 
 @Test()
+void testSelectDown() {
+  selection.moveCursorTo(2, 20, false);  
+  Point startCursor = const Point(2, 20);
+  Point endCursor = const Point(3, 20);
+  
+  testSelectMethod(selection.selectDown,
+      beforeCursor: startCursor,
+      afterCursor: endCursor,
+      afterRangeStart: startCursor,
+      afterRangeEnd: endCursor);
+}
+
+@Test()
 void testSelectFileEnd() {
   selection.moveCursorTo(1, 10, false);  
   Point startCursor = const Point(1, 10);
@@ -181,5 +194,18 @@ void testSelectRight() {
       afterCursor: endCursor,
       afterRangeStart: startCursor,
       afterRangeEnd: endCursor);
+}
+
+@Test()
+void testSelectUp() {
+  selection.moveCursorTo(2, 20, false);  
+  Point startCursor = const Point(2, 20);
+  Point endCursor = const Point(1, 20);
+  
+  testSelectMethod(selection.selectUp,
+      beforeCursor: startCursor,
+      afterCursor: endCursor,
+      afterRangeStart: endCursor,
+      afterRangeEnd: startCursor);
 }
 
