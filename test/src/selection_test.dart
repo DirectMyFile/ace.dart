@@ -124,6 +124,19 @@ void testSelectFileStart() {
 }
 
 @Test()
+void testSelectLeft() {
+  selection.moveCursorTo(1, 14, false);  
+  Point startCursor = const Point(1, 14);
+  Point endCursor = const Point(1, 13);
+  
+  testSelectMethod(selection.selectLeft,
+      beforeCursor: startCursor,
+      afterCursor: endCursor,
+      afterRangeStart: endCursor,
+      afterRangeEnd: startCursor);
+}
+
+@Test()
 void testSelectLine() {
   selection.moveCursorBy(0, 21);  
   Point startCursor = const Point(0, 21);

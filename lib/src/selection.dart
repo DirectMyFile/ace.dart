@@ -104,6 +104,7 @@ class Selection extends _HasProxy {
   /// Selects to the start of the document.
   void selectFileStart() => _proxy.selectFileStart();
   
+  /// Selects to the left one column.
   void selectLeft() => _proxy.selectLeft();
   
   /// Selects the entire current line.
