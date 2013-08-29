@@ -86,8 +86,8 @@ void testSelectAll() {
       sampleTextLines[sampleTextLines.length - 1].length);  
   
   testSelectMethod(selection.selectAll,
-                   afterCursor: endPoint,
-                   afterRangeEnd: endPoint);
+      afterCursor: endPoint,
+      afterRangeEnd: endPoint);
 }
 
 @Test()
@@ -95,8 +95,8 @@ void testSelectAWord() {
   Point endWord = new Point(0, sampleTextWords[0][0].length + 1/*space*/);
   
   testSelectMethod(selection.selectAWord,
-                   afterCursor: endWord,
-                   afterRangeEnd: endWord);
+      afterCursor: endWord,
+      afterRangeEnd: endWord);
 }
 
 @Test()
@@ -105,9 +105,9 @@ void testSelectLine() {
   Point startCursor = const Point(0, 21);
   
   testSelectMethod(selection.selectLine,
-                   beforeCursor: startCursor,
-                   afterCursor: const Point(1, 0),
-                   afterRangeEnd: const Point(1, 0));
+      beforeCursor: startCursor,
+      afterCursor: const Point(1, 0),
+      afterRangeEnd: const Point(1, 0));
 }
 
 @Test()
@@ -121,4 +121,14 @@ void testSelectLineEnd() {
       afterCursor: endCursor,
       afterRangeStart: startCursor,
       afterRangeEnd: endCursor);
+}
+
+@Test()
+void testSelectLineStart() {
+  selection.moveCursorBy(0, 42);
+  Point startCursor = const Point(0, 42);
+  
+  testSelectMethod(selection.selectLineStart,
+      beforeCursor: startCursor,
+      afterRangeEnd: startCursor);
 }

@@ -103,10 +103,12 @@ class Selection extends _HasProxy {
   /// Selects the entire current line.
   void selectLine() => _proxy.selectLine();
   
-  /// Selects until the end of the current line.
+  /// Selects to the end of the current line.
   void selectLineEnd() => _proxy.selectLineEnd();
   
+  /// Selects to the beginning of the current line.
   void selectLineStart() => _proxy.selectLineStart();
+  
   void selectRight() => _proxy.selectRight();
   void selectTo(int row, int column) => _proxy.selectTo(row, column);
   void selectUp() => _proxy.selectUp();
