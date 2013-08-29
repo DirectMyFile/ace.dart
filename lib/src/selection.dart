@@ -99,7 +99,10 @@ class Selection extends _HasProxy {
   void selectFileEnd() => _proxy.selectFileEnd();
   void selectFileStart() => _proxy.selectFileStart();
   void selectLeft() => _proxy.selectLeft();
+  
+  /// Selects the entire line.
   void selectLine() => _proxy.selectLine();
+  
   void selectLineEnd() => _proxy.selectLineEnd();
   void selectLineStart() => _proxy.selectLineStart();
   void selectRight() => _proxy.selectRight();

@@ -90,3 +90,16 @@ void testSelectAWord() {
   expect(selection.range, 
       equals(new Range.fromPoints(new Point(0, 0), endWord)));
 }
+
+@Test()
+void testSelectLine() {
+  expect(selection.cursor, equals(new Point(0, 0)));
+  expect(selection.range, equals(new Range(0, 0, 0, 0)));
+  // TODO(rms): investigate why `onChangeSelection` fires 2 times.
+  selection.onChangeSelection.listen(expectAsync1((_) {}, count: 2));
+  selection.onChangeCursor.listen(expectAsync1((_) {}));
+  selection.selectLine();
+  expect(selection.cursor, equals(new Point(1, 0)));
+  expect(selection.range, 
+      equals(new Range.fromPoints(new Point(0, 0), new Point(1, 0))));
+}
