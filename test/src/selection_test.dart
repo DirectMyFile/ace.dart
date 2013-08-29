@@ -62,60 +62,63 @@ void testMoveCursorTo() {
   selection.moveCursorTo(4, 42, false);
 }
 
-@Test()
-void testSelectAll() {
-  expect(selection.cursor, equals(new Point(0, 0)));
-  expect(selection.range, equals(new Range(0, 0, 0, 0)));
+// Utility function for testing the various 'select*' methods.
+void testSelectMethod(void selectMethod(),
+                      {Point beforeCursor: const Point(0, 0),
+                      Point afterCursor: const Point(0, 0),
+                      Point afterRangeStart: const Point(0, 0),
+                      Point afterRangeEnd: const Point(0, 0)}) {
+  expect(selection.cursor, equals(beforeCursor));
+  expect(selection.range, 
+      equals(new Range.fromPoints(beforeCursor, beforeCursor)));
   // TODO(rms): investigate why `onChangeSelection` fires 2 times.
   selection.onChangeSelection.listen(expectAsync1((_) {}, count: 2));
   selection.onChangeCursor.listen(expectAsync1((_) {}));
-  selection.selectAll();
-  Point endPoint = new Point(sampleTextLines.length - 1, 
-      sampleTextLines[sampleTextLines.length - 1].length);
-  expect(selection.cursor, equals(endPoint));
+  selectMethod();
+  expect(selection.cursor, equals(afterCursor));
   expect(selection.range, 
-      equals(new Range.fromPoints(new Point(0, 0), endPoint)));
+      equals(new Range.fromPoints(afterRangeStart, afterRangeEnd)));
+}
+
+@Test()
+void testSelectAll() {  
+  Point endPoint = new Point(sampleTextLines.length - 1, 
+      sampleTextLines[sampleTextLines.length - 1].length);  
+  
+  testSelectMethod(selection.selectAll,
+                   afterCursor: endPoint,
+                   afterRangeEnd: endPoint);
 }
 
 @Test()
 void testSelectAWord() {
-  expect(selection.cursor, equals(new Point(0, 0)));
-  expect(selection.range, equals(new Range(0, 0, 0, 0)));
-  // TODO(rms): investigate why `onChangeSelection` fires 2 times.
-  selection.onChangeSelection.listen(expectAsync1((_) {}, count: 2));
-  selection.onChangeCursor.listen(expectAsync1((_) {}));
-  selection.selectAWord();
   Point endWord = new Point(0, sampleTextWords[0][0].length + 1/*space*/);
-  expect(selection.cursor, equals(endWord));
-  expect(selection.range, 
-      equals(new Range.fromPoints(new Point(0, 0), endWord)));
+  
+  testSelectMethod(selection.selectAWord,
+                   afterCursor: endWord,
+                   afterRangeEnd: endWord);
 }
 
 @Test()
 void testSelectLine() {
-  selection.moveCursorBy(0, 21);
-  expect(selection.cursor, equals(new Point(0, 21)));
-  expect(selection.range, equals(new Range(0, 21, 0, 21)));
-  // TODO(rms): investigate why `onChangeSelection` fires 2 times.
-  selection.onChangeSelection.listen(expectAsync1((_) {}, count: 2));
-  selection.onChangeCursor.listen(expectAsync1((_) {}));
-  selection.selectLine();
-  expect(selection.cursor, equals(new Point(1, 0)));
-  expect(selection.range, 
-      equals(new Range.fromPoints(new Point(0, 0), new Point(1, 0))));
+  selection.moveCursorBy(0, 21);  
+  Point startCursor = const Point(0, 21);
+  
+  testSelectMethod(selection.selectLine,
+                   beforeCursor: startCursor,
+                   afterCursor: const Point(1, 0),
+                   afterRangeEnd: const Point(1, 0));
 }
 
 @Test()
 void testSelectLineEnd() {
   selection.moveCursorBy(0, 15);
-  final start = new Point(0, 15);
-  expect(selection.cursor, equals(start));
-  expect(selection.range, equals(new Range.fromPoints(start, start)));
-  // TODO(rms): investigate why `onChangeSelection` fires 2 times.
-  selection.onChangeSelection.listen(expectAsync1((_) {}, count: 2));
-  selection.onChangeCursor.listen(expectAsync1((_) {}));
-  selection.selectLineEnd();
-  final end = new Point(0, sampleTextLine0.length);
-  expect(selection.cursor, equals(end));
-  expect(selection.range, equals(new Range.fromPoints(start, end)));
+  Point startCursor = const Point(0, 15);
+  Point endCursor = new Point(0, sampleTextLine0.length);
+  
+  testSelectMethod(selection.selectLineEnd,
+      beforeCursor: startCursor,
+      afterCursor: endCursor,
+      afterRangeStart: startCursor,
+      afterRangeEnd: endCursor);
 }
