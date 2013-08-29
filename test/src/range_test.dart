@@ -67,3 +67,21 @@ void testRangeIsMultiLine() {
   expect(notMultiLine.isMultiLine, isFalse);
   expect(multiLine.isMultiLine, isTrue);
 }
+
+@Test()
+void testCompare() {
+  var a = new Range(1, 2, 3, 4);
+  expect(a.compare(0, 0), equals(-1));
+  expect(a.compare(1, 0), equals(-1));
+  expect(a.compare(1, 1), equals(-1));
+  expect(a.compare(0, 999), equals(-1));
+  expect(a.compare(1, 2), equals(0));
+  expect(a.compare(1, 3), equals(0));
+  expect(a.compare(1, 999), equals(0));
+  expect(a.compare(2, 999), equals(0));
+  expect(a.compare(3, 3), equals(0));
+  expect(a.compare(3, 4), equals(0));
+  expect(a.compare(3, 5), equals(1));
+  expect(a.compare(3, 999), equals(1));
+  expect(a.compare(4, 3), equals(1));
+}
