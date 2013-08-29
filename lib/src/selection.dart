@@ -120,6 +120,7 @@ class Selection extends _HasProxy {
   /// Selects to the right one column.
   void selectRight() => _proxy.selectRight();
   
+  /// Selects to the given [row] and [column].
   void selectTo(int row, int column) => _proxy.selectTo(row, column);
   
   /// Selects up one row.

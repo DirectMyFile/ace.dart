@@ -63,8 +63,9 @@ void testMoveCursorTo() {
 }
 
 // Utility function for testing the various 'select*' methods.
-void testSelectMethod(void selectMethod(),
-                      {Point beforeCursor: const Point(0, 0),
+void testSelectMethod(Function selectionMethod,
+                     {List positionalArgs,
+                      Point beforeCursor: const Point(0, 0),
                       Point afterCursor: const Point(0, 0),
                       Point afterRangeStart: const Point(0, 0),
                       Point afterRangeEnd: const Point(0, 0)}) {
@@ -74,7 +75,7 @@ void testSelectMethod(void selectMethod(),
   // TODO(rms): investigate why `onChangeSelection` fires 2 times.
   selection.onChangeSelection.listen(expectAsync1((_) {}, count: 2));
   selection.onChangeCursor.listen(expectAsync1((_) {}));
-  selectMethod();
+  Function.apply(selectionMethod, positionalArgs);
   expect(selection.cursor, equals(afterCursor));
   expect(selection.range, 
       equals(new Range.fromPoints(afterRangeStart, afterRangeEnd)));
@@ -190,6 +191,20 @@ void testSelectRight() {
   Point endCursor = const Point(1, 15);
   
   testSelectMethod(selection.selectRight,
+      beforeCursor: startCursor,
+      afterCursor: endCursor,
+      afterRangeStart: startCursor,
+      afterRangeEnd: endCursor);
+}
+
+@Test()
+void testSelectTo() {
+  selection.moveCursorBy(0, 15);
+  Point startCursor = const Point(0, 15);
+  Point endCursor = new Point(4, 42);
+  
+  testSelectMethod(selection.selectTo,
+      positionalArgs: [4, 42],
       beforeCursor: startCursor,
       afterCursor: endCursor,
       afterRangeStart: startCursor,
