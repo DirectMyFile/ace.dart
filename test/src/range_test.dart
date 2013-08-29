@@ -7,20 +7,20 @@ import 'package:unittest/unittest.dart';
 
 @Test()
 void testRangeCtor() {
-  final range = new Range(1, 1, 2, 2);
+  final range = new Range(1, 2, 3, 4);
   expect(range.start.row, equals(1));
-  expect(range.start.column, equals(1));
-  expect(range.end.row, equals(2));
-  expect(range.end.column, equals(2));
+  expect(range.start.column, equals(2));
+  expect(range.end.row, equals(3));
+  expect(range.end.column, equals(4));
 }
 
 @Test()
 void testRangeFromPointsCtor() {
-  final range = new Range.fromPoints(const Point(1, 1), const Point(2, 2));
+  final range = new Range.fromPoints(const Point(1, 2), const Point(3, 4));
   expect(range.start.row, equals(1));
-  expect(range.start.column, equals(1));
-  expect(range.end.row, equals(2));
-  expect(range.end.column, equals(2));
+  expect(range.start.column, equals(2));
+  expect(range.end.row, equals(3));
+  expect(range.end.column, equals(4));
 }
 
 @Test('Test the `==` operator.')
@@ -54,7 +54,7 @@ void testRangeToString() {
 
 @Test()
 void testRangeIsEmpty() {
-  final notEmpty = new Range(1, 1, 2, 2);
+  final notEmpty = new Range(1, 2, 1, 6);
   final empty = new Range(1, 2, 1, 2);
   expect(notEmpty.isEmpty, isFalse);
   expect(empty.isEmpty, isTrue);
@@ -62,8 +62,8 @@ void testRangeIsEmpty() {
 
 @Test()
 void testRangeIsMultiLine() {
-  final notMultiLine = new Range(1, 1, 1, 2);
-  final multiLine = new Range(1, 2, 2, 3);
+  final notMultiLine = new Range(1, 2, 1, 6);
+  final multiLine = new Range(1, 2, 2, 6);
   expect(notMultiLine.isMultiLine, isFalse);
   expect(multiLine.isMultiLine, isTrue);
 }
