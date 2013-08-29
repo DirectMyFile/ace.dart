@@ -100,7 +100,9 @@ class Selection extends _HasProxy {
   /// Selects to the end of the document.
   void selectFileEnd() => _proxy.selectFileEnd();
   
-  void selectFileStart() => _proxy.selectFileStart();  
+  /// Selects to the start of the document.
+  void selectFileStart() => _proxy.selectFileStart();
+  
   void selectLeft() => _proxy.selectLeft();
   
   /// Selects the entire current line.
@@ -109,7 +111,7 @@ class Selection extends _HasProxy {
   /// Selects to the end of the current line.
   void selectLineEnd() => _proxy.selectLineEnd();
   
-  /// Selects to the beginning of the current line.
+  /// Selects to the start of the current line.
   void selectLineStart() => _proxy.selectLineStart();
   
   void selectRight() => _proxy.selectRight();
