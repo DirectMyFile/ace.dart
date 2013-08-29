@@ -116,7 +116,9 @@ class Selection extends _HasProxy {
   /// Selects to the start of the current line.
   void selectLineStart() => _proxy.selectLineStart();
   
+  /// Selects to the right one column.
   void selectRight() => _proxy.selectRight();
+  
   void selectTo(int row, int column) => _proxy.selectTo(row, column);
   void selectUp() => _proxy.selectUp();
   void selectWord() => _proxy.selectWord();

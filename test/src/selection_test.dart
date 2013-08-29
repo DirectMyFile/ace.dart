@@ -169,3 +169,17 @@ void testSelectLineStart() {
       beforeCursor: startCursor,
       afterRangeEnd: startCursor);
 }
+
+@Test()
+void testSelectRight() {
+  selection.moveCursorTo(1, 14, false);  
+  Point startCursor = const Point(1, 14);
+  Point endCursor = const Point(1, 15);
+  
+  testSelectMethod(selection.selectRight,
+      beforeCursor: startCursor,
+      afterCursor: endCursor,
+      afterRangeStart: startCursor,
+      afterRangeEnd: endCursor);
+}
+
