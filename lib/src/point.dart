@@ -3,7 +3,7 @@ part of ace;
 class Point {
   final int row;
   final int column;
-  Point(this.row, this.column);
+  const Point(this.row, this.column);
   Point._(proxy) : this(proxy.row, proxy.column);  
   bool operator ==(Object other) {
     if(identical(this, other)) return true;
