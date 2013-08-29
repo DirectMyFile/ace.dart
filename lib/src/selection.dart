@@ -96,7 +96,10 @@ class Selection extends _HasProxy {
   void selectAWord() => _proxy.selectAWord();
   
   void selectDown() => _proxy.selectDown();
+  
+  /// Selects to the end of the document.
   void selectFileEnd() => _proxy.selectFileEnd();
+  
   void selectFileStart() => _proxy.selectFileStart();  
   void selectLeft() => _proxy.selectLeft();
   

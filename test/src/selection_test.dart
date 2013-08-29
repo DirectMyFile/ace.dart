@@ -82,21 +82,35 @@ void testSelectMethod(void selectMethod(),
 
 @Test()
 void testSelectAll() {  
-  Point endPoint = new Point(sampleTextLines.length - 1, 
+  Point endCursor = new Point(sampleTextLines.length - 1, 
       sampleTextLines[sampleTextLines.length - 1].length);  
   
   testSelectMethod(selection.selectAll,
-      afterCursor: endPoint,
-      afterRangeEnd: endPoint);
+      afterCursor: endCursor,
+      afterRangeEnd: endCursor);
 }
 
 @Test()
 void testSelectAWord() {
-  Point endWord = new Point(0, sampleTextWords[0][0].length + 1/*space*/);
+  Point endCursor = new Point(0, sampleTextWords[0][0].length + 1/*space*/);
   
   testSelectMethod(selection.selectAWord,
-      afterCursor: endWord,
-      afterRangeEnd: endWord);
+      afterCursor: endCursor,
+      afterRangeEnd: endCursor);
+}
+
+@Test()
+void testSelectFileEnd() {
+  selection.moveCursorTo(1, 10, false);  
+  Point startCursor = const Point(1, 10);
+  Point endCursor = new Point(sampleTextLines.length - 1, 
+      sampleTextLines[sampleTextLines.length - 1].length);
+  
+  testSelectMethod(selection.selectFileEnd,
+      beforeCursor: startCursor,
+      afterCursor: endCursor,
+      afterRangeStart: startCursor,
+      afterRangeEnd: endCursor);
 }
 
 @Test()
