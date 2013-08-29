@@ -100,6 +100,9 @@ class Range implements Comparable<Range> {
     else return compare(row, column);
   }
   
+  /// Compares the given [other] with this range.
+  /// 
+  /// This method forwards the call to the [compareRange] method.
   int compareTo(Range other) => compareRange(other);
   
   js.Proxy _toProxy() => 
