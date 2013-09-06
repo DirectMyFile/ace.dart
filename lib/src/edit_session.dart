@@ -149,8 +149,8 @@ class EditSession extends _HasProxy {
     
   /// Whether or not line wrapping is enabled. 
   /// 
-  /// A _true_ value means to line wrap.  Setting a new value fires an 
-  /// [onChangeWrapMode] event.
+  /// A _true_ value means to line wrap.  The default value is _false_ for no
+  /// line wrapping.  Setting a new value fires an [onChangeWrapMode] event.
   bool
     get useWrapMode => _proxy.getUseWrapMode();
     set useWrapMode(bool useWrapMode) => _proxy.setUseWrapMode(useWrapMode);
