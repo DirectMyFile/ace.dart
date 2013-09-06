@@ -41,7 +41,7 @@ class SearchOptions {
                  this.wholeWord: false,
                  this.wrap: false});  
   
-  SearchOptions._(proxy) : this.__(json.parse(_context.JSON.stringify(proxy)));    
+  SearchOptions._(proxy) : this.__(JSON.decode(_context.JSON.stringify(proxy)));    
   
   SearchOptions.__(Map m) : this(
       backwards: m['backwards'] == null ? false : m['backwards'],
@@ -99,6 +99,6 @@ class Search extends _HasProxy {
   /// If [options.backwards] is `true`, the search goes backwards in the 
   /// [session].
   Iterable<Range> findAll(EditSession session) => 
-      json.parse(_context.JSON.stringify(_proxy.findAll(session._proxy)))
+      JSON.decode(_context.JSON.stringify(_proxy.findAll(session._proxy)))
         .map((range) => new Range._(js.map(range)));
 }

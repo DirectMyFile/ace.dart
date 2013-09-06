@@ -20,7 +20,7 @@ class InsertLinesDelta extends Delta {
   final Iterable<String> lines;
   InsertLinesDelta._(data) 
     : super._(data.action, data.range)
-    , lines = json.parse(_context.JSON.stringify(data.lines));
+    , lines = JSON.decode(_context.JSON.stringify(data.lines));
   js.Proxy _toProxy() => super._toProxy()..['lines'] = js.array(lines);
 }
 
@@ -37,7 +37,7 @@ class RemoveLinesDelta extends Delta {
   final String nl;
   RemoveLinesDelta._(data) 
     : super._(data.action, data.range)
-    , lines = json.parse(_context.JSON.stringify(data.lines))
+    , lines = JSON.decode(_context.JSON.stringify(data.lines))
     , nl = data.nl;
   js.Proxy _toProxy() => 
       super._toProxy()..['lines'] = js.array(lines)..['nl'] = nl;

@@ -58,7 +58,7 @@ class EditSession extends _HasProxy {
   /// A value of _null_ for any given row index indicates that no breakpoint is
   /// set for that row.
   Map<int, String> get breakpoints =>
-      json.parse(_context.JSON.stringify(_proxy.getBreakpoints())).asMap();
+      JSON.decode(_context.JSON.stringify(_proxy.getBreakpoints())).asMap();
   
   /// The current [Document] associated with this session.
   Document
@@ -171,7 +171,7 @@ class EditSession extends _HasProxy {
   ///     { min: wrapLimitRange_min, max: wrapLimitRange_max }
   // TODO(rms): define a class for this data.
   Map get wrapLimitRange => 
-      json.parse(_context.JSON.stringify(_proxy.getWrapLimitRange()));
+      JSON.decode(_context.JSON.stringify(_proxy.getWrapLimitRange()));
   
   /// Creates a new EditSession and associates it with the given [document] and 
   /// text [mode].

@@ -14,7 +14,7 @@ class Document extends _HasProxy {
   
   /// All the lines in this document.
   Iterable<String> get allLines =>
-      json.parse(_context.JSON.stringify(_proxy.getAllLines()));
+      JSON.decode(_context.JSON.stringify(_proxy.getAllLines()));
   
   /// The number of rows in this document.
   int get length => _proxy.getLength();
@@ -109,7 +109,8 @@ class Document extends _HasProxy {
   /// Removes the range of lines from the given [startRow] -> [endRow] and
   /// returns the removed lines.  This method also fires an [onChange] event.
   Iterable<String> removeLines(int startRow, int endRow) =>
-      json.parse(_context.JSON.stringify(_proxy.removeLines(startRow, endRow)));
+      JSON.decode(
+          _context.JSON.stringify(_proxy.removeLines(startRow, endRow)));
   
   /// Removes the [newLineCharacter] between the given [row] and the row 
   /// immediately following it.  This method also fires an [onChange] event.
