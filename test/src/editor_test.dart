@@ -26,7 +26,7 @@ void testEditElement() {
 }
 
 @Test()
-@ExpectThrows()
+@ExpectError()
 void testEditNullThrows() {  
   final Editor a = edit(null);
 }
@@ -47,14 +47,14 @@ void testDispose() {
 }
 
 @Test()
-@ExpectThrows()
+@ExpectError()
 void testDisposeTwiceThrows() {
   editor.dispose();
   editor.dispose();
 }
 
 @Test()
-@ExpectThrows(isNoSuchMethodError)
+@ExpectError(isNoSuchMethodError)
 void testCallMethodOnDisposedEditorThrows() {
   editor.dispose();
   editor.blur();
