@@ -298,6 +298,22 @@ void testPrintMarginColumn() {
 }
 
 @Test()
+void testSetShowPrintMargin() {
+  editor.showPrintMargin = true;
+  expect(editor.showPrintMargin, isTrue);
+  editor.showPrintMargin = false;
+  expect(editor.showPrintMargin, isFalse);
+}
+
+@Test()
+void testSetShowInvisibles() {
+  editor.showInvisibles = true;
+  expect(editor.showInvisibles, isTrue);
+  editor.showInvisibles = false;
+  expect(editor.showInvisibles, isFalse);
+}
+
+@Test()
 void testDragDelay() {
   editor.dragDelay = 42;
   expect(editor.dragDelay, equals(42));

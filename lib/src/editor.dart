@@ -114,11 +114,19 @@ class Editor extends _HasProxy {
     get session => new EditSession._(_proxy.getSession());
     set session(EditSession session) => _proxy.setSession(session._proxy);
   
+  /// Whether or not invisible characters such as the space character and new 
+  /// line character are shown in this editor.
   bool
     get showInvisibles => _proxy.getShowInvisibles();
     set showInvisibles(bool showInvisibles) => 
         _proxy.setShowInvisibles(showInvisibles);
   
+  /// Whether or not the [printMarginColumn] is shown in this editor.
+  bool
+    get showPrintMargin => _proxy.getShowPrintMargin();
+    set showPrintMargin(bool showPrintMargin) => 
+        _proxy.setShowPrintMargin(showPrintMargin);
+    
   TextInput get textInput => new TextInput._(_proxy.textInput);
     
   Theme
