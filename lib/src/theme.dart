@@ -5,7 +5,7 @@ class Theme extends _HasProxy {
   static const CHAOS                    = 'chaos';
   static const CHROME                   = 'chrome';
   static const CLOUDS                   = 'clouds';
-  static const CLOUNDS_MIDNIGHT         = 'clouds_midnight';
+  static const CLOUDS_MIDNIGHT          = 'clouds_midnight';
   static const COBALT                   = 'cobalt';
   static const CRIMSON_EDITOR           = 'crimson_editor';
   static const DAWN                     = 'dawn';
@@ -32,6 +32,15 @@ class Theme extends _HasProxy {
   static const VIBRANT_INK              = 'vibrant_ink';
   static const XCODE                    = 'xcode';
   
+  static const List<String> THEMES = 
+      const [ AMBIANCE, CHAOS, CHROME, CLOUDS, CLOUDS_MIDNIGHT, COBALT,
+              CRIMSON_EDITOR, DAWN, DREAMWEAVER, ECLIPSE, GITHUB, IDLE_FINGERS,
+              KR, MERBIVORE, MERBIVORE_SOFT, MONO_INDUSTRIAL, MONOKAI, 
+              PASTEL_ON_DARK, SOLARIZED_DARK, SOLARIZED_LIGHT, TERMINAL, 
+              TEXTMATE, TOMORROW, TOMORROW_NIGHT, TOMORROW_NIGHT_BLUE, 
+              TOMORROW_NIGHT_BRIGHT, TOMORROW_NIGHT_EIGHTIES, TWILIGHT, 
+              VIBRANT_INK, XCODE ];
+  
   final String _themePath;
   
   get _theme => hasProxy ? _proxy : _themePath;
@@ -53,7 +62,7 @@ class Theme extends _HasProxy {
   
   /// Creates a theme for the given [name].
   /// 
-  /// The [name] must be a constant defined in this class such as [MONOKAI].
+  /// The [name] must be one of the values in [THEMES].
   Theme.named(String name) : this('ace/theme/$name');
   
   /// Creates a theme for the given [themePath].
