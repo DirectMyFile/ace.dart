@@ -83,14 +83,8 @@ class Selection extends _HasProxy {
   /// Moves the [cursor] to the start of the current line.
   void moveCursorLineStart() => _proxy.moveCursorLineStart();
   
-  void moveCursorLongWordLeft() => _proxy.moveCursorLongWordLeft();
-  void moveCursorLongWordRight() => _proxy.moveCursorLongWordRight();
-  
   /// Moves the [cursor] right one column.
   void moveCursorRight() => _proxy.moveCursorRight();
-  
-  void moveCursorShortWordLeft() => _proxy.moveCursorShortWordLeft();
-  void moveCursorShortWordRight() => _proxy.moveCursorShortWordRight();
   
   /// Moves the cursor to the given [row] and [column].
   /// 
@@ -106,7 +100,10 @@ class Selection extends _HasProxy {
   /// Moves the [cursor] up one row.
   void moveCursorUp() => _proxy.moveCursorUp();
   
+  /// Moves the [cursor] to the start of the first word on the left.
   void moveCursorWordLeft() => _proxy.moveCursorWordLeft();
+  
+  /// Moves the [cursor] to the start of the first word on the right.
   void moveCursorWordRight() => _proxy.moveCursorWordRight();
   
   /// Selects all the text in the document.

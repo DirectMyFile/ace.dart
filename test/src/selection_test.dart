@@ -133,6 +133,24 @@ void testMoveCursorUp() {
       afterCursor: const Point(0, 52));
 }
 
+@Test()
+void testMoveCursorWordLeft() {
+  Point start = sampleTextWordStart(2, 4);
+  selection.moveCursorTo(start.row, start.column);  
+  testMoveMethod(selection.moveCursorWordLeft,
+      beforeCursor: start,
+      afterCursor: sampleTextWordStart(2, 3));
+}
+
+@Test()
+void testMoveCursorWordRight() {
+  Point start = sampleTextWordStart(4, 6);
+  selection.moveCursorTo(start.row, start.column);  
+  testMoveMethod(selection.moveCursorWordRight,
+      beforeCursor: start,
+      afterCursor: sampleTextWordStart(4, 7));
+}
+
 // Utility function for testing the various 'select*' methods.
 void testSelectMethod(Function selectionMethod,
                      {List positionalArgs: const [],
