@@ -314,6 +314,13 @@ class EditSession extends _HasProxy {
   Point replace(Range range, String text) => 
       new Point._(_proxy.replace(range._toProxy(), text));
   
+  /// Converts screen coordinates to [document] coordinates. 
+  /// 
+  /// This takes into account code folding, word wrap, [tabSize], and any other 
+  /// visual modifications.
+  Point screenToDocumentPosition(int row, int column) =>
+      new Point._(_proxy.screenToDocumentPosition(row, column));
+  
   /// Sets a breakpoint on the given [row] using the optional CSS [className]
   /// and fires an [onChangeBreakPoint] event.
   void setBreakpoint(int row, {String className: 'ace_breakpoint'}) =>

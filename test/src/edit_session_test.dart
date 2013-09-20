@@ -429,3 +429,16 @@ void testClearBreakpoints() {
   }));
   session.clearBreakpoints();
 }
+
+@Test()
+void testScreenToDocumentPosition() {
+  int desiredLimit = 20;
+  session.useWrapMode = true;  
+  expect(session.adjustWrapLimit(desiredLimit, 80), isTrue);
+  expect(session.wrapLimit, equals(desiredLimit));
+  Point word = sampleTextWordStart(0, 8);  
+  int screenRow = session.documentToScreenRow(word.row, word.column);
+  int screenColumn = session.documentToScreenColumn(word.row, word.column);  
+  expect(session.screenToDocumentPosition(screenRow, screenColumn), 
+      equals(word));      
+}
