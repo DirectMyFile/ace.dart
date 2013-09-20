@@ -81,11 +81,13 @@ class Selection extends _HasProxy {
   /// 
   /// If [keepDesiredColumn] is `true`, the cursor move does not respect the
   /// previous column.
-  void moveCursorTo(int row, int column, bool keepDesiredColumn) =>
+  void moveCursorTo(int row, int column, {bool keepDesiredColumn: false}) =>
       _proxy.moveCursorTo(row, column, keepDesiredColumn);
   
-  void moveCursorToScreen(int row, int column, bool keepDesiredColumn) =>
+  void moveCursorToScreen(int row, int column, 
+                          {bool keepDesiredColumn: false}) =>
       _proxy.moveCursorToScreen(row, column, keepDesiredColumn);
+  
   void moveCursorUp() => _proxy.moveCursorUp();
   void moveCursorWordLeft() => _proxy.moveCursorWordLeft();
   void moveCursorWordRight() => _proxy.moveCursorWordRight();
@@ -126,7 +128,9 @@ class Selection extends _HasProxy {
   /// Selects up one row.
   void selectUp() => _proxy.selectUp();
   
+  /// Selects an entire word boundary.
   void selectWord() => _proxy.selectWord();
+  
   void selectWordLeft() => _proxy.selectWordLeft();
   void selectWordRight() => _proxy.selectWordRight();
   void setSelectionAnchor(int row, int column) =>

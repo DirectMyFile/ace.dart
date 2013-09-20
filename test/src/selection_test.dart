@@ -59,7 +59,7 @@ void testMoveCursorTo() {
   selection.onChangeCursor.listen(expectAsync1((_) {
     expect(selection.cursor, equals(const Point(4, 42)));
   }));
-  selection.moveCursorTo(4, 42, false);
+  selection.moveCursorTo(4, 42);
 }
 
 // Utility function for testing the various 'select*' methods.
@@ -102,7 +102,7 @@ void testSelectAWord() {
 
 @Test()
 void testSelectDown() {
-  selection.moveCursorTo(2, 20, false);  
+  selection.moveCursorTo(2, 20);  
   Point startCursor = const Point(2, 20);
   Point endCursor = const Point(3, 20);
   
@@ -115,7 +115,7 @@ void testSelectDown() {
 
 @Test()
 void testSelectFileEnd() {
-  selection.moveCursorTo(1, 10, false);  
+  selection.moveCursorTo(1, 10);  
   Point startCursor = const Point(1, 10);
   Point endCursor = new Point(sampleTextLines.length - 1, 
       sampleTextLines[sampleTextLines.length - 1].length);
@@ -129,7 +129,7 @@ void testSelectFileEnd() {
 
 @Test()
 void testSelectFileStart() {  
-  selection.moveCursorTo(2, 2, false);  
+  selection.moveCursorTo(2, 2);  
   Point startCursor = const Point(2, 2);
   
   testSelectMethod(selection.selectFileStart,
@@ -139,7 +139,7 @@ void testSelectFileStart() {
 
 @Test()
 void testSelectLeft() {
-  selection.moveCursorTo(1, 14, false);  
+  selection.moveCursorTo(1, 14);  
   Point startCursor = const Point(1, 14);
   Point endCursor = const Point(1, 13);
   
@@ -186,7 +186,7 @@ void testSelectLineStart() {
 
 @Test()
 void testSelectRight() {
-  selection.moveCursorTo(1, 14, false);  
+  selection.moveCursorTo(1, 14);  
   Point startCursor = const Point(1, 14);
   Point endCursor = const Point(1, 15);
   
@@ -213,7 +213,7 @@ void testSelectTo() {
 
 @Test()
 void testSelectUp() {
-  selection.moveCursorTo(2, 20, false);  
+  selection.moveCursorTo(2, 20);  
   Point startCursor = const Point(2, 20);
   Point endCursor = const Point(1, 20);
   
@@ -224,3 +224,17 @@ void testSelectUp() {
       afterRangeEnd: startCursor);
 }
 
+@Test()
+void testSelectWord() {
+  selection.moveCursorTo(3, 4);
+  Point startCursor = const Point(3, 4);  
+  Point afterRangeStart = 
+      new Point(3, sampleTextLine3.indexOf(sampleTextWords[3][0]));
+  Point afterRangeEnd = new Point(3, sampleTextWords[3][0].length);
+  
+  testSelectMethod(selection.selectWord,
+      beforeCursor: startCursor,
+      afterCursor: afterRangeEnd,
+      afterRangeStart: afterRangeStart,
+      afterRangeEnd: afterRangeEnd);
+}
