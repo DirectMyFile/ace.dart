@@ -74,8 +74,12 @@ class Selection extends _HasProxy {
   /// Moves the [cursor] left one column.
   void moveCursorLeft() => _proxy.moveCursorLeft();
   
+  /// Moves the [cursor] to the end of the current line.
   void moveCursorLineEnd() => _proxy.moveCursorLineEnd();
+  
+  /// Moves the [cursor] to the start of the current line.
   void moveCursorLineStart() => _proxy.moveCursorLineStart();
+  
   void moveCursorLongWordLeft() => _proxy.moveCursorLongWordLeft();
   void moveCursorLongWordRight() => _proxy.moveCursorLongWordRight();
   

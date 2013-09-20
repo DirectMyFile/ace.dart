@@ -80,6 +80,22 @@ void testMoveCursorLeft() {
 }
 
 @Test()
+void testMoveCursorLineEnd() {
+  selection.moveCursorTo(3, 3);  
+  testMoveMethod(selection.moveCursorLineEnd,
+      beforeCursor: const Point(3, 3),
+      afterCursor: new Point(3, sampleTextLine3.length));
+}
+
+@Test()
+void testMoveCursorLineStart() {
+  selection.moveCursorTo(3, 3);  
+  testMoveMethod(selection.moveCursorLineStart,
+      beforeCursor: const Point(3, 3),
+      afterCursor: new Point(3, 0));
+}
+
+@Test()
 void testMoveCursorRight() {
   selection.moveCursorTo(2, 63);  
   testMoveMethod(selection.moveCursorRight,
