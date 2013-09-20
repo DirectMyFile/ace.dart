@@ -70,12 +70,18 @@ class Selection extends _HasProxy {
   
   void moveCursorFileEnd() => _proxy.moveCursorFileEnd();
   void moveCursorFileStart() => _proxy.moveCursorFileStart();
+  
+  /// Moves the [cursor] left one column.
   void moveCursorLeft() => _proxy.moveCursorLeft();
+  
   void moveCursorLineEnd() => _proxy.moveCursorLineEnd();
   void moveCursorLineStart() => _proxy.moveCursorLineStart();
   void moveCursorLongWordLeft() => _proxy.moveCursorLongWordLeft();
   void moveCursorLongWordRight() => _proxy.moveCursorLongWordRight();
+  
+  /// Moves the [cursor] right one column.
   void moveCursorRight() => _proxy.moveCursorRight();
+  
   void moveCursorShortWordLeft() => _proxy.moveCursorShortWordLeft();
   void moveCursorShortWordRight() => _proxy.moveCursorShortWordRight();
   

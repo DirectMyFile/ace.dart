@@ -72,6 +72,22 @@ void testMoveCursorDown() {
 }
 
 @Test()
+void testMoveCursorLeft() {
+  selection.moveCursorTo(4, 4);  
+  testMoveMethod(selection.moveCursorLeft,
+      beforeCursor: const Point(4, 4),
+      afterCursor: const Point(4, 3));
+}
+
+@Test()
+void testMoveCursorRight() {
+  selection.moveCursorTo(2, 63);  
+  testMoveMethod(selection.moveCursorRight,
+      beforeCursor: const Point(2, 63),
+      afterCursor: const Point(2, 64));
+}
+
+@Test()
 void testMoveCursorTo() {
   testMoveMethod(selection.moveCursorTo, 
       positionalArgs: [4, 42],
