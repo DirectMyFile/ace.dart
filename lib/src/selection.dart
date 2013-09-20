@@ -90,7 +90,9 @@ class Selection extends _HasProxy {
                           {bool keepDesiredColumn: false}) =>
       _proxy.moveCursorToScreen(row, column, keepDesiredColumn);
   
+  /// Moves the [cursor] up one row.
   void moveCursorUp() => _proxy.moveCursorUp();
+  
   void moveCursorWordLeft() => _proxy.moveCursorWordLeft();
   void moveCursorWordRight() => _proxy.moveCursorWordRight();
   

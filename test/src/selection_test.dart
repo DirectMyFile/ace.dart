@@ -78,6 +78,14 @@ void testMoveCursorTo() {
       afterCursor: const Point(4, 42));
 }
 
+@Test()
+void testMoveCursorUp() {
+  selection.moveCursorTo(1, 52);  
+  testMoveMethod(selection.moveCursorUp,
+      beforeCursor: const Point(1, 52),
+      afterCursor: const Point(0, 52));
+}
+
 // Utility function for testing the various 'select*' methods.
 void testSelectMethod(Function selectionMethod,
                      {List positionalArgs: const [],
