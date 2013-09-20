@@ -86,13 +86,21 @@ class Selection extends _HasProxy {
   /// Moves the [cursor] right one column.
   void moveCursorRight() => _proxy.moveCursorRight();
   
-  /// Moves the cursor to the given [row] and [column].
+  /// Moves the [cursor] to the given [row] and [column].
   /// 
   /// If [keepDesiredColumn] is `true`, the cursor move does not respect the
   /// previous column.
   void moveCursorTo(int row, int column, {bool keepDesiredColumn: false}) =>
       _proxy.moveCursorTo(row, column, keepDesiredColumn);
   
+  /// Moves the [cursor] to the the given [row] and [column] in screen 
+  /// coordinates.
+  /// 
+  /// If [keepDesiredColumn] is `true`, the cursor move does not respect the
+  /// previous column.
+  /// 
+  /// The given screen [row] and [column] are converted to document coordinates
+  /// with [EditSession.screenToDocumentPosition] before the [cursor] is moved.
   void moveCursorToScreen(int row, int column, 
                           {bool keepDesiredColumn: false}) =>
       _proxy.moveCursorToScreen(row, column, keepDesiredColumn);

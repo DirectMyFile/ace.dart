@@ -126,6 +126,20 @@ void testMoveCursorTo() {
 }
 
 @Test()
+void testMoveCursorToScreen() {
+  int desiredLimit = 20;
+  session.useWrapMode = true;  
+  expect(session.adjustWrapLimit(desiredLimit, 80), isTrue);
+  expect(session.wrapLimit, equals(desiredLimit));
+  Point word = sampleTextWordStart(2, 7);  
+  int screenRow = session.documentToScreenRow(word.row, word.column);
+  int screenColumn = session.documentToScreenColumn(word.row, word.column);
+  testMoveMethod(selection.moveCursorToScreen, 
+      positionalArgs: [screenRow, screenColumn],
+      afterCursor: word);
+}
+
+@Test()
 void testMoveCursorUp() {
   selection.moveCursorTo(1, 52);  
   testMoveMethod(selection.moveCursorUp,
