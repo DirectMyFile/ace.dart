@@ -12,9 +12,12 @@ Please consult our [API documentation][api] as well as the
 _Ace.dart uses the MIT license as described in the [LICENSE][license] file, and 
 follows [semantic versioning][]._
 
+_Ace.js uses a BSD license as described in its own [LICENSE][ace-license] file.
+
 [ace]: http://ace.ajax.org/
 [ace-api]: http://ace.ajax.org/#nav=api
 [ace-builds]: https://github.com/ajaxorg/ace-builds/
+[ace-license]: https://github.com/rmsmith/fields/blob/master/lib/src/js/LICENSE
 [api]: http://rmsmith.github.com/ace.dart/ace.html
 [badge]: https://drone.io/github.com/rmsmith/ace.dart/latest
 [dart]: http://www.dartlang.org/
