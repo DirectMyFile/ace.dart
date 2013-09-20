@@ -131,8 +131,14 @@ class Selection extends _HasProxy {
   /// Selects an entire word boundary.
   void selectWord() => _proxy.selectWord();
   
+  /// Selects the first word to the left and moves the [cursor] to the start of 
+  /// the word.
   void selectWordLeft() => _proxy.selectWordLeft();
+  
+  /// Selects the first word to the right and moves the [cursor] to the end of
+  /// the word.
   void selectWordRight() => _proxy.selectWordRight();
+  
   void setSelectionAnchor(int row, int column) =>
       _proxy.setSelectionAnchor(row, column);
   void shiftSelection(int columns) => _proxy.shiftSelection(columns);

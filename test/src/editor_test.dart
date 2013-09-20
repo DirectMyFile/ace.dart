@@ -219,14 +219,11 @@ void testNavigateUp() {
 
 @Test()
 void testNavigateWordLeft() {
-  editor.navigateLineEnd();
-  editor.navigateLeft(1); // Navigate left of the line's trailing space char
-  expect(editor.cursorPosition, 
-      equals(new Point(0, sampleTextLine0.length - 1)));
+  Point start = sampleTextWordStart(0, 5);
+  editor.navigateTo(start.row, start.column);
+  expect(editor.cursorPosition, equals(start));
   editor.navigateWordLeft();
-  final lastLineWord = sampleTextWords[0][sampleTextWords[0].length - 1];  
-  expect(editor.cursorPosition, 
-      equals(new Point(0, sampleTextLine0.length - 1 - lastLineWord.length)));
+  expect(editor.cursorPosition, equals(sampleTextWordStart(0, 4)));
   expect(editor.selection.isEmpty, isTrue);
 }
 

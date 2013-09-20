@@ -228,11 +228,40 @@ void testSelectUp() {
 void testSelectWord() {
   selection.moveCursorTo(3, 4);
   Point startCursor = const Point(3, 4);  
-  Point afterRangeStart = 
-      new Point(3, sampleTextLine3.indexOf(sampleTextWords[3][0]));
-  Point afterRangeEnd = new Point(3, sampleTextWords[3][0].length);
+  Point afterRangeStart = sampleTextWordStart(3, 0);
+  Point afterRangeEnd = sampleTextWordEnd(3, 0);
   
   testSelectMethod(selection.selectWord,
+      beforeCursor: startCursor,
+      afterCursor: afterRangeEnd,
+      afterRangeStart: afterRangeStart,
+      afterRangeEnd: afterRangeEnd);
+}
+
+@Test()
+void testSelectWordLeft() {
+  Point start = sampleTextWordStart(3, 2);  
+  selection.moveCursorTo(start.row, start.column);  
+  Point startCursor = start;  
+  Point afterRangeStart = sampleTextWordStart(3, 1);
+  Point afterRangeEnd = sampleTextWordEnd(3, 1);
+  
+  testSelectMethod(selection.selectWordLeft,
+      beforeCursor: startCursor,
+      afterCursor: afterRangeStart,
+      afterRangeStart: afterRangeStart,
+      afterRangeEnd: afterRangeEnd);
+}
+
+@Test()
+void testSelectWordRight() {
+  Point start = sampleTextWordEnd(4, 6);  
+  selection.moveCursorTo(start.row, start.column);  
+  Point startCursor = start;
+  Point afterRangeStart = sampleTextWordStart(4, 7);
+  Point afterRangeEnd = sampleTextWordEnd(4, 7);
+  
+  testSelectMethod(selection.selectWordRight,
       beforeCursor: startCursor,
       afterCursor: afterRangeEnd,
       afterRangeStart: afterRangeStart,

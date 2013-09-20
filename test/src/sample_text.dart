@@ -1,5 +1,7 @@
 library ace.test.sample_text;
 
+import 'package:ace/ace.dart';
+
 const String sampleTextLine0 = 
 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod ';
 
@@ -35,8 +37,22 @@ const List<String> sampleTextLines = const [ sampleTextLine0
 
 final Map<int, List<String>> sampleTextWords = 
     sampleTextLines
-        .map((line) => new RegExp(r'(\w+)').allMatches(line)
+        .map((line) => new RegExp(r'([\w]+)|(\s+)').allMatches(line)
             .map((match) => match.group(0))
             .toList(growable: false))
         .toList(growable: false)
         .asMap();
+
+Point sampleTextWordStart(int row, int word) {
+  int start = 0;  
+  String wordString = sampleTextWords[row][word];
+    if (word > 0 && wordString == ' ') {
+      start = sampleTextLines[row].indexOf(sampleTextWords[row][word - 1]);    
+    }
+  return new Point(row, sampleTextLines[row].indexOf(wordString, start));
+}
+
+Point sampleTextWordEnd(int row, int word) => 
+    new Point(row, 
+        sampleTextWordStart(row, word).column + 
+        sampleTextWords[row][word].length);
