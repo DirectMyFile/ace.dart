@@ -68,7 +68,10 @@ class Selection extends _HasProxy {
   /// Moves the [cursor] down one row.
   void moveCursorDown() => _proxy.moveCursorDown();
   
+  /// Moves the [cursor] to the end of the document.
   void moveCursorFileEnd() => _proxy.moveCursorFileEnd();
+  
+  /// Moves the [cursor] to the start of the document.
   void moveCursorFileStart() => _proxy.moveCursorFileStart();
   
   /// Moves the [cursor] left one column.

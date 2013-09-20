@@ -72,6 +72,21 @@ void testMoveCursorDown() {
 }
 
 @Test()
+void testMoveCursorFileEnd() {
+  int lastRow = sampleTextLines.length - 1;
+  testMoveMethod(selection.moveCursorFileEnd,
+      afterCursor: new Point(lastRow, sampleTextLines[lastRow].length));
+}
+
+@Test()
+void testMoveCursorFileStart() {
+  selection.moveCursorTo(3, 37); 
+  testMoveMethod(selection.moveCursorFileStart,
+      beforeCursor: const Point(3, 37),
+      afterCursor: const Point(0, 0));
+}
+
+@Test()
 void testMoveCursorLeft() {
   selection.moveCursorTo(4, 4);  
   testMoveMethod(selection.moveCursorLeft,
