@@ -36,35 +36,51 @@ void testDispose() {
   expect(selection.hasProxy, isFalse);
 }
 
+// Utility function for testing the various 'move*' methods.
+void testMoveMethod(Function moveMethod,
+                   {List positionalArgs: const [],
+                    Point beforeCursor: const Point(0, 0),
+                    Point afterCursor: const Point(0, 0)}) {
+  expect(selection.cursor, equals(beforeCursor));
+  selection.onChangeCursor.listen(expectAsync1((_) {}));
+  Function.apply(moveMethod, positionalArgs);
+  expect(selection.cursor, equals(afterCursor));
+}
+
 @Test()
 void testMoveCursorBy() {
-  expect(selection.cursor, equals(const Point(0, 0)));
-  int changeCount = 0;
-  selection.onChangeCursor.listen(expectAsync1((_) {
-    switch (changeCount++) {
-      case 0:
-        expect(selection.cursor, equals(const Point(3, 20)));
-        selection.moveCursorBy(-1, -19);
-        break;
-      case 1:
-        expect(selection.cursor, equals(const Point(2, 1)));
-        break;
-    }   
-  }, count: 2));
-  selection.moveCursorBy(3, 20);  
+  testMoveMethod(selection.moveCursorBy, 
+      positionalArgs: [3, 20],
+      afterCursor: const Point(3, 20));
+}
+
+@Test()
+void testMoveCursorByNegative() {
+  selection.moveCursorTo(4, 25);  
+  testMoveMethod(selection.moveCursorBy, 
+      positionalArgs: [-1, -19],
+      beforeCursor: const Point(4, 25),
+      afterCursor: const Point(3, 6));
+}
+
+@Test()
+void testMoveCursorDown() {
+  selection.moveCursorTo(0, 15);  
+  testMoveMethod(selection.moveCursorDown,
+      beforeCursor: const Point(0, 15),
+      afterCursor: const Point(1, 15));
 }
 
 @Test()
 void testMoveCursorTo() {
-  selection.onChangeCursor.listen(expectAsync1((_) {
-    expect(selection.cursor, equals(const Point(4, 42)));
-  }));
-  selection.moveCursorTo(4, 42);
+  testMoveMethod(selection.moveCursorTo, 
+      positionalArgs: [4, 42],
+      afterCursor: const Point(4, 42));
 }
 
 // Utility function for testing the various 'select*' methods.
 void testSelectMethod(Function selectionMethod,
-                     {List positionalArgs,
+                     {List positionalArgs: const [],
                       Point beforeCursor: const Point(0, 0),
                       Point afterCursor: const Point(0, 0),
                       Point afterRangeStart: const Point(0, 0),

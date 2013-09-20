@@ -65,7 +65,9 @@ class Selection extends _HasProxy {
   void moveCursorBy(int rows, int columns) => 
       _proxy.moveCursorBy(rows, columns);
   
+  /// Moves the [cursor] down one row.
   void moveCursorDown() => _proxy.moveCursorDown();
+  
   void moveCursorFileEnd() => _proxy.moveCursorFileEnd();
   void moveCursorFileStart() => _proxy.moveCursorFileStart();
   void moveCursorLeft() => _proxy.moveCursorLeft();
