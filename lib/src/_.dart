@@ -10,7 +10,7 @@ abstract class _HasProxy {
   /// 
   /// Some of the objects in Ace require an asynchronous computation to fully
   /// initialize the underlying proxy.  This future provides a way to observe
-  /// when that computations has completed.
+  /// when that computation has completed.
   final Future onHasProxy;
   
   /// Returns `true` if this object has an underlying javascript proxy object.
