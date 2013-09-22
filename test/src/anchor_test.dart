@@ -27,10 +27,8 @@ void testAnchorCtor() {
 void testAnchorDispose() {
   final noop0 = (){};
   final noop1 = (_){};
-  expect(anchor.hasProxy, isTrue);
   anchor.onChange.listen(noop1, onDone: expectAsync0(noop0));
   anchor.dispose();
-  expect(anchor.hasProxy, isFalse);
 }
 
 @Test()

@@ -43,20 +43,20 @@ class Theme extends _HasProxy {
   
   final String _themePath;
   
-  get _theme => hasProxy ? _proxy : _themePath;
+  get _theme => _hasProxy ? _proxy : _themePath;
   
   bool get isDark {
-    if (!hasProxy) throw new StateError('$_themePath is not yet loaded.');
+    if (!_hasProxy) throw new StateError('$_themePath is not yet loaded.');
     return _proxy.isDark;
   }
   
   String get cssClass {
-    if (!hasProxy) throw new StateError('$_themePath is not yet loaded.');
+    if (!_hasProxy) throw new StateError('$_themePath is not yet loaded.');
     return _proxy.cssClass;
   }
   
   String get cssText {
-    if (!hasProxy) throw new StateError('$_themePath is not yet loaded.');
+    if (!_hasProxy) throw new StateError('$_themePath is not yet loaded.');
     return _proxy.cssText;
   }
   

@@ -31,7 +31,6 @@ void testCreateEditSession() {
 void testDispose() {
   final noop0 = (){};
   final noop1 = (_){};
-  expect(session.hasProxy, isTrue);
   session.onChange.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeBreakpoint.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeOverwrite.listen(noop1, onDone: expectAsync0(noop0));
@@ -41,7 +40,6 @@ void testDispose() {
   session.onChangeWrapLimit.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeWrapMode.listen(noop1, onDone: expectAsync0(noop0));
   session.dispose();
-  expect(session.hasProxy, isFalse);
 }
 
 @Test()

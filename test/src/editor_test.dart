@@ -35,7 +35,6 @@ void testEditNullThrows() {
 void testDispose() {
   final noop0 = (){};
   final noop1 = (_){};
-  expect(editor.hasProxy, isTrue);
   editor.onBlur.listen(noop1, onDone: expectAsync0(noop0));
   editor.onChange.listen(noop1, onDone: expectAsync0(noop0));
   editor.onChangeSession.listen(noop1, onDone: expectAsync0(noop0));
@@ -43,7 +42,6 @@ void testDispose() {
   editor.onFocus.listen(noop1, onDone: expectAsync0(noop0));
   editor.onPaste.listen(noop1, onDone: expectAsync0(noop0));
   editor.dispose();
-  expect(editor.hasProxy, isFalse);
 }
 
 @Test()

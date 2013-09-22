@@ -33,7 +33,7 @@ class Mode extends _HasProxy {
   
   final String _modePath;
   
-  get _mode => hasProxy ? _proxy : _modePath;
+  get _mode => _hasProxy ? _proxy : _modePath;
   
   /// Creates a mode for the given [filePath], based on its file extension.
   factory Mode.forFile(String filePath) {

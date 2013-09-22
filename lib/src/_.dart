@@ -11,23 +11,23 @@ abstract class _HasProxy {
   /// Some of the objects in Ace require an asynchronous computation to fully
   /// initialize the underlying proxy.  This future provides a way to observe
   /// when that computation has completed.
-  final Future onHasProxy;
+  final Future _onHasProxy;
   
   /// Returns `true` if this object has an underlying javascript proxy object.
-  bool get hasProxy => _proxy != null;
+  bool get _hasProxy => _proxy != null;
       
   _HasProxy.async(Future<js.Proxy> proxyFuture) 
-      : onHasProxy = proxyFuture {
+      : _onHasProxy = proxyFuture {
     proxyFuture.then((proxy) => _proxy = proxy);
   }
   
   _HasProxy(js.Proxy proxy) 
       : _proxy = js.retain(proxy)
-      , onHasProxy = new Future.value();
+      , _onHasProxy = new Future.value();
   
   /// Dispose of and release the underlying javascript proxy object, if any.
   void dispose() {
-    if (hasProxy) {
+    if (_hasProxy) {
       _onDispose();
       js.release(_proxy);
       _proxy = null;
