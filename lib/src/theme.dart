@@ -13,7 +13,7 @@ class Theme extends _HasProxy {
   static const ECLIPSE                  = 'eclipse';
   static const GITHUB                   = 'github';
   static const IDLE_FINGERS             = 'idle_fingers';
-  static const KR                       = 'kr';
+  static const KR                       = 'kr_theme';
   static const MERBIVORE                = 'merbivore';
   static const MERBIVORE_SOFT           = 'merbivore_soft';
   static const MONO_INDUSTRIAL          = 'mono_industrial';
