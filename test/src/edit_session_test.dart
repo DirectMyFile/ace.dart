@@ -11,7 +11,6 @@ EditSession session;
 setup() {  
   session = new EditSession(new Document(sampleText), 
     new Mode('ace/mode/text'));
-  expect(session.useWrapMode, isFalse);
 }
 
 @Test()

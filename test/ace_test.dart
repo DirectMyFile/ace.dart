@@ -11,6 +11,7 @@ import 'src/point_test.dart';
 import 'src/range_test.dart';
 import 'src/search_test.dart';
 import 'src/selection_test.dart';
+import 'src/virtual_renderer_test.dart';
 
 main() {
   useHtmlEnhancedConfiguration();
