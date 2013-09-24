@@ -64,6 +64,11 @@ class Editor extends _HasProxy {
   /// The index of the first visible row.
   int get firstVisibleRow => _proxy.getFirstVisibleRow();
   
+  /// The font size in pixels for this editor's text.
+  int
+    get fontSize => _proxy.getFontSize();
+    set fontSize(int fontSize) => _proxy.setFontSize(fontSize);
+  
   /// Whether or not the current line should be highlighted.
   bool
     get highlightActiveLine => _proxy.getHighlightActiveLine();

@@ -371,3 +371,12 @@ void testGetCopyText() {
   final String copyText = editor.copyText;
   expect(copyText, equals(sampleTextLine0));
 }
+
+@Test()
+void testFontSize() {
+  editor.fontSize = 14;
+  expect(editor.fontSize, 14);
+  editor.fontSize = 10;
+  expect(editor.fontSize, 10);
+}
+
