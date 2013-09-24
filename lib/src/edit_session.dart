@@ -98,14 +98,14 @@ class EditSession extends _HasProxy {
   /// part of the visible content.  Setting this to a new value fires an
   /// [onChangeScrollLeft] event.
   int
-    get scrollLeft => _proxy.getScrollLeft();
+    get scrollLeft => _proxy.getScrollLeft().toInt();
     set scrollLeft(int scrollLeft) => _proxy.setScrollLeft(scrollLeft);  
     
   /// The value of the distance between the top of the editor and the topmost 
   /// part of the visible content.  Setting this to a new value fires an
   /// [onChangeScrollTop] event.
   int
-    get scrollTop => _proxy.getScrollTop();
+    get scrollTop => _proxy.getScrollTop().toInt();
     set scrollTop(int scrollTop) => _proxy.setScrollTop(scrollTop);
     
   /// The number of spaces that define a soft tab.
@@ -186,9 +186,9 @@ class EditSession extends _HasProxy {
     _jsOnChangeOverwrite = 
         new js.Callback.many((_,__) => _onChangeOverwrite.add(this));
     _jsOnChangeScrollLeft = 
-        new js.Callback.many((e,__) => _onChangeScrollLeft.add(e));
+        new js.Callback.many((e,__) => _onChangeScrollLeft.add(e.toInt()));
     _jsOnChangeScrollTop = 
-        new js.Callback.many((e,__) => _onChangeScrollTop.add(e));
+        new js.Callback.many((e,__) => _onChangeScrollTop.add(e.toInt()));
     _jsOnChangeTabSize = 
         new js.Callback.many((_,__) => _onChangeTabSize.add(this));
     _jsOnChangeWrapLimit = 
