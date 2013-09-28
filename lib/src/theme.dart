@@ -32,6 +32,12 @@ class Theme extends _HasProxy {
   static const VIBRANT_INK              = 'vibrant_ink';
   static const XCODE                    = 'xcode';
   
+  /// A list of the available themes for use with the [new Theme.named] 
+  /// constructor.
+  /// 
+  /// This list contains all of the themes in the ace package.  An application
+  /// using this package may choose to include a subset or a superset of these
+  /// themes.
   static const List<String> THEMES = 
       const [ AMBIANCE, CHAOS, CHROME, CLOUDS, CLOUDS_MIDNIGHT, COBALT,
               CRIMSON_EDITOR, DAWN, DREAMWEAVER, ECLIPSE, GITHUB, IDLE_FINGERS,
