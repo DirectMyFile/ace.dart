@@ -12,10 +12,6 @@ class Document extends _HasProxy {
   /// Fired whenever this document changes.
   Stream<Delta> get onChange => _onChange.stream;
   
-  /// All the lines in this document.
-  Iterable<String> get allLines =>
-      JSON.decode(_context.JSON.stringify(_proxy.getAllLines()));
-  
   /// The number of rows in this document.
   int get length => _proxy.getLength();
   
@@ -56,6 +52,10 @@ class Document extends _HasProxy {
   /// Creates a new [Anchor] to define a floating point in this document.
   Anchor createAnchor(int row, int column) =>
       new Anchor._(_proxy.createAnchor(row, column));
+  
+  /// Returns a copy of all the lines in this document.
+  List<String> getAllLines() =>
+      JSON.decode(_context.JSON.stringify(_proxy.getAllLines()));
   
   /// Returns a verbatim copy of the given line [row] as it is in this document.
   String getLine(int row) => _proxy.getLine(row);
@@ -108,7 +108,7 @@ class Document extends _HasProxy {
   
   /// Removes the range of lines from the given [startRow] -> [endRow] and
   /// returns the removed lines.  This method also fires an [onChange] event.
-  Iterable<String> removeLines(int startRow, int endRow) =>
+  List<String> removeLines(int startRow, int endRow) =>
       JSON.decode(
           _context.JSON.stringify(_proxy.removeLines(startRow, endRow)));
   

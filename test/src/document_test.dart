@@ -25,7 +25,7 @@ void testGetLength() {
 
 @Test()
 void testGetAllLines() {
-  final lines = document.allLines;
+  final lines = document.getAllLines();
   expect(lines.length, equals(6));
   for (int i = 0; i < sampleTextLines.length - 1; i++)
     expect(lines[i], equals(sampleTextLines[i]));
@@ -191,10 +191,10 @@ void testApplyDeltas() {
   final observedDeltas = new List<Delta>();
   final applyToNewDocument = () {
     var newDocument = new Document(sampleText);
-    expect(newDocument.allLines, isNot(equals(document.allLines)));        
+    expect(newDocument.getAllLines(), isNot(equals(document.getAllLines())));        
     newDocument.onChange.listen(expectAsync1((_) {}, count: 3));    
     newDocument.applyDeltas(observedDeltas);
-    expect(newDocument.allLines, equals(document.allLines));
+    expect(newDocument.getAllLines(), equals(document.getAllLines()));
   };    
   int observedDeltaCount = 0;
   document.onChange.listen(expectAsync1((Delta delta) { 
