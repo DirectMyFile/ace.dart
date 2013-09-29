@@ -109,8 +109,7 @@ void testNewLineMode() {
 @Test()
 void testPositionToIndex() {
   expect(document.positionToIndex(const Point(1, 0), 0),
-      // + 1 for the newline character
-      equals(sampleTextLine0.length + 1));
+      equals(sampleTextLine0.length + document.newLineCharacter.length));
 }
 
 @Test()
