@@ -54,8 +54,11 @@ class Document extends _HasProxy {
       new Anchor._(_proxy.createAnchor(row, column));
   
   /// Returns a copy of all the lines in this document.
-  List<String> getAllLines() =>
-      JSON.decode(_context.JSON.stringify(_proxy.getAllLines()));
+  List<String> getAllLines() => _list(_proxy.getAllLines());
+  
+  /// Returns a copy of the lines between [firstRow] and [lastRow] (inclusive).
+  List<String> getLines(int firstRow, int lastRow) => 
+      _list(_proxy.getLines(firstRow, lastRow));
   
   /// Returns a verbatim copy of the given line [row] as it is in this document.
   String getLine(int row) => _proxy.getLine(row);
@@ -108,9 +111,8 @@ class Document extends _HasProxy {
   
   /// Removes the range of lines from the given [startRow] -> [endRow] and
   /// returns the removed lines.  This method also fires an [onChange] event.
-  List<String> removeLines(int startRow, int endRow) =>
-      JSON.decode(
-          _context.JSON.stringify(_proxy.removeLines(startRow, endRow)));
+  List<String> removeLines(int startRow, int endRow) => 
+      _list(_proxy.removeLines(startRow, endRow));
   
   /// Removes the [newLineCharacter] between the given [row] and the row 
   /// immediately following it.  This method also fires an [onChange] event.

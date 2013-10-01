@@ -32,6 +32,16 @@ void testGetAllLines() {
 }
 
 @Test()
+void testGetLines() {
+  final lines = document.getLines(2, 5);
+  expect(lines.length, equals(4));
+  expect(lines[0], equals(sampleTextLine2));
+  expect(lines[1], equals(sampleTextLine3));
+  expect(lines[2], equals(sampleTextLine4));
+  expect(lines[3], equals(sampleTextLine5));
+}
+
+@Test()
 void testGetLine() {
   for (int i = 0; i < sampleTextLines.length - 1; i++)
     expect(document.getLine(i), equals(sampleTextLines[i]));
