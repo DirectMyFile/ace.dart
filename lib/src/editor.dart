@@ -1,6 +1,7 @@
 part of ace;
 
-// TODO(rms): investigate the errors when using this event class:
+// TODO(rms): use this event class once the following pull request lands:
+// https://github.com/dart-lang/js-interop/pull/110
 //class EditSessionChangeEvent {
 //  /// The old [EditSession].
 //  final EditSession oldSession;  
