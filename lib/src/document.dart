@@ -56,7 +56,7 @@ class Document extends _HasProxy {
   /// Returns a copy of all the lines in this document.
   List<String> getAllLines() => _list(_proxy.getAllLines());
   
-  /// Returns a copy of the lines between [firstRow] and [lastRow] (inclusive).
+  /// Returns a copy of the lines between [firstRow] and [lastRow], inclusive.
   List<String> getLines(int firstRow, int lastRow) => 
       _list(_proxy.getLines(firstRow, lastRow));
   

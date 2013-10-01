@@ -3,6 +3,7 @@ part of ace;
 get _context => js.context;
 
 List _list(js.Proxy array) => JSON.decode(_context.JSON.stringify(array));
+Map _map(js.Proxy obj) => JSON.decode(_context.JSON.stringify(obj));
 
 abstract class _HasProxy {
   var _proxy;

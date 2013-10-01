@@ -31,7 +31,7 @@ class InsertLinesDelta extends Delta {
   
   InsertLinesDelta._(data) 
     : super._(data.action, data.range)
-    , lines = JSON.decode(_context.JSON.stringify(data.lines));
+    , lines = _list(data.lines);
   
   js.Proxy _toProxy() => super._toProxy()..['lines'] = js.array(lines);
 }
@@ -59,7 +59,7 @@ class RemoveLinesDelta extends Delta {
   
   RemoveLinesDelta._(data) 
     : super._(data.action, data.range)
-    , lines = JSON.decode(_context.JSON.stringify(data.lines))
+    , lines = _list(data.lines)
     , nl = data.nl;
   
   js.Proxy _toProxy() => 
