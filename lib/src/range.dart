@@ -15,13 +15,18 @@ class Range implements Comparable<Range> {
   bool get isMultiLine => start.row != end.row;
   
   Range(int startRow, int startColumn, int endRow, int endColumn)
-      : this.fromPoints(new Point(startRow, startColumn), 
-                        new Point(endRow, endColumn));
+  : this.fromPoints(
+      new Point(startRow, startColumn), 
+      new Point(endRow, endColumn));
   
   Range.fromPoints(this.start, this.end);
   
-  Range._(proxy) : this(proxy.start.row, proxy.start.column, 
-                        proxy.end.row, proxy.end.column);
+  Range._(proxy) 
+  : this(
+      proxy.start.row, 
+      proxy.start.column, 
+      proxy.end.row, 
+      proxy.end.column);
   
   bool operator ==(Object other) {
     if(identical(this, other)) return true;
@@ -53,14 +58,21 @@ class Range implements Comparable<Range> {
   }
   
   int compareEnd(int row, int column) {
-    if (end.row == row && end.column == column) return 1;
-    else return compare(row, column);
+    if (end.row == row && end.column == column) {
+      return 1;
+    } else {
+      return compare(row, column);
+    }
   }
   
   int compareInside(int row, int column) {
-    if (end.row == row && end.column == column)           return 1;
-    else if (start.row == row && start.column == column)  return -1;
-    else return compare(row, column);
+    if (end.row == row && end.column == column) {
+      return 1;
+    } else if (start.row == row && start.column == column) {
+      return -1;
+    } else {
+      return compare(row, column);
+    }
   }
   
   int comparePoint(Point point) => compare(point.row, point.column);
@@ -96,8 +108,11 @@ class Range implements Comparable<Range> {
   }
   
   int compareStart(int row, int column) {
-    if (start.row == row && start.column == column) return -1;
-    else return compare(row, column);
+    if (start.row == row && start.column == column) {
+      return -1;
+    } else {
+      return compare(row, column);
+    }
   }
   
   /// Compares the given [other] with this range.
