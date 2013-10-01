@@ -276,8 +276,12 @@ class Editor extends _HasProxy {
   /// Sets the value of [overwrite] to the opposite of its current value.
   void toggleOverwrite() => _proxy.toggleOverwrite();
   
+  /// Converts the current [selection] entirely into lowercase characters.
   void toLowerCase() => _proxy.toLowerCase();
+  
+  /// Converts the current [selection] entirely into uppercase characters.
   void toUpperCase() => _proxy.toUpperCase();
+  
   void transposeLetters() => _proxy.transposeLetters();
   void updateSelectionMarkers() => _proxy.updateSelectionMarkers();
 }

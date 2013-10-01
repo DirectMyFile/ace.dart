@@ -380,3 +380,17 @@ void testFontSize() {
   expect(editor.fontSize, 10);
 }
 
+@Test()
+void testToLowerCase() {
+  editor.selection.selectLineEnd();
+  editor.toLowerCase();
+  expect(editor.copyText, equals(sampleTextLine0.toLowerCase()));
+}
+
+@Test()
+void testToUpperCase() {
+  editor.selection.moveCursorDown();
+  editor.selection.selectLineEnd();
+  editor.toUpperCase();
+  expect(editor.copyText, equals(sampleTextLine1.toUpperCase()));
+}
