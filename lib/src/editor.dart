@@ -100,6 +100,9 @@ class Editor extends _HasProxy {
     set printMarginColumn(int printMarginColumn) => 
         _proxy.setPrintMarginColumn(printMarginColumn);
     
+  /// Whether or not this editor is set to read-only mode.
+  /// 
+  /// If `true` then this editor can not be modified.
   bool
     get readOnly => _proxy.getReadOnly();
     set readOnly(bool readOnly) => _proxy.setReadOnly(readOnly);

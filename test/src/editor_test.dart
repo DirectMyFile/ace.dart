@@ -394,3 +394,11 @@ void testToUpperCase() {
   editor.toUpperCase();
   expect(editor.copyText, equals(sampleTextLine1.toUpperCase()));
 }
+
+@Test()
+void testSetReadOnly() {
+  editor.readOnly = true;
+  expect(editor.readOnly, isTrue);
+  editor.readOnly = false;
+  expect(editor.readOnly, isFalse);
+}
