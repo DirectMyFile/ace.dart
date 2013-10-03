@@ -2,6 +2,12 @@
 
 ## 0.0.4-dev+9.11.2013
 
+- Updated to SDK 0.7.6_r28108.
+- Added documentation and test coverage to a number of public methods; please
+consult the commit history for details.
+- Fixed `Editor.onChangeSession` stream type to `EditSessionChangeEvent` thanks
+to a bug fix in the `js-interop` package.
+
 ## 0.0.3+9.11.2013
 
 - Updated to SDK 0.7.5_r27776.

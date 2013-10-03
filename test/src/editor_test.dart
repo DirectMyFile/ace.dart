@@ -352,8 +352,9 @@ void testSetSession() {
   final EditSession initialSession = editor.session;
   final EditSession newSession = createEditSession('snarf', 
       new Mode('ace/mode/text'));
-  editor.onChangeSession.listen(expectAsync1((/*EditSessionChangeEvent ev*/_) {
-    // TODO(rms): expect the correct session event args
+  editor.onChangeSession.listen(expectAsync1((EditSessionChangeEvent ev) {
+    expect(ev.oldSession.value, equals(initialSession.value));
+    expect(ev.newSession.value, equals(newSession.value));
   })); 
   editor.session = newSession;
 }

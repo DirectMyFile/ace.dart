@@ -1,15 +1,5 @@
 part of ace;
 
-// TODO(rms): use this event class once the following pull request lands:
-// https://github.com/dart-lang/js-interop/pull/110
-//class EditSessionChangeEvent {
-//  /// The old [EditSession].
-//  final EditSession oldSession;  
-//  /// The new [EditSession].
-//  final EditSession newSession;  
-//  EditSessionChangeEvent._(this.oldSession, this.newSession);
-//}
-
 /// The main entry point into the Ace functionality.
 /// 
 /// An [Editor] manages an [EditSession] (which in turn manages a [Document]), 
@@ -27,7 +17,7 @@ class Editor extends _HasProxy {
   final _onBlur = new StreamController.broadcast();
   final _onChange = new StreamController<Delta>.broadcast();
   final _onChangeSession = 
-      new StreamController/*<EditSessionChangeEvent>*/.broadcast();
+      new StreamController<EditSessionChangeEvent>.broadcast();
   final _onCopy = new StreamController<String>.broadcast();
   final _onFocus = new StreamController.broadcast();
   final _onPaste = new StreamController<String>.broadcast();
@@ -39,7 +29,7 @@ class Editor extends _HasProxy {
   Stream<Delta> get onChange => _onChange.stream;
   
   /// Fired whenever the [session] changes.
-  Stream/*<EditSessionChangeEvent>*/ get onChangeSession => 
+  Stream<EditSessionChangeEvent> get onChangeSession => 
       _onChangeSession.stream;
   
   /// Fired whenever text is copied.
@@ -150,10 +140,9 @@ class Editor extends _HasProxy {
     _jsOnChange = new js.Callback.many((e,__) =>
         _onChange.add(new Delta._for(e.data)));
     _jsOnChangeSession = new js.Callback.many((e,__) {
-      _onChangeSession.add(null);
-//      _onChangeSession.add(new EditSessionChangeEvent._(
-//          new EditSession._(e.oldSession),
-//          new EditSession._(e.session))); 
+      _onChangeSession.add(new EditSessionChangeEvent._(
+          new EditSession._(e.oldSession),
+          new EditSession._(e.session))); 
     });
     _jsOnCopy = new js.Callback.many((e,__) => _onCopy.add(e));
     _jsOnFocus = new js.Callback.many((_,__) => _onFocus.add(this));
@@ -287,4 +276,15 @@ class Editor extends _HasProxy {
   
   void transposeLetters() => _proxy.transposeLetters();
   void updateSelectionMarkers() => _proxy.updateSelectionMarkers();
+}
+
+class EditSessionChangeEvent {
+  
+  /// The old [EditSession].
+  final EditSession oldSession;  
+  
+  /// The new [EditSession].
+  final EditSession newSession;  
+  
+  EditSessionChangeEvent._(this.oldSession, this.newSession);
 }
