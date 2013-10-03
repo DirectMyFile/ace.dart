@@ -4,9 +4,9 @@ This directory contains a copy of [ace-builds][] `src-min-noconflict` as well as
 a copy of the [LICENSE][ace-license] for the code.
 
 The javascript releases occur approximately once per month, and the version 
-currently in use by this package is maintained in the version string metadata.  
-For example, in `ace.dart` version `0.0.4+9.11.2013` we provide a copy of 
-`ace-builds` version `9.11.2013`.
+currently in use by this package is maintained in the version string 
+metadata.  For example, in `ace.dart` version `0.0.4+9.11.2013` we provide a 
+copy of `ace-builds` version `9.11.2013`.
 
 For the integration of `ace.js` important bug fixes or other show-stoppers, 
 please open an issue or send a pull request.  Also note that you may choose to 

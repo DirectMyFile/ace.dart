@@ -23,7 +23,7 @@ _Ace.js uses a BSD license as described in its own [LICENSE][ace-license] file._
 [ace-api]: http://ace.ajax.org/#nav=api
 [ace-builds]: https://github.com/ajaxorg/ace-builds/
 [ace-license]: https://github.com/rmsmith/ace.dart/blob/master/lib/src/js/LICENSE
-[ace-readme]: https://github.com/rmsmith/ace.dart/blob/master/lib/src/js/README
+[ace-readme]: https://github.com/rmsmith/ace.dart/blob/master/lib/src/js/README.md
 [api]: http://rmsmith.github.com/ace.dart/ace.html
 [badge]: https://drone.io/github.com/rmsmith/ace.dart/latest
 [dart]: http://www.dartlang.org/
