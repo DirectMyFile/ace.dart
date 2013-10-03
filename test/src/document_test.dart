@@ -118,8 +118,17 @@ void testNewLineMode() {
 
 @Test()
 void testPositionToIndex() {
-  expect(document.positionToIndex(const Point(1, 0), 0),
-      equals(sampleTextLine0.length + document.newLineCharacter.length));
+  expect(document.positionToIndex(const Point(3, 0)),
+      equals(
+          sampleTextLine0.length + 
+          sampleTextLine1.length + 
+          sampleTextLine2.length + 
+          3 * document.newLineCharacter.length)); 
+  expect(document.positionToIndex(const Point(3, 0), startRow: 1),
+      equals(
+          sampleTextLine1.length + 
+          sampleTextLine2.length + 
+          2 * document.newLineCharacter.length));
 }
 
 @Test()

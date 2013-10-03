@@ -91,13 +91,17 @@ class Document extends _HasProxy {
   bool isNewLine(String text) => _proxy.isNewLine(text);      
   
   /// Converts the given [position] in this document to the character's index.
+  /// 
   /// Index refers to the "absolute position" of a character in this document.
   /// For example:
   ///     var x = 0; // 10 characters, plus one for newline
   ///     var y = -1;
   /// Here, `y` has an index of `15`; `10` characters for the first row, a
-  /// newline character, and `5` characters until `y` in the second row.    
-  int positionToIndex(Point position, int startRow) =>
+  /// newline character, and `5` characters until `y` in the second row. 
+  /// 
+  /// The optional [startRow] defaults to `0` and represents the row from which 
+  /// to start the conversion.
+  int positionToIndex(Point position, {int startRow: 0}) =>
       _proxy.positionToIndex(position._toProxy(), startRow);
   
   /// Removes the given [range] from this document.
