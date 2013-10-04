@@ -83,12 +83,15 @@ abstract class Document extends _Disposable {
   Point remove(Range range);
   
   /// Removes the range specified by [row/startColumn] -> [row/endColumn] and 
-  /// returns the removed [range.start] point.  This method also fires an
-  /// [onChange] event.
+  /// returns the removed [range.start] point.  
+  /// 
+  /// This method also fires an [onChange] event.
   Point removeInLine(int row, int startColumn, int endColumn);
   
-  /// Removes the range of lines from the given [startRow] -> [endRow] and
-  /// returns the removed lines.  This method also fires an [onChange] event.
+  /// Removes the range of lines from the given [startRow] -> [endRow], 
+  /// inclusive, and returns the removed lines.  
+  /// 
+  /// This method also fires an [onChange] event.
   List<String> removeLines(int startRow, int endRow);
   
   /// Removes the [newLineCharacter] between the given [row] and the row 
