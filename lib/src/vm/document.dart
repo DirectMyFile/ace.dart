@@ -94,8 +94,20 @@ class _Document implements Document {
   
   Point remove(Range range) => throw new UnimplementedError();
   
-  Point removeInLine(int row, int startColumn, int endColumn) => 
-      throw new UnimplementedError();
+  Point removeInLine(int row, int startColumn, int endColumn) {
+    if (startColumn == endColumn) {
+      return new Point(row, startColumn);
+    }
+    final range = new Range(row, startColumn, row, endColumn);
+    final line = getLine(row);
+    final removed = line.substring(startColumn, endColumn);
+    final newLine = line.substring(0, startColumn) + 
+        line.substring(endColumn, line.length);
+    _lines.replaceRange(row, row + 1, [newLine]);    
+    final delta = new RemoveTextDelta._(range, removed);
+    _onChange.add(delta);
+    return range.start;
+  }
   
   List<String> removeLines(int startRow, int endRow) => 
       throw new UnimplementedError();
