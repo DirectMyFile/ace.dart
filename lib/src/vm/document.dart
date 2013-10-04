@@ -109,14 +109,23 @@ class _Document implements Document {
     return range.start;
   }
   
-  List<String> removeLines(int startRow, int endRow) => 
-      throw new UnimplementedError();
+  List<String> removeLines(int startRow, int endRow) {
+    // TODO(rms): ace.js does not assert on the arguments, but rather returns a
+    // call to `remove`; that won't fly with Dart's type checker and seems way
+    // too magical, so for now I've implemented asserts.  If we start to hit
+    // these asserts then we should investigate what funky code paths rely on
+    // calls to this method with out of range arguments.
+    assert(startRow >= 0);
+    assert(endRow < length);
+    return this._removeLines(startRow, endRow);
+  }
   
   List<String> _removeLines(int startRow, int endRow) {
     final range = new Range(startRow, 0, endRow + 1, 0);    
     // TODO(rms): https://code.google.com/p/dart/issues/detail?id=13832
     final int end = endRow - startRow + 1;
-    final removed = new List.from(_lines.getRange(startRow, end));
+    final removed = 
+        new List.from(_lines.getRange(startRow, end), growable: false);
     _lines.removeRange(startRow, end);
     final delta = new RemoveLinesDelta._(range, removed, newLineCharacter);
     _onChange.add(delta);
