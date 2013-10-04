@@ -22,7 +22,7 @@ class _DocumentProxy extends _HasProxy implements Document {
     
   _DocumentProxy._(js.Proxy proxy) : super(proxy) {
     _jsOnChange = new js.Callback.many((e,__) => 
-        _onChange.add(new Delta._for(e.data)));
+        _onChange.add(new Delta._forProxy(e.data)));
     _proxy.on('change', _jsOnChange);
   }
   

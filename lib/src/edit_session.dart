@@ -183,7 +183,7 @@ class EditSession extends _HasProxy {
   
   EditSession._(js.Proxy proxy) : super(proxy) {    
     _jsOnChange = new js.Callback.many((e,__) => 
-        _onChange.add(new Delta._for(e.data)));
+        _onChange.add(new Delta._forProxy(e.data)));
     _jsOnChangeBreakpoint =
         new js.Callback.many((_,__) => _onChangeBreakpoint.add(this));
     _jsOnChangeOverwrite = 

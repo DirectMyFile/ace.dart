@@ -138,7 +138,7 @@ class Editor extends _HasProxy {
   Editor._(js.Proxy proxy) : super(proxy) {
     _jsOnBlur = new js.Callback.many((_,__) => _onBlur.add(this));
     _jsOnChange = new js.Callback.many((e,__) =>
-        _onChange.add(new Delta._for(e.data)));
+        _onChange.add(new Delta._forProxy(e.data)));
     _jsOnChangeSession = new js.Callback.many((e,__) {
       _onChangeSession.add(new EditSessionChangeEvent._(
           new EditSession._(e.oldSession),
