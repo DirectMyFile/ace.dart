@@ -4,7 +4,7 @@ class _Document implements Document {
   final List<String> _lines = new List<String>();
   
   final _onChange = new StreamController<Delta>.broadcast();
-  Stream<Delta> get onChange => throw new UnimplementedError();
+  Stream<Delta> get onChange => _onChange.stream;
   
   int get length => _lines.length;
   
@@ -15,8 +15,12 @@ class _Document implements Document {
     set newLineMode(String newLineMode) => throw new UnimplementedError();
   
   String
-    get value => throw new UnimplementedError();
-    set value(String text) => throw new UnimplementedError();
+    get value => getAllLines().join(newLineCharacter);
+    set value(String text) {
+      final len = length;
+      remove(new Range(0, 0, len, getLine(len - 1).length));
+      insert(const Point(0, 0), text);
+    }
     
   _Document([String text = '']) {
     if (text.length == 0) {
