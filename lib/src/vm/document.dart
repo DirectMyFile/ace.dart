@@ -36,6 +36,19 @@ class _Document implements Document {
   
   void applyDeltas(Iterable<Delta> deltas) => throw new UnimplementedError();
   
+  Point _clipPosition(Point position) {
+    final length = this.length;
+    var row = position.row;
+    var column = position.column;
+    if (row >= length) {
+      row = math.max(0, length - 1);
+      column = getLine(length - 1).length;
+    } else if (row < 0) {
+      row = 0;
+    }
+    return new Point(row, column);
+  }
+  
   Anchor createAnchor(int row, int column) => throw new UnimplementedError();
   
   List<String> getAllLines() => _lines.toList(growable: false);
