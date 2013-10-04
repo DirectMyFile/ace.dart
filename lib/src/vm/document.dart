@@ -3,6 +3,7 @@ part of ace;
 class _Document implements Document {
   final List<String> _lines = new List<String>();
   
+  final _onChange = new StreamController<Delta>.broadcast();
   Stream<Delta> get onChange => throw new UnimplementedError();
   
   int get length => _lines.length;
@@ -25,7 +26,9 @@ class _Document implements Document {
     }
   }
     
-  void dispose() => throw new UnimplementedError();
+  void dispose() {
+    _onChange.close();
+  }
   
   void applyDeltas(Iterable<Delta> deltas) => throw new UnimplementedError();
   
@@ -40,8 +43,20 @@ class _Document implements Document {
   
   Point insert(Point position, String text) => throw new UnimplementedError();
   
-  Point insertInLine(Point position, String text) => 
-      throw new UnimplementedError();
+  Point insertInLine(Point position, String text) {
+    if (text.length == 0) return position;    
+    var line = _lines[position.row];
+    if (line == null) line = "";
+    _lines[position.row] = 
+        line.substring(0, position.column) + 
+        text + 
+        line.substring(position.column);
+    final end = new Point(position.row, position.column + text.length);
+    final delta = new InsertTextDelta._(
+        new Range.fromPoints(position, end), text);    
+    _onChange.add(delta);
+    return end;
+  }
   
   Point insertLines(int row, Iterable<String> lines) => 
       throw new UnimplementedError();
