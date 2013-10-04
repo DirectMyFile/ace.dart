@@ -61,8 +61,11 @@ class EditSession extends _HasProxy {
   
   /// The current [Document] associated with this session.
   Document
-    get document => new Document._(_proxy.getDocument());
-    set document(Document document) => _proxy.setDocument(document._proxy);
+    get document => new _DocumentProxy._(_proxy.getDocument());
+    set document(Document document) {
+      assert(document is _DocumentProxy);
+      _proxy.setDocument((document as _DocumentProxy)._proxy);
+    }
   
   /// Returns the current [document.length].
   int get length => _proxy.getLength();
@@ -173,8 +176,10 @@ class EditSession extends _HasProxy {
   
   /// Creates a new EditSession and associates it with the given [document] and 
   /// text [mode].
-  EditSession(Document document, Mode mode) : this._(
-      new js.Proxy(_context.ace.EditSession, document._proxy, mode._mode));
+  EditSession(Document document, Mode mode) 
+  : this._(
+      new js.Proxy(_context.ace.EditSession, 
+          (document as _DocumentProxy)._proxy, mode._mode));
   
   EditSession._(js.Proxy proxy) : super(proxy) {    
     _jsOnChange = new js.Callback.many((e,__) => 

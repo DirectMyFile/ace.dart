@@ -21,7 +21,7 @@ class Anchor extends _HasProxy {
   Stream<AnchorChangeEvent> get onChange => _onChange.stream;
   
   /// The document of this anchor.
-  Document get document => new Document._(_proxy.getDocument());
+  Document get document => new _DocumentProxy._(_proxy.getDocument());
   
   /// The current position of this anchor.
   Point get position => new Point._(_proxy.getPosition());
@@ -29,8 +29,9 @@ class Anchor extends _HasProxy {
   /// Creates a new Anchor and associates it with the given [document] at the
   /// given [row] and [column] starting position.
   Anchor(Document document, int row, int column) 
-    : this._(new js.Proxy(_context.ace.define.modules['ace/anchor'].Anchor, 
-        document._proxy, row, column));
+    : this._(
+        new js.Proxy(_context.ace.define.modules['ace/anchor'].Anchor, 
+        (document as _DocumentProxy)._proxy, row, column));
   
   Anchor._(proxy) : super(proxy) {
     _jsOnChange = new js.Callback.many((e,__) =>

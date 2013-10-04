@@ -3,6 +3,7 @@ library ace;
 import 'dart:async';
 import 'dart:convert';
 import 'dart:html' as html;
+import 'dart:math' as math;
 import 'package:js/js.dart' as js;
 
 part 'src/_.dart';
@@ -20,6 +21,8 @@ part 'src/text_input.dart';
 part 'src/theme.dart';
 part 'src/undo_manager.dart';
 part 'src/virtual_renderer.dart';
+part 'src/proxy/document.dart';
+part 'src/vm/document.dart';
 
 /// Creates a new [EditSession] with the given [text] and language [mode].
 EditSession createEditSession(String text, Mode mode) {
