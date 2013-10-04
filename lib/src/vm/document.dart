@@ -38,10 +38,10 @@ class _Document implements Document {
   
   Anchor createAnchor(int row, int column) => throw new UnimplementedError();
   
-  List<String> getAllLines() => throw new UnimplementedError();
+  List<String> getAllLines() => _lines.toList(growable: false);
   
   List<String> getLines(int firstRow, int lastRow) => 
-      throw new UnimplementedError();
+      _lines.getRange(firstRow, lastRow + 1).toList(growable: false);
   
   String getLine(int row) => throw new UnimplementedError();
   
