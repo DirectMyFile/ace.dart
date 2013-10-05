@@ -1,6 +1,7 @@
 part of ace;
 
 class _Document implements Document {
+  
   final List<String> _lines = new List<String>();
   
   final _onChange = new StreamController<Delta>.broadcast();
