@@ -5,6 +5,7 @@ part of ace;
 /// A [Range] can be thought of as a rectangle from a [start] point to an [end]
 /// point.
 class Range implements Comparable<Range> {
+  
   final Point start;
   final Point end;
 

@@ -8,6 +8,7 @@ part of ace;
 /// An instance of [EditSession] may be attached to only one [Document].  An
 /// instance of [Document] may be attached to more than one [EditSession].
 class EditSession extends _HasProxy {
+  
   js.Callback _jsOnChange;
   js.Callback _jsOnChangeBreakpoint;
   js.Callback _jsOnChangeOverwrite;

@@ -1,6 +1,7 @@
 part of ace;
 
 class Theme extends _HasProxy {
+  
   static const AMBIANCE                 = 'ambiance';
   static const CHAOS                    = 'chaos';
   static const CHROME                   = 'chrome';

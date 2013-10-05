@@ -7,6 +7,7 @@ part of ace;
 /// Event sessions dealing with the mouse and keyboard are bubbled up from the
 /// [Document] to the [Editor], which decides what to do with them.
 class Editor extends _HasProxy {
+  
   js.Callback _jsOnBlur;
   js.Callback _jsOnChange;
   js.Callback _jsOnChangeSession;

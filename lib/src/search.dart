@@ -1,6 +1,7 @@
 part of ace;
 
 class SearchOptions {
+  
   /// The string or regular expression you are looking for.
   final String needle;
   
