@@ -24,6 +24,7 @@ part 'src/virtual_renderer.dart';
 part 'src/proxy/anchor.dart';
 part 'src/proxy/document.dart';
 part 'src/proxy/mode.dart';
+part 'src/proxy/search.dart';
 part 'src/proxy/selection.dart';
 part 'src/proxy/theme.dart';
 part 'src/proxy/undo_manager.dart';

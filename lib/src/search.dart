@@ -68,16 +68,13 @@ class SearchOptions {
 }
 
 /// Handles text searches within a [Document].
-class Search extends _HasProxy {
+abstract class Search extends _Disposable {
   
   /// The current [SearchOptions].
-  SearchOptions
-    get options => new SearchOptions._(_proxy.getOptions());
-    set options(SearchOptions options) => _proxy.setOptions(options._toProxy());
+  SearchOptions options;
   
   /// Creates a new Search with default [SearchOptions]. 
-  Search()
-    : super(new js.Proxy(_context.ace.define.modules['ace/search'].Search));
+  factory Search() => new _SearchProxy();
   
   /// Searches for [options.needle] in the given [session]. 
   /// 
@@ -86,10 +83,7 @@ class Search extends _HasProxy {
   /// 
   /// If [options.backwards] is `true`, the search goes backwards in the 
   /// [session].
-  Range find(EditSession session) {
-    final range = _proxy.find(session._proxy);
-    return range == null ? null : new Range._(range);
-  }
+  Range find(EditSession session);
   
   /// Searches for all occurrences  of [options.needle] in the given [session]. 
   /// 
@@ -99,7 +93,5 @@ class Search extends _HasProxy {
   /// 
   /// If [options.backwards] is `true`, the search goes backwards in the 
   /// [session].
-  Iterable<Range> findAll(EditSession session) => 
-      _list(_proxy.findAll(session._proxy))
-      .map((range) => new Range._(js.map(range)));
+  Iterable<Range> findAll(EditSession session);
 }
