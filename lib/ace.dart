@@ -23,6 +23,7 @@ part 'src/undo_manager.dart';
 part 'src/virtual_renderer.dart';
 part 'src/proxy/anchor.dart';
 part 'src/proxy/document.dart';
+part 'src/proxy/edit_session.dart';
 part 'src/proxy/mode.dart';
 part 'src/proxy/search.dart';
 part 'src/proxy/selection.dart';
@@ -36,7 +37,7 @@ EditSession createEditSession(String text, Mode mode) {
   assert(text != null);
   assert(mode != null);
   assert(mode is _ModeProxy);
-  return new EditSession._( _context.ace.createEditSession(text, 
+  return new _EditSessionProxy._( _context.ace.createEditSession(text, 
       (mode as _ModeProxy)._mode));
 }
 

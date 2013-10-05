@@ -25,7 +25,7 @@ class _SelectionProxy extends _HasProxy implements Selection {
   _SelectionProxy(EditSession session) 
   : this._(new js.Proxy(
         _context.ace.define.modules['ace/selection'].Selection, 
-        session._proxy));
+        (session as _EditSessionProxy)._proxy));
   
   _SelectionProxy._(js.Proxy proxy) : super(proxy) {
     _jsOnChangeCursor =

@@ -111,8 +111,11 @@ class Editor extends _HasProxy {
   /// The current [EditSession] being used; setting a new session fires an 
   /// [onChangeSession] event.
   EditSession
-    get session => new EditSession._(_proxy.getSession());
-    set session(EditSession session) => _proxy.setSession(session._proxy);
+    get session => new _EditSessionProxy._(_proxy.getSession());
+    set session(EditSession session) { 
+      assert(session is _EditSessionProxy);
+      _proxy.setSession((session as _EditSessionProxy)._proxy);
+    }
   
   /// Whether or not invisible characters such as the space character and new 
   /// line character are shown in this editor.
@@ -145,8 +148,8 @@ class Editor extends _HasProxy {
         _onChange.add(new Delta._forProxy(e.data)));
     _jsOnChangeSession = new js.Callback.many((e,__) {
       _onChangeSession.add(new EditSessionChangeEvent._(
-          new EditSession._(e.oldSession),
-          new EditSession._(e.session))); 
+          new _EditSessionProxy._(e.oldSession),
+          new _EditSessionProxy._(e.session))); 
     });
     _jsOnCopy = new js.Callback.many((e,__) => _onCopy.add(e));
     _jsOnFocus = new js.Callback.many((_,__) => _onFocus.add(this));
