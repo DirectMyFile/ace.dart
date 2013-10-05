@@ -21,6 +21,7 @@ part 'src/text_input.dart';
 part 'src/theme.dart';
 part 'src/undo_manager.dart';
 part 'src/virtual_renderer.dart';
+part 'src/proxy/anchor.dart';
 part 'src/proxy/document.dart';
 part 'src/proxy/selection.dart';
 part 'src/proxy/undo_manager.dart';

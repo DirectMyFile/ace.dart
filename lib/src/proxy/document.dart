@@ -36,7 +36,7 @@ class _DocumentProxy extends _HasProxy implements Document {
       _proxy.applyDeltas(js.array(deltas.map((delta) => delta._toProxy())));
   
   Anchor createAnchor(int row, int column) =>
-      new Anchor._(_proxy.createAnchor(row, column));
+      new _AnchorProxy._(_proxy.createAnchor(row, column));
 
   List<String> getAllLines() => _list(_proxy.getAllLines());
   
