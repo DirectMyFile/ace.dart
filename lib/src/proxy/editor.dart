@@ -101,7 +101,7 @@ class _EditorProxy extends _HasProxy implements Editor {
     set showPrintMargin(bool showPrintMargin) => 
         _proxy.setShowPrintMargin(showPrintMargin);
     
-  TextInput get textInput => new TextInput._(_proxy.textInput);
+  TextInput get textInput => new _TextInputProxy._(_proxy.textInput);
     
   Theme
     get theme => new _ThemeProxy._(_proxy.getTheme());

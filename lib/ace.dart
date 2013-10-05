@@ -28,6 +28,7 @@ part 'src/proxy/edit_session.dart';
 part 'src/proxy/mode.dart';
 part 'src/proxy/search.dart';
 part 'src/proxy/selection.dart';
+part 'src/proxy/text_input.dart';
 part 'src/proxy/theme.dart';
 part 'src/proxy/undo_manager.dart';
 part 'src/proxy/virtual_renderer.dart';
