@@ -104,7 +104,7 @@ class Editor extends _HasProxy {
     get scrollSpeed => _proxy.getScrollSpeed();
     set scrollSpeed(int scrollSpeed) => _proxy.setScrollSpeed(scrollSpeed);
     
-  Selection get selection => new Selection._(_proxy.getSelection());
+  Selection get selection => new _SelectionProxy._(_proxy.getSelection());
   Range get selectionRange => new Range._(_proxy.getSelectionRange());
   
   /// The current [EditSession] being used; setting a new session fires an 
