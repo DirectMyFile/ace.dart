@@ -23,6 +23,7 @@ part 'src/undo_manager.dart';
 part 'src/virtual_renderer.dart';
 part 'src/proxy/anchor.dart';
 part 'src/proxy/document.dart';
+part 'src/proxy/mode.dart';
 part 'src/proxy/selection.dart';
 part 'src/proxy/theme.dart';
 part 'src/proxy/undo_manager.dart';
@@ -33,7 +34,9 @@ part 'src/vm/document.dart';
 EditSession createEditSession(String text, Mode mode) {
   assert(text != null);
   assert(mode != null);
-  return new EditSession._( _context.ace.createEditSession(text, mode._mode));
+  assert(mode is _ModeProxy);
+  return new EditSession._( _context.ace.createEditSession(text, 
+      (mode as _ModeProxy)._mode));
 }
 
 /// Embed an Ace [Editor] instance into the DOM, at the given [element].

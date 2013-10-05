@@ -73,8 +73,11 @@ class EditSession extends _HasProxy {
   
   /// The current [Mode] of this session.
   Mode
-    get mode => new Mode._(_proxy.getMode());
-    set mode(Mode mode) => _proxy.setMode(mode._mode);
+    get mode => new _ModeProxy._(_proxy.getMode());
+    set mode(Mode mode) {
+      assert(mode is _ModeProxy);
+      _proxy.setMode((mode as _ModeProxy)._mode);
+    }
     
   /// The new line mode.  May be one of `windows`, `unix` or `auto`.
   // TODO(rms): enum
@@ -180,7 +183,7 @@ class EditSession extends _HasProxy {
   EditSession(Document document, Mode mode) 
   : this._(
       new js.Proxy(_context.ace.EditSession, 
-          (document as _DocumentProxy)._proxy, mode._mode));
+          (document as _DocumentProxy)._proxy, (mode as _ModeProxy)._mode));
   
   EditSession._(js.Proxy proxy) : super(proxy) {    
     _jsOnChange = new js.Callback.many((e,__) => 
