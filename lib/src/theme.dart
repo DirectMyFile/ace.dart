@@ -1,6 +1,6 @@
 part of ace;
 
-class Theme extends _HasProxy {
+abstract class Theme extends _Disposable {
   
   static const AMBIANCE                 = 'ambiance';
   static const CHAOS                    = 'chaos';
@@ -48,41 +48,19 @@ class Theme extends _HasProxy {
               TOMORROW_NIGHT_BRIGHT, TOMORROW_NIGHT_EIGHTIES, TWILIGHT, 
               VIBRANT_INK, XCODE ];
   
-  final String _themePath;
+  String get cssClass;
   
-  get _theme => _hasProxy ? _proxy : _themePath;
+  String get cssText;
   
-  bool get isDark {
-    if (!_hasProxy) throw new StateError('$_themePath is not yet loaded.');
-    return _proxy.isDark;
-  }
-  
-  String get cssClass {
-    if (!_hasProxy) throw new StateError('$_themePath is not yet loaded.');
-    return _proxy.cssClass;
-  }
-  
-  String get cssText {
-    if (!_hasProxy) throw new StateError('$_themePath is not yet loaded.');
-    return _proxy.cssText;
-  }
+  bool get isDark;
   
   /// Creates a theme for the given [name].
   /// 
   /// The [name] must be one of the values in [THEMES].
-  Theme.named(String name) : this('ace/theme/$name');
+  factory Theme.named(String name) => new _ThemeProxy.named(name);
   
   /// Creates a theme for the given [themePath].
   /// 
   /// The [themePath] is a path such as `ace/theme/monokai`.
-  Theme(String themePath) : super.async(new Future<js.Proxy>(() {
-    final completer = new Completer<js.Proxy>();
-    _context.ace.config.loadModule(js.array(['theme', themePath]), 
-        new js.Callback.once((module) {
-            completer.complete(js.retain(module));
-        }));
-    return completer.future;
-  })), _themePath = themePath;
-  
-  Theme._(js.Proxy proxy) : super(proxy), _themePath = null;
+  factory Theme(String themePath) => new _ThemeProxy(themePath);
 }

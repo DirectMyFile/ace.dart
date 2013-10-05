@@ -130,8 +130,11 @@ class Editor extends _HasProxy {
   TextInput get textInput => new TextInput._(_proxy.textInput);
     
   Theme
-    get theme => new Theme._(_proxy.getTheme());
-    set theme(Theme theme) => _proxy.setTheme(theme._theme);
+    get theme => new _ThemeProxy._(_proxy.getTheme());
+    set theme(Theme theme) {
+      assert(theme is _ThemeProxy);
+      _proxy.setTheme((theme as _ThemeProxy)._theme);
+    }
   
   /// Returns the current [session.value].
   String get value => _proxy.getValue();

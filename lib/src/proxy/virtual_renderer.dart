@@ -14,7 +14,7 @@ class _VirtualRendererProxy extends _HasProxy implements VirtualRenderer {
         new js.Proxy(
             _context.ace.define.modules['ace/virtual_renderer'].VirtualRenderer, 
             container, 
-            theme._theme));
+            (theme as _ThemeProxy)._theme));
     
   _VirtualRendererProxy._(js.Proxy proxy) : super(proxy);
   
