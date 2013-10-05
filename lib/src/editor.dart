@@ -6,283 +6,200 @@ part of ace;
 /// as well as the [VirtualRenderer], which draws everything to the screen.
 /// Event sessions dealing with the mouse and keyboard are bubbled up from the
 /// [Document] to the [Editor], which decides what to do with them.
-class Editor extends _HasProxy {
-  
-  js.Callback _jsOnBlur;
-  js.Callback _jsOnChange;
-  js.Callback _jsOnChangeSession;
-  js.Callback _jsOnCopy;
-  js.Callback _jsOnFocus;
-  js.Callback _jsOnPaste;
-  
-  final _onBlur = new StreamController.broadcast();
-  final _onChange = new StreamController<Delta>.broadcast();
-  final _onChangeSession = 
-      new StreamController<EditSessionChangeEvent>.broadcast();
-  final _onCopy = new StreamController<String>.broadcast();
-  final _onFocus = new StreamController.broadcast();
-  final _onPaste = new StreamController<String>.broadcast();
+abstract class Editor extends _Disposable {
   
   /// Fired whenever this editor has been blurred.
-  Stream get onBlur => _onBlur.stream;
+  Stream get onBlur;
   
   /// Fired whenever the [session.document] changes.
-  Stream<Delta> get onChange => _onChange.stream;
+  Stream<Delta> get onChange;
   
   /// Fired whenever the [session] changes.
-  Stream<EditSessionChangeEvent> get onChangeSession => 
-      _onChangeSession.stream;
+  Stream<EditSessionChangeEvent> get onChangeSession;
   
   /// Fired whenever text is copied.
-  Stream<String> get onCopy => _onCopy.stream;
+  Stream<String> get onCopy;
   
   /// Fired whenever this editor comes into focus.
-  Stream get onFocus => _onFocus.stream;
+  Stream get onFocus;
   
   /// Fired whenever text is pasted.
-  Stream<String> get onPaste => _onPaste.stream;  
+  Stream<String> get onPaste;  
   
   /// The string of text in the current [selectionRange].
-  String get copyText => _proxy.getCopyText();
+  String get copyText;
   
   /// The current position of the cursor.
-  Point get cursorPosition => new Point._(_proxy.getCursorPosition());
+  Point get cursorPosition;
   
   /// The current mouse drag delay, in milliseconds.
-  int
-    get dragDelay => _proxy.getDragDelay();
-    set dragDelay(int dragDelay) => _proxy.setDragDelay(dragDelay);
-  
+  int dragDelay;
+
   /// The index of the first visible row.
-  int get firstVisibleRow => _proxy.getFirstVisibleRow();
+  int get firstVisibleRow;
   
   /// The font size in pixels for this editor's text.
-  int
-    get fontSize => _proxy.getFontSize();
-    set fontSize(int fontSize) => _proxy.setFontSize(fontSize);
-  
+  int fontSize;
+
   /// Whether or not the current line should be highlighted.
-  bool
-    get highlightActiveLine => _proxy.getHighlightActiveLine();
-    set highlightActiveLine(bool highlightActiveLine) =>
-        _proxy.setHighlightActiveLine(highlightActiveLine);
-    
-  bool
-    get highlightGutterLine => _proxy.getHighlightGutterLine();
-    set highlightGutterLine(bool highlightGutterLine) =>
-        _proxy.setHighlightGutterLine(highlightGutterLine);
-    
-  bool
-    get highlightSelectedWord => _proxy.getHighlightSelectedWord();
-    set highlightSelectedWord(bool highlightSelectedWord) =>
-        _proxy.setHighlightSelectedWord(highlightSelectedWord);
-    
+  bool highlightActiveLine;
+
+  bool highlightGutterLine;
+
+  bool highlightSelectedWord;
+
   /// Returns _true_ if current [textInput] is in focus.
-  bool get isFocused => _proxy.isFocused();
+  bool get isFocused;
   
   /// The current [session.overwrite].
-  bool
-    get overwrite => _proxy.getOverwrite();
-    set overwrite(bool overwrite) => _proxy.setOverwrite(overwrite);
+  bool overwrite;
   
   /// The column number of where the print margin is.
-  int
-    get printMarginColumn => _proxy.getPrintMarginColumn();
-    set printMarginColumn(int printMarginColumn) => 
-        _proxy.setPrintMarginColumn(printMarginColumn);
-    
+  int printMarginColumn;
+
   /// Whether or not this editor is set to read-only mode.
   /// 
   /// If `true` then this editor can not be modified.
-  bool
-    get readOnly => _proxy.getReadOnly();
-    set readOnly(bool readOnly) => _proxy.setReadOnly(readOnly);
-  
-  VirtualRenderer get renderer => new _VirtualRendererProxy._(_proxy.renderer);
+  bool readOnly;
+
+  VirtualRenderer get renderer;
   
   /// The current mouse scroll speed, in milliseconds.
-  int
-    get scrollSpeed => _proxy.getScrollSpeed();
-    set scrollSpeed(int scrollSpeed) => _proxy.setScrollSpeed(scrollSpeed);
-    
-  Selection get selection => new _SelectionProxy._(_proxy.getSelection());
-  Range get selectionRange => new Range._(_proxy.getSelectionRange());
+  int scrollSpeed;
+
+  Selection get selection;
+  
+  Range get selectionRange;
   
   /// The current [EditSession] being used; setting a new session fires an 
   /// [onChangeSession] event.
-  EditSession
-    get session => new _EditSessionProxy._(_proxy.getSession());
-    set session(EditSession session) { 
-      assert(session is _EditSessionProxy);
-      _proxy.setSession((session as _EditSessionProxy)._proxy);
-    }
+  EditSession session;
   
   /// Whether or not invisible characters such as the space character and new 
   /// line character are shown in this editor.
-  bool
-    get showInvisibles => _proxy.getShowInvisibles();
-    set showInvisibles(bool showInvisibles) => 
-        _proxy.setShowInvisibles(showInvisibles);
-  
+  bool showInvisibles;
+
   /// Whether or not the [printMarginColumn] is shown in this editor.
-  bool
-    get showPrintMargin => _proxy.getShowPrintMargin();
-    set showPrintMargin(bool showPrintMargin) => 
-        _proxy.setShowPrintMargin(showPrintMargin);
+  bool showPrintMargin;
+
+  TextInput get textInput;
     
-  TextInput get textInput => new TextInput._(_proxy.textInput);
-    
-  Theme
-    get theme => new _ThemeProxy._(_proxy.getTheme());
-    set theme(Theme theme) {
-      assert(theme is _ThemeProxy);
-      _proxy.setTheme((theme as _ThemeProxy)._theme);
-    }
+  Theme theme;
   
   /// Returns the current [session.value].
-  String get value => _proxy.getValue();
-    
-  Editor._(js.Proxy proxy) : super(proxy) {
-    _jsOnBlur = new js.Callback.many((_,__) => _onBlur.add(this));
-    _jsOnChange = new js.Callback.many((e,__) =>
-        _onChange.add(new Delta._forProxy(e.data)));
-    _jsOnChangeSession = new js.Callback.many((e,__) {
-      _onChangeSession.add(new EditSessionChangeEvent._(
-          new _EditSessionProxy._(e.oldSession),
-          new _EditSessionProxy._(e.session))); 
-    });
-    _jsOnCopy = new js.Callback.many((e,__) => _onCopy.add(e));
-    _jsOnFocus = new js.Callback.many((_,__) => _onFocus.add(this));
-    _jsOnPaste = new js.Callback.many((e,__) => _onPaste.add(e));
-    _proxy.on('blur', _jsOnBlur);
-    _proxy.on('change', _jsOnChange);
-    _proxy.on('changeSession', _jsOnChangeSession);
-    _proxy.on('copy', _jsOnCopy);
-    _proxy.on('focus', _jsOnFocus);
-    _proxy.on('paste', _jsOnPaste);
-  }
+  String get value;
   
-  void _onDispose() {
-    _onBlur.close();
-    _onChange.close();
-    _onChangeSession.close();
-    _onCopy.close();
-    _onFocus.close();
-    _onPaste.close();
-    _jsOnBlur.dispose();
-    _jsOnChange.dispose();
-    _jsOnChangeSession.dispose();
-    _jsOnCopy.dispose();
-    _jsOnFocus.dispose();
-    _jsOnPaste.dispose();
-    _proxy.destroy();
-  }
-  
-  void alignCursors() => _proxy.alignCursors();
+  void alignCursors();
   
   /// Indents the current line by the current [session.tabSize].
-  void blockIndent() => _proxy.blockIndent();
+  void blockIndent();
   
   /// Outdents the current line by the current [session.tabSize].
-  void blockOutdent() => _proxy.blockOutdent();
+  void blockOutdent();
   
   /// Blurs the current [textInput].
-  void blur() => _proxy.blur();
+  void blur();
   
-  void centerSelection() => _proxy.centerSelection();
-  void clearSelection() => _proxy.clearSelection();
-  int copyLinesDown() => _proxy.copyLinesDown();
-  int copyLinesUp() => _proxy.copyLinesUp();
-  void exitMultiSelectMode() => _proxy.exitMultiSelectMode();
+  void centerSelection();
+  
+  void clearSelection();
+  
+  int copyLinesDown();
+  
+  int copyLinesUp();
+  
+  void exitMultiSelectMode();
   
   /// Brings the current [textInput] into focus.
-  void focus() => _proxy.focus();
+  void focus();
   
-  void gotoPageDown() => _proxy.gotoPageDown();
-  void gotoPageUp() => _proxy.gotoPageUp();
-  void indent() => _proxy.indent();
+  void gotoPageDown();
+  
+  void gotoPageUp();
+  
+  void indent();
   
   /// Insert [text] at the current [cursorPosition].
-  void insert(String text) => _proxy.insert(text);
+  void insert(String text);
   
-  bool isRowFullyVisible(int row) => _proxy.isRowFullyVisible(row);
-  bool isRowVisible(int row) => _proxy.isRowVisible(row);
+  bool isRowFullyVisible(int row);
+  
+  bool isRowVisible(int row);
   
   /// Move the cursor down in the document the specified number of times.
   /// Note that this does de-select the current [selection].
-  void navigateDown(int times) => _proxy.navigateDown(times);
+  void navigateDown(int times);
   
   /// Move the cursor to the end of the current document.
   /// Note that this does de-select the current [selection].
-  void navigateFileEnd() => _proxy.navigateFileEnd();
+  void navigateFileEnd();
   
   /// Move the cursor to the start of the current document.
   /// Note that this does de-select the current [selection].
-  void navigateFileStart() => _proxy.navigateFileStart();
+  void navigateFileStart();
   
   /// Move the cursor left in the document the specified number of times.
   /// Note that this does de-select the current [selection].
-  void navigateLeft(int times) => _proxy.navigateLeft(times);
+  void navigateLeft(int times);
   
   /// Move the [cursorPosition] to the end of the current line.
   /// Note that this does de-select the current [selection].
-  void navigateLineEnd() => _proxy.navigateLineEnd();
+  void navigateLineEnd();
   
   /// Move the [cursorPosition] to the start of the current line.
   /// Note that this does de-select the current [selection].
-  void navigateLineStart() => _proxy.navigateLineStart();
+  void navigateLineStart();
   
   /// Move the [cursorPosition] right in the document the specified number of 
   /// times.  Note that this does de-select the current [selection].
-  void navigateRight(int times) => _proxy.navigateRight(times);
+  void navigateRight(int times);
   
   /// Move the [cursorPosition] to the specified [row] and [column].
   /// Note that this does de-select the current selection.
-  void navigateTo(int row, int column) => _proxy.navigateTo(row, column);
+  void navigateTo(int row, int column);
   
   /// Move the [cursorPosition] up in the document the specified number of 
   /// times.  Note that this does de-select the current [selection].
-  void navigateUp(int times) => _proxy.navigateUp(times);
+  void navigateUp(int times);
   
   /// Move the [cursorPosition] to the word immediately to its left. 
   /// Note that this does de-select the current [selection].
-  void navigateWordLeft() => _proxy.navigateWordLeft();
+  void navigateWordLeft();
   
   /// Move the [cursorPosition] to the word immediately to its right. 
   /// Note that this does de-select the current [selection].
-  void navigateWordRight() => _proxy.navigateWordRight();
+  void navigateWordRight();
   
   /// Remove all of the words to the right of the current [selection], until the 
   /// end of the line.
-  void removeToLineEnd() => _proxy.removeToLineEnd();
+  void removeToLineEnd();
   
   /// Removes all of the words to the left of the current [selection], until the 
   /// start of the line.
-  void removeToLineStart() => _proxy.removeToLineStart();
+  void removeToLineStart();
   
   /// Remove the word directly to the left of the current [selection].
-  void removeWordLeft() => _proxy.removeWordLeft();
+  void removeWordLeft();
   
   /// Remove the word directly to the right of the current [selection].
-  void removeWordRight() => _proxy.removeWordRight();  
+  void removeWordRight();  
   
-  void resize(bool force) => _proxy.resize(force);
-  String setValue(String val, int cursorPos) {
-    assert(cursorPos >= -1 && cursorPos <= 1);
-    return _proxy.setValue(val, cursorPos);
-  }
+  void resize(bool force);
+  
+  String setValue(String val, int cursorPos);
   
   /// Sets the value of [overwrite] to the opposite of its current value.
-  void toggleOverwrite() => _proxy.toggleOverwrite();
+  void toggleOverwrite();
   
   /// Converts the current [selection] entirely into lowercase characters.
-  void toLowerCase() => _proxy.toLowerCase();
+  void toLowerCase();
   
   /// Converts the current [selection] entirely into uppercase characters.
-  void toUpperCase() => _proxy.toUpperCase();
+  void toUpperCase();
   
-  void transposeLetters() => _proxy.transposeLetters();
-  void updateSelectionMarkers() => _proxy.updateSelectionMarkers();
+  void transposeLetters();
+  
+  void updateSelectionMarkers();
 }
 
 class EditSessionChangeEvent {

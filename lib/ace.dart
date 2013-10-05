@@ -23,6 +23,7 @@ part 'src/undo_manager.dart';
 part 'src/virtual_renderer.dart';
 part 'src/proxy/anchor.dart';
 part 'src/proxy/document.dart';
+part 'src/proxy/editor.dart';
 part 'src/proxy/edit_session.dart';
 part 'src/proxy/mode.dart';
 part 'src/proxy/search.dart';
@@ -44,5 +45,5 @@ EditSession createEditSession(String text, Mode mode) {
 /// Embed an Ace [Editor] instance into the DOM, at the given [element].
 Editor edit(html.Element element) {
   assert(element != null);
-  return new Editor._(_context.ace.edit(element));
+  return new _EditorProxy._(_context.ace.edit(element));
 }
