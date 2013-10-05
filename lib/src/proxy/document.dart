@@ -1,6 +1,7 @@
 part of ace;
 
 class _DocumentProxy extends _HasProxy implements Document {
+  
   js.Callback _jsOnChange;
   final _onChange = new StreamController<Delta>.broadcast();
   Stream<Delta> get onChange => _onChange.stream;

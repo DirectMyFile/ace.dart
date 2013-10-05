@@ -127,7 +127,7 @@ class EditSession extends _HasProxy {
   
   /// The current [UndoManager].
   UndoManager
-    get undoManager => new UndoManager._(_proxy.getUndoManager());
+    get undoManager => new _UndoManagerProxy._(_proxy.getUndoManager());
     set undoManager(UndoManager undoManager) => throw new UnimplementedError();
   
   /// Whether or not the range of an undo or redo operation is selected.
