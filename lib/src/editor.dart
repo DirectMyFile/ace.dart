@@ -97,7 +97,7 @@ class Editor extends _HasProxy {
     get readOnly => _proxy.getReadOnly();
     set readOnly(bool readOnly) => _proxy.setReadOnly(readOnly);
   
-  VirtualRenderer get renderer => new VirtualRenderer._(_proxy.renderer);
+  VirtualRenderer get renderer => new _VirtualRendererProxy._(_proxy.renderer);
   
   /// The current mouse scroll speed, in milliseconds.
   int

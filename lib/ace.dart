@@ -22,6 +22,7 @@ part 'src/theme.dart';
 part 'src/undo_manager.dart';
 part 'src/virtual_renderer.dart';
 part 'src/proxy/document.dart';
+part 'src/proxy/virtual_renderer.dart';
 part 'src/vm/document.dart';
 
 /// Creates a new [EditSession] with the given [text] and language [mode].
