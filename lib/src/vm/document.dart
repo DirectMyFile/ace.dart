@@ -3,15 +3,26 @@ part of ace;
 class _Document implements Document {
   
   static final _newLineRegExp = new RegExp(r"/^.*?(\r\n|\r|\n)/m");
-  String _autoNewLine;
-  final List<String> _lines = new List<String>();
   
+  final List<String> _lines = new List<String>();
+  String _autoNewLine = "\n";
+  String _newLineMode = "auto";
+    
   final _onChange = new StreamController<Delta>.broadcast();
   Stream<Delta> get onChange => _onChange.stream;
   
   int get length => _lines.length;
   
-  String get newLineCharacter => throw new UnimplementedError();
+  String get newLineCharacter {
+    switch (_newLineMode) {
+      case "windows":
+        return "\r\n";
+      case "unix":
+        return "\n";
+      default:
+        return _autoNewLine;
+    }
+  }
   
   String 
     get newLineMode => throw new UnimplementedError();
@@ -108,11 +119,24 @@ class _Document implements Document {
     return end;
   }
   
-  Point insertLines(int row, Iterable<String> lines) => 
+  Point insertLines(int row, List<String> lines) => 
       throw new UnimplementedError();
   
-  Point _insertLines(int row, Iterable<String> lines) => 
-      throw new UnimplementedError();
+  Point _insertLines(int row, List<String> lines) {
+    if (lines.length == 0) {
+      return new Point(row, 0);
+    }      
+    var end;
+    if (lines.length > 0xFFFF) {
+      end = this._insertLines(row, lines.getRange(0xFFFF, lines.length));
+      lines = lines.getRange(0, 0xFFFF);
+    }
+    _lines.insertAll(row, lines);
+    final range = new Range(row, 0, row + lines.length, 0);
+    final delta = new InsertLinesDelta._(range, lines); 
+    _onChange.add(delta);
+    return (end == null) ? range.end : end;
+  }
   
   Point insertNewLine(Point position) {
     position = _clipPosition(position);

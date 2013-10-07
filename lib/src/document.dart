@@ -55,7 +55,7 @@ abstract class Document extends _Disposable {
   /// Inserts the given [lines] into the document, starting at the given [row]
   /// and returns a point at the end of the inserted lines.  This method also 
   /// fires an [onChange] event.
-  Point insertLines(int row, Iterable<String> lines);
+  Point insertLines(int row, List<String> lines);
   
   /// Inserts a [newLineCharacter] into this document at the current row's 
   /// position and returns a point at the end of the insertion.  This method 

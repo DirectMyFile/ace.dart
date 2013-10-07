@@ -51,7 +51,7 @@ class _DocumentProxy extends _HasProxy implements Document {
   Point insertInLine(Point position, String text) =>
       new Point._(_proxy.insertInLine(position._toProxy(), text));
   
-  Point insertLines(int row, Iterable<String> lines) =>
+  Point insertLines(int row, List<String> lines) =>
       new Point._(_proxy.insertLines(row, js.array(lines)));
   
   Point insertNewLine(Point position) =>
