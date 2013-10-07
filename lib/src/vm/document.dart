@@ -59,7 +59,7 @@ class _Document implements Document {
       if (delta.action == "insertLines") {
         InsertLinesDelta _delta = delta;
         insertLines(range.start.row, _delta.lines);
-      } else if (delta == "insertText") {
+      } else if (delta.action == "insertText") {
         InsertTextDelta _delta = delta;
         insert(range.start, _delta.text);
       } else if (delta.action == "removeLines") {
