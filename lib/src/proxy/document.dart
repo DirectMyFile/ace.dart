@@ -32,7 +32,7 @@ class _DocumentProxy extends _HasProxy implements Document {
     _jsOnChange.dispose();
   }
   
-  void applyDeltas(Iterable<Delta> deltas) =>
+  void applyDeltas(List<Delta> deltas) =>
       _proxy.applyDeltas(js.array(deltas.map((delta) => delta._toProxy())));
   
   Anchor createAnchor(int row, int column) =>
@@ -77,6 +77,6 @@ class _DocumentProxy extends _HasProxy implements Document {
   Point replace(Range range, String text) => 
       new Point._(_proxy.replace(range._toProxy(), text));
   
-  void revertDeltas(Iterable<Delta> deltas) => 
+  void revertDeltas(List<Delta> deltas) => 
       _proxy.revertDeltas(js.array(deltas.map((delta) => delta._toProxy())));
 }

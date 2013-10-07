@@ -29,7 +29,7 @@ abstract class Document extends _Disposable {
   factory Document({String text: ''}) => new _DocumentProxy(text);
   
   /// Applies all of the given [deltas] to this document in the order given.
-  void applyDeltas(Iterable<Delta> deltas);
+  void applyDeltas(List<Delta> deltas);
   
   /// Creates a new [Anchor] to define a floating point in this document.
   Anchor createAnchor(int row, int column);
@@ -108,5 +108,5 @@ abstract class Document extends _Disposable {
   
   /// Reverts all of the given [deltas] to this document in reverse of the 
   /// order given.
-  void revertDeltas(Iterable<Delta> deltas);
+  void revertDeltas(List<Delta> deltas);
 }

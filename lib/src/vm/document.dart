@@ -52,7 +52,7 @@ class _Document implements Document {
     _onChange.close();
   }
   
-  void applyDeltas(Iterable<Delta> deltas) => throw new UnimplementedError();
+  void applyDeltas(List<Delta> deltas) => throw new UnimplementedError();
   
   Point _clipPosition(Point position) {
     final length = this.length;
@@ -276,7 +276,7 @@ class _Document implements Document {
     return end;
   }
   
-  void revertDeltas(Iterable<Delta> deltas) => throw new UnimplementedError();
+  void revertDeltas(List<Delta> deltas) => throw new UnimplementedError();
   
   List<String> _split(String text) {
     return text.replaceAll(r"/\r\n|\r/g", "\n").split("\n");
