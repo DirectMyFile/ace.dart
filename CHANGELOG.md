@@ -1,5 +1,10 @@
 # Ace.dart Changes
 
+## 0.0.6+10.7.2013
+
+- Pub doesn't seem to like a `0` in the version metadata just about anywhere.
+This is really a pub bug but I'm going to drop the `0` to work around the issue.
+
 ## 0.0.5+10.07.2013
 
 - Updated to ace-builds version 10.07.2013.
