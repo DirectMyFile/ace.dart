@@ -1,6 +1,6 @@
 # Ace.dart Changes
 
-## 0.0.5-dev+10.07.2013
+## 0.0.5+10.07.2013
 
 - Updated to ace-builds version 10.07.2013.
 - Changed the `text` parameter of the `Document` constructor from an optional
