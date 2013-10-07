@@ -231,7 +231,15 @@ class _Document implements Document {
     return removed;
   }
   
-  void removeNewLine(int row) => throw new UnimplementedError();
+  void removeNewLine(int row) {
+    final firstLine = this.getLine(row);
+    final secondLine = this.getLine(row + 1);
+    final range = new Range(row, firstLine.length, row + 1, 0);
+    final line = firstLine + secondLine;
+    _spliceList(_lines, row, 2, [line]);
+    final delta = new RemoveTextDelta._(range, newLineCharacter);
+    _onChange.add(delta);
+  }
   
   Point replace(Range range, String text) => throw new UnimplementedError();
   

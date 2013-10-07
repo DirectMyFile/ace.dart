@@ -7,10 +7,13 @@ List _list(js.Proxy array) => JSON.decode(_context.JSON.stringify(array));
 Map _map(js.Proxy obj) => JSON.decode(_context.JSON.stringify(obj));
 
 // TODO(rms): https://code.google.com/p/dart/issues/detail?id=13832
-List _spliceList(List list, int start, int howMany) {
+List _spliceList(List list, int start, int howMany, [List elements]) {
   final end = start + howMany;
   final removed = list.sublist(start, end);
   list.removeRange(start, end);
+  if (elements != null) {
+    list.insertAll(start, elements);
+  }
   return removed;
 }
 
