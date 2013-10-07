@@ -4,11 +4,11 @@ library ace.test.document;
 import 'package:ace/ace.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
-import 'sample_text.dart';
+import '_.dart';
 
 Document document;
 @Setup
-setup() => document = new Document(sampleText);
+setup() => document = new Document(text: sampleText);
 
 @Test()
 void testDispose() {
@@ -208,7 +208,7 @@ void testReplace() {
 void testApplyDeltas() {
   final observedDeltas = new List<Delta>();
   final applyToNewDocument = () {
-    var newDocument = new Document(sampleText);
+    var newDocument = new Document(text: sampleText);
     expect(newDocument.getAllLines(), isNot(equals(document.getAllLines())));        
     newDocument.onChange.listen(expectAsync1((_) {}, count: 3));    
     newDocument.applyDeltas(observedDeltas);

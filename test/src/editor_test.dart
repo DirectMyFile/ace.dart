@@ -5,7 +5,7 @@ import 'dart:html' as html;
 import 'package:ace/ace.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
-import 'sample_text.dart';
+import '_.dart';
 
 Editor editor;
 @Setup

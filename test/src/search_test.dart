@@ -4,7 +4,7 @@ library ace.test.search;
 import 'package:ace/ace.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
-import 'sample_text.dart';
+import '_.dart';
 
 Search search;
 EditSession session;
@@ -12,7 +12,7 @@ EditSession session;
 @Setup
 setup() {
   search = new Search();
-  session = new EditSession(new Document(sampleText), 
+  session = new EditSession(new Document(text: sampleText), 
       new Mode('ace/mode/text'));
 }
 

@@ -4,12 +4,12 @@ library ace.test.edit_session;
 import 'package:ace/ace.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
-import 'sample_text.dart';
+import '_.dart';
 
 EditSession session;
 @Setup
 setup() {  
-  session = new EditSession(new Document(sampleText), 
+  session = new EditSession(new Document(text: sampleText), 
     new Mode('ace/mode/text'));
 }
 
@@ -46,7 +46,7 @@ void testDocument() {
   expect(session.document, const isInstanceOf<Document>());
   expect(session.document.value, equals(sampleText));
   final newText = 'do re me fa so la ti do';
-  session.document = new Document(newText);
+  session.document = new Document(text: newText);
   expect(session.document.value, equals(newText));
   expect(session.value, equals(newText));
 }

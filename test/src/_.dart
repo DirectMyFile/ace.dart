@@ -1,6 +1,8 @@
-library ace.test.sample_text;
+library ace.test._;
 
 import 'package:ace/ace.dart';
+
+const IMPLEMENTATIONS = const ['proxy', 'vm'];
 
 const String sampleTextLine0 = 
 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod ';

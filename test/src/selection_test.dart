@@ -4,14 +4,14 @@ library ace.test.selection;
 import 'package:ace/ace.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
-import 'sample_text.dart';
+import '_.dart';
 
 EditSession session;
 Selection selection;
 
 @Setup
 setup() {
-  session = new EditSession(new Document(sampleText), 
+  session = new EditSession(new Document(text: sampleText), 
       new Mode('ace/mode/text'));
   selection = new Selection(session);
 }

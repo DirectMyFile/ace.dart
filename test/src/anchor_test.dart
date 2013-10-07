@@ -4,14 +4,14 @@ library ace.test.anchor;
 import 'package:ace/ace.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
-import 'sample_text.dart';
+import '_.dart';
 
 Anchor anchor;
 Document document;
 
 @Setup
 setup() {
-  document = new Document(sampleText);
+  document = new Document(text: sampleText);
   anchor = new Anchor(document, 0, 0); 
 }
 

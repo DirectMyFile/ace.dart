@@ -26,7 +26,7 @@ abstract class Document extends _Disposable {
   String value;
 
   /// Creates a new Document with the given [text], if any, or else it is empty.
-  factory Document([String text = '']) => new _DocumentProxy(text);
+  factory Document({String text: ''}) => new _DocumentProxy(text);
   
   /// Applies all of the given [deltas] to this document in the order given.
   void applyDeltas(Iterable<Delta> deltas);
