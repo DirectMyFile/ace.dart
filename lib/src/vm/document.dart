@@ -119,8 +119,12 @@ class _Document implements Document {
     return end;
   }
   
-  Point insertLines(int row, List<String> lines) => 
-      throw new UnimplementedError();
+  Point insertLines(int row, List<String> lines) {
+    if (row >= length) {
+      return insert(new Point(row, 0), "\n" + lines.join("\n"));
+    }
+    return _insertLines(math.max(row, 0), lines);
+  }
   
   Point _insertLines(int row, List<String> lines) {
     if (lines.length == 0) {
