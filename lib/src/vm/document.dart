@@ -154,7 +154,8 @@ class _Document implements Document {
     return end;
   }
   
-  bool isNewLine(String text) => throw new UnimplementedError();
+  bool isNewLine(String text) => 
+      (text == "\r\n" || text == "\r" || text == "\n");
   
   int positionToIndex(Point position, {int startRow: 0}) {
     final newlineLength = newLineCharacter.length;
