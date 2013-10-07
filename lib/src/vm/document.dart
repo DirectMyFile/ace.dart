@@ -1,6 +1,7 @@
 part of ace;
 
 class _Document implements Document {
+  
   static final _newLineRegExp = new RegExp(r"/^.*?(\r\n|\r|\n)/m");
   String _autoNewLine;
   final List<String> _lines = new List<String>();
@@ -113,7 +114,17 @@ class _Document implements Document {
   Point _insertLines(int row, Iterable<String> lines) => 
       throw new UnimplementedError();
   
-  Point insertNewLine(Point position) => throw new UnimplementedError();
+  Point insertNewLine(Point position) {
+    position = _clipPosition(position);
+    final line = (position.row >= length) ? "" : _lines[position.row];
+    _lines[position.row] = line.substring(0, position.column);
+    _lines.add(line.substring(position.column, line.length));
+    final end = new Point(position.row + 1, 0);
+    final delta = new InsertTextDelta._(
+        new Range.fromPoints(position, end), newLineCharacter);
+    _onChange.add(delta);
+    return end;
+  }
   
   bool isNewLine(String text) => throw new UnimplementedError();
   
@@ -165,6 +176,6 @@ class _Document implements Document {
   void revertDeltas(Iterable<Delta> deltas) => throw new UnimplementedError();
   
   List<String> _split(String text) {
-    return text.split(r"/\r\n|\r|\n/");
+    return text.replaceAll(r"/\r\n|\r/g", "\n").split("\n");
   }
 }
