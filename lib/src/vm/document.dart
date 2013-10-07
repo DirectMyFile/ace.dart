@@ -25,8 +25,12 @@ class _Document implements Document {
   }
   
   String 
-    get newLineMode => throw new UnimplementedError();
-    set newLineMode(String newLineMode) => throw new UnimplementedError();
+    get newLineMode => _newLineMode;
+    set newLineMode(String newLineMode) {
+      if (_newLineMode != newLineMode) {
+        _newLineMode = newLineMode;
+      }
+    }
   
   String
     get value => getAllLines().join(newLineCharacter);
