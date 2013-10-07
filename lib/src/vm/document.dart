@@ -52,7 +52,25 @@ class _Document implements Document {
     _onChange.close();
   }
   
-  void applyDeltas(List<Delta> deltas) => throw new UnimplementedError();
+  void applyDeltas(List<Delta> deltas) {
+    for (int i = 0; i < deltas.length; i++) {
+      final delta = deltas[i];
+      final range = new Range.fromPoints(delta.range.start, delta.range.end);
+      if (delta.action == "insertLines") {
+        InsertLinesDelta _delta = delta;
+        insertLines(range.start.row, _delta.lines);
+      } else if (delta == "insertText") {
+        InsertTextDelta _delta = delta;
+        insert(range.start, _delta.text);
+      } else if (delta.action == "removeLines") {
+        this._removeLines(range.start.row, range.end.row - 1);
+      } else if (delta.action == "removeText") {
+        this.remove(range);
+      } else {
+        throw new ArgumentError('$delta is not a valid type of delta');
+      }
+    }
+  }
   
   Point _clipPosition(Point position) {
     final length = this.length;
