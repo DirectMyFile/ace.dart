@@ -151,12 +151,8 @@ class _Document implements Document {
   }
   
   List<String> _removeLines(int startRow, int endRow) {
-    final range = new Range(startRow, 0, endRow + 1, 0);    
-    // TODO(rms): https://code.google.com/p/dart/issues/detail?id=13832
-    final int end = endRow - startRow + 1;
-    final removed = 
-        new List.from(_lines.getRange(startRow, end), growable: false);
-    _lines.removeRange(startRow, end);
+    final range = new Range(startRow, 0, endRow + 1, 0);
+    final removed = _spliceList(_lines, startRow, endRow - startRow + 1);
     final delta = new RemoveLinesDelta._(range, removed, newLineCharacter);
     _onChange.add(delta);
     return removed;

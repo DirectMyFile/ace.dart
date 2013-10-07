@@ -3,7 +3,16 @@ part of ace;
 get _context => js.context;
 
 List _list(js.Proxy array) => JSON.decode(_context.JSON.stringify(array));
+
 Map _map(js.Proxy obj) => JSON.decode(_context.JSON.stringify(obj));
+
+// TODO(rms): https://code.google.com/p/dart/issues/detail?id=13832
+List _spliceList(List list, int start, int howMany) {
+  final end = start + howMany;
+  final removed = list.sublist(start, end);
+  list.removeRange(start, end);
+  return removed;
+}
 
 abstract class _Disposable {
   /// Dispose of any resources held by this object.
