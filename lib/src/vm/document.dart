@@ -294,7 +294,25 @@ class _Document implements Document {
     return end;
   }
   
-  void revertDeltas(List<Delta> deltas) => throw new UnimplementedError();
+  void revertDeltas(List<Delta> deltas) {
+    for (int i = deltas.length - 1; i >= 0; i--) {
+      final delta = deltas[i];
+      final range = new Range.fromPoints(delta.range.start, delta.range.end);
+      if (delta.action == "insertLines") {
+        _removeLines(range.start.row, range.end.row - 1);
+      } else if (delta.action == "insertText") {
+        remove(range);
+      } else if (delta.action == "removeLines") {
+        RemoveLinesDelta _delta = delta;
+        _insertLines(range.start.row, _delta.lines);
+      } else if (delta.action == "removeText") {
+        RemoveTextDelta _delta = delta;
+        insert(range.start, _delta.text);
+      } else {
+        throw new ArgumentError('$delta is not a valid type of delta');
+      }
+    }
+  }
   
   List<String> _split(String text) {
     return text.replaceAll(r"/\r\n|\r/g", "\n").split("\n");
