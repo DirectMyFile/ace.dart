@@ -43,6 +43,10 @@ abstract class Document extends _Disposable {
   /// Returns a verbatim copy of the given line [row] as it is in this document.
   String getLine(int row);
   
+  /// Returns all of the text within the given [range] of this document as a 
+  /// single string.
+  String getTextRange(Range range);
+  
   /// Inserts a block of [text] at the given [position] and returns a point at
   /// the end of the inserted text.  This method also fires an [onChange] event.
   Point insert(Point position, String text);

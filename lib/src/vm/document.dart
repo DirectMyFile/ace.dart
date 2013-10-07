@@ -84,6 +84,24 @@ class _Document implements Document {
     return _lines[row];
   }
   
+  String getTextRange(Range range) {
+    if (range.start.row == range.end.row) {
+      return getLine(range.start.row)
+          .substring(range.start.column, range.end.column);
+    }
+    final lines = getLines(range.start.row, range.end.row);
+    if (lines.length == 0) {
+      lines.add("");
+    } else {
+      lines[0] = lines[0].substring(range.start.column);
+    }    
+    final l = lines.length - 1;
+    if (range.end.row - range.start.row == l) {
+      lines[l] = lines[l].substring(0, range.end.column);
+    }
+    return lines.join(newLineCharacter);
+  }
+  
   Point insert(Point position, String text) {
     if (text == null || text.length == 0) {
       return position;
@@ -241,7 +259,22 @@ class _Document implements Document {
     _onChange.add(delta);
   }
   
-  Point replace(Range range, String text) => throw new UnimplementedError();
+  Point replace(Range range, String text) {
+    if (text.length == 0 && range.isEmpty) {
+      return range.start;
+    }
+    if (text == getTextRange(range)) {
+      return range.end;
+    }
+    remove(range);
+    var end;
+    if (text != null) {
+      end = insert(range.start, text);
+    } else {
+      end = range.start;
+    }
+    return end;
+  }
   
   void revertDeltas(Iterable<Delta> deltas) => throw new UnimplementedError();
   
