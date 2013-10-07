@@ -2,7 +2,9 @@ library ace.test._;
 
 import 'package:ace/ace.dart';
 
-const IMPLEMENTATIONS = const ['proxy', 'vm'];
+const PROXY = 'proxy';
+const VM = 'vm';
+const IMPLEMENTATIONS = const [PROXY, VM];
 
 const String sampleTextLine0 = 
 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod ';
