@@ -1,4 +1,4 @@
-@TestGroup('Editor')
+@TestGroup(description: 'Editor')
 library ace.test.editor;
 
 import 'dart:html' as html;

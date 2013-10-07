@@ -1,4 +1,4 @@
-@TestGroup('VirtualRenderer')
+@TestGroup(description: 'VirtualRenderer')
 library ace.test.virtual_renderer;
 
 import 'dart:html' as html;
