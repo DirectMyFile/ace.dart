@@ -186,7 +186,9 @@ class _Document implements Document {
     position = _clipPosition(position);
     final line = (position.row >= length) ? "" : _lines[position.row];
     _lines[position.row] = line.substring(0, position.column);
-    _lines.add(line.substring(position.column, line.length));
+    _lines.insert(
+        position.row + 1, 
+        line.substring(position.column, line.length));
     final end = new Point(position.row + 1, 0);
     final delta = new InsertTextDelta._(
         new Range.fromPoints(position, end), newLineCharacter);
