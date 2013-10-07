@@ -171,7 +171,36 @@ class _Document implements Document {
     return index + position.column;
   }
   
-  Point remove(Range range) => throw new UnimplementedError();
+  Point remove(Range range) {
+    range = new Range.fromPoints(
+        _clipPosition(range.start), 
+        _clipPosition(range.end));
+    if (range.isEmpty) {
+      return range.start;
+    }
+    final firstRow = range.start.row;
+    final lastRow = range.end.row;
+    if (range.isMultiLine) {
+      final firstFullRow = range.start.column == 0 ? firstRow : firstRow + 1;
+      final lastFullRow = lastRow - 1;
+      if (range.end.column > 0) {
+        removeInLine(lastRow, 0, range.end.column);
+      }
+      if (lastFullRow >= firstFullRow) {
+        _removeLines(firstFullRow, lastFullRow);
+      }
+      if (firstFullRow != firstRow) {
+        removeInLine(
+            firstRow, 
+            range.start.column, 
+            getLine(firstRow).length);
+        removeNewLine(range.start.row);
+      }
+    } else {
+      removeInLine(firstRow, range.start.column, range.end.column);
+    }
+    return range.start;
+  }
   
   Point removeInLine(int row, int startColumn, int endColumn) {
     if (startColumn == endColumn) {
