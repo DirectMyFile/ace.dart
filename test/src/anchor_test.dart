@@ -1,4 +1,4 @@
-@TestGroup(description: 'Anchor')
+@TestGroup(description: 'Anchor', runs: IMPLEMENTATIONS)
 library ace.test.anchor;
 
 import 'package:ace/ace.dart';
@@ -8,16 +8,18 @@ import '_.dart';
 
 Anchor anchor;
 Document document;
-
+bool useExperimental;
 @Setup
-setup() {
-  document = new Document(text: sampleText);
-  anchor = new Anchor(document, 0, 0); 
+setup(TestRun run) {
+  document = new Document(text: sampleText, useExperimental: run.id == VM);
+  anchor = new Anchor(document, 0, 0, useExperimental: run.id == VM);
+  useExperimental = run.id == VM;
 }
 
 @Test()
 void testAnchorCtor() {
-  final Anchor anchor = new Anchor(document, 0, 0);
+  final Anchor anchor = 
+      new Anchor(document, 0, 0, useExperimental: useExperimental);
   expect(anchor, isNotNull);
   expect(anchor.position, equals(const Point(0, 0)));
   expect(anchor.document.value, equals(document.value));

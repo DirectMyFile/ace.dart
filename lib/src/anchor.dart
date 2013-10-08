@@ -17,8 +17,18 @@ abstract class Anchor extends _Disposable {
   
   /// Creates a new Anchor and associates it with the given [document] at the
   /// given [row] and [column] starting position.
-  factory Anchor(Document document, int row, int column) =>
-      new _AnchorProxy(document, row, column);
+  /// 
+  /// **WARNING** do not set [useExperimental] to `true` in production code; 
+  /// this is an experimental flag to enable continuous integration testing of a 
+  /// work-in-progress pure Dart implementation, and may be removed at any time.
+  factory Anchor(Document document, int row, int column, 
+                {bool useExperimental: false}) {
+    if (useExperimental) {
+      return new _Anchor(document, row, column);
+    } else {
+      return new _AnchorProxy(document, row, column);
+    }
+  }
   
   /// Sets the anchor [position] to the specified [row] and [column]. 
   /// 
