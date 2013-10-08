@@ -26,7 +26,17 @@ abstract class Document extends _Disposable {
   String value;
 
   /// Creates a new Document with the given [text], if any, or else it is empty.
-  factory Document({String text: ''}) => new _DocumentProxy(text);
+  /// 
+  /// **WARNING** do not set [useExperimental] to `true` in production code; 
+  /// this is an experimental flag to enable continuous integration testing of a 
+  /// work-in-progress pure Dart implementation, and may be removed at any time.
+  factory Document({ String text: '', bool useExperimental: false }) {
+    if (useExperimental) {
+      return new _Document(text);
+    } else {
+      return new _DocumentProxy(text);
+    }
+  }
   
   /// Applies all of the given [deltas] to this document in the order given.
   void applyDeltas(List<Delta> deltas);

@@ -1,4 +1,4 @@
-@TestGroup(description: 'Document')
+@TestGroup(description: 'Document', runs: IMPLEMENTATIONS)
 library ace.test.document;
 
 import 'package:ace/ace.dart';
@@ -8,7 +8,9 @@ import '_.dart';
 
 Document document;
 @Setup
-setup() => document = new Document(text: sampleText);
+setup(TestRun run) { 
+  document = new Document(text: sampleText, useExperimental: run.id == VM);
+}
 
 @Test()
 void testDispose() {
@@ -221,7 +223,7 @@ void testApplyDeltas() {
   }, count: 3));  
   document.insertLines(0, ['foo', 'bar']);  
   document.removeNewLine(4);
-  document.insertNewLine(const Point(0, 2));  
+  document.insertNewLine(const Point(0, 2));
 }
 
 @Test()
