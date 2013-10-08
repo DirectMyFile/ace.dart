@@ -147,3 +147,13 @@ void testContainsRange() {
   expect(r.containsRange(new Range(1, 2, 3, 5)), isFalse);
   expect(r.containsRange(new Range(0, 2, 3, 4)), isFalse);
 }
+
+@Test()
+void testUnionConstructor() {
+  var r1 = new Range(0, 1, 2, 2);
+  var r2 = new Range(2, 2, 3, 2);  
+  var r3 = new Range(0, 0, 2, 3);
+  var r4 = new Range(0, 0, 3, 1);
+  expect(new Range.union([r1, r2]), equals(new Range(0, 1, 3, 2)));
+  expect(new Range.union([r1, r2, r3, r4]), equals(new Range(0, 0, 3, 2)));
+}
