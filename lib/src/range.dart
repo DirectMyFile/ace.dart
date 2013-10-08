@@ -23,6 +23,14 @@ class Range implements Comparable<Range> {
       new Point(startRow, startColumn), 
       new Point(endRow, endColumn));
   
+  /// Constructs a new [Range] that is a copy of the given [other].
+  Range.copy(Range other) 
+    : this(
+        other.start.row, 
+        other.start.column, 
+        other.end.row, 
+        other.end.column);
+  
   Range.fromPoints(this.start, this.end);
   
   /// Creates a new range that is the union of all the given [ranges].
@@ -30,18 +38,25 @@ class Range implements Comparable<Range> {
   /// The returned range has a [start] point that comes first among all the
   /// given [ranges] and an [end] point that comes last among all the given 
   /// [ranges].
-  factory Range.union(Iterable<Range> ranges) => 
-      ranges.reduce((Range value, Range e) {
-        final cmp = value.compareTo(e);
-        if (cmp == 0) {
-          return value;
-        } else if (cmp < 0) {
-          value.start = new Point(e.start.row, e.start.column);      
-        } else {
-          value.end = new Point(e.end.row, e.end.column);  
-        }
+  /// 
+  /// If the given [ranges] is an empty iterable this throws an [ArgumentError].
+  factory Range.union(Iterable<Range> ranges)  {
+    if (ranges.isEmpty) {
+      throw new ArgumentError('ranges must not be empty.');
+    }
+    final initialValue = new Range.copy(ranges.first);    
+    return ranges.skip(1).fold(initialValue, (Range value, Range e) {
+      final cmp = value.compareTo(e);
+      if (cmp == 0) {
         return value;
-      });
+      } else if (cmp < 0) {
+        value.start = new Point(e.start.row, e.start.column);      
+      } else {
+        value.end = new Point(e.end.row, e.end.column);  
+      }
+      return value;
+    });
+  }
   
   Range._(proxy) 
   : this(

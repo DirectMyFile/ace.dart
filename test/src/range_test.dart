@@ -156,4 +156,9 @@ void testUnionConstructor() {
   var r4 = new Range(0, 0, 3, 1);
   expect(new Range.union([r1, r2]), equals(new Range(0, 1, 3, 2)));
   expect(new Range.union([r1, r2, r3, r4]), equals(new Range(0, 0, 3, 2)));
+  // Expect that the factory does not mutate any of the original ranges.
+  expect(r1, equals(new Range(0, 1, 2, 2)));
+  expect(r2, equals(new Range(2, 2, 3, 2)));
+  expect(r3, equals(new Range(0, 0, 2, 3)));
+  expect(r4, equals(new Range(0, 0, 3, 1)));
 }
