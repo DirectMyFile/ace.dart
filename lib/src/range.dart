@@ -126,8 +126,8 @@ class Range implements Comparable<Range> {
   /// This method performs a check that is _endpoint - inclusive_.  That is, it
   /// will return `true` if:
   /// 
-  ///     [start.row] <= [row] <= [end.row] &&
-  ///     [start.column] <= [column] <= [end.column]
+  ///     [start.row]     <= [row]    <= [end.row]      &&
+  ///     [start.column]  <= [column] <= [end.column]
   bool contains(int row, int column) => compare(row, column) == 0;
   
   /// Returns `true` if the given `other` intersects this range.
