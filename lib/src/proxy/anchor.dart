@@ -28,6 +28,6 @@ class _AnchorProxy extends _HasProxy implements Anchor {
     _proxy.detach();
   }
   
-  void setPosition(int row, int column, bool noClip) => 
-      _proxy.setPosition(row, column, noClip);      
+  void setPosition(int row, int column, {bool clip: true}) => 
+      _proxy.setPosition(row, column, !clip);      
 }

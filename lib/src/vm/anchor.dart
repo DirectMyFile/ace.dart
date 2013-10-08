@@ -31,6 +31,6 @@ class _Anchor implements Anchor {
     return new Point(_row, _column);
   }
   
-  void setPosition(int row, int column, bool noClip) => 
+  void setPosition(int row, int column, {bool clip: true}) => 
       throw new UnimplementedError();  
 }

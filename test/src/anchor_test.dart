@@ -37,5 +37,5 @@ void testAnchorSetPosition() {
     expect(ev.oldPosition, equals(const Point(0, 0)));
     expect(ev.newPosition, equals(const Point(2, 14)));
   });
-  anchor.setPosition(2, 14, true);
+  anchor.setPosition(2, 14, clip: false);
 }

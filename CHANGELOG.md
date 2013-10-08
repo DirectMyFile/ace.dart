@@ -2,6 +2,9 @@
 
 ## 0.0.7-dev+10.7.2013
 
+- Changed the `noClip` parameter of the `Anchor.setPosition` to a named optional
+parameter `clip` which defaults to `true`.
+
 ## 0.0.6+10.7.2013
 
 - Pub doesn't seem to like a `0` in the version metadata just about anywhere.

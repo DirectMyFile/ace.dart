@@ -21,8 +21,10 @@ abstract class Anchor extends _Disposable {
       new _AnchorProxy(document, row, column);
   
   /// Sets the anchor [position] to the specified [row] and [column]. 
-  /// If [noClip] is `true`, the position is not clipped.
-  void setPosition(int row, int column, bool noClip);
+  /// 
+  /// By default, the position will be clipped to the bounds of the [document].
+  /// If [clip] is given as `false`, the position will not be clipped.
+  void setPosition(int row, int column, {bool clip: true});
 }
 
 /// Fired by an [Anchor] whenever its position changes.
