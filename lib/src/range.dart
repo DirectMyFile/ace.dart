@@ -123,26 +123,12 @@ class Range implements Comparable<Range> {
   
   /// Returns `true` if the given [row] and [column] are within this range.
   /// 
-  /// This method performs a check that is _endpoint - inclusive_.  That is, if
-  /// the point given by [row] and [column] yields `true` for a call to [isEnd]
-  /// or [isStart] then this method will return `true`.
-  bool contains(int row, int column) => compare(row, column) == 0;
-  
-  /// Returns `true` if the given [row] and [column] are inside of this range.
+  /// This method performs a check that is _endpoint - inclusive_.  That is, it
+  /// will return `true` if:
   /// 
-  /// This method performs a check that is _endpoint - exclusive_.  That is, if
-  /// the point given by [row] and [column] yields `true` for a call to [isEnd] 
-  /// or [isStart] then this method will return `false`.
-  bool inside(int row, int column) {
-    if (compare(row, column) == 0) {
-      if (isEnd(row, column) || isStart(row, column)) {
-        return false;
-      } else {
-        return true;
-      }
-    }
-    return false;
-  }
+  ///     [start.row] <= [row] <= [end.row] &&
+  ///     [start.column] <= [column] <= [end.column]
+  bool contains(int row, int column) => compare(row, column) == 0;
   
   /// Returns `true` if the given `other` intersects this range.
   bool intersects(Range other) {

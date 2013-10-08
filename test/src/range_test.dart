@@ -132,14 +132,7 @@ void testContains() {
   expect(r.contains(1, 1), isFalse);
   expect(r.contains(1, 2), isTrue);
   expect(r.contains(2, 3), isTrue);
+  expect(r.contains(2, 4), isTrue);
   expect(r.contains(3, 4), isTrue);
   expect(r.contains(4, 4), isFalse);
-}
-
-@Test()
-void testInside() {
-  var r = new Range(1, 2, 3, 4);
-  expect(r.inside(1, 2), isFalse);
-  expect(r.inside(2, 3), isTrue);
-  expect(r.inside(3, 4), isFalse);
 }
