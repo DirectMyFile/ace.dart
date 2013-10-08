@@ -121,11 +121,32 @@ class Range implements Comparable<Range> {
   /// This method forwards the call to the [compareRange] method.
   int compareTo(Range other) => compareRange(other);
   
+  /// Returns `true` if the given `row` and `column` are inside of this range.
+  bool inside(int row, int column) {
+    if (compare(row, column) == 0) {
+      if (isEnd(row, column) || isStart(row, column)) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+    return false;
+  }
+  
   /// Returns `true` if the given `other` intersects this range.
   bool intersects(Range other) {
     final cmp = compareRange(other);
     return (cmp == -1 || cmp == 0 || cmp == 1);
   }
+  
+  /// Returns `true` if the point given by [row] and [column] is equal to this
+  /// range's [end] point.
+  bool isEnd(int row, int column) => end.row == row && end.column == column;
+  
+  /// Returns `true` if the point given by [row] and [column] is equal to this
+  /// range's [start] point.
+  bool isStart(int row, int column) => 
+      start.row == row && start.column == column;
   
   js.Proxy _toProxy() => 
       new js.Proxy(_context.ace.define.modules['ace/range'].Range, 

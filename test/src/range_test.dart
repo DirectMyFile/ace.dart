@@ -109,3 +109,27 @@ void testAdjacentRangesDoNotIntersect() {
   expect(r1.intersects(r2), isFalse);
   expect(r2.intersects(r1), isFalse);
 }
+
+@Test()
+void testIsEnd() {
+  var r = new Range(1, 2, 3, 4);
+  expect(r.isEnd(1, 2), isFalse);
+  expect(r.isEnd(2, 3), isFalse);
+  expect(r.isEnd(3, 4), isTrue);
+}
+
+@Test()
+void testIsStart() {
+  var r = new Range(1, 2, 3, 4);
+  expect(r.isStart(1, 2), isTrue);
+  expect(r.isStart(2, 3), isFalse);
+  expect(r.isStart(3, 4), isFalse);
+}
+
+@Test()
+void testInside() {
+  var r = new Range(1, 2, 3, 4);
+  expect(r.inside(1, 2), isFalse);
+  expect(r.inside(2, 3), isTrue);
+  expect(r.inside(3, 4), isFalse);
+}
