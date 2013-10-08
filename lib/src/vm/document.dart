@@ -85,7 +85,7 @@ class _Document implements Document {
     return new Point(row, column);
   }
   
-  Anchor createAnchor(int row, int column) => throw new UnimplementedError();
+  Anchor createAnchor(int row, int column) => new _Anchor(this, row, column);
   
   void _detectNewLine(String text) {
     var match = _newLineRegExp.firstMatch(text);
