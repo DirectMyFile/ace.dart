@@ -121,6 +121,12 @@ class Range implements Comparable<Range> {
   /// This method forwards the call to the [compareRange] method.
   int compareTo(Range other) => compareRange(other);
   
+  /// Returns `true` if the given `other` intersects this range.
+  bool intersects(Range other) {
+    final cmp = compareRange(other);
+    return (cmp == -1 || cmp == 0 || cmp == 1);
+  }
+  
   js.Proxy _toProxy() => 
       new js.Proxy(_context.ace.define.modules['ace/range'].Range, 
           start.row, start.column, end.row, end.column);

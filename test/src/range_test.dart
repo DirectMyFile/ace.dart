@@ -85,3 +85,27 @@ void testCompare() {
   expect(a.compare(3, 999), equals(1));
   expect(a.compare(4, 3), equals(1));
 }
+
+@Test()
+void testOverlappingRangesIntersects() {
+  var r1 = new Range(0, 0, 2, 2);
+  var r2 = new Range(2, 1, 3, 2);
+  expect(r1.intersects(r2), isTrue);
+  expect(r2.intersects(r1), isTrue);
+}
+
+@Test()
+void testTouchingRangesIntersect() {
+  var r1 = new Range(0, 0, 2, 2);
+  var r2 = new Range(2, 2, 3, 2);
+  expect(r1.intersects(r2), isTrue);
+  expect(r2.intersects(r1), isTrue);
+}
+
+@Test()
+void testAdjacentRangesDoNotIntersect() {
+  var r1 = new Range(1, 0, 2, 1);
+  var r2 = new Range(2, 2, 3, 4);
+  expect(r1.intersects(r2), isFalse);
+  expect(r2.intersects(r1), isFalse);
+}
