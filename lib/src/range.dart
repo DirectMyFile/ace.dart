@@ -121,7 +121,18 @@ class Range implements Comparable<Range> {
   /// This method forwards the call to the [compareRange] method.
   int compareTo(Range other) => compareRange(other);
   
-  /// Returns `true` if the given `row` and `column` are inside of this range.
+  /// Returns `true` if the given [row] and [column] are within this range.
+  /// 
+  /// This method performs a check that is _endpoint - inclusive_.  That is, if
+  /// the point given by [row] and [column] yields `true` for a call to [isEnd]
+  /// or [isStart] then this method will return `true`.
+  bool contains(int row, int column) => compare(row, column) == 0;
+  
+  /// Returns `true` if the given [row] and [column] are inside of this range.
+  /// 
+  /// This method performs a check that is _endpoint - exclusive_.  That is, if
+  /// the point given by [row] and [column] yields `true` for a call to [isEnd] 
+  /// or [isStart] then this method will return `false`.
   bool inside(int row, int column) {
     if (compare(row, column) == 0) {
       if (isEnd(row, column) || isStart(row, column)) {
