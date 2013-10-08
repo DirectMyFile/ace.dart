@@ -162,3 +162,9 @@ void testUnionConstructor() {
   expect(r3, equals(new Range(0, 0, 2, 3)));
   expect(r4, equals(new Range(0, 0, 3, 1)));
 }
+
+@Test()
+@ExpectError(isArgumentError)
+void testUnionConstructorThrowsOnEmpty() {
+  new Range.union([]);
+}
