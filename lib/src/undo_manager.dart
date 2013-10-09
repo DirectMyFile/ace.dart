@@ -12,10 +12,11 @@ abstract class UndoManager extends _Disposable {
   /// Performs a redo operation on the associated document, reinstating the last 
   /// change.
   /// 
-  /// If [dontSelect] is _true_ then the range of the change will not be 
-  /// selected.  Returns the range of the operation that is performed, or `null`
-  /// if [hasRedo] is _false_.
-  Range redo(bool dontSelect);
+  /// If [select] is _false_ then the range of the change will not be selected.  
+  /// 
+  /// Returns the range of the operation that is performed, or `null` if 
+  /// [hasRedo] is _false_.
+  Range redo({bool select: true});
   
   /// Destroys the stack of [undo] and [redo] operations.
   void reset();
@@ -23,8 +24,9 @@ abstract class UndoManager extends _Disposable {
   /// Performs an undo operation on the associated document, reverting the last 
   /// change.
   /// 
-  /// If [dontSelect] is _true_ then the range of the change will not be 
-  /// selected.  Returns the range of the operation that is performed, or `null`
-  /// if [hasUndo] is _false_.
-  Range undo(bool dontSelect);
+  /// If [select] is _false_ then the range of the change will not be selected.  
+  /// 
+  /// Returns the range of the operation that is performed, or `null` if 
+  /// [hasUndo] is _false_.
+  Range undo({bool select: true});
 }

@@ -8,9 +8,9 @@ class _UndoManagerProxy extends _HasProxy implements UndoManager {
   
   _UndoManagerProxy._(js.Proxy proxy) : super(proxy);
   
-  Range redo(bool dontSelect) => new Range._(_proxy.redo(dontSelect));
+  Range redo({bool select: true}) => new Range._(_proxy.redo(!select));
   
   void reset() => _proxy.reset();
   
-  Range undo(bool dontSelect) => new Range._(_proxy.undo(dontSelect));
+  Range undo({bool select: true}) => new Range._(_proxy.undo(!select));
 }
