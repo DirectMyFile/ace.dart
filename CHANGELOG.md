@@ -6,6 +6,8 @@
 coverage.
 - Changed the `noClip` parameter of `Anchor.setPosition` to a named optional
 parameter `clip` which defaults to `true`.
+- Changed the `dontSelect` parameter of `UndoManager.undo` and `redo` to a named 
+optional parameter `select` which defaults to `true`.
 
 ## 0.0.6+10.7.2013
 
