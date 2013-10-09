@@ -7,9 +7,12 @@ import 'package:unittest/unittest.dart';
 import '_.dart';
 
 Document document;
+bool useExperimental;
+
 @Setup
 setup(TestRun run) { 
   document = new Document(text: sampleText, useExperimental: run.id == VM);
+  useExperimental = run.id == VM;
 }
 
 @Test()
@@ -246,4 +249,17 @@ void testCreateAnchor() {
   final Anchor anchor = document.createAnchor(1, 42);
   expect(anchor, isNotNull);
   expect(anchor.position, equals(const Point(1, 42)));
+}
+
+@Test()
+void testSplitTextContainsNewlineLiterals() {
+  final dogfood = 
+r'''
+if ("aaa".split(/a/).length == 0)
+  this.$split = function(text) {
+    return text.replace(/\r\n|\r/g, "\n").split("\n");
+  }
+''';    
+  final doc = new Document(text: dogfood, useExperimental: useExperimental);
+  expect(doc.value, equals(dogfood));
 }

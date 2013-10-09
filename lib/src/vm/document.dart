@@ -317,6 +317,6 @@ class _Document implements Document {
   }
   
   List<String> _split(String text) {
-    return text.replaceAll(r"/\r\n|\r/g", "\n").split("\n");
+    return text.replaceAll(new RegExp(r"\r\n|\r"), "\n").split("\n");
   }
 }
