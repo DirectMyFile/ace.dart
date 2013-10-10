@@ -1,6 +1,7 @@
 part of ace;
 
 class _Anchor implements Anchor {
+  
   int _row;
   int _column;
   StreamSubscription _documentChangeListener;
