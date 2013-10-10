@@ -436,3 +436,15 @@ void testSelectAll() {
   expect(editor.selectionRange, 
       equals(new Range.fromPoints(const Point(0, 0), endCursor)));
 }
+
+@Test()
+void testClearSelection() {
+  editor.selectAll();
+  expect(editor.copyText, equals(sampleText));
+  expect(editor.selection.isEmpty, isFalse);
+  expect(editor.selectionRange.isEmpty, isFalse);
+  editor.clearSelection();
+  expect(editor.copyText, isEmpty);
+  expect(editor.selection.isEmpty, isTrue);
+  expect(editor.selectionRange.isEmpty, isTrue);
+}

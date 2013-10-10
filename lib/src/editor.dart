@@ -102,6 +102,7 @@ abstract class Editor extends _Disposable {
   
   void centerSelection();
   
+  /// Clears the current [selection].
   void clearSelection();
   
   int copyLinesDown();
