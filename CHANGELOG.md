@@ -8,7 +8,7 @@ coverage.
 parameter `clip` which defaults to `true`.
 - Changed the `dontSelect` parameter of `UndoManager.undo` and `redo` to a named 
 optional parameter `select` which defaults to `true`.
-- Changed the `cursorPos` parameter of `Editor.setValue` to a named optional
+- Changed the `cursorPos` parameter of `Editor.setValue` to an optional
 parameter `cursorPosition` which defaults to `0` (select all) and documented the
 method.
 - Changed the `times` parameter of the `Editor` methods `navigateDown`, 

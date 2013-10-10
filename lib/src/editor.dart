@@ -219,7 +219,7 @@ abstract class Editor extends _Disposable {
   /// * 1   : [navigateFileEnd]
   /// * -1  : [navigateFileStart]
   /// 
-  String setValue(String value, {int cursorPosition: 0});
+  String setValue(String value, [int cursorPosition = 0]);
   
   /// Sets the value of [overwrite] to the opposite of its current value.
   void toggleOverwrite();

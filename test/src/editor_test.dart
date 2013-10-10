@@ -13,7 +13,7 @@ Editor editor;
 void setup() {
   html.document.body.append(new html.Element.div()..id = 'editor');
   editor = edit(html.query('#editor'))
-      ..setValue(sampleText, cursorPosition: -1);
+      ..setValue(sampleText, -1);
 }
 
 @Teardown
@@ -89,12 +89,12 @@ void testValue() {
   expect(editor.cursorPosition, equals(const Point(0, 5))); 
   expect(editor.selectionRange, equals(new Range(0, 0, 0, 5)));
   // -1 = document start
-  editor.setValue('start', cursorPosition: -1);
+  editor.setValue('start', -1);
   expect(editor.value, equals('start'));
   expect(editor.cursorPosition, equals(const Point(0, 0)));
   expect(editor.selectionRange, equals(new Range(0, 0, 0, 0)));
   // 1 = document end
-  editor.setValue('end', cursorPosition: 1);
+  editor.setValue('end', 1);
   expect(editor.value, equals('end'));
   expect(editor.cursorPosition, equals(const Point(0, 3)));
   expect(editor.selectionRange, equals(new Range(0, 3, 0, 3)));
@@ -263,7 +263,7 @@ void testRemoveToLineStart() {
 
 @Test()
 void testRemoveWordLeft() {
-  editor.setValue(sampleText, cursorPosition: 1);
+  editor.setValue(sampleText, 1);
   expect(editor.cursorPosition, equals(const Point(5, 76)));  
   editor.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());
