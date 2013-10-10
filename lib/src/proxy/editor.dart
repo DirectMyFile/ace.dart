@@ -214,9 +214,9 @@ class _EditorProxy extends _HasProxy implements Editor {
   
   void resize(bool force) => _proxy.resize(force);
   
-  String setValue(String val, int cursorPos) {
-    assert(cursorPos >= -1 && cursorPos <= 1);
-    return _proxy.setValue(val, cursorPos);
+  String setValue(String value, {int cursorPosition: 0}) {
+    assert(cursorPosition >= -1 && cursorPosition <= 1);
+    return _proxy.setValue(value, cursorPosition);
   }
   
   void toggleOverwrite() => _proxy.toggleOverwrite();

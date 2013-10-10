@@ -173,7 +173,7 @@ abstract class Editor extends _Disposable {
   /// Performs a redo operation on the current [EditSession.document], 
   /// reapplying the last change.
   /// 
-  /// The current [EditSession.undoManager.hasRedo] may be called to check if
+  /// The current [session]'s [UndoManager.hasRedo] may be called to check if
   /// there are any redo operations to perform.
   void redo();
   
@@ -193,7 +193,16 @@ abstract class Editor extends _Disposable {
   
   void resize(bool force);
   
-  String setValue(String val, int cursorPos);
+  /// Sets the current [EditSession.value] to the given [value].
+  /// 
+  /// The given [cursorPosition] will determine which of the following calls is
+  /// made on this editor after setting the new [EditSession.value]:
+  /// 
+  ///     0   :   [selectAll]
+  ///     1   :   [navigateFileEnd]
+  ///     -1  :   [navigateFileStart]
+  ///     
+  String setValue(String value, {int cursorPosition: 0});
   
   /// Sets the value of [overwrite] to the opposite of its current value.
   void toggleOverwrite();
@@ -209,7 +218,7 @@ abstract class Editor extends _Disposable {
   /// Performs an undo operation on the current [EditSession.document], 
   /// reverting the last change. 
   /// 
-  /// The current [EditSession.undoManager.hasUndo] may be called to check if
+  /// The current [session]'s [UndoManager.hasUndo] may be called to check if
   /// there are any undo operations to perform.
   void undo();
   
