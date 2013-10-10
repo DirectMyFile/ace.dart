@@ -198,10 +198,10 @@ abstract class Editor extends _Disposable {
   /// The given [cursorPosition] will determine which of the following calls is
   /// made on this editor after setting the new [EditSession.value]:
   /// 
-  ///     0   :   [selectAll]
-  ///     1   :   [navigateFileEnd]
-  ///     -1  :   [navigateFileStart]
-  ///     
+  /// * 0   : [selectAll]
+  /// * 1   : [navigateFileEnd]
+  /// * -1  : [navigateFileStart]
+  /// 
   String setValue(String value, {int cursorPosition: 0});
   
   /// Sets the value of [overwrite] to the opposite of its current value.
