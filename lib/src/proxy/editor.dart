@@ -180,23 +180,23 @@ class _EditorProxy extends _HasProxy implements Editor {
   
   bool isRowVisible(int row) => _proxy.isRowVisible(row);
   
-  void navigateDown(int times) => _proxy.navigateDown(times);
+  void navigateDown([int times = 1]) => _proxy.navigateDown(times);
   
   void navigateFileEnd() => _proxy.navigateFileEnd();
   
   void navigateFileStart() => _proxy.navigateFileStart();
   
-  void navigateLeft(int times) => _proxy.navigateLeft(times);
+  void navigateLeft([int times = 1]) => _proxy.navigateLeft(times);
   
   void navigateLineEnd() => _proxy.navigateLineEnd();
   
   void navigateLineStart() => _proxy.navigateLineStart();
   
-  void navigateRight(int times) => _proxy.navigateRight(times);
+  void navigateRight([int times = 1]) => _proxy.navigateRight(times);
   
   void navigateTo(int row, int column) => _proxy.navigateTo(row, column);
   
-  void navigateUp(int times) => _proxy.navigateUp(times);
+  void navigateUp([int times = 1]) => _proxy.navigateUp(times);
   
   void navigateWordLeft() => _proxy.navigateWordLeft();
   

@@ -11,6 +11,9 @@ optional parameter `select` which defaults to `true`.
 - Changed the `cursorPos` parameter of `Editor.setValue` to a named optional
 parameter `cursorPosition` which defaults to `0` (select all) and documented the
 method.
+- Changed the `times` parameter of the `Editor` methods `navigateDown`, 
+`navigateLeft`, `navigateRight`, and `navigateUp` to be optional with default 
+value of `1`.
 
 ## 0.0.6+10.7.2013
 

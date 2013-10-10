@@ -127,47 +127,60 @@ abstract class Editor extends _Disposable {
   
   bool isRowVisible(int row);
   
-  /// Move the cursor down in the document the specified number of times.
+  /// Move the cursor down in the document the specified number of [times].
+  /// 
   /// Note that this does de-select the current [selection].
-  void navigateDown(int times);
+  void navigateDown([int times = 1]);
   
   /// Move the cursor to the end of the current document.
+  /// 
   /// Note that this does de-select the current [selection].
   void navigateFileEnd();
   
   /// Move the cursor to the start of the current document.
+  /// 
   /// Note that this does de-select the current [selection].
   void navigateFileStart();
   
-  /// Move the cursor left in the document the specified number of times.
+  /// Move the cursor left in the document the specified number of [times].
+  /// 
   /// Note that this does de-select the current [selection].
-  void navigateLeft(int times);
+  void navigateLeft([int times = 1]);
   
   /// Move the [cursorPosition] to the end of the current line.
+  /// 
   /// Note that this does de-select the current [selection].
   void navigateLineEnd();
   
   /// Move the [cursorPosition] to the start of the current line.
+  /// 
   /// Note that this does de-select the current [selection].
   void navigateLineStart();
   
   /// Move the [cursorPosition] right in the document the specified number of 
-  /// times.  Note that this does de-select the current [selection].
-  void navigateRight(int times);
+  /// [times].  
+  /// 
+  /// Note that this does de-select the current [selection].
+  void navigateRight([int times = 1]);
   
   /// Move the [cursorPosition] to the specified [row] and [column].
+  /// 
   /// Note that this does de-select the current selection.
   void navigateTo(int row, int column);
   
   /// Move the [cursorPosition] up in the document the specified number of 
-  /// times.  Note that this does de-select the current [selection].
-  void navigateUp(int times);
+  /// [times].
+  /// 
+  /// Note that this does de-select the current [selection].
+  void navigateUp([int times = 1]);
   
   /// Move the [cursorPosition] to the word immediately to its left. 
+  /// 
   /// Note that this does de-select the current [selection].
   void navigateWordLeft();
   
   /// Move the [cursorPosition] to the word immediately to its right. 
+  /// 
   /// Note that this does de-select the current [selection].
   void navigateWordRight();
   
