@@ -195,10 +195,12 @@ void testToggleOverwrite() {
 
 @Test()
 void testGetUndoManager() {
+  // The EditSession ctor does not wire up an UndoManager but this does.
+  session = createEditSession(sampleText, new Mode('ace/mode/dart'));
   final undoManager = session.undoManager;
   expect(undoManager, isNotNull);
-  // The $defaultUndoManager in ace.js is just an object which does not define
-  // hasUndo / hasRedo, so we cannot test those methods here.
+  expect(undoManager.hasUndo, isFalse);
+  expect(undoManager.hasRedo, isFalse);
 }
 
 @Test()
