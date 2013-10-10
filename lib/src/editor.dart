@@ -193,6 +193,9 @@ abstract class Editor extends _Disposable {
   
   void resize(bool force);
   
+  /// Selects all the text in this editor.
+  void selectAll();
+  
   /// Sets the current [EditSession.value] to the given [value].
   /// 
   /// The given [cursorPosition] will determine which of the following calls is

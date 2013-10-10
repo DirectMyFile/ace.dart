@@ -86,36 +86,36 @@ void testValue() {
   // 0 = select all
   editor.setValue('snarf');
   expect(editor.value, equals('snarf'));
-  expect(editor.cursorPosition, equals(const Point(0,5))); 
-  expect(editor.selectionRange, equals(new Range(0,0,0,5)));
+  expect(editor.cursorPosition, equals(const Point(0, 5))); 
+  expect(editor.selectionRange, equals(new Range(0, 0, 0, 5)));
   // -1 = document start
   editor.setValue('start', cursorPosition: -1);
   expect(editor.value, equals('start'));
-  expect(editor.cursorPosition, equals(const Point(0,0)));
-  expect(editor.selectionRange, equals(new Range(0,0,0,0)));
+  expect(editor.cursorPosition, equals(const Point(0, 0)));
+  expect(editor.selectionRange, equals(new Range(0, 0, 0, 0)));
   // 1 = document end
   editor.setValue('end', cursorPosition: 1);
   expect(editor.value, equals('end'));
-  expect(editor.cursorPosition, equals(const Point(0,3)));
-  expect(editor.selectionRange, equals(new Range(0,3,0,3)));
+  expect(editor.cursorPosition, equals(const Point(0, 3)));
+  expect(editor.selectionRange, equals(new Range(0, 3, 0, 3)));
 }
 
 @Test()
 void testBlockIndent() {
-  expect(editor.cursorPosition, equals(const Point(0,0)));
+  expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.session.tabSize = 4;
   editor.blockIndent();
-  expect(editor.cursorPosition, equals(const Point(0,4)));
+  expect(editor.cursorPosition, equals(const Point(0, 4)));
 }
 
 @Test()
 void testBlockOutdent() {
-  expect(editor.cursorPosition, equals(const Point(0,0)));
+  expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.session.tabSize = 4;
   editor.blockIndent();
-  expect(editor.cursorPosition, equals(const Point(0,4)));
+  expect(editor.cursorPosition, equals(const Point(0, 4)));
   editor.blockOutdent();
-  expect(editor.cursorPosition, equals(const Point(0,0)));
+  expect(editor.cursorPosition, equals(const Point(0, 0)));
 }
 
 @Test()
@@ -125,10 +125,10 @@ void testFirstVisibleRow() {
 
 @Test()
 void testInsert() {
-  expect(editor.cursorPosition, equals(const Point(0,0)));
+  expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<InsertTextDelta>());
-    expect(delta.range, equals(new Range(0,0,0,5)));
+    expect(delta.range, equals(new Range(0, 0, 0, 5)));
     InsertTextDelta insertTextDelta = delta;
     expect(insertTextDelta.text, equals('snarf'));    
   }));
@@ -146,7 +146,7 @@ void testNavigateDown() {
 
 @Test()
 void testNavigateFileEnd() {
-  expect(editor.cursorPosition, equals(const Point(0,0)));
+  expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.navigateFileEnd();
   final lastTextLine = sampleTextLines.length - 1;
   expect(editor.cursorPosition, 
@@ -161,7 +161,7 @@ void testNavigateFileStart() {
   expect(editor.cursorPosition, 
       equals(new Point(lastTextLine, sampleTextLines[lastTextLine].length)));
   editor.navigateFileStart();
-  expect(editor.cursorPosition, equals(const Point(0,0)));  
+  expect(editor.cursorPosition, equals(const Point(0, 0)));  
   expect(editor.selection.isEmpty, isTrue);
 }
 
@@ -177,7 +177,7 @@ void testNavigateLeft() {
 
 @Test()
 void testNavigateLineEnd() {
-  expect(editor.cursorPosition, equals(const Point(0,0)));
+  expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.navigateLineEnd();
   expect(editor.cursorPosition, equals(new Point(0, sampleTextLine0.length)));
   expect(editor.selection.isEmpty, isTrue);
@@ -194,7 +194,7 @@ void testNavigateLineStart() {
 
 @Test()
 void testNavigateRight() {
-  expect(editor.cursorPosition, equals(const Point(0,0)));
+  expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.navigateRight(6);
   expect(editor.cursorPosition, equals(const Point(0, 6)));
   expect(editor.selection.isEmpty, isTrue);
@@ -202,7 +202,7 @@ void testNavigateRight() {
 
 @Test()
 void testNavigateTo() {
-  expect(editor.cursorPosition, equals(const Point(0,0)));
+  expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.navigateTo(4, 25);
   expect(editor.cursorPosition, equals(const Point(4, 25)));
   expect(editor.selection.isEmpty, isTrue);
@@ -423,4 +423,16 @@ void testUndoRedo() {
   // `setValue` call in our @Setup function; there does not seem to be any event 
   // that we can observe to reliably know when the UndoManager is updated. 
   new Future.delayed(const Duration(seconds: 1), verify); 
+}
+
+@Test()
+void testSelectAll() {
+  Point endCursor = new Point(sampleTextLines.length - 1, 
+      sampleTextLines[sampleTextLines.length - 1].length);  
+  expect(editor.cursorPosition, equals(const Point(0, 0)));
+  expect(editor.selectionRange, equals(new Range(0, 0, 0, 0)));
+  editor.selectAll();
+  expect(editor.cursorPosition, equals(endCursor));
+  expect(editor.selectionRange, 
+      equals(new Range.fromPoints(const Point(0, 0), endCursor)));
 }
