@@ -11,8 +11,8 @@ bool useExperimental;
 
 @Setup
 setup(TestRun run) { 
-  document = new Document(text: sampleText, useExperimental: run.id == VM);
-  useExperimental = run.id == VM;
+  document = new Document(text: sampleText, useExperimental: run.id == PURE);
+  useExperimental = run.id == PURE;
 }
 
 @Test()

@@ -11,9 +11,9 @@ Document document;
 bool useExperimental;
 @Setup
 setup(TestRun run) {
-  document = new Document(text: sampleText, useExperimental: run.id == VM);
-  anchor = new Anchor(document, 0, 0, useExperimental: run.id == VM);
-  useExperimental = run.id == VM;
+  document = new Document(text: sampleText, useExperimental: run.id == PURE);
+  anchor = new Anchor(document, 0, 0, useExperimental: run.id == PURE);
+  useExperimental = run.id == PURE;
 }
 
 @Test()

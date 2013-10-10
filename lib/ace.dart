@@ -32,8 +32,8 @@ part 'src/proxy/text_input.dart';
 part 'src/proxy/theme.dart';
 part 'src/proxy/undo_manager.dart';
 part 'src/proxy/virtual_renderer.dart';
-part 'src/vm/anchor.dart';
-part 'src/vm/document.dart';
+part 'src/pure/anchor.dart';
+part 'src/pure/document.dart';
 
 /// Creates a new [EditSession] with the given [text] and language [mode].
 EditSession createEditSession(String text, Mode mode) {
