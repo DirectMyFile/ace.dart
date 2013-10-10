@@ -202,6 +202,8 @@ class _EditorProxy extends _HasProxy implements Editor {
   
   void navigateWordRight() => _proxy.navigateWordRight();
   
+  void redo() => _proxy.redo();
+  
   void removeToLineEnd() => _proxy.removeToLineEnd();
   
   void removeToLineStart() => _proxy.removeToLineStart();
@@ -224,6 +226,8 @@ class _EditorProxy extends _HasProxy implements Editor {
   void toUpperCase() => _proxy.toUpperCase();
   
   void transposeLetters() => _proxy.transposeLetters();
+  
+  void undo() => _proxy.undo();
   
   void updateSelectionMarkers() => _proxy.updateSelectionMarkers();
 }

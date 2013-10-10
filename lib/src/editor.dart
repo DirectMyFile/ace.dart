@@ -170,6 +170,13 @@ abstract class Editor extends _Disposable {
   /// Note that this does de-select the current [selection].
   void navigateWordRight();
   
+  /// Performs a redo operation on the current [EditSession.document], 
+  /// reapplying the last change.
+  /// 
+  /// The current [EditSession.undoManager.hasRedo] may be called to check if
+  /// there are any redo operations to perform.
+  void redo();
+  
   /// Remove all of the words to the right of the current [selection], until the 
   /// end of the line.
   void removeToLineEnd();
@@ -198,6 +205,13 @@ abstract class Editor extends _Disposable {
   void toUpperCase();
   
   void transposeLetters();
+  
+  /// Performs an undo operation on the current [EditSession.document], 
+  /// reverting the last change. 
+  /// 
+  /// The current [EditSession.undoManager.hasUndo] may be called to check if
+  /// there are any undo operations to perform.
+  void undo();
   
   void updateSelectionMarkers();
 }

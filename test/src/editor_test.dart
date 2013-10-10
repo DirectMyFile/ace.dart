@@ -1,6 +1,7 @@
 @TestGroup(description: 'Editor')
 library ace.test.editor;
 
+import 'dart:async';
 import 'dart:html' as html;
 import 'package:ace/ace.dart';
 import 'package:bench/bench.dart';
@@ -402,4 +403,23 @@ void testSetReadOnly() {
   expect(editor.readOnly, isTrue);
   editor.readOnly = false;
   expect(editor.readOnly, isFalse);
+}
+
+@Test()
+void testUndoRedo() {
+  final verify = expectAsync0(() {
+    expect(editor.session.undoManager.hasUndo, isTrue);
+    editor.undo();  
+    expect(editor.session.undoManager.hasUndo, isFalse);
+    expect(editor.session.undoManager.hasRedo, isTrue);
+    expect(editor.value, isEmpty);
+    editor.redo();
+    expect(editor.session.undoManager.hasUndo, isTrue);
+    expect(editor.session.undoManager.hasRedo, isFalse);
+    expect(editor.value, equals(sampleText));
+  });  
+  // The UndoManager is notified internally after some delay from the initial
+  // `setValue` call in our @Setup function; there does not seem to be any event 
+  // that we can observe to reliably know when the UndoManager is updated. 
+  new Future.delayed(const Duration(seconds: 1), verify); 
 }

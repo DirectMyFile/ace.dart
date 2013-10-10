@@ -9,7 +9,7 @@ abstract class UndoManager extends _Disposable {
   /// Returns `true` if there are [undo] operations left to perform.
   bool get hasUndo;
   
-  /// Performs a redo operation on the associated document, reinstating the last 
+  /// Performs a redo operation on the associated document, reapplying the last 
   /// change.
   /// 
   /// If [select] is _false_ then the range of the change will not be selected.  
