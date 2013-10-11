@@ -1,39 +1,37 @@
 part of ace;
 
 class _EditSessionProxy extends _HasProxy implements EditSession {
-  
+
   js.Callback _jsOnChange;
-  js.Callback _jsOnChangeBreakpoint;
-  js.Callback _jsOnChangeOverwrite;
-  js.Callback _jsOnChangeScrollLeft;
-  js.Callback _jsOnChangeScrollTop;
-  js.Callback _jsOnChangeTabSize;
-  js.Callback _jsOnChangeWrapLimit;
-  js.Callback _jsOnChangeWrapMode;
-    
   final _onChange = new StreamController<Delta>.broadcast();
-  final _onChangeBreakpoint = new StreamController.broadcast();
-  final _onChangeOverwrite = new StreamController.broadcast();
-  final _onChangeScrollLeft = new StreamController<int>.broadcast();
-  final _onChangeScrollTop = new StreamController<int>.broadcast();
-  final _onChangeTabSize = new StreamController.broadcast();
-  final _onChangeWrapLimit = new StreamController.broadcast();
-  final _onChangeWrapMode = new StreamController.broadcast();
-  
   Stream<Delta> get onChange => _onChange.stream;
   
+  js.Callback _jsOnChangeBreakpoint;
+  final _onChangeBreakpoint = new StreamController.broadcast();
   Stream get onChangeBreakpoint => _onChangeBreakpoint.stream;
   
+  js.Callback _jsOnChangeOverwrite;
+  final _onChangeOverwrite = new StreamController.broadcast();
   Stream get onChangeOverwrite => _onChangeOverwrite.stream;
   
+  js.Callback _jsOnChangeScrollLeft;
+  final _onChangeScrollLeft = new StreamController<int>.broadcast();
   Stream<int> get onChangeScrollLeft => _onChangeScrollLeft.stream;
   
+  js.Callback _jsOnChangeScrollTop;
+  final _onChangeScrollTop = new StreamController<int>.broadcast();
   Stream<int> get onChangeScrollTop => _onChangeScrollTop.stream;
   
+  js.Callback _jsOnChangeTabSize;
+  final _onChangeTabSize = new StreamController.broadcast();
   Stream get onChangeTabSize => _onChangeTabSize.stream;
   
+  js.Callback _jsOnChangeWrapLimit;
+  final _onChangeWrapLimit = new StreamController.broadcast();
   Stream get onChangeWrapLimit => _onChangeWrapLimit.stream;
   
+  js.Callback _jsOnChangeWrapMode;
+  final _onChangeWrapMode = new StreamController.broadcast();
   Stream get onChangeWrapMode => _onChangeWrapMode.stream;
   
   Map<int, String> get breakpoints => _list(_proxy.getBreakpoints()).asMap();
