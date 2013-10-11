@@ -1,13 +1,7 @@
 part of ace;
 
 class _SelectionProxy extends _HasProxy implements Selection {
-  
-  js.Callback _jsOnChangeCursor;
-  js.Callback _jsOnChangeSelection;
-  
-  final _onChangeCursor = new StreamController.broadcast();
-  final _onChangeSelection = new StreamController.broadcast();
-  
+
   Point get cursor => new Point._(_proxy.getCursor());
   
   bool get isBackwards => _proxy.isBackwards();
@@ -16,8 +10,12 @@ class _SelectionProxy extends _HasProxy implements Selection {
   
   bool get isMultiLine => _proxy.isMultiLine();  
   
+  js.Callback _jsOnChangeCursor;
+  final _onChangeCursor = new StreamController.broadcast();
   Stream get onChangeCursor => _onChangeCursor.stream;
   
+  js.Callback _jsOnChangeSelection;
+  final _onChangeSelection = new StreamController.broadcast();
   Stream get onChangeSelection => _onChangeSelection.stream;
   
   Range get range => new Range._(_proxy.getRange());
