@@ -83,7 +83,8 @@ abstract class Editor extends _Disposable {
   bool showPrintMargin;
 
   TextInput get textInput;
-    
+  
+  /// The current [Theme] for this editor.
   Theme theme;
   
   /// Returns the current [session.value].

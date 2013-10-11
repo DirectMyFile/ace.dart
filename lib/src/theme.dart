@@ -54,13 +54,29 @@ abstract class Theme extends _Disposable {
   
   bool get isDark;
   
+  /// Whether or not this theme has finished loading.
+  bool get isLoaded;
+  
+  /// The name of this theme.
+  /// 
+  /// The [name] should be one of the values in [THEMES].
+  String get name;
+  
+  /// The path of this theme.
+  /// 
+  /// This is a path such as `ace/theme/monokai`.
+  String get path;
+  
+  /// Completes when this theme [isLoaded].
+  Future get onLoad;
+  
   /// Creates a theme for the given [name].
   /// 
-  /// The [name] must be one of the values in [THEMES].
-  factory Theme.named(String name) => new _ThemeProxy.named(name);
+  /// The [name] should be one of the values in [THEMES].
+  factory Theme.named(String name) => new Theme('ace/theme/$name');
   
-  /// Creates a theme for the given [themePath].
+  /// Creates a theme for the given [path].
   /// 
-  /// The [themePath] is a path such as `ace/theme/monokai`.
-  factory Theme(String themePath) => new _ThemeProxy(themePath);
+  /// The [path] is a path such as `ace/theme/monokai`.
+  factory Theme(String path) => new _ThemeProxy(path);
 }

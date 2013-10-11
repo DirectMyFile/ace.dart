@@ -311,6 +311,14 @@ void testSetShowInvisibles() {
 }
 
 @Test()
+void testSetTheme() {
+  editor.theme = new Theme.named(Theme.MERBIVORE);
+  expect(editor.theme.name, equals(Theme.MERBIVORE));
+  editor.theme = new Theme.named(Theme.CHAOS);
+  expect(editor.theme.name, equals(Theme.CHAOS));
+}
+
+@Test()
 void testDragDelay() {
   editor.dragDelay = 42;
   expect(editor.dragDelay, equals(42));
@@ -321,7 +329,6 @@ void testScrollSpeed() {
   editor.dragDelay = 7;
   expect(editor.dragDelay, equals(7));
 }
-
 
 @Test()
 void testHighlightActiveLine() {

@@ -2,6 +2,12 @@ part of ace;
 
 get _context => js.context;
 
+String _ext(String path, {String separator: '.'}) {
+  int index = path.lastIndexOf(separator);
+  if (index < 0 || index + 1 >= path.length) return path;
+  return path.substring(index + 1).toLowerCase();
+}
+
 List _list(js.Proxy array) => JSON.decode(_context.JSON.stringify(array));
 
 Map _map(js.Proxy obj) => JSON.decode(_context.JSON.stringify(obj));

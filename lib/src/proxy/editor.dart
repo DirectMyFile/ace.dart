@@ -104,7 +104,7 @@ class _EditorProxy extends _HasProxy implements Editor {
   TextInput get textInput => new _TextInputProxy._(_proxy.textInput);
     
   Theme
-    get theme => new _ThemeProxy._(_proxy.getTheme());
+    get theme => new _ThemeProxy(_proxy.getTheme());
     set theme(Theme theme) {
       assert(theme is _ThemeProxy);
       _proxy.setTheme((theme as _ThemeProxy)._theme);

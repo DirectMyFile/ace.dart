@@ -23,12 +23,6 @@ const Map<String, String> _extensionMap = const {
   'yaml'      : 'yaml'
 };
 
-String _ext(String path) {
-  int index = path.lastIndexOf('.');
-  if (index < 0 || index + 1 >= path.length) return path;
-  return path.substring(index + 1).toLowerCase();
-}
-
 abstract class Mode extends _Disposable {
   
   /// Creates a mode for the given [filePath], based on its file extension.
