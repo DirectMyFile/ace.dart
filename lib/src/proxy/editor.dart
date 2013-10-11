@@ -3,31 +3,29 @@ part of ace;
 class _EditorProxy extends _HasProxy implements Editor {
   
   js.Callback _jsOnBlur;
-  js.Callback _jsOnChange;
-  js.Callback _jsOnChangeSession;
-  js.Callback _jsOnCopy;
-  js.Callback _jsOnFocus;
-  js.Callback _jsOnPaste;
-  
   final _onBlur = new StreamController.broadcast();
-  final _onChange = new StreamController<Delta>.broadcast();
-  final _onChangeSession = 
-      new StreamController<EditSessionChangeEvent>.broadcast();
-  final _onCopy = new StreamController<String>.broadcast();
-  final _onFocus = new StreamController.broadcast();
-  final _onPaste = new StreamController<String>.broadcast();
-  
   Stream get onBlur => _onBlur.stream;
   
+  js.Callback _jsOnChange;
+  final _onChange = new StreamController<Delta>.broadcast();
   Stream<Delta> get onChange => _onChange.stream;
   
+  js.Callback _jsOnChangeSession;
+  final _onChangeSession = 
+      new StreamController<EditSessionChangeEvent>.broadcast();
   Stream<EditSessionChangeEvent> get onChangeSession => 
       _onChangeSession.stream;
   
+  js.Callback _jsOnCopy;
+  final _onCopy = new StreamController<String>.broadcast();
   Stream<String> get onCopy => _onCopy.stream;
   
+  js.Callback _jsOnFocus;
+  final _onFocus = new StreamController.broadcast();
   Stream get onFocus => _onFocus.stream;
   
+  js.Callback _jsOnPaste;
+  final _onPaste = new StreamController<String>.broadcast();
   Stream<String> get onPaste => _onPaste.stream;  
   
   String get copyText => _proxy.getCopyText();
