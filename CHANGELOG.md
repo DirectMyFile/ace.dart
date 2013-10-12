@@ -1,6 +1,6 @@
 # Ace.dart Changes
 
-## 0.0.7-dev+10.7.2013
+## 0.0.7+10.7.2013
 
 - Added several public methods to the `Range` class with documentation and test 
 coverage.
