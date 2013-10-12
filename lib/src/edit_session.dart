@@ -94,8 +94,9 @@ abstract class EditSession extends _Disposable {
   UndoManager undoManager;
 
   /// Whether or not the range of an undo or redo operation is selected.
-  // TODO(rms): https://github.com/rmsmith/ace.dart/issues/2
-  set undoSelect(bool enable);
+  bool
+    get undoSelect;
+    set undoSelect(bool enable);
     
   /// Whether or not to use soft tabs.  
   /// 

@@ -82,7 +82,9 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
     get undoManager => new _UndoManagerProxy._(_proxy.getUndoManager());
     set undoManager(UndoManager undoManager) => throw new UnimplementedError();
   
-  set undoSelect(bool enable) => _proxy.setUndoSelect(enable);
+  bool
+    get undoSelect => _proxy.$undoSelect;
+    set undoSelect(bool enable) => _proxy.setUndoSelect(enable);
 
   bool
     get useSoftTabs => _proxy.getUseSoftTabs();

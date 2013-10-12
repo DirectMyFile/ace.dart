@@ -86,6 +86,14 @@ void testSetTabSize() {
 }
 
 @Test()
+void testUndoSelect() {
+  session.undoSelect = true;
+  expect(session.undoSelect, isTrue);
+  session.undoSelect = false;
+  expect(session.undoSelect, isFalse);
+}
+
+@Test()
 void testUseSoftTabs() {
   session.useSoftTabs = true;
   session.tabSize = 5;
