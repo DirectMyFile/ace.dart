@@ -94,9 +94,7 @@ abstract class EditSession extends _Disposable {
   UndoManager undoManager;
 
   /// Whether or not the range of an undo or redo operation is selected.
-  bool
-    get undoSelect;
-    set undoSelect(bool enable);
+  bool undoSelect;
     
   /// Whether or not to use soft tabs.  
   /// 

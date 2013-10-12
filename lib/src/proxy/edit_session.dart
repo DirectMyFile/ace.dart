@@ -84,7 +84,7 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   
   bool
     get undoSelect => _proxy.$undoSelect;
-    set undoSelect(bool enable) => _proxy.setUndoSelect(enable);
+    set undoSelect(bool undoSelect) => _proxy.setUndoSelect(undoSelect);
 
   bool
     get useSoftTabs => _proxy.getUseSoftTabs();
