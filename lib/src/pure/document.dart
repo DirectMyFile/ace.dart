@@ -185,7 +185,11 @@ class _Document implements Document {
   Point insertNewLine(Point position) {
     position = _clipPosition(position);
     final line = (position.row >= length) ? "" : _lines[position.row];
-    _lines[position.row] = line.substring(0, position.column);
+    if (position.row < length) {
+      _lines[position.row] = line.substring(0, position.column);
+    } else {
+      _lines.insert(position.row, line.substring(0, position.column));
+    }
     _lines.insert(
         position.row + 1, 
         line.substring(position.column, line.length));

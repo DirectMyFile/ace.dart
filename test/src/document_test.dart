@@ -263,3 +263,18 @@ if ("aaa".split(/a/).length == 0)
   final doc = new Document(text: dogfood, useExperimental: useExperimental);
   expect(doc.value, equals(dogfood));
 }
+
+@Test()
+void testDocumentStartsWithNewline() {
+  final startsWithNewLine =
+r'''
+
+after a newline some text.
+
+and then a little bit more.
+
+''';
+  final doc = new Document(text: startsWithNewLine, 
+      useExperimental: useExperimental);
+  expect(doc.value, equals(startsWithNewLine));
+}
