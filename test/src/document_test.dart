@@ -53,6 +53,22 @@ void testGetLine() {
 }
 
 @Test()
+void testIndexToPosition() {
+  int index = 
+      sampleTextLine0.length + 
+      sampleTextLine1.length + 
+      sampleTextLine2.length + 
+      3 * document.newLineCharacter.length;  
+  expect(document.indexToPosition(index), equals(const Point(3, 0))); 
+  index = 
+      sampleTextLine1.length + 
+      sampleTextLine2.length + 
+      2 * document.newLineCharacter.length;  
+  expect(document.indexToPosition(index, startRow: 1), 
+      equals(const Point(3, 0)));
+}
+
+@Test()
 void testInsert() {
   document.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<InsertTextDelta>());

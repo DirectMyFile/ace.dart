@@ -120,6 +120,18 @@ class _Document implements Document {
     return lines.join(newLineCharacter);
   }
   
+  Point indexToPosition(int index, {int startRow: 0}) {
+    final newlineLength = newLineCharacter.length;
+    final l = _lines.length;
+    for (int i = startRow; i < l; i++) {
+      index -= _lines[i].length + newlineLength;
+      if (index < 0) {
+        return new Point(i, index + _lines[i].length + newlineLength);
+      }        
+    }
+    return new Point(l - 1, _lines[l - 1].length);
+  }
+  
   Point insert(Point position, String text) {
     if (text == null || text.length == 0) {
       return position;

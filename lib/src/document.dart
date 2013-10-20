@@ -57,6 +57,19 @@ abstract class Document extends _Disposable {
   /// single string.
   String getTextRange(Range range);
   
+  /// Converts the given character [index] in this document to a [Point].
+  /// 
+  /// Index refers to the "absolute position" of a character in this document.
+  /// For example:
+  ///     var x = 0; // 10 characters, plus one for newline
+  ///     var y = -1;
+  /// Here, `y` has an index of `15`; `10` characters for the first row, a
+  /// newline character, and `5` characters until `y` in the second row. 
+  /// 
+  /// The optional [startRow] defaults to `0` and represents the row from which 
+  /// to start the conversion.
+  Point indexToPosition(int index, {int startRow: 0});
+  
   /// Inserts a block of [text] at the given [position] and returns a point at
   /// the end of the inserted text.  This method also fires an [onChange] event.
   Point insert(Point position, String text);

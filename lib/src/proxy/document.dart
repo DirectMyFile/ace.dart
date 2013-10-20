@@ -47,6 +47,9 @@ class _DocumentProxy extends _HasProxy implements Document {
   
   String getTextRange(Range range) => _proxy.getTextRange(range._toProxy());
   
+  Point indexToPosition(int index, {int startRow: 0}) =>
+      new Point._(_proxy.indexToPosition(index, startRow));
+  
   Point insert(Point position, String text) =>
       new Point._(_proxy.insert(position._toProxy(), text));
   
