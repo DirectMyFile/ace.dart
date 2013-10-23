@@ -12,18 +12,18 @@ Editor editor;
 @Setup
 void setup() {
   html.document.body.append(new html.Element.div()..id = 'editor');
-  editor = edit(html.query('#editor'))
+  editor = edit(html.querySelector('#editor'))
       ..setValue(sampleText, -1);
 }
 
 @Teardown
 void teardown() {
-  html.document.body.children.remove(html.query('#editor'));
+  html.document.body.children.remove(html.querySelector('#editor'));
 }
 
 @Test()
 void testEditElement() {
-  final Editor editor = edit(html.query('#editor'));
+  final Editor editor = edit(html.querySelector('#editor'));
   expect(editor, isNotNull);
 }
 
