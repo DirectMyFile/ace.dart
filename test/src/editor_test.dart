@@ -19,6 +19,8 @@ void setup() {
 @Teardown
 void teardown() {
   html.document.body.children.remove(html.querySelector('#editor'));
+  editor.dispose();
+  editor = null;
 }
 
 @Test()
@@ -375,9 +377,9 @@ void testGetCopyText() {
   final end = new Point(0, sampleTextLine0.length);
   expect(editor.cursorPosition, equals(end));
   expect(editor.selectionRange, equals(new Range.fromPoints(start, end)));  
-  editor.onCopy.listen((String copyText) {
+  editor.onCopy.listen(expectAsync1((String copyText) {
     expect(copyText, equals(sampleTextLine0));
-  });
+  }));
   final String copyText = editor.copyText;
   expect(copyText, equals(sampleTextLine0));
 }
