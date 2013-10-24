@@ -11,13 +11,13 @@ VirtualRenderer renderer;
 setup() {  
   html.document.body.append(new html.Element.div()..id = 'editor');  
   renderer = new VirtualRenderer(
-      html.query('#editor'), 
+      html.querySelector('#editor'), 
       new Theme.named(Theme.MONOKAI));
 }
 
 @Teardown
 void teardown() {
-  html.document.body.children.remove(html.query('#editor'));
+  html.document.body.children.remove(html.querySelector('#editor'));
 }
 
 @Test()
