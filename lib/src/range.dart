@@ -60,10 +60,10 @@ class Range implements Comparable<Range> {
   
   Range._(proxy) 
   : this(
-      proxy.start.row, 
-      proxy.start.column, 
-      proxy.end.row, 
-      proxy.end.column);
+      proxy['start']['row'], 
+      proxy['start']['column'], 
+      proxy['end']['row'], 
+      proxy['end']['column']);
   
   bool operator ==(Object other) {
     if(identical(this, other)) return true;
@@ -187,9 +187,9 @@ class Range implements Comparable<Range> {
   bool isStart(int row, int column) => 
       start.row == row && start.column == column;
   
-  js.Proxy _toProxy() => 
-      new js.Proxy(_context.ace.define.modules['ace/range'].Range, 
-          start.row, start.column, end.row, end.column);
+  js.JsObject _toProxy() => 
+      new js.JsObject(_modules['ace/range'][Range], 
+          [start.row, start.column, end.row, end.column]);
   
   String toString() => 
       'Range: [${start.row}/${start.column}] -> [${end.row}/${end.column}]';

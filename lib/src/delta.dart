@@ -10,21 +10,22 @@ abstract class Delta {
   final Range range;  
   
   factory Delta._forProxy(proxy) {
-    switch(proxy.action) {
+    switch(proxy['action']) {
       case 'insertLines': return new InsertLinesDelta._fromProxy(proxy);
       case 'insertText': return new InsertTextDelta._fromProxy(proxy);
       case 'removeLines': return new RemoveLinesDelta._fromProxy(proxy);
       case 'removeText': return new RemoveTextDelta._fromProxy(proxy);
-      default: throw new UnsupportedError('Unknown action: ${proxy.action}');
+      default: throw new UnsupportedError('Unknown action: ${proxy['action']}');
     }
   }
   
   Delta._(this.action, this.range);
   
-  Delta._fromProxy(js.Proxy proxy) 
-  : this._(proxy.action, new Range._(proxy.range));
+  Delta._fromProxy(js.JsObject proxy) 
+  : this._(proxy['action'], new Range._(proxy['range']));
   
-  js.Proxy _toProxy() => js.map({'action': action, 'range': range._toProxy()});
+  js.JsObject _toProxy() => 
+      new js.JsObject.jsify({'action': action, 'range': range._toProxy()});
 }
 
 class InsertLinesDelta extends Delta {  
@@ -37,9 +38,10 @@ class InsertLinesDelta extends Delta {
   
   InsertLinesDelta._fromProxy(proxy) 
   : super._fromProxy(proxy)
-  , lines = _list(proxy.lines);
+  , lines = _list(proxy['lines']);
   
-  js.Proxy _toProxy() => super._toProxy()..['lines'] = js.array(lines);
+  js.JsObject _toProxy() => 
+      super._toProxy()..['lines'] = new js.JsObject.jsify(lines);
 }
 
 class InsertTextDelta extends Delta {
@@ -52,9 +54,9 @@ class InsertTextDelta extends Delta {
   
   InsertTextDelta._fromProxy(proxy)
   : super._fromProxy(proxy)
-  , text = proxy.text;
+  , text = proxy['text'];
   
-  js.Proxy _toProxy() => super._toProxy()..['text'] = text;
+  js.JsObject _toProxy() => super._toProxy()..['text'] = text;
 }
 
 class RemoveLinesDelta extends Delta {
@@ -71,11 +73,13 @@ class RemoveLinesDelta extends Delta {
   
   RemoveLinesDelta._fromProxy(proxy) 
     : super._fromProxy(proxy)
-    , lines = _list(proxy.lines)
-    , nl = proxy.nl;
+    , lines = _list(proxy['lines'])
+    , nl = proxy['nl'];
   
-  js.Proxy _toProxy() => 
-      super._toProxy()..['lines'] = js.array(lines)..['nl'] = nl;
+  js.JsObject _toProxy() => 
+      super._toProxy()
+      ..['lines'] = new js.JsObject.jsify(lines)
+      ..['nl'] = nl;
 }
 
 class RemoveTextDelta extends Delta {
@@ -88,7 +92,7 @@ class RemoveTextDelta extends Delta {
   
   RemoveTextDelta._fromProxy(proxy)
     : super._fromProxy(proxy)
-    , text = proxy.text;
+    , text = proxy['text'];
   
-  js.Proxy _toProxy() => super._toProxy()..['text'] = text;
+  js.JsObject _toProxy() => super._toProxy()..['text'] = text;
 }
