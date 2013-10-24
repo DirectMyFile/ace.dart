@@ -1,6 +1,10 @@
 # Ace.dart Changes
 
-## 0.0.8-dev+10.7.2013
+## 0.0.8+10.7.2013
+
+- Updated to SDK 0.8.5_r28990.
+- Removed dependency on `js` package and moved code to use the `dart:js` 
+library instead.
 
 ## 0.0.7+10.7.2013
 
