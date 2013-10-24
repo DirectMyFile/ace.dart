@@ -3,8 +3,8 @@ library ace;
 import 'dart:async';
 import 'dart:convert';
 import 'dart:html' as html;
+import 'dart:js' as js;
 import 'dart:math' as math;
-import 'package:js/js.dart' as js;
 
 part 'src/_.dart';
 part 'src/anchor.dart';
@@ -40,12 +40,13 @@ EditSession createEditSession(String text, Mode mode) {
   assert(text != null);
   assert(mode != null);
   assert(mode is _ModeProxy);
-  return new _EditSessionProxy._( _context.ace.createEditSession(text, 
-      (mode as _ModeProxy)._mode));
+  return new _EditSessionProxy._(
+      _context['ace'].callMethod('createEditSession', 
+          [text, (mode as _ModeProxy)._mode]));
 }
 
 /// Embed an Ace [Editor] instance into the DOM, at the given [element].
 Editor edit(html.Element element) {
   assert(element != null);
-  return new _EditorProxy._(_context.ace.edit(element));
+  return new _EditorProxy._(_context['ace'].callMethod('edit', [element]));
 }

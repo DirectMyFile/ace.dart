@@ -2,109 +2,101 @@ part of ace;
 
 class _SelectionProxy extends _HasProxy implements Selection {
 
-  Point get cursor => new Point._(_proxy.getCursor());
+  Point get cursor => new Point._(call('getCursor'));
   
-  bool get isBackwards => _proxy.isBackwards();
+  bool get isBackwards => call('isBackwards');
   
-  bool get isEmpty => _proxy.isEmpty();
+  bool get isEmpty => call('isEmpty');
   
-  bool get isMultiLine => _proxy.isMultiLine();  
+  bool get isMultiLine => call('isMultiLine');  
   
-  js.Callback _jsOnChangeCursor;
   final _onChangeCursor = new StreamController.broadcast();
   Stream get onChangeCursor => _onChangeCursor.stream;
   
-  js.Callback _jsOnChangeSelection;
   final _onChangeSelection = new StreamController.broadcast();
   Stream get onChangeSelection => _onChangeSelection.stream;
   
-  Range get range => new Range._(_proxy.getRange());
+  Range get range => new Range._(call('getRange'));
   
   _SelectionProxy(EditSession session) 
-  : this._(new js.Proxy(
-        _context.ace.define.modules['ace/selection'].Selection, 
-        (session as _EditSessionProxy)._proxy));
+  : this._(new js.JsObject(
+        _modules['ace/selection'][Selection], 
+        [(session as _EditSessionProxy)._proxy]));
   
-  _SelectionProxy._(js.Proxy proxy) : super(proxy) {
-    _jsOnChangeCursor =
-        new js.Callback.many((_,__) => _onChangeCursor.add(this));
-    _jsOnChangeSelection =
-        new js.Callback.many((_,__) => _onChangeSelection.add(this));
-    _proxy.on('changeCursor', _jsOnChangeCursor);
-    _proxy.on('changeSelection', _jsOnChangeSelection);
+  _SelectionProxy._(js.JsObject proxy) : super(proxy) {
+    call('on', ['changeCursor', (_,__) => _onChangeCursor.add(this)]);
+    call('on', ['changeSelection', (_,__) => _onChangeSelection.add(this)]);
   }
   
   void _onDispose() {
     _onChangeCursor.close();
     _onChangeSelection.close();
-    _jsOnChangeCursor.dispose();
-    _jsOnChangeSelection.dispose();
   }
-    
-  void mergeOverlappingRanges() => _proxy.mergeOverlappingRanges();
+  
+  void mergeOverlappingRanges() => call('mergeOverlappingRanges');
   
   void moveCursorBy(int rows, int columns) => 
-      _proxy.moveCursorBy(rows, columns);
+      call('moveCursorBy', [rows, columns]);
   
-  void moveCursorDown() => _proxy.moveCursorDown();
+  void moveCursorDown() => call('moveCursorDown');
   
-  void moveCursorFileEnd() => _proxy.moveCursorFileEnd();
+  void moveCursorFileEnd() => call('moveCursorFileEnd');
   
-  void moveCursorFileStart() => _proxy.moveCursorFileStart();
+  void moveCursorFileStart() => call('moveCursorFileStart');
   
-  void moveCursorLeft() => _proxy.moveCursorLeft();
+  void moveCursorLeft() => call('moveCursorLeft');
   
-  void moveCursorLineEnd() => _proxy.moveCursorLineEnd();
+  void moveCursorLineEnd() => call('moveCursorLineEnd');
   
-  void moveCursorLineStart() => _proxy.moveCursorLineStart();
+  void moveCursorLineStart() => call('moveCursorLineStart');
   
-  void moveCursorRight() => _proxy.moveCursorRight();
+  void moveCursorRight() => call('moveCursorRight');
   
   void moveCursorTo(int row, int column, {bool keepDesiredColumn: false}) =>
-      _proxy.moveCursorTo(row, column, keepDesiredColumn);
+      call('moveCursorTo', [row, column, keepDesiredColumn]);
   
   void moveCursorToScreen(int row, int column, 
                           {bool keepDesiredColumn: false}) =>
-      _proxy.moveCursorToScreen(row, column, keepDesiredColumn);
+      call('moveCursorToScreen', [row, column, keepDesiredColumn]);
   
-  void moveCursorUp() => _proxy.moveCursorUp();
+  void moveCursorUp() => call('moveCursorUp');
   
-  void moveCursorWordLeft() => _proxy.moveCursorWordLeft();
+  void moveCursorWordLeft() => call('moveCursorWordLeft');
   
-  void moveCursorWordRight() => _proxy.moveCursorWordRight();
+  void moveCursorWordRight() => call('moveCursorWordRight');
   
-  void selectAll() => _proxy.selectAll();
+  void selectAll() => call('selectAll');
   
-  void selectAWord() => _proxy.selectAWord();
+  void selectAWord() => call('selectAWord');
   
-  void selectDown() => _proxy.selectDown();
+  void selectDown() => call('selectDown');
   
-  void selectFileEnd() => _proxy.selectFileEnd();
+  void selectFileEnd() => call('selectFileEnd');
   
-  void selectFileStart() => _proxy.selectFileStart();
+  void selectFileStart() => call('selectFileStart');
   
-  void selectLeft() => _proxy.selectLeft();
+  void selectLeft() => call('selectLeft');
   
-  void selectLine() => _proxy.selectLine();
+  void selectLine() => call('selectLine');
   
-  void selectLineEnd() => _proxy.selectLineEnd();
+  void selectLineEnd() => call('selectLineEnd');
 
-  void selectLineStart() => _proxy.selectLineStart();
+  void selectLineStart() => call('selectLineStart');
   
-  void selectRight() => _proxy.selectRight();
+  void selectRight() => call('selectRight');
   
-  void selectTo(int row, int column) => _proxy.selectTo(row, column);
+  void selectTo(int row, int column) => call('selectTo', [row, column]);
   
-  void selectUp() => _proxy.selectUp();
+  void selectUp() => call('selectUp');
   
-  void selectWord() => _proxy.selectWord();
+  void selectWord() => call('selectWord');
   
-  void selectWordLeft() => _proxy.selectWordLeft();
+  void selectWordLeft() => call('selectWordLeft');
   
-  void selectWordRight() => _proxy.selectWordRight();
+  void selectWordRight() => call('selectWordRight');
   
   void setSelectionAnchor(int row, int column) =>
-      _proxy.setSelectionAnchor(row, column);
+      call('setSelectionAnchor', [row, column]);
   
-  void shiftSelection(int columns) => _proxy.shiftSelection(columns);
+  void shiftSelection(int columns) => call('shiftSelection', [columns]);
 }

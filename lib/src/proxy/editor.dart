@@ -2,132 +2,121 @@ part of ace;
 
 class _EditorProxy extends _HasProxy implements Editor {
   
-  js.Callback _jsOnBlur;
   final _onBlur = new StreamController.broadcast();
   Stream get onBlur => _onBlur.stream;
-  
-  js.Callback _jsOnChange;
+
   final _onChange = new StreamController<Delta>.broadcast();
   Stream<Delta> get onChange => _onChange.stream;
   
-  js.Callback _jsOnChangeSession;
   final _onChangeSession = 
       new StreamController<EditSessionChangeEvent>.broadcast();
   Stream<EditSessionChangeEvent> get onChangeSession => 
       _onChangeSession.stream;
   
-  js.Callback _jsOnCopy;
   final _onCopy = new StreamController<String>.broadcast();
   Stream<String> get onCopy => _onCopy.stream;
   
-  js.Callback _jsOnFocus;
   final _onFocus = new StreamController.broadcast();
   Stream get onFocus => _onFocus.stream;
   
-  js.Callback _jsOnPaste;
   final _onPaste = new StreamController<String>.broadcast();
   Stream<String> get onPaste => _onPaste.stream;  
   
-  String get copyText => _proxy.getCopyText();
+  String get copyText => call('getCopyText');
   
-  Point get cursorPosition => new Point._(_proxy.getCursorPosition());
-  
-  int
-    get dragDelay => _proxy.getDragDelay();
-    set dragDelay(int dragDelay) => _proxy.setDragDelay(dragDelay);
-  
-  int get firstVisibleRow => _proxy.getFirstVisibleRow();
+  Point get cursorPosition => new Point._(call('getCursorPosition'));
   
   int
-    get fontSize => _proxy.getFontSize();
-    set fontSize(int fontSize) => _proxy.setFontSize(fontSize);
+    get dragDelay => call('getDragDelay');
+    set dragDelay(int dragDelay) => call('setDragDelay', [dragDelay]);
+  
+  int get firstVisibleRow => call('getFirstVisibleRow');
+  
+  int
+    get fontSize => call('getFontSize');
+    set fontSize(int fontSize) => call('setFontSize', [fontSize]);
   
   bool
-    get highlightActiveLine => _proxy.getHighlightActiveLine();
+    get highlightActiveLine => call('getHighlightActiveLine');
     set highlightActiveLine(bool highlightActiveLine) =>
-        _proxy.setHighlightActiveLine(highlightActiveLine);
+        call('setHighlightActiveLine', [highlightActiveLine]);
     
   bool
-    get highlightGutterLine => _proxy.getHighlightGutterLine();
+    get highlightGutterLine => call('getHighlightGutterLine');
     set highlightGutterLine(bool highlightGutterLine) =>
-        _proxy.setHighlightGutterLine(highlightGutterLine);
+        call('setHighlightGutterLine', [highlightGutterLine]);
     
   bool
-    get highlightSelectedWord => _proxy.getHighlightSelectedWord();
+    get highlightSelectedWord => call('getHighlightSelectedWord');
     set highlightSelectedWord(bool highlightSelectedWord) =>
-        _proxy.setHighlightSelectedWord(highlightSelectedWord);
+        call('setHighlightSelectedWord', [highlightSelectedWord]);
   
-  bool get isFocused => _proxy.isFocused();
+  bool get isFocused => call('isFocused');
   
   bool
-    get overwrite => _proxy.getOverwrite();
-    set overwrite(bool overwrite) => _proxy.setOverwrite(overwrite);
+    get overwrite => call('getOverwrite');
+    set overwrite(bool overwrite) => call('setOverwrite', [overwrite]);
   
   int
-    get printMarginColumn => _proxy.getPrintMarginColumn();
+    get printMarginColumn => call('getPrintMarginColumn');
     set printMarginColumn(int printMarginColumn) => 
-        _proxy.setPrintMarginColumn(printMarginColumn);
+        call('setPrintMarginColumn', [printMarginColumn]);
   
   bool
-    get readOnly => _proxy.getReadOnly();
-    set readOnly(bool readOnly) => _proxy.setReadOnly(readOnly);
+    get readOnly => call('getReadOnly');
+    set readOnly(bool readOnly) => call('setReadOnly', [readOnly]);
   
-  VirtualRenderer get renderer => new _VirtualRendererProxy._(_proxy.renderer);
+  VirtualRenderer get renderer => 
+      new _VirtualRendererProxy._(_proxy['renderer']);
   
   int
-    get scrollSpeed => _proxy.getScrollSpeed();
-    set scrollSpeed(int scrollSpeed) => _proxy.setScrollSpeed(scrollSpeed);
+    get scrollSpeed => call('getScrollSpeed');
+    set scrollSpeed(int scrollSpeed) => call('setScrollSpeed', [scrollSpeed]);
     
-  Selection get selection => new _SelectionProxy._(_proxy.getSelection());
+  Selection get selection => new _SelectionProxy._(call('getSelection'));
   
-  Range get selectionRange => new Range._(_proxy.getSelectionRange());
+  Range get selectionRange => new Range._(call('getSelectionRange'));
   
   EditSession
-    get session => new _EditSessionProxy._(_proxy.getSession());
+    get session => new _EditSessionProxy._(call('getSession'));
     set session(EditSession session) { 
       assert(session is _EditSessionProxy);
-      _proxy.setSession((session as _EditSessionProxy)._proxy);
+      call('setSession', [(session as _EditSessionProxy)._proxy]);
     }
   
   bool
-    get showInvisibles => _proxy.getShowInvisibles();
+    get showInvisibles => call('getShowInvisibles');
     set showInvisibles(bool showInvisibles) => 
-        _proxy.setShowInvisibles(showInvisibles);
+        call('setShowInvisibles', [showInvisibles]);
   
   bool
-    get showPrintMargin => _proxy.getShowPrintMargin();
+    get showPrintMargin => call('getShowPrintMargin');
     set showPrintMargin(bool showPrintMargin) => 
-        _proxy.setShowPrintMargin(showPrintMargin);
+        call('setShowPrintMargin', [showPrintMargin]);
     
-  TextInput get textInput => new _TextInputProxy._(_proxy.textInput);
+  TextInput get textInput => new _TextInputProxy._(_proxy['textInput']);
     
   Theme
-    get theme => new _ThemeProxy(_proxy.getTheme());
+    get theme => new _ThemeProxy(call('getTheme'));
     set theme(Theme theme) {
       assert(theme is _ThemeProxy);
-      _proxy.setTheme((theme as _ThemeProxy)._theme);
+      call('setTheme', [(theme as _ThemeProxy)._theme]);
     }
   
-  String get value => _proxy.getValue();
+  String get value => call('getValue');
     
-  _EditorProxy._(js.Proxy proxy) : super(proxy) {
-    _jsOnBlur = new js.Callback.many((_,__) => _onBlur.add(this));
-    _jsOnChange = new js.Callback.many((e,__) =>
-        _onChange.add(new Delta._forProxy(e.data)));
-    _jsOnChangeSession = new js.Callback.many((e,__) {
+  _EditorProxy._(js.JsObject proxy) : super(proxy) {
+    call('on', ['blur', (_,__) => _onBlur.add(this)]);
+    call('on', ['change', (e,__) =>
+        _onChange.add(new Delta._forProxy(e['data']))]);
+    call('on', ['changeSession', (e,__) {
       _onChangeSession.add(new EditSessionChangeEvent._(
-          new _EditSessionProxy._(e.oldSession),
-          new _EditSessionProxy._(e.session))); 
-    });
-    _jsOnCopy = new js.Callback.many((e,__) => _onCopy.add(e));
-    _jsOnFocus = new js.Callback.many((_,__) => _onFocus.add(this));
-    _jsOnPaste = new js.Callback.many((e,__) => _onPaste.add(e));
-    _proxy.on('blur', _jsOnBlur);
-    _proxy.on('change', _jsOnChange);
-    _proxy.on('changeSession', _jsOnChangeSession);
-    _proxy.on('copy', _jsOnCopy);
-    _proxy.on('focus', _jsOnFocus);
-    _proxy.on('paste', _jsOnPaste);
+          new _EditSessionProxy._(e['oldSession']),
+          new _EditSessionProxy._(e['session']))); 
+    }]);
+    call('on', ['copy', (e,__) => _onCopy.add(e)]);
+    call('on', ['focus', (_,__) => _onFocus.add(this)]);
+    call('on', ['paste', (e,__) => _onPaste.add(e)]);
   }
   
   void _onDispose() {
@@ -137,97 +126,91 @@ class _EditorProxy extends _HasProxy implements Editor {
     _onCopy.close();
     _onFocus.close();
     _onPaste.close();
-    _jsOnBlur.dispose();
-    _jsOnChange.dispose();
-    _jsOnChangeSession.dispose();
-    _jsOnCopy.dispose();
-    _jsOnFocus.dispose();
-    _jsOnPaste.dispose();
-    _proxy.destroy();
+    call('destroy');
   }
   
-  void alignCursors() => _proxy.alignCursors();
+  void alignCursors() => call('alignCursors');
   
-  void blockIndent() => _proxy.blockIndent();
+  void blockIndent() => call('blockIndent');
   
-  void blockOutdent() => _proxy.blockOutdent();
+  void blockOutdent() => call('blockOutdent');
   
-  void blur() => _proxy.blur();
+  void blur() => call('blur');
   
-  void centerSelection() => _proxy.centerSelection();
+  void centerSelection() => call('centerSelection');
   
-  void clearSelection() => _proxy.clearSelection();
+  void clearSelection() => call('clearSelection');
   
-  int copyLinesDown() => _proxy.copyLinesDown();
+  int copyLinesDown() => call('copyLinesDown');
   
-  int copyLinesUp() => _proxy.copyLinesUp();
+  int copyLinesUp() => call('copyLinesUp');
   
-  void exitMultiSelectMode() => _proxy.exitMultiSelectMode();
+  void exitMultiSelectMode() => call('exitMultiSelectMode');
   
-  void focus() => _proxy.focus();
+  void focus() => call('focus');
   
-  void gotoPageDown() => _proxy.gotoPageDown();
+  void gotoPageDown() => call('gotoPageDown');
   
-  void gotoPageUp() => _proxy.gotoPageUp();
+  void gotoPageUp() => call('gotoPageUp');
   
-  void indent() => _proxy.indent();
+  void indent() => call('indent');
   
-  void insert(String text) => _proxy.insert(text);
+  void insert(String text) => call('insert', [text]);
   
-  bool isRowFullyVisible(int row) => _proxy.isRowFullyVisible(row);
+  bool isRowFullyVisible(int row) => call('isRowFullyVisible', [row]);
   
-  bool isRowVisible(int row) => _proxy.isRowVisible(row);
+  bool isRowVisible(int row) => call('isRowVisible', [row]);
   
-  void navigateDown([int times = 1]) => _proxy.navigateDown(times);
+  void navigateDown([int times = 1]) => call('navigateDown', [times]);
   
-  void navigateFileEnd() => _proxy.navigateFileEnd();
+  void navigateFileEnd() => call('navigateFileEnd');
   
-  void navigateFileStart() => _proxy.navigateFileStart();
+  void navigateFileStart() =>call('navigateFileStart');
   
-  void navigateLeft([int times = 1]) => _proxy.navigateLeft(times);
+  void navigateLeft([int times = 1]) => call('navigateLeft', [times]);
   
-  void navigateLineEnd() => _proxy.navigateLineEnd();
+  void navigateLineEnd() => call('navigateLineEnd');
   
-  void navigateLineStart() => _proxy.navigateLineStart();
+  void navigateLineStart() => call('navigateLineStart');
   
-  void navigateRight([int times = 1]) => _proxy.navigateRight(times);
+  void navigateRight([int times = 1]) => call('navigateRight', [times]);
   
-  void navigateTo(int row, int column) => _proxy.navigateTo(row, column);
+  void navigateTo(int row, int column) => call('navigateTo', [row, column]);
   
-  void navigateUp([int times = 1]) => _proxy.navigateUp(times);
+  void navigateUp([int times = 1]) => call('navigateUp', [times]);
   
-  void navigateWordLeft() => _proxy.navigateWordLeft();
+  void navigateWordLeft() => call('navigateWordLeft');
   
-  void navigateWordRight() => _proxy.navigateWordRight();
+  void navigateWordRight() => call('navigateWordRight');
   
-  void redo() => _proxy.redo();
+  void redo() => call('redo');
   
-  void removeToLineEnd() => _proxy.removeToLineEnd();
+  void removeToLineEnd() => call('removeToLineEnd');
   
-  void removeToLineStart() => _proxy.removeToLineStart();
+  void removeToLineStart() => call('removeToLineStart');
   
-  void removeWordLeft() => _proxy.removeWordLeft();
+  void removeWordLeft() => call('removeWordLeft');
   
-  void removeWordRight() => _proxy.removeWordRight();  
+  void removeWordRight() => call('removeWordRight');  
   
-  void resize(bool force) => _proxy.resize(force);
+  void resize(bool force) => call('resize', [force]);
   
-  void selectAll() => _proxy.selectAll();
+  void selectAll() => call('selectAll');
   
   String setValue(String value, [int cursorPosition = 0]) {
     assert(cursorPosition >= -1 && cursorPosition <= 1);
-    return _proxy.setValue(value, cursorPosition);
+    return call('setValue', [value, cursorPosition]);
   }
   
-  void toggleOverwrite() => _proxy.toggleOverwrite();
+  void toggleOverwrite() => call('toggleOverwrite');
   
-  void toLowerCase() => _proxy.toLowerCase();
+  void toLowerCase() => call('toLowerCase');
   
-  void toUpperCase() => _proxy.toUpperCase();
+  void toUpperCase() => call('toUpperCase');
   
-  void transposeLetters() => _proxy.transposeLetters();
+  void transposeLetters() => call('transposeLetters');
   
-  void undo() => _proxy.undo();
+  void undo() => call('undo');
   
-  void updateSelectionMarkers() => _proxy.updateSelectionMarkers();
+  void updateSelectionMarkers() => call('updateSelectionMarkers');
 }

@@ -2,15 +2,15 @@ part of ace;
 
 class _UndoManagerProxy extends _HasProxy implements UndoManager {
   
-  bool get hasRedo => _proxy.hasRedo();
+  bool get hasRedo => call('hasRedo');
   
-  bool get hasUndo => _proxy.hasUndo();
+  bool get hasUndo => call('hasUndo');
   
-  _UndoManagerProxy._(js.Proxy proxy) : super(proxy);
+  _UndoManagerProxy._(js.JsObject proxy) : super(proxy);
   
-  Range redo({bool select: true}) => new Range._(_proxy.redo(!select));
+  Range redo({bool select: true}) => new Range._(call('redo', [!select]));
   
-  void reset() => _proxy.reset();
+  void reset() => call('reset');
   
-  Range undo({bool select: true}) => new Range._(_proxy.undo(!select));
+  Range undo({bool select: true}) => new Range._(call('undo', [!select]));
 }

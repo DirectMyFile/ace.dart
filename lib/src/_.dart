@@ -1,6 +1,7 @@
 part of ace;
 
 get _context => js.context;
+get _modules => _context['ace']['define']['modules'];
 
 String _ext(String path, {String separator: '.'}) {
   int index = path.lastIndexOf(separator);
@@ -8,11 +9,12 @@ String _ext(String path, {String separator: '.'}) {
   return path.substring(index + 1).toLowerCase();
 }
 
-List _list(js.Proxy array) => JSON.decode(_context.JSON.stringify(array));
+List _list(js.JsObject array) => 
+    JSON.decode(_context['JSON'].callMethod('stringify', [array]));
 
-Map _map(js.Proxy obj) => JSON.decode(_context.JSON.stringify(obj));
+Map _map(js.JsObject obj) => 
+    JSON.decode(_context['JSON'].callMethod('stringify', [obj]));
 
-// TODO(rms): https://code.google.com/p/dart/issues/detail?id=13832
 List _spliceList(List list, int start, int howMany, [List elements]) {
   final end = start + howMany;
   final removed = list.sublist(start, end);
@@ -34,30 +36,31 @@ abstract class _Disposable {
 }
 
 abstract class _HasProxy extends _Disposable {
-  var _proxy;
+  js.JsObject _proxy;
   
   final Future _onHasProxy;
   
   bool get _hasProxy => _proxy != null;
       
-  _HasProxy.async(Future<js.Proxy> proxyFuture) 
+  _HasProxy.async(Future<js.JsObject> proxyFuture) 
       : _onHasProxy = proxyFuture {
     proxyFuture.then((proxy) => _proxy = proxy);
   }
   
-  _HasProxy(js.Proxy proxy) 
-      : _proxy = js.retain(proxy)
+  _HasProxy(js.JsObject proxy) 
+      : _proxy = proxy
       , _onHasProxy = new Future.value();
-    
+  
+  call(String name, [List args]) => _proxy.callMethod(name, args);
+  
   void dispose() {
     if (_hasProxy) {
       _onDispose();
-      js.release(_proxy);
       _proxy = null;
     }
   }
   
   void _onDispose() {}
   
-  String toString() => _context.JSON.stringify(_proxy);
+  String toString() => _context.JSON.stringify(_proxy);  
 }

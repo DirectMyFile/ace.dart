@@ -48,23 +48,26 @@ class SearchOptions {
       backwards: m['backwards'] == null ? false : m['backwards'],
       caseSensitive: m['caseSensitive'] == null ? false : m['caseSensitive'],
       needle: m['needle'] == null ? '' : m['needle'],
-      range: m['range'] == null ? null : new Range._(js.map(m['range'])),
+      range: m['range'] == null ? null 
+          : new Range._(new js.JsObject.jsify(m['range'])),
       regExp: m['regExp'] == null ? false : m['regExp'],
       skipCurrent: m['skipCurrent'] == null ? false : m['skipCurrent'],
-      start: m['start'] == null ? null : new Range._(js.map(m['start'])),
+      start: m['start'] == null ? null 
+          : new Range._(new js.JsObject.jsify(m['start'])),
       wholeWord: m['wholeWord'] == null ? false : m['wholeWord'],
       wrap: m['wrap'] == null ? false : m['wrap']);
   
-  js.Proxy _toProxy() =>
-      js.map({ 'backwards': backwards,
-               'caseSensitive': caseSensitive,
-               'needle': needle,
-               'range': range == null ? null : range._toProxy(),
-               'regExp': regExp,
-               'skipCurrent': skipCurrent,
-               'start': start == null ? null : start._toProxy(),
-               'wholeWord': wholeWord,
-               'wrap': wrap });
+  js.JsObject _toProxy() =>
+      new js.JsObject.jsify({ 
+        'backwards': backwards,
+        'caseSensitive': caseSensitive,
+        'needle': needle,
+        'range': range == null ? null : range._toProxy(),
+        'regExp': regExp,
+        'skipCurrent': skipCurrent,
+        'start': start == null ? null : start._toProxy(),
+        'wholeWord': wholeWord,
+        'wrap': wrap });
 }
 
 /// Handles text searches within a [Document].

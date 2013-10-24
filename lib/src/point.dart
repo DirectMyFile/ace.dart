@@ -12,7 +12,7 @@ class Point {
   /// Constructs a new [Point] that is a copy of the given [other].
   Point.copy(Point other) : this(other.row, other.column);
   
-  Point._(proxy) : this(proxy.row, proxy.column);  
+  Point._(proxy) : this(proxy['row'], proxy['column']);  
   
   bool operator ==(Object other) {
     if(identical(this, other)) return true;
@@ -23,7 +23,8 @@ class Point {
   
   int get hashCode => row.hashCode ^ column.hashCode;
   
-  js.Proxy _toProxy() => js.map({'row': row, 'column': column});
+  js.JsObject _toProxy() => 
+      new js.JsObject.jsify({'row': row, 'column': column});
   
   String toString() => 'Point: [${row}/${column}]';
 }
