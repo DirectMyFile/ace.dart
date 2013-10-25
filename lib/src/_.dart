@@ -62,5 +62,5 @@ abstract class _HasProxy extends _Disposable {
   
   void _onDispose() {}
   
-  String toString() => _context.JSON.stringify(_proxy);  
+  String toString() => _context['JSON'].callMethod('stringify', [_proxy]); 
 }
