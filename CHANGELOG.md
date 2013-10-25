@@ -1,6 +1,6 @@
 # Ace.dart Changes
 
-## 0.0.9-dev+10.21.2013
+## 0.0.9+10.21.2013
 
 - Updated to ace-builds version 10.21.2013.
 - Fixed a couple of bugs from the move to `dart:js`.
