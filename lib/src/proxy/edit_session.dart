@@ -188,8 +188,7 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   void setBreakpoint(int row, {String className: 'ace_breakpoint'}) =>
       call('setBreakpoint', [row, className]);
   
-  void setBreakpoints(List<int> rows) => 
-      call('setBreakpoints', [new js.JsObject.jsify(rows)]);
+  void setBreakpoints(List<int> rows) => call('setBreakpoints', [_jsify(rows)]);
   
   void setWrapLimitRange({int min, int max}) => 
       call('setWrapLimitRange', [min, max]);

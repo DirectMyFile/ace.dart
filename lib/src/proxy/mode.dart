@@ -9,8 +9,8 @@ class _ModeProxy extends _HasProxy implements Mode {
   _ModeProxy(String modePath) : super.async(new Future<js.JsObject>(() {
     final completer = new Completer<js.JsObject>();
     _context['ace']['config'].callMethod('loadModule', 
-        [new js.JsObject.jsify(['mode', modePath]), 
-        (module) => completer.complete(module['Mode'])]);
+        [_jsify(['mode', modePath]), 
+         (module) => completer.complete(module['Mode'])]);
     return completer.future;
   })), _modePath = modePath ;
   

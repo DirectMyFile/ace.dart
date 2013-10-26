@@ -19,6 +19,6 @@ class _SearchProxy extends _HasProxy implements Search {
   Iterable<Range> findAll(EditSession session) {
     assert (session is _EditSessionProxy);
     return _list(call('findAll', [(session as _EditSessionProxy)._proxy]))
-        .map((range) => new Range._(new js.JsObject.jsify(range)));
+        .map((range) => new Range._(_jsify(range)));
   }
 }

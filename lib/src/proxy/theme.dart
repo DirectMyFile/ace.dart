@@ -30,8 +30,7 @@ class _ThemeProxy extends _HasProxy implements Theme {
   _ThemeProxy(String path) : super.async(new Future<js.JsObject>(() {
     final completer = new Completer<js.JsObject>();
     _context['ace']['config'].callMethod('loadModule', 
-        [new js.JsObject.jsify(['theme', path]), 
-        (module) => completer.complete(module)]);
+        [_jsify(['theme', path]), (module) => completer.complete(module)]);
     return completer.future;
   })), path = path;
 }

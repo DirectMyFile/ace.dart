@@ -9,6 +9,8 @@ String _ext(String path, {String separator: '.'}) {
   return path.substring(index + 1).toLowerCase();
 }
 
+js.JsObject _jsify(obj) => new js.JsObject.jsify(obj);
+
 List _list(js.JsObject array) => 
     JSON.decode(_context['JSON'].callMethod('stringify', [array]));
 

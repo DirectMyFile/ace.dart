@@ -23,8 +23,7 @@ class Point {
   
   int get hashCode => row.hashCode ^ column.hashCode;
   
-  js.JsObject _toProxy() => 
-      new js.JsObject.jsify({'row': row, 'column': column});
+  js.JsObject _toProxy() => _jsify({'row': row, 'column': column});
   
   String toString() => 'Point: [${row}/${column}]';
 }

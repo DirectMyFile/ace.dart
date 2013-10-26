@@ -31,8 +31,7 @@ class _DocumentProxy extends _HasProxy implements Document {
   }
   
   void applyDeltas(List<Delta> deltas) =>
-      call('applyDeltas', 
-          [new js.JsObject.jsify(deltas.map((delta) => delta._toProxy()))]);
+      call('applyDeltas', [_jsify(deltas.map((delta) => delta._toProxy()))]);
   
   Anchor createAnchor(int row, int column) =>
       new _AnchorProxy._(call('createAnchor', [row, column]));
@@ -56,7 +55,7 @@ class _DocumentProxy extends _HasProxy implements Document {
       new Point._(call('insertInLine', [position._toProxy(), text]));
   
   Point insertLines(int row, List<String> lines) =>
-      new Point._(call('insertLines', [row, new js.JsObject.jsify(lines)]));
+      new Point._(call('insertLines', [row, _jsify(lines)]));
   
   Point insertNewLine(Point position) =>
       new Point._(call('insertNewLine', [position._toProxy()]));
@@ -80,6 +79,5 @@ class _DocumentProxy extends _HasProxy implements Document {
       new Point._(call('replace', [range._toProxy(), text]));
   
   void revertDeltas(List<Delta> deltas) => 
-      call('revertDeltas', 
-          [new js.JsObject.jsify(deltas.map((delta) => delta._toProxy()))]);
+      call('revertDeltas', [_jsify(deltas.map((delta) => delta._toProxy()))]);
 }

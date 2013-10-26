@@ -48,17 +48,15 @@ class SearchOptions {
       backwards: m['backwards'] == null ? false : m['backwards'],
       caseSensitive: m['caseSensitive'] == null ? false : m['caseSensitive'],
       needle: m['needle'] == null ? '' : m['needle'],
-      range: m['range'] == null ? null 
-          : new Range._(new js.JsObject.jsify(m['range'])),
+      range: m['range'] == null ? null : new Range._(_jsify(m['range'])),
       regExp: m['regExp'] == null ? false : m['regExp'],
       skipCurrent: m['skipCurrent'] == null ? false : m['skipCurrent'],
-      start: m['start'] == null ? null 
-          : new Range._(new js.JsObject.jsify(m['start'])),
+      start: m['start'] == null ? null : new Range._(_jsify(m['start'])),
       wholeWord: m['wholeWord'] == null ? false : m['wholeWord'],
       wrap: m['wrap'] == null ? false : m['wrap']);
   
   js.JsObject _toProxy() =>
-      new js.JsObject.jsify({ 
+      _jsify({ 
         'backwards': backwards,
         'caseSensitive': caseSensitive,
         'needle': needle,
