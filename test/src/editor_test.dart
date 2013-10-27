@@ -341,6 +341,14 @@ void testHighlightActiveLine() {
 }
 
 @Test()
+void testHighlightGutterLine() {
+  editor.highlightGutterLine = true;
+  expect(editor.highlightGutterLine, isTrue);
+  editor.highlightGutterLine = false;
+  expect(editor.highlightGutterLine, isFalse);
+}
+
+@Test()
 void testSetOverwrite() {
   final bool initialValue = editor.overwrite;
   editor.session.onChangeOverwrite.listen(expectAsync1((_) {

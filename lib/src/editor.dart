@@ -44,6 +44,7 @@ abstract class Editor extends _Disposable {
   /// Whether or not the current line should be highlighted.
   bool highlightActiveLine;
 
+  /// Whether or not the current line gutter should be highlighted.
   bool highlightGutterLine;
 
   bool highlightSelectedWord;
