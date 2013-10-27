@@ -349,6 +349,14 @@ void testHighlightGutterLine() {
 }
 
 @Test()
+void testHighlightSelectedWord() {
+  editor.highlightSelectedWord = true;
+  expect(editor.highlightSelectedWord, isTrue);
+  editor.highlightSelectedWord = false;
+  expect(editor.highlightSelectedWord, isFalse);
+}
+
+@Test()
 void testSetOverwrite() {
   final bool initialValue = editor.overwrite;
   editor.session.onChangeOverwrite.listen(expectAsync1((_) {

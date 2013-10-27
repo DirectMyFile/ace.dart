@@ -47,6 +47,7 @@ abstract class Editor extends _Disposable {
   /// Whether or not the current line gutter should be highlighted.
   bool highlightGutterLine;
 
+  /// Whether or not the current selected word should be highlighted.
   bool highlightSelectedWord;
 
   /// Returns _true_ if current [textInput] is in focus.
