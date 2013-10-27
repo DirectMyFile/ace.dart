@@ -10,10 +10,8 @@ class _VirtualRendererProxy extends _HasProxy implements VirtualRenderer {
         call('setOption', ['fixedWidthGutter', fixedWidthGutter]);
   
   _VirtualRendererProxy(html.Element container, Theme theme) 
-  : this._(
-        new js.JsObject(
-            _modules['ace/virtual_renderer'][VirtualRenderer], 
-            [container, (theme as _ThemeProxy)._theme]));
+  : this._(new js.JsObject(_modules['ace/virtual_renderer'][VirtualRenderer], 
+      [container, (theme as _ThemeProxy)._theme]));
     
   _VirtualRendererProxy._(js.JsObject proxy) : super(proxy);
   

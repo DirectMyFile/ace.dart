@@ -38,6 +38,7 @@ abstract class _Disposable {
 }
 
 abstract class _HasProxy extends _Disposable {
+  
   js.JsObject _proxy;
   
   final Future _onHasProxy;
