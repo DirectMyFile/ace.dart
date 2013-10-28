@@ -7,5 +7,5 @@ documentation: http://rmsmith.github.com/ace.dart/ace.html
 dependencies:
 dev_dependencies:
   bench: '>=0.2.15'
-  browser: '>=0.8.5'
-  unittest: '>=0.8.5'
+  browser: '>=0.8.7'
+  unittest: '>=0.8.7'
