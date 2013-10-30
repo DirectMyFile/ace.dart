@@ -110,6 +110,10 @@ abstract class Editor extends _Disposable {
   /// Clears the current [selection].
   void clearSelection();
   
+  /// Copies all of the lines in the current [selection] down one row.
+  /// 
+  /// This method copies entire rows, so the copied range may be larger than
+  /// the current [selectionRange].
   int copyLinesDown();
   
   int copyLinesUp();

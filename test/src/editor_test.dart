@@ -473,3 +473,19 @@ void testClearSelection() {
   expect(editor.selection.isEmpty, isTrue);
   expect(editor.selectionRange.isEmpty, isTrue);
 }
+
+@Test()
+void testCopyLinesDown() {
+  editor.clearSelection();
+  editor.navigateTo(2, 14);
+  editor.selection.selectTo(3, 11);
+  expect(editor.value, equals(sampleText));
+  editor.copyLinesDown();
+  final doc = editor.session.document;
+  expect(doc.length, equals(sampleTextLines.length + 2));
+  expect(doc.getLine(0), equals(sampleTextLine0));
+  expect(doc.getLine(1), equals(sampleTextLine1));
+  for (int i = 4; i < doc.length; i++) {
+    expect(doc.getLine(i), equals(sampleTextLines[i - 2]));
+  }
+}

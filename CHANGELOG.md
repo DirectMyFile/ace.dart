@@ -2,6 +2,9 @@
 
 ## 0.0.10-dev+10.21.2013
 
+- Added documentation and test coverage to a number of public methods; please
+consult the commit history for details.
+
 ## 0.0.9+10.21.2013
 
 - Updated to ace-builds version 10.21.2013.
