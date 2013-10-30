@@ -69,8 +69,10 @@ abstract class Editor extends _Disposable {
   /// The current mouse scroll speed, in milliseconds.
   int scrollSpeed;
 
+  /// The current [Selection].
   Selection get selection;
   
+  /// The [Selection.range] of the current [selection].
   Range get selectionRange;
   
   /// The current [EditSession] being used; setting a new session fires an 
