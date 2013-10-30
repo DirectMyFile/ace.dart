@@ -33,6 +33,12 @@ abstract class Mode extends _Disposable {
     return new Mode('ace/mode/$mode');
   }
   
+  /// Whether or not this mode has finished loading.
+  bool get isLoaded;
+  
+  /// Completes when this mode [isLoaded].
+  Future get onLoad;
+  
   /// Creates a mode for the given [modePath].
   /// 
   /// The [modePath] is a path such as `ace/mode/text`.

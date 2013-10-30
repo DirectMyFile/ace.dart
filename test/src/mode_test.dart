@@ -5,10 +5,12 @@ import 'package:ace/ace.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 
+final _noop = (_){};
+
 @Test()
 void testCreateModeFromModePath() {
   final verifyMode = (String modePath) {
-    expect(new Mode(modePath), isNotNull);
+    expect(new Mode(modePath)..onLoad.then(expectAsync1(_noop)), isNotNull);
   };
   verifyMode('ace/mode/batchfile');
   verifyMode('ace/mode/c_cpp');
@@ -34,7 +36,8 @@ void testCreateModeFromModePath() {
 @Test()
 void testCreateModeFromFilePath() {
   final verifyMode = (String filePath) {
-    expect(new Mode.forFile(filePath), isNotNull);
+    expect(new Mode.forFile(filePath)..onLoad.then(expectAsync1(_noop)), 
+        isNotNull);
   };
   verifyMode('some/script.bat');
   verifyMode('vm/allocator.cpp');
