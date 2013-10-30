@@ -127,8 +127,10 @@ abstract class Editor extends _Disposable {
   /// Brings the current [textInput] into focus.
   void focus();
   
+  /// Scrolls the document down a page and updates the [cursorPosition].
   void gotoPageDown();
   
+  /// Scrolls the document up a page and updates the [cursorPosition].
   void gotoPageUp();
   
   void indent();
@@ -219,6 +221,13 @@ abstract class Editor extends _Disposable {
   void removeWordRight();  
   
   void resize(bool force);
+  
+  /// Scrolls the document down a page but does _not_ change the 
+  /// [cursorPosition].
+  void scrollPageDown();
+  
+  /// Scrolls the document up a page but does _not_ change the [cursorPosition].
+  void scrollPageUp();
   
   /// Selects all the text in this editor.
   void selectAll();

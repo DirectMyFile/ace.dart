@@ -195,6 +195,10 @@ class _EditorProxy extends _HasProxy implements Editor {
   
   void resize(bool force) => call('resize', [force]);
   
+  void scrollPageDown() => call('scrollPageDown');
+  
+  void scrollPageUp() => call('scrollPageUp');
+  
   void selectAll() => call('selectAll');
   
   String setValue(String value, [int cursorPosition = 0]) {

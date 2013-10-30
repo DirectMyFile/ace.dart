@@ -2,6 +2,7 @@
 
 ## 0.0.10-dev+10.21.2013
 
+- Updated to SDK 0.8.7_r29341.
 - Added documentation and test coverage to a number of public methods; please
 consult the commit history for details.
 
