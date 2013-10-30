@@ -483,9 +483,27 @@ void testCopyLinesDown() {
   editor.copyLinesDown();
   final doc = editor.session.document;
   expect(doc.length, equals(sampleTextLines.length + 2));
-  expect(doc.getLine(0), equals(sampleTextLine0));
-  expect(doc.getLine(1), equals(sampleTextLine1));
+  for (int i = 0; i < 4; i++) {
+    expect(doc.getLine(i), equals(sampleTextLines[i]));
+  }
   for (int i = 4; i < doc.length; i++) {
+    expect(doc.getLine(i), equals(sampleTextLines[i - 2]));
+  }
+}
+
+@Test()
+void testCopyLinesUp() {
+  editor.clearSelection();
+  editor.navigateTo(4, 21);
+  editor.selection.selectTo(5, 22);
+  expect(editor.value, equals(sampleText));
+  editor.copyLinesUp();
+  final doc = editor.session.document;
+  expect(doc.length, equals(sampleTextLines.length + 2));
+  for (int i = 0; i < 6; i++) {
+    expect(doc.getLine(i), equals(sampleTextLines[i]));
+  }
+  for (int i = 6; i < doc.length; i++) {
     expect(doc.getLine(i), equals(sampleTextLines[i - 2]));
   }
 }
