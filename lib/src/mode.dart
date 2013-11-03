@@ -3,6 +3,7 @@ part of ace;
 const Map<String, String> _extensionMap = const {
   'bat'       : 'batchfile',
   'cpp'       : 'c_cpp',
+  'coffee'    : 'coffee',
   'cs'        : 'csharp',
   'css'       : 'css',
   'dart'      : 'dart',  
@@ -11,6 +12,7 @@ const Map<String, String> _extensionMap = const {
   'java'      : 'java',
   'js'        : 'javascript',
   'json'      : 'json',
+  'less'      : 'less',
   'markdown'  : 'markdown',
   'md'        : 'markdown',
   'properties': 'properties',

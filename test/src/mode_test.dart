@@ -14,6 +14,7 @@ void testCreateModeFromModePath() {
   };
   verifyMode('ace/mode/batchfile');
   verifyMode('ace/mode/c_cpp');
+  verifyMode('ace/mode/coffee');
   verifyMode('ace/mode/csharp');
   verifyMode('ace/mode/css');
   verifyMode('ace/mode/dart');
@@ -21,6 +22,7 @@ void testCreateModeFromModePath() {
   verifyMode('ace/mode/java'); 
   verifyMode('ace/mode/javascript'); 
   verifyMode('ace/mode/json');
+  verifyMode('ace/mode/less');
   verifyMode('ace/mode/markdown');
   verifyMode('ace/mode/properties');
   verifyMode('ace/mode/python');
@@ -42,6 +44,7 @@ void testCreateModeFromFilePath() {
   verifyMode('some/script.bat');
   verifyMode('vm/allocator.cpp');
   verifyMode('vm/allocator.h');
+  verifyMode('strong.coffee');
   verifyMode('vm/gc.cs');
   verifyMode('twit/boot.css');
   verifyMode('ftw.dart');
@@ -49,6 +52,7 @@ void testCreateModeFromFilePath() {
   verifyMode('midp/midlet.java');
   verifyMode('some/legacy.js');  
   verifyMode('data.json');
+  verifyMode('styles.less');
   verifyMode('README.md');
   verifyMode('CHANGELOG.markdown');
   verifyMode('build.properties');
