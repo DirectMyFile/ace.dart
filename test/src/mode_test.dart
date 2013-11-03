@@ -24,6 +24,7 @@ void testCreateModeFromModePath() {
   verifyMode('ace/mode/json');
   verifyMode('ace/mode/less');
   verifyMode('ace/mode/markdown');
+  verifyMode('ace/mode/php');
   verifyMode('ace/mode/properties');
   verifyMode('ace/mode/python');
   verifyMode('ace/mode/ruby');
@@ -55,6 +56,7 @@ void testCreateModeFromFilePath() {
   verifyMode('styles.less');
   verifyMode('README.md');
   verifyMode('CHANGELOG.markdown');
+  verifyMode('server/run.php');
   verifyMode('build.properties');
   verifyMode('goog/devserver.py');
   verifyMode('converter.rb');

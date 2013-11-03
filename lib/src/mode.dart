@@ -15,6 +15,7 @@ const Map<String, String> _extensionMap = const {
   'less'      : 'less',
   'markdown'  : 'markdown',
   'md'        : 'markdown',
+  'php'       : 'php',
   'properties': 'properties',
   'py'        : 'python',
   'rb'        : 'ruby',
