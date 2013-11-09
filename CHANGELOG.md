@@ -1,6 +1,8 @@
 # Ace.dart Changes
 
-## 0.1.1-dev+10.28.2013
+## 0.1.1+10.28.2013
+
+- Updated pubspec for Dart 1.0 release as requested.
 
 ## 0.1.0+10.28.2013
 
