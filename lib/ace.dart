@@ -52,7 +52,7 @@ Editor edit(html.Element element) {
   return new _EditorProxy._(_context['ace'].callMethod('edit', [element]));
 }
 
-/// Load the module for the given [modulePath].
+/// Loads the module for the given [modulePath].
 /// 
 /// The [modulePath] is a path such as `ace/ext/language_tools`.
 void require(String modulePath) {
