@@ -507,3 +507,32 @@ void testCopyLinesUp() {
     expect(doc.getLine(i), equals(sampleTextLines[i - 2]));
   }
 }
+
+@Test()
+void testGetOption() {
+  editor.fontSize = 42;
+  expect(editor.getOption('fontSize'), equals(42));
+}
+
+@Test()
+void testGetOptions() {
+  editor.fontSize = 13;
+  editor.printMarginColumn = 57;
+  var options = editor.getOptions(['fontSize', 'printMarginColumn']);
+  expect(options.keys.length, equals(2));
+  expect(options['fontSize'], equals(13));
+  expect(options['printMarginColumn'], equals(57));
+}
+
+@Test()
+void testSetOption() {
+  editor.setOption('fontSize', 11);
+  expect(editor.fontSize, equals(11));
+}
+
+@Test()
+void testSetOptions() {
+  editor.setOptions({ 'fontSize' : 8, 'printMarginColumn' : 76 });
+  expect(editor.fontSize, equals(8));
+  expect(editor.printMarginColumn, equals(76));
+}

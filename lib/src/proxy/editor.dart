@@ -147,7 +147,12 @@ class _EditorProxy extends _HasProxy implements Editor {
   
   void exitMultiSelectMode() => call('exitMultiSelectMode');
   
-  void focus() => call('focus');
+  void focus() => call('focus');  
+  
+  getOption(String name) => call('getOption', [name]);
+  
+  Map<String, dynamic> getOptions(List<String> optionNames) =>
+      _map(call('getOptions', [_jsify(optionNames)]));  
   
   void gotoPageDown() => call('gotoPageDown');
   
@@ -165,7 +170,7 @@ class _EditorProxy extends _HasProxy implements Editor {
   
   void navigateFileEnd() => call('navigateFileEnd');
   
-  void navigateFileStart() =>call('navigateFileStart');
+  void navigateFileStart() => call('navigateFileStart');
   
   void navigateLeft([int times = 1]) => call('navigateLeft', [times]);
   
@@ -200,6 +205,11 @@ class _EditorProxy extends _HasProxy implements Editor {
   void scrollPageUp() => call('scrollPageUp');
   
   void selectAll() => call('selectAll');
+  
+  void setOption(String name, value) => call('setOption', [name, value]);
+  
+  void setOptions(Map<String, dynamic> options) => 
+      call('setOptions', [_jsify(options)]);
   
   String setValue(String value, [int cursorPosition = 0]) {
     assert(cursorPosition >= -1 && cursorPosition <= 1);

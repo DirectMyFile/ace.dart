@@ -2,6 +2,8 @@
 
 ## 0.1.2-dev+10.28.2013
 
+- Added the `OptionsProvider` abstract class and have `Editor` implement it. 
+
 ## 0.1.1+10.28.2013
 
 - Updated pubspec for Dart 1.0 release as requested.

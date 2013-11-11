@@ -13,6 +13,7 @@ part 'src/document.dart';
 part 'src/editor.dart';
 part 'src/edit_session.dart';
 part 'src/mode.dart';
+part 'src/options_provider.dart';
 part 'src/point.dart';
 part 'src/range.dart';
 part 'src/search.dart';

@@ -6,7 +6,7 @@ part of ace;
 /// as well as the [VirtualRenderer], which draws everything to the screen.
 /// Event sessions dealing with the mouse and keyboard are bubbled up from the
 /// [Document] to the [Editor], which decides what to do with them.
-abstract class Editor extends _Disposable {
+abstract class Editor extends _Disposable implements OptionsProvider {
   
   /// Fired whenever this editor has been blurred.
   Stream get onBlur;
