@@ -9,6 +9,7 @@ import 'src/edit_session_test.dart';
 import 'src/mode_test.dart';
 import 'src/point_test.dart';
 import 'src/range_test.dart';
+import 'src/require_test.dart';
 import 'src/search_test.dart';
 import 'src/selection_test.dart';
 import 'src/virtual_renderer_test.dart';

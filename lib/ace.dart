@@ -55,6 +55,6 @@ Editor edit(html.Element element) {
 /// Loads the module for the given [modulePath].
 /// 
 /// The [modulePath] is a path such as `ace/ext/language_tools`.
-void require(String modulePath) {
-  _context['ace'].callMethod('require', [modulePath]);
+require(String modulePath) { 
+  return _context['ace'].callMethod('require', [modulePath]);
 }
