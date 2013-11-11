@@ -2,6 +2,8 @@
 
 ## 0.1.2-dev+10.28.2013
 
+- Added a new `example/autocomplete`.
+- Added the `require` top-level function.
 - Added the `OptionsProvider` abstract class and have `Editor` implement it. 
 
 ## 0.1.1+10.28.2013

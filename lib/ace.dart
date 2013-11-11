@@ -51,3 +51,7 @@ Editor edit(html.Element element) {
   assert(element != null);
   return new _EditorProxy._(_context['ace'].callMethod('edit', [element]));
 }
+
+void require(String moduleName) {
+  _context['ace'].callMethod('require', [moduleName]);
+}
