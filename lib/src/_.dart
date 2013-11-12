@@ -1,7 +1,8 @@
 part of ace;
 
+get _ace => _context['ace'];
 get _context => js.context;
-get _modules => _context['ace']['define']['modules'];
+get _modules => _ace['define']['modules'];
 
 String _ext(String path, {String separator: '.'}) {
   int index = path.lastIndexOf(separator);
@@ -11,7 +12,7 @@ String _ext(String path, {String separator: '.'}) {
 
 Future<js.JsObject> _loadModule(String moduleName, String modulePath) {
   final completer = new Completer<js.JsObject>();
-  _context['ace']['config'].callMethod('loadModule', 
+  _ace['config'].callMethod('loadModule', 
       [_jsify([moduleName, modulePath]),
       (module) => completer.complete(module)]);
   return completer.future;
@@ -19,11 +20,9 @@ Future<js.JsObject> _loadModule(String moduleName, String modulePath) {
 
 js.JsObject _jsify(obj) => new js.JsObject.jsify(obj);
 
-List _list(js.JsObject array) => 
-    JSON.decode(_context['JSON'].callMethod('stringify', [array]));
+List _list(js.JsObject array) => JSON.decode(_stringify(array));
 
-Map _map(js.JsObject obj) => 
-    JSON.decode(_context['JSON'].callMethod('stringify', [obj]));
+Map _map(js.JsObject obj) => JSON.decode(_stringify(obj));
 
 List _spliceList(List list, int start, int howMany, [List elements]) {
   final end = start + howMany;
@@ -34,6 +33,9 @@ List _spliceList(List list, int start, int howMany, [List elements]) {
   }
   return removed;
 }
+
+String _stringify(js.JsObject obj) => 
+    _context['JSON'].callMethod('stringify', [obj]);
 
 abstract class _Disposable {
   /// Dispose of any resources held by this object.
@@ -73,5 +75,5 @@ abstract class _HasProxy extends _Disposable {
   
   void _onDispose() {}
   
-  String toString() => _context['JSON'].callMethod('stringify', [_proxy]); 
+  String toString() => _stringify(_proxy); 
 }
