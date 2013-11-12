@@ -9,6 +9,14 @@ String _ext(String path, {String separator: '.'}) {
   return path.substring(index + 1).toLowerCase();
 }
 
+Future<js.JsObject> _loadModule(String moduleName, String modulePath) {
+  final completer = new Completer<js.JsObject>();
+  _context['ace']['config'].callMethod('loadModule', 
+      [_jsify([moduleName, modulePath]),
+      (module) => completer.complete(module)]);
+  return completer.future;
+}
+
 js.JsObject _jsify(obj) => new js.JsObject.jsify(obj);
 
 List _list(js.JsObject array) => 
