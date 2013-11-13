@@ -75,5 +75,5 @@ abstract class _HasProxy extends _Disposable {
   
   void _onDispose() {}
   
-  //String toString() => _stringify(_proxy); 
+  String toString() => _stringify(_proxy); 
 }
