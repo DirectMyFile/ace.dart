@@ -61,14 +61,14 @@ abstract class Theme extends _Disposable {
   /// 
   /// The [name] should be one of the values in [THEMES].
   String get name;
+      
+  /// Completes when this theme [isLoaded].
+  Future get onLoad;
   
   /// The path of this theme.
   /// 
   /// This is a path such as `ace/theme/monokai`.
   String get path;
-  
-  /// Completes when this theme [isLoaded].
-  Future get onLoad;
   
   /// Creates a theme for the given [name].
   /// 

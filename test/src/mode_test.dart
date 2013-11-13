@@ -5,64 +5,70 @@ import 'package:ace/ace.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 
+const _ACE_MODE_PATH = 'ace/mode/';
 final _noop = (_){};
 
 @Test()
 void testCreateModeFromModePath() {
   final verifyMode = (String modePath) {
-    expect(new Mode(modePath)..onLoad.then(expectAsync1(_noop)), isNotNull);
+    final mode = new Mode(modePath)
+    ..onLoad.then(expectAsync1(_noop));
+    expect(mode, isNotNull);
+    expect(mode.path, equals(modePath));
   };
-  verifyMode('ace/mode/batchfile');
-  verifyMode('ace/mode/c_cpp');
-  verifyMode('ace/mode/coffee');
-  verifyMode('ace/mode/csharp');
-  verifyMode('ace/mode/css');
-  verifyMode('ace/mode/dart');
-  verifyMode('ace/mode/html');
-  verifyMode('ace/mode/java'); 
-  verifyMode('ace/mode/javascript'); 
-  verifyMode('ace/mode/json');
-  verifyMode('ace/mode/less');
-  verifyMode('ace/mode/markdown');
-  verifyMode('ace/mode/php');
-  verifyMode('ace/mode/properties');
-  verifyMode('ace/mode/python');
-  verifyMode('ace/mode/ruby');
-  verifyMode('ace/mode/scss');
-  verifyMode('ace/mode/sh');
-  verifyMode('ace/mode/text');
-  verifyMode('ace/mode/typescript');
-  verifyMode('ace/mode/xml');
-  verifyMode('ace/mode/yaml');
+  verifyMode('${_ACE_MODE_PATH}batchfile');
+  verifyMode('${_ACE_MODE_PATH}c_cpp');
+  verifyMode('${_ACE_MODE_PATH}coffee');
+  verifyMode('${_ACE_MODE_PATH}csharp');
+  verifyMode('${_ACE_MODE_PATH}css');
+  verifyMode('${_ACE_MODE_PATH}dart');
+  verifyMode('${_ACE_MODE_PATH}html');
+  verifyMode('${_ACE_MODE_PATH}java'); 
+  verifyMode('${_ACE_MODE_PATH}javascript'); 
+  verifyMode('${_ACE_MODE_PATH}json');
+  verifyMode('${_ACE_MODE_PATH}less');
+  verifyMode('${_ACE_MODE_PATH}markdown');
+  verifyMode('${_ACE_MODE_PATH}php');
+  verifyMode('${_ACE_MODE_PATH}properties');
+  verifyMode('${_ACE_MODE_PATH}python');
+  verifyMode('${_ACE_MODE_PATH}ruby');
+  verifyMode('${_ACE_MODE_PATH}scss');
+  verifyMode('${_ACE_MODE_PATH}sh');
+  verifyMode('${_ACE_MODE_PATH}text');
+  verifyMode('${_ACE_MODE_PATH}typescript');
+  verifyMode('${_ACE_MODE_PATH}xml');
+  verifyMode('${_ACE_MODE_PATH}yaml');
 }
 
 @Test()
 void testCreateModeFromFilePath() {
-  final verifyMode = (String filePath) {
-    expect(new Mode.forFile(filePath)..onLoad.then(expectAsync1(_noop)), 
-        isNotNull);
+  final verifyMode = (String filePath, String expectedPath) {
+    final mode = new Mode.forFile(filePath)
+    ..onLoad.then(expectAsync1(_noop));
+    expect(mode, isNotNull);
+    expect(mode.path, equals(expectedPath));
   };
-  verifyMode('some/script.bat');
-  verifyMode('vm/allocator.cpp');
-  verifyMode('vm/allocator.h');
-  verifyMode('strong.coffee');
-  verifyMode('vm/gc.cs');
-  verifyMode('twit/boot.css');
-  verifyMode('ftw.dart');
-  verifyMode('browser.html');
-  verifyMode('midp/midlet.java');
-  verifyMode('some/legacy.js');  
-  verifyMode('data.json');
-  verifyMode('styles.less');
-  verifyMode('README.md');
-  verifyMode('CHANGELOG.markdown');
-  verifyMode('server/run.php');
-  verifyMode('build.properties');
-  verifyMode('goog/devserver.py');
-  verifyMode('converter.rb');
-  verifyMode('converter.scss');
-  verifyMode('run.sh');
-  verifyMode('omg.ts');
-  verifyMode('verbose.xml');
-  verifyMode('pubspec.yaml');
+  verifyMode('some/script.bat',     '${_ACE_MODE_PATH}batchfile');
+  verifyMode('vm/allocator.cpp',    '${_ACE_MODE_PATH}c_cpp');
+  verifyMode('vm/allocator.h',      '${_ACE_MODE_PATH}c_cpp');
+  verifyMode('strong.coffee',       '${_ACE_MODE_PATH}coffee');
+  verifyMode('vm/gc.cs',            '${_ACE_MODE_PATH}csharp');
+  verifyMode('twit/boot.css',       '${_ACE_MODE_PATH}css');
+  verifyMode('ftw.dart',            '${_ACE_MODE_PATH}dart');
+  verifyMode('browser.html',        '${_ACE_MODE_PATH}html');
+  verifyMode('midp/midlet.java',    '${_ACE_MODE_PATH}java');
+  verifyMode('some/legacy.js',      '${_ACE_MODE_PATH}javascript');  
+  verifyMode('data.json',           '${_ACE_MODE_PATH}json');
+  verifyMode('styles.less',         '${_ACE_MODE_PATH}less');
+  verifyMode('README.md',           '${_ACE_MODE_PATH}markdown');
+  verifyMode('CHANGELOG.markdown',  '${_ACE_MODE_PATH}markdown');
+  verifyMode('server/run.php',      '${_ACE_MODE_PATH}php');
+  verifyMode('build.properties',    '${_ACE_MODE_PATH}properties');
+  verifyMode('goog/devserver.py',   '${_ACE_MODE_PATH}python');
+  verifyMode('converter.rb',        '${_ACE_MODE_PATH}ruby');
+  verifyMode('converter.scss',      '${_ACE_MODE_PATH}scss');
+  verifyMode('run.sh',              '${_ACE_MODE_PATH}sh');
+  verifyMode('omg.ts',              '${_ACE_MODE_PATH}typescript');
+  verifyMode('verbose.xml',         '${_ACE_MODE_PATH}xml');
+  verifyMode('pubspec.yaml',        '${_ACE_MODE_PATH}yaml');
 }
