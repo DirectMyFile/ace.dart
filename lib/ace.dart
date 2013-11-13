@@ -12,6 +12,8 @@ part 'src/delta.dart';
 part 'src/document.dart';
 part 'src/editor.dart';
 part 'src/edit_session.dart';
+part 'src/keyboard_handler.dart';
+part 'src/key_binding.dart';
 part 'src/mode.dart';
 part 'src/options_provider.dart';
 part 'src/point.dart';
@@ -26,6 +28,8 @@ part 'src/proxy/anchor.dart';
 part 'src/proxy/document.dart';
 part 'src/proxy/editor.dart';
 part 'src/proxy/edit_session.dart';
+part 'src/proxy/keyboard_handler.dart';
+part 'src/proxy/key_binding.dart';
 part 'src/proxy/mode.dart';
 part 'src/proxy/search.dart';
 part 'src/proxy/selection.dart';
@@ -42,7 +46,7 @@ EditSession createEditSession(String text, Mode mode) {
   assert(mode != null);
   assert(mode is _ModeProxy);
   return new _EditSessionProxy._(
-      _context['ace'].callMethod('createEditSession', 
+      _context['ace'].callMethod('createEditSession',
           [text, (mode as _ModeProxy)._mode]));
 }
 
@@ -53,8 +57,8 @@ Editor edit(html.Element element) {
 }
 
 /// Loads the module for the given [modulePath].
-/// 
+///
 /// The [modulePath] is a path such as `ace/ext/language_tools`.
-require(String modulePath) { 
+require(String modulePath) {
   return _context['ace'].callMethod('require', [modulePath]);
 }
