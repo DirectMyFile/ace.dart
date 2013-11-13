@@ -46,19 +46,18 @@ EditSession createEditSession(String text, Mode mode) {
   assert(mode != null);
   assert(mode is _ModeProxy);
   return new _EditSessionProxy._(
-      _context['ace'].callMethod('createEditSession',
-          [text, (mode as _ModeProxy)._mode]));
+      _ace.callMethod('createEditSession', [text, (mode as _ModeProxy)._mode]));
 }
 
 /// Embed an Ace [Editor] instance into the DOM, at the given [element].
 Editor edit(html.Element element) {
   assert(element != null);
-  return new _EditorProxy._(_context['ace'].callMethod('edit', [element]));
+  return new _EditorProxy._(_ace.callMethod('edit', [element]));
 }
 
 /// Loads the module for the given [modulePath].
-///
+/// 
 /// The [modulePath] is a path such as `ace/ext/language_tools`.
-require(String modulePath) {
-  return _context['ace'].callMethod('require', [modulePath]);
+require(String modulePath) { 
+  return _ace.callMethod('require', [modulePath]);
 }

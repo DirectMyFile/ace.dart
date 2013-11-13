@@ -11,4 +11,6 @@ abstract class KeyboardHandler extends _Disposable {
 
   /// [binding] can be one of either [EMACS] or [VIM].
   factory KeyboardHandler(String binding) => new _KeyboardHandlerProxy(binding);
+  
+  String get id;
 }

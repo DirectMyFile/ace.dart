@@ -2,21 +2,17 @@ part of ace;
 
 class _ModeProxy extends _HasProxy implements Mode {
   
-  final String _modePath;
+  final String path;
   
   bool get isLoaded => _hasProxy;
-  
+    
   Future get onLoad => _onHasProxy;
   
-  get _mode => _hasProxy ? _proxy : _modePath;
+  get _mode => _hasProxy ? _proxy : path;
     
-  _ModeProxy(String modePath) : super.async(new Future<js.JsObject>(() {
-    final completer = new Completer<js.JsObject>();
-    _context['ace']['config'].callMethod('loadModule', 
-        [_jsify(['mode', modePath]), 
-         (module) => completer.complete(module['Mode'])]);
-    return completer.future;
-  })), _modePath = modePath ;
+  _ModeProxy(String path) 
+  : super.async(_loadModule('mode', path))
+  , path = path;
   
-  _ModeProxy._(js.JsObject proxy) : super(proxy), _modePath = null;
+  _ModeProxy._(js.JsObject proxy) : super(proxy), path = null;
 }

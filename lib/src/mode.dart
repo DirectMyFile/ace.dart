@@ -38,12 +38,17 @@ abstract class Mode extends _Disposable {
   
   /// Whether or not this mode has finished loading.
   bool get isLoaded;
-  
+      
   /// Completes when this mode [isLoaded].
   Future get onLoad;
   
-  /// Creates a mode for the given [modePath].
+  /// The path of this mode.
   /// 
-  /// The [modePath] is a path such as `ace/mode/text`.
-  factory Mode(String modePath) => new _ModeProxy(modePath);
+  /// This is a path such as `ace/mode/text`.
+  String get path;
+  
+  /// Creates a mode for the given [path].
+  /// 
+  /// The [path] is a path such as `ace/mode/text`.
+  factory Mode(String path) => new _ModeProxy(path);
 }
