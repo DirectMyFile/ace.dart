@@ -10,10 +10,10 @@ String _ext(String path, {String separator: '.'}) {
   return path.substring(index + 1).toLowerCase();
 }
 
-Future<js.JsObject> _loadModule(String moduleName, String modulePath) {
+Future<js.JsObject> _loadModule(String moduleType, String modulePath) {
   final completer = new Completer<js.JsObject>();
   _ace['config'].callMethod('loadModule', 
-      [_jsify([moduleName, modulePath]),
+      [_jsify([moduleType, modulePath]),
       (module) => completer.complete(module)]);
   return completer.future;
 }
