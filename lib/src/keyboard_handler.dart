@@ -5,23 +5,26 @@ abstract class KeyboardHandler extends _Disposable {
   static const EMACS = 'emacs';
   static const VIM   = 'vim';
 
-  /// A list of the available bindings for use with the [new KeyboardHandler]
-  /// constructor.
+  /// A list of the available keyboard bindings for use with the 
+  /// [new KeyboardHandler.named] constructor.
   static const List<String> BINDINGS = const [ EMACS, VIM ];
 
-  /// Whether or not this keyboard has finished loading.
+  /// Whether or not this keyboard handler has finished loading.
   bool get isLoaded;
       
-  /// Completes when this keyboard [isLoaded].
+  /// Completes when this keyboard handler [isLoaded].
   Future get onLoad;
   
+  /// The path of this keyboard handler.
+  /// 
+  /// This is a path such as `ace/keyboard/emacs`.
   String get path;
   
-  /// Creates a keyboard for the given [binding].
+  /// Creates a keyboard for the given [name].
   /// 
-  /// The [binding] should be one of the values in [BINDINGS].
-  factory KeyboardHandler.bind(String binding) => 
-      new _KeyboardHandlerProxy('ace/keyboard/$binding');
+  /// The [name] should be one of the values in [BINDINGS].
+  factory KeyboardHandler.named(String name) => 
+      new KeyboardHandler('ace/keyboard/$name');
   
   /// Creates a keyboard for the given [path].
   /// 
