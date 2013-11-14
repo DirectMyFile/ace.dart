@@ -529,7 +529,7 @@ void testGetKeyBinding() {
   var keyBinding = editor.keyBinding;
   expect(keyBinding, isNotNull);
   expect(keyBinding.keyboardHandler, isNotNull);
-  expect(keyBinding.keyboardHandler.id, null);
+  expect(keyBinding.keyboardHandler.path, null);
 }
 
 @Test()
