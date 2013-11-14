@@ -1,6 +1,6 @@
 # Ace.dart Changes
 
-## 0.1.2-dev+10.28.2013
+## 0.1.2+10.28.2013
 
 - Added a new `example/autocomplete`.
 - Added the `require` top-level function.
