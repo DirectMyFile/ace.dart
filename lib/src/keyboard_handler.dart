@@ -15,9 +15,11 @@ abstract class KeyboardHandler extends _Disposable {
   /// Completes when this keyboard handler [isLoaded].
   Future get onLoad;
   
-  /// The path of this keyboard handler.
+  /// The path of this keyboard handler, may be `null`.
   /// 
   /// This is a path such as `ace/keyboard/emacs`.
+  /// 
+  /// A `null` value represents the default keyboard handler.
   String get path;
   
   /// Creates a keyboard for the given [name].
