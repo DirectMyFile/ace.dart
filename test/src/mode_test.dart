@@ -4,15 +4,15 @@ library ace.test.mode;
 import 'package:ace/ace.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
+import '_.dart';
 
 const _ACE_MODE_PATH = 'ace/mode/';
-final _noop = (_){};
 
 @Test()
 void testCreateModeFromModePath() {
   final verifyMode = (String modePath) {
     final mode = new Mode(modePath)
-    ..onLoad.then(expectAsync1(_noop));
+    ..onLoad.then(expectAsync1(noop1));
     expect(mode, isNotNull);
     expect(mode.path, equals(modePath));
   };
@@ -44,7 +44,7 @@ void testCreateModeFromModePath() {
 void testCreateModeFromFilePath() {
   final verifyMode = (String filePath, String expectedPath) {
     final mode = new Mode.forFile(filePath)
-    ..onLoad.then(expectAsync1(_noop));
+    ..onLoad.then(expectAsync1(noop1));
     expect(mode, isNotNull);
     expect(mode.path, equals(expectedPath));
   };
