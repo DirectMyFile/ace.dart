@@ -53,6 +53,8 @@ abstract class Editor extends _Disposable implements OptionsProvider {
   /// Returns _true_ if current [textInput] is in focus.
   bool get isFocused;
   
+  KeyBinding get keyBinding;
+  
   /// The current [session.overwrite].
   bool overwrite;
   

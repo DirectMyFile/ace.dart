@@ -53,6 +53,8 @@ class _EditorProxy extends _HasProxy implements Editor {
   
   bool get isFocused => call('isFocused');
   
+  KeyBinding get keyBinding => new _KeyBindingProxy._(_proxy['keyBinding']);
+  
   bool
     get overwrite => call('getOverwrite');
     set overwrite(bool overwrite) => call('setOverwrite', [overwrite]);

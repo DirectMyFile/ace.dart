@@ -525,6 +525,14 @@ void testGetOptions() {
 }
 
 @Test()
+void testGetKeyBinding() {
+  var keyBinding = editor.keyBinding;
+  expect(keyBinding, isNotNull);
+  expect(keyBinding.keyboardHandler, isNotNull);
+  expect(keyBinding.keyboardHandler.path, null);
+}
+
+@Test()
 void testSetOption() {
   editor.setOption('fontSize', 11);
   expect(editor.fontSize, equals(11));
