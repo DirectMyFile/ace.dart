@@ -4,9 +4,14 @@ class _KeyboardHandlerProxy extends _HasProxy implements KeyboardHandler {
 
   bool get isLoaded => _hasProxy;
   
+  String get name => 
+      (path == null) ? _proxy['platform'] : _ext(path, separator: '/');
+  
   Future get onLoad => _onHasProxy;
   
   final String path;
+  
+  get _handler => _hasProxy ? _proxy : path;
   
   _KeyboardHandlerProxy(String path) 
   : super.async(

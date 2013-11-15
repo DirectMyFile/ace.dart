@@ -11,7 +11,10 @@ abstract class KeyboardHandler extends _Disposable {
 
   /// Whether or not this keyboard handler has finished loading.
   bool get isLoaded;
-      
+  
+  /// The name of this keyboard handler.
+  String get name;
+  
   /// Completes when this keyboard handler [isLoaded].
   Future get onLoad;
   
