@@ -55,6 +55,8 @@ abstract class Editor extends _Disposable implements OptionsProvider {
   
   KeyBinding get keyBinding;
   
+  KeyboardHandler keyboardHandler;
+  
   /// The current [session.overwrite].
   bool overwrite;
   

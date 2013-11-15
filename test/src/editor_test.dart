@@ -533,6 +533,22 @@ void testGetKeyBinding() {
 }
 
 @Test()
+void testSetKeyboardHandlerEmacs() {
+  editor.keyboardHandler = new KeyboardHandler.named(KeyboardHandler.EMACS)
+  ..onLoad.then(expectAsync1((_) {
+    expect(editor.keyboardHandler.name, equals(KeyboardHandler.EMACS));
+  }));  
+}
+
+@Test()
+void testSetKeyboardHandlerVim() {
+  editor.keyboardHandler = new KeyboardHandler.named(KeyboardHandler.VIM)
+  ..onLoad.then(expectAsync1((_) {
+    expect(editor.keyboardHandler.name, equals(KeyboardHandler.VIM));
+  }));  
+}
+
+@Test()
 void testSetOption() {
   editor.setOption('fontSize', 11);
   expect(editor.fontSize, equals(11));

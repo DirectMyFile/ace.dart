@@ -55,6 +55,15 @@ class _EditorProxy extends _HasProxy implements Editor {
   
   KeyBinding get keyBinding => new _KeyBindingProxy._(_proxy['keyBinding']);
   
+  KeyboardHandler
+    get keyboardHandler => 
+        new _KeyboardHandlerProxy._(call('getKeyboardHandler'));
+    set keyboardHandler(KeyboardHandler keyboardHandler) {
+      assert(keyboardHandler is _KeyboardHandlerProxy);
+      call('setKeyboardHandler', 
+          [(keyboardHandler as _KeyboardHandlerProxy)._handler]);
+    }
+    
   bool
     get overwrite => call('getOverwrite');
     set overwrite(bool overwrite) => call('setOverwrite', [overwrite]);
