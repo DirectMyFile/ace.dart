@@ -525,6 +525,19 @@ void testGetOptions() {
 }
 
 @Test()
+void testSetOption() {
+  editor.setOption('fontSize', 11);
+  expect(editor.fontSize, equals(11));
+}
+
+@Test()
+void testSetOptions() {
+  editor.setOptions({ 'fontSize' : 8, 'printMarginColumn' : 76 });
+  expect(editor.fontSize, equals(8));
+  expect(editor.printMarginColumn, equals(76));
+}
+
+@Test()
 void testGetKeyBinding() {
   var keyBinding = editor.keyBinding;
   expect(keyBinding, isNotNull);
@@ -546,17 +559,4 @@ void testSetKeyboardHandlerVim() {
   ..onLoad.then(expectAsync1((_) {
     expect(editor.keyboardHandler.name, equals(KeyboardHandler.VIM));
   }));  
-}
-
-@Test()
-void testSetOption() {
-  editor.setOption('fontSize', 11);
-  expect(editor.fontSize, equals(11));
-}
-
-@Test()
-void testSetOptions() {
-  editor.setOptions({ 'fontSize' : 8, 'printMarginColumn' : 76 });
-  expect(editor.fontSize, equals(8));
-  expect(editor.printMarginColumn, equals(76));
 }
