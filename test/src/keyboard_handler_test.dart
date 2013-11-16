@@ -12,6 +12,7 @@ void testEmacsHandler() {
   ..onLoad.then(expectAsync1(noop1));
   expect(handler, isNotNull);
   expect(handler.path, 'ace/keyboard/emacs');
+  expect(handler.name, equals(KeyboardHandler.EMACS));
 }
 
 @Test()
@@ -20,4 +21,5 @@ void testVimHandler() {
   ..onLoad.then(expectAsync1(noop1));
   expect(handler, isNotNull);
   expect(handler.path, 'ace/keyboard/vim');
+  expect(handler.name, equals(KeyboardHandler.VIM));
 }
