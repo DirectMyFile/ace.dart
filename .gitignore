@@ -1,4 +1,5 @@
+.project
 pubspec.lock
-packages/
+packages
 docs/
 *.dart.*js*

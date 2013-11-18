@@ -2,7 +2,7 @@ part of ace;
 
 class _KeyBindingProxy extends _HasProxy implements KeyBinding {
 
-  KeyboardHandler 
+  KeyboardHandler
     get keyboardHandler {
       js.JsObject proxy = call('getKeyboardHandler');
       return proxy == null ? null : new _KeyboardHandlerProxy._(proxy);
@@ -12,7 +12,9 @@ class _KeyBindingProxy extends _HasProxy implements KeyBinding {
         call('setKeyboardHandler', [null]);
       } else {
         assert(handler is _KeyboardHandlerProxy);
-        call('setKeyboardHandler', [(handler as _KeyboardHandlerProxy)._proxy]);
+        handler.onLoad.then((_) {
+          call('setKeyboardHandler', [(handler as _KeyboardHandlerProxy)._proxy]);
+        });
       }
     }
 
