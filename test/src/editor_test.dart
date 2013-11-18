@@ -31,7 +31,7 @@ void testEditElement() {
 
 @Test()
 @ExpectError()
-void testEditNullThrows() {
+void testEditNullThrows() {  
   final Editor a = edit(null);
 }
 
@@ -68,7 +68,7 @@ void testBlur() {
   editor.onBlur.listen(expectAsync1((e) {
     expect(e, equals(editor));
     expect(editor.isFocused, isFalse);
-  }));
+  }));    
   editor.blur();
 }
 
@@ -88,7 +88,7 @@ void testValue() {
   // 0 = select all
   editor.setValue('snarf');
   expect(editor.value, equals('snarf'));
-  expect(editor.cursorPosition, equals(const Point(0, 5)));
+  expect(editor.cursorPosition, equals(const Point(0, 5))); 
   expect(editor.selectionRange, equals(new Range(0, 0, 0, 5)));
   // -1 = document start
   editor.setValue('start', -1);
@@ -132,7 +132,7 @@ void testInsert() {
     expect(delta, const isInstanceOf<InsertTextDelta>());
     expect(delta.range, equals(new Range(0, 0, 0, 5)));
     InsertTextDelta insertTextDelta = delta;
-    expect(insertTextDelta.text, equals('snarf'));
+    expect(insertTextDelta.text, equals('snarf'));    
   }));
   editor.insert('snarf');
   expect(editor.cursorPosition, equals(const Point(0,5)));
@@ -151,7 +151,7 @@ void testNavigateFileEnd() {
   expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.navigateFileEnd();
   final lastTextLine = sampleTextLines.length - 1;
-  expect(editor.cursorPosition,
+  expect(editor.cursorPosition, 
       equals(new Point(lastTextLine, sampleTextLines[lastTextLine].length)));
   expect(editor.selection.isEmpty, isTrue);
 }
@@ -160,10 +160,10 @@ void testNavigateFileEnd() {
 void testNavigateFileStart() {
   editor.navigateFileEnd();
   final lastTextLine = sampleTextLines.length - 1;
-  expect(editor.cursorPosition,
+  expect(editor.cursorPosition, 
       equals(new Point(lastTextLine, sampleTextLines[lastTextLine].length)));
   editor.navigateFileStart();
-  expect(editor.cursorPosition, equals(const Point(0, 0)));
+  expect(editor.cursorPosition, equals(const Point(0, 0)));  
   expect(editor.selection.isEmpty, isTrue);
 }
 
@@ -172,7 +172,7 @@ void testNavigateLeft() {
   editor.navigateLineEnd();
   expect(editor.cursorPosition, equals(new Point(0, sampleTextLine0.length)));
   editor.navigateLeft(17);
-  expect(editor.cursorPosition,
+  expect(editor.cursorPosition, 
       equals(new Point(0, sampleTextLine0.length - 17)));
   expect(editor.selection.isEmpty, isTrue);
 }
@@ -243,9 +243,9 @@ void testRemoveToLineEnd() {
   editor.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());
     expect(delta.range, equals(new Range(0, 0, 0, 73)));
-    RemoveTextDelta removeTextDelta = delta;
+    RemoveTextDelta removeTextDelta = delta;    
     expect(removeTextDelta.text, equals(sampleTextLine0));
-  }));
+  })); 
   editor.removeToLineEnd();
   expect(editor.cursorPosition, equals(const Point(0, 0)));
 }
@@ -256,9 +256,9 @@ void testRemoveToLineStart() {
   editor.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());
     expect(delta.range, equals(new Range(0, 0, 0, 73)));
-    RemoveTextDelta removeTextDelta = delta;
+    RemoveTextDelta removeTextDelta = delta;    
     expect(removeTextDelta.text, equals(sampleTextLine0));
-  }));
+  })); 
   editor.removeToLineStart();
   expect(editor.cursorPosition, equals(const Point(0, 0)));
 }
@@ -266,7 +266,7 @@ void testRemoveToLineStart() {
 @Test()
 void testRemoveWordLeft() {
   editor.setValue(sampleText, 1);
-  expect(editor.cursorPosition, equals(const Point(5, 76)));
+  expect(editor.cursorPosition, equals(const Point(5, 76)));  
   editor.onChange.listen(expectAsync1((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());
     expect(delta.range, equals(new Range(5, 75, 5, 76)));
@@ -274,7 +274,7 @@ void testRemoveWordLeft() {
     expect(removeTextDelta.text, equals('.'));
   }));
   editor.removeWordLeft();
-  expect(editor.cursorPosition, equals(const Point(5, 75)));
+  expect(editor.cursorPosition, equals(const Point(5, 75)));  
 }
 
 @Test()
@@ -285,9 +285,9 @@ void testRemoveWordRight() {
     expect(delta.range, equals(new Range(0, 0, 0, 5)));
     RemoveTextDelta removeTextDelta = delta;
     expect(removeTextDelta.text, equals('Lorem'));
-  }));
+  })); 
   editor.removeWordRight();
-  expect(editor.cursorPosition, equals(const Point(0, 0)));
+  expect(editor.cursorPosition, equals(const Point(0, 0)));  
 }
 
 @Test()
@@ -361,7 +361,7 @@ void testSetOverwrite() {
   final bool initialValue = editor.overwrite;
   editor.session.onChangeOverwrite.listen(expectAsync1((_) {
     expect(editor.overwrite, isNot(initialValue));
-  }));
+  })); 
   editor.overwrite = !initialValue;
 }
 
@@ -370,19 +370,19 @@ void testToggleOverwrite() {
   final bool initialValue = editor.overwrite;
   editor.session.onChangeOverwrite.listen(expectAsync1((_) {
     expect(editor.overwrite, isNot(initialValue));
-  }));
+  })); 
   editor.toggleOverwrite();
 }
 
 @Test()
 void testSetSession() {
   final EditSession initialSession = editor.session;
-  final EditSession newSession = createEditSession('snarf',
+  final EditSession newSession = createEditSession('snarf', 
       new Mode('ace/mode/text'));
   editor.onChangeSession.listen(expectAsync1((EditSessionChangeEvent ev) {
     expect(ev.oldSession.value, equals(initialSession.value));
     expect(ev.newSession.value, equals(newSession.value));
-  }));
+  })); 
   editor.session = newSession;
 }
 
@@ -392,7 +392,7 @@ void testGetCopyText() {
   final start = const Point(0, 0);
   final end = new Point(0, sampleTextLine0.length);
   expect(editor.cursorPosition, equals(end));
-  expect(editor.selectionRange, equals(new Range.fromPoints(start, end)));
+  expect(editor.selectionRange, equals(new Range.fromPoints(start, end)));  
   editor.onCopy.listen(expectAsync1((String copyText) {
     expect(copyText, equals(sampleTextLine0));
   }));
@@ -435,7 +435,7 @@ void testSetReadOnly() {
 void testUndoRedo() {
   final verify = expectAsync0(() {
     expect(editor.session.undoManager.hasUndo, isTrue);
-    editor.undo();
+    editor.undo();  
     expect(editor.session.undoManager.hasUndo, isFalse);
     expect(editor.session.undoManager.hasRedo, isTrue);
     expect(editor.value, isEmpty);
@@ -443,22 +443,22 @@ void testUndoRedo() {
     expect(editor.session.undoManager.hasUndo, isTrue);
     expect(editor.session.undoManager.hasRedo, isFalse);
     expect(editor.value, equals(sampleText));
-  });
+  });  
   // The UndoManager is notified internally after some delay from the initial
-  // `setValue` call in our @Setup function; there does not seem to be any event
-  // that we can observe to reliably know when the UndoManager is updated.
-  new Future.delayed(const Duration(seconds: 1), verify);
+  // `setValue` call in our @Setup function; there does not seem to be any event 
+  // that we can observe to reliably know when the UndoManager is updated. 
+  new Future.delayed(const Duration(seconds: 1), verify); 
 }
 
 @Test()
 void testSelectAll() {
-  Point endCursor = new Point(sampleTextLines.length - 1,
-      sampleTextLines[sampleTextLines.length - 1].length);
+  Point endCursor = new Point(sampleTextLines.length - 1, 
+      sampleTextLines[sampleTextLines.length - 1].length);  
   expect(editor.cursorPosition, equals(const Point(0, 0)));
   expect(editor.selectionRange, equals(new Range(0, 0, 0, 0)));
   editor.selectAll();
   expect(editor.cursorPosition, equals(endCursor));
-  expect(editor.selectionRange,
+  expect(editor.selectionRange, 
       equals(new Range.fromPoints(const Point(0, 0), endCursor)));
 }
 
@@ -568,7 +568,7 @@ void testSetKeyboardHandlerEmacs() {
   editor.keyboardHandler = new KeyboardHandler.named(KeyboardHandler.EMACS)
   ..onLoad.then(expectAsync1((_) {
     expect(editor.keyboardHandler.name, equals(KeyboardHandler.EMACS));
-  }));
+  }));  
 }
 
 @Test()
@@ -576,5 +576,5 @@ void testSetKeyboardHandlerVim() {
   editor.keyboardHandler = new KeyboardHandler.named(KeyboardHandler.VIM)
   ..onLoad.then(expectAsync1((_) {
     expect(editor.keyboardHandler.name, equals(KeyboardHandler.VIM));
-  }));
+  }));  
 }
