@@ -546,24 +546,6 @@ void testGetKeyBinding() {
 }
 
 @Test()
-void testSetKeyboardHandlerImmediate1() {
-  var handler = new KeyboardHandler.named(KeyboardHandler.VIM);
-  editor.keyboardHandler = handler;
-  handler.onLoad.then(expectAsync1((_) {
-    expect(editor.keyboardHandler.name, equals(KeyboardHandler.VIM));
-  }));
-}
-
-@Test()
-void testSetKeyboardHandlerImmediate2() {
-  var handler = new KeyboardHandler.named(KeyboardHandler.VIM);
-  editor.keyBinding.keyboardHandler = handler;
-  handler.onLoad.then(expectAsync1((_) {
-    expect(editor.keyBinding.keyboardHandler.name, equals(KeyboardHandler.VIM));
-  }));
-}
-
-@Test()
 void testSetKeyboardHandlerEmacs() {
   editor.keyboardHandler = new KeyboardHandler.named(KeyboardHandler.EMACS)
   ..onLoad.then(expectAsync1((_) {
@@ -577,4 +559,23 @@ void testSetKeyboardHandlerVim() {
   ..onLoad.then(expectAsync1((_) {
     expect(editor.keyboardHandler.name, equals(KeyboardHandler.VIM));
   }));  
+}
+
+@Test()
+void testSetKeyBindingKeyboardHandlerEmacs() {
+  var handler = new KeyboardHandler.named(KeyboardHandler.EMACS);
+  editor.keyBinding.keyboardHandler = handler;
+  handler.onLoad.then(expectAsync1((_) {
+    expect(editor.keyBinding.keyboardHandler.name, 
+        equals(KeyboardHandler.EMACS));
+  }));
+}
+
+@Test()
+void testSetKeyBindingKeyboardHandlerVim() {
+  var handler = new KeyboardHandler.named(KeyboardHandler.VIM);
+  editor.keyBinding.keyboardHandler = handler;
+  handler.onLoad.then(expectAsync1((_) {
+    expect(editor.keyBinding.keyboardHandler.name, equals(KeyboardHandler.VIM));
+  }));
 }
