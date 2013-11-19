@@ -10,7 +10,7 @@ main() {
 
   for (String name in ace.KeyboardHandler.BINDINGS) {
     _createButton(editor, new ace.KeyboardHandler.named(name), 
-        name == null ? 'Ace default' : name);
+        name == ace.KeyboardHandler.DEFAULT ? 'Ace default' : name);
   }
 }
 
