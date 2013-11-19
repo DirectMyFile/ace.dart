@@ -8,14 +8,14 @@ main() {
       ..theme = new ace.Theme('ace/theme/monokai')
       ..session.mode = new ace.Mode('ace/mode/dart');
 
-  _createButton(editor, null, 'Ace default');
-
   for (String name in ace.KeyboardHandler.BINDINGS) {
-    _createButton(editor, new ace.KeyboardHandler.named(name), name);
+    _createButton(editor, new ace.KeyboardHandler.named(name), 
+        name == ace.KeyboardHandler.DEFAULT ? 'Ace default' : name);
   }
 }
 
-void _createButton(ace.Editor editor, ace.KeyboardHandler handler, String name) {
+void _createButton(ace.Editor editor, ace.KeyboardHandler handler, 
+                   String name) {
   var parent = querySelector('#buttons');
   var button = new ButtonElement()
       ..text = name

@@ -4,8 +4,7 @@ class _KeyboardHandlerProxy extends _HasProxy implements KeyboardHandler {
 
   bool get isLoaded => _hasProxy;
   
-  String get name => 
-      (path == null) ? _proxy['platform'] : _ext(path, separator: '/');
+  String get name => (path == null) ? null : _ext(path, separator: '/');
   
   Future get onLoad => _onHasProxy;
   
@@ -21,5 +20,5 @@ class _KeyboardHandlerProxy extends _HasProxy implements KeyboardHandler {
 
   _KeyboardHandlerProxy._(js.JsObject proxy) 
   : super(proxy)
-  , path = proxy[r'$id'];
+  , path = (proxy == null) ? null : proxy[r'$id'];
 }

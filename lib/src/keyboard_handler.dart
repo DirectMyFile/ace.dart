@@ -2,17 +2,20 @@ part of ace;
 
 abstract class KeyboardHandler extends _Disposable {
 
-  static const EMACS = 'emacs';
-  static const VIM   = 'vim';
+  static const DEFAULT  = null;
+  static const EMACS    = 'emacs';
+  static const VIM      = 'vim';
 
   /// A list of the available keyboard bindings for use with the 
   /// [new KeyboardHandler.named] constructor.
-  static const List<String> BINDINGS = const [ EMACS, VIM ];
+  static const List<String> BINDINGS = const [ DEFAULT, EMACS, VIM ];
 
   /// Whether or not this keyboard handler has finished loading.
   bool get isLoaded;
   
   /// The name of this keyboard handler.
+  /// 
+  /// The [name] should be one of the values in [BINDINGS].
   String get name;
   
   /// Completes when this keyboard handler [isLoaded].
@@ -28,8 +31,13 @@ abstract class KeyboardHandler extends _Disposable {
   /// Creates a keyboard for the given [name].
   /// 
   /// The [name] should be one of the values in [BINDINGS].
-  factory KeyboardHandler.named(String name) => 
-      new KeyboardHandler('ace/keyboard/$name');
+  factory KeyboardHandler.named(String name) {
+    if (name == DEFAULT) {
+      return new _KeyboardHandlerProxy._(DEFAULT);
+    } else {
+      return new KeyboardHandler('ace/keyboard/$name');
+    }
+  }
   
   /// Creates a keyboard for the given [path].
   /// 
