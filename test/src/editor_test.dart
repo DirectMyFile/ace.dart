@@ -546,6 +546,14 @@ void testGetKeyBinding() {
 }
 
 @Test()
+void testSetKeyboardHandlerDefault() {
+  editor.keyboardHandler = new KeyboardHandler.named(KeyboardHandler.DEFAULT)
+  ..onLoad.then(expectAsync1((_) {
+    expect(editor.keyboardHandler.name, equals(KeyboardHandler.DEFAULT));
+  }));
+}
+
+@Test()
 void testSetKeyboardHandlerEmacs() {
   editor.keyboardHandler = new KeyboardHandler.named(KeyboardHandler.EMACS)
   ..onLoad.then(expectAsync1((_) {
@@ -559,6 +567,16 @@ void testSetKeyboardHandlerVim() {
   ..onLoad.then(expectAsync1((_) {
     expect(editor.keyboardHandler.name, equals(KeyboardHandler.VIM));
   }));  
+}
+
+@Test()
+void testSetKeyBindingKeyboardHandlerDefault() {
+  var handler = new KeyboardHandler.named(KeyboardHandler.DEFAULT);
+  editor.keyBinding.keyboardHandler = handler;
+  handler.onLoad.then(expectAsync1((_) {
+    expect(editor.keyBinding.keyboardHandler.name, 
+        equals(KeyboardHandler.DEFAULT));
+  }));
 }
 
 @Test()
