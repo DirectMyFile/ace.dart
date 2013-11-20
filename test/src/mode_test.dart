@@ -22,6 +22,7 @@ void testCreateModeFromModePath() {
   verifyMode('${_ACE_MODE_PATH}csharp');
   verifyMode('${_ACE_MODE_PATH}css');
   verifyMode('${_ACE_MODE_PATH}dart');
+  verifyMode('${_ACE_MODE_PATH}golang');
   verifyMode('${_ACE_MODE_PATH}html');
   verifyMode('${_ACE_MODE_PATH}java'); 
   verifyMode('${_ACE_MODE_PATH}javascript'); 
@@ -49,12 +50,15 @@ void testCreateModeFromFilePath() {
     expect(mode.path, equals(expectedPath));
   };
   verifyMode('some/script.bat',     '${_ACE_MODE_PATH}batchfile');
+  verifyMode('vm/allocator.c',      '${_ACE_MODE_PATH}c_cpp');
+  verifyMode('vm/allocator.cc',     '${_ACE_MODE_PATH}c_cpp');
   verifyMode('vm/allocator.cpp',    '${_ACE_MODE_PATH}c_cpp');
   verifyMode('vm/allocator.h',      '${_ACE_MODE_PATH}c_cpp');
   verifyMode('strong.coffee',       '${_ACE_MODE_PATH}coffee');
   verifyMode('vm/gc.cs',            '${_ACE_MODE_PATH}csharp');
   verifyMode('twit/boot.css',       '${_ACE_MODE_PATH}css');
   verifyMode('ftw.dart',            '${_ACE_MODE_PATH}dart');
+  verifyMode('ready/set.go',        '${_ACE_MODE_PATH}golang');
   verifyMode('browser.html',        '${_ACE_MODE_PATH}html');
   verifyMode('midp/midlet.java',    '${_ACE_MODE_PATH}java');
   verifyMode('some/legacy.js',      '${_ACE_MODE_PATH}javascript');  
