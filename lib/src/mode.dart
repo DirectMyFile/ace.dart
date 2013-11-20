@@ -2,11 +2,14 @@ part of ace;
 
 const Map<String, String> _extensionMap = const {
   'bat'       : 'batchfile',
+  'c'         : 'c_cpp',
+  'cc'        : 'c_cpp',
   'cpp'       : 'c_cpp',
   'coffee'    : 'coffee',
   'cs'        : 'csharp',
   'css'       : 'css',
-  'dart'      : 'dart',  
+  'dart'      : 'dart',
+  'go'        : 'golang',
   'h'         : 'c_cpp',
   'html'      : 'html',
   'java'      : 'java',
