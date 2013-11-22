@@ -1,6 +1,6 @@
 # Ace.dart Changes
 
-## 0.1.3-dev+10.28.2013
+## 0.1.3+10.28.2013
 
 - Added the `KeyBinding` and `KeyboardHandler` abstract classes and expose the
 `Editor.keyBinding` getter and the `Editor.keyboardHandler` getter / setter.
