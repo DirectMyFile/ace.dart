@@ -1,5 +1,5 @@
 name: ace
-version: 0.1.3+10.28.2013
+version: 0.1.4-dev+10.28.2013
 author: Ross Smith <ross.dart.lang@gmail.com>
 description: High performance code editor for the web.
 homepage: https://github.com/rmsmith/ace.dart
