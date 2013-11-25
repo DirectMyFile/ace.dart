@@ -5,7 +5,7 @@ description: High performance code editor for the web.
 homepage: https://github.com/rmsmith/ace.dart
 documentation: http://rmsmith.github.com/ace.dart/ace.html
 environment:
-  sdk: '>=0.8.10+6 <2.0.0'
+  sdk: '>=1.0.0 <2.0.0'
 dependencies:
 dev_dependencies:
   bench: '>=0.2.20'
