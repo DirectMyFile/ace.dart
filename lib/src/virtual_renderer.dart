@@ -1,13 +1,16 @@
 part of ace;
 
 /// The renderer draws to the screen.
-abstract class VirtualRenderer extends _Disposable {
+abstract class VirtualRenderer extends _Disposable implements OptionsProvider {
   
   /// The index of the first visible row.
   int get firstVisibleRow;
   
   /// Whether or not the gutter has a fixed width.
   bool fixedWidthGutter;
+  
+  /// The column number of where the print margin is.
+  int printMarginColumn;
   
   /// Whether or not the gutter is visible.
   bool showGutter;
