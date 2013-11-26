@@ -9,6 +9,10 @@ class _VirtualRendererProxy extends _HasProxy implements VirtualRenderer {
     set fixedWidthGutter(bool fixedWidthGutter) => 
         call('setOption', ['fixedWidthGutter', fixedWidthGutter]);
   
+  bool
+    get showGutter => call('getShowGutter');
+    set showGutter(bool value) => call('setShowGutter', [value]);
+    
   _VirtualRendererProxy(html.Element container, Theme theme) 
   : this._(new js.JsObject(_modules['ace/virtual_renderer'][VirtualRenderer], 
       [container, (theme as _ThemeProxy)._theme]));

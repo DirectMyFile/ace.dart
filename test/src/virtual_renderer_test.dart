@@ -32,3 +32,12 @@ void testFixedWidthGutter() {
   renderer.fixedWidthGutter = false;
   expect(renderer.fixedWidthGutter, isFalse);
 }
+
+@Test()
+void testShowGutter() {
+  var renderer = edit(html.querySelector('#editor')).renderer;
+  renderer.showGutter = false;
+  expect(renderer.showGutter, isFalse);
+  renderer.showGutter = true;
+  expect(renderer.showGutter, isTrue);
+}
