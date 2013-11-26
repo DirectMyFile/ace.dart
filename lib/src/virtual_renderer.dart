@@ -9,6 +9,9 @@ abstract class VirtualRenderer extends _Disposable {
   /// Whether or not the gutter has a fixed width.
   bool fixedWidthGutter;
   
+  /// Whether or not the gutter is visible.
+  bool showGutter;
+  
   /// Creates a new VirtualRenderer within the given [container], applying the 
   /// given [theme].
   factory VirtualRenderer(html.Element container, Theme theme) =>
