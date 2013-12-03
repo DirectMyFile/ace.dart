@@ -1,6 +1,10 @@
 # Ace.dart Changes
 
-## 0.1.4-dev+10.28.2013
+## 0.1.4-dev+12.02.2013
+
+- Updated to ace-builds version 12.02.2013.
+- Added `showGutter`, `printMarginColumn`, and an `OptionsProvider` 
+implementation to the `VirtualRenderer`.
 
 ## 0.1.3+10.28.2013
 
