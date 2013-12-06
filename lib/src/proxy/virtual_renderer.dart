@@ -2,12 +2,16 @@ part of ace;
 
 class _VirtualRendererProxy extends _HasProxy implements VirtualRenderer {
   
+  html.Element get containerElement => call('getContainerElement');
+  
   int get firstVisibleRow => call('getFirstVisibleRow');
   
   bool
     get fixedWidthGutter => call('getOption', ['fixedWidthGutter']);
     set fixedWidthGutter(bool fixedWidthGutter) => 
         call('setOption', ['fixedWidthGutter', fixedWidthGutter]);
+  
+  html.Element get mouseEventTarget => call('getMouseEventTarget');
   
   int
     get printMarginColumn => call('getPrintMarginColumn');

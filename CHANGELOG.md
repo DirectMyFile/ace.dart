@@ -2,6 +2,9 @@
 
 ## 0.1.5-dev+12.2.2013
 
+- Added `containerElement` and `mouseEventTarget` getters to the 
+`VirtualRenderer`.
+
 ## 0.1.4+12.2.2013
 
 - Updated to ace-builds version 12.02.2013.

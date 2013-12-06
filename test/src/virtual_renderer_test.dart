@@ -24,11 +24,23 @@ void testConstructor() {
 }
 
 @Test()
+void testGetContainerElement() {
+  final container = html.querySelector('#editor');
+  expect(container, isNotNull);
+  expect(renderer.containerElement, same(container));  
+}
+
+@Test()
 void testFixedWidthGutter() {
   renderer.fixedWidthGutter = true;
   expect(renderer.fixedWidthGutter, isTrue);
   renderer.fixedWidthGutter = false;
   expect(renderer.fixedWidthGutter, isFalse);
+}
+
+@Test()
+void testGetMouseEventTarget() {
+  expect(renderer.mouseEventTarget, const isInstanceOf<html.DivElement>());  
 }
 
 @Test()
