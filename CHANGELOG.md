@@ -1,6 +1,6 @@
 # Ace.dart Changes
 
-## 0.1.5-dev+12.2.2013
+## 0.1.5+12.2.2013
 
 - Added `containerElement` and `mouseEventTarget` getters to the 
 `VirtualRenderer`.
