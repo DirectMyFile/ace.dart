@@ -23,6 +23,7 @@ void testCreateModeFromModePath() {
   verifyMode('${_ACE_MODE_PATH}css');
   verifyMode('${_ACE_MODE_PATH}dart');
   verifyMode('${_ACE_MODE_PATH}golang');
+  verifyMode('${_ACE_MODE_PATH}haxe');
   verifyMode('${_ACE_MODE_PATH}html');
   verifyMode('${_ACE_MODE_PATH}haskell');
   verifyMode('${_ACE_MODE_PATH}java'); 
@@ -63,6 +64,7 @@ void testCreateModeFromFilePath() {
   verifyMode('twit/boot.css',       '${_ACE_MODE_PATH}css');
   verifyMode('ftw.dart',            '${_ACE_MODE_PATH}dart');
   verifyMode('ready/set.go',        '${_ACE_MODE_PATH}golang');
+  verifyMode('ro/bot.hx',           '${_ACE_MODE_PATH}haxe');
   verifyMode('browser.html',        '${_ACE_MODE_PATH}html');
   verifyMode('safe.hs',             '${_ACE_MODE_PATH}haskell');
   verifyMode('midp/midlet.java',    '${_ACE_MODE_PATH}java');

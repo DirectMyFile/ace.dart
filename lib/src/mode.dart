@@ -13,6 +13,7 @@ const Map<String, String> _extensionMap = const {
   'h'         : 'c_cpp',
   'hs'        : 'haskell',
   'html'      : 'html',
+  'hx'        : 'haxe',
   'java'      : 'java',
   'js'        : 'javascript',
   'json'      : 'json',
