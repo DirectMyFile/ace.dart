@@ -11,6 +11,7 @@ const Map<String, String> _extensionMap = const {
   'dart'      : 'dart',
   'go'        : 'golang',
   'h'         : 'c_cpp',
+  'hs'        : 'haskell',
   'html'      : 'html',
   'java'      : 'java',
   'js'        : 'javascript',
