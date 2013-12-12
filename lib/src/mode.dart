@@ -26,6 +26,7 @@ const Map<String, String> _extensionMap = const {
   'rb'        : 'ruby',
   'scss'      : 'scss',
   'sh'        : 'sh',
+  'svg'       : 'svg',
   'ts'        : 'typescript',
   'xml'       : 'xml',
   'yaml'      : 'yaml'
