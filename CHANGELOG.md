@@ -4,6 +4,7 @@
 
 - Added `containerElement` and `mouseEventTarget` getters to the 
 `VirtualRenderer`.
+- Added `lua` to the extension map used by the `new Mode.forFile` factory.
 
 ## 0.1.4+12.2.2013
 
