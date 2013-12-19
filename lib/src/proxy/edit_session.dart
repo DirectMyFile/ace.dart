@@ -5,6 +5,9 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   final _onChange = new StreamController<Delta>.broadcast();
   Stream<Delta> get onChange => _onChange.stream;
   
+  final _onChangeAnnotation = new StreamController.broadcast();
+  Stream get onChangeAnnotation => _onChangeAnnotation.stream;
+  
   final _onChangeBreakpoint = new StreamController.broadcast();
   Stream get onChangeBreakpoint => _onChangeBreakpoint.stream;
   
@@ -25,6 +28,12 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   
   final _onChangeWrapMode = new StreamController.broadcast();
   Stream get onChangeWrapMode => _onChangeWrapMode.stream;
+  
+  List<Annotation>
+    get annotations => _list(call('getAnnotations')).map((a) => 
+        new Annotation._(_jsify(a))).toList(growable: false);
+    set annotations(List<Annotation> annotations) => 
+        call('setAnnotations', [_jsify(annotations.map((a) => a._toProxy()))]);
   
   Map<int, String> get breakpoints => _list(call('getBreakpoints')).asMap();
   
@@ -106,6 +115,7 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   _EditSessionProxy._(js.JsObject proxy) : super(proxy) {
     call('on', ['change', 
                 (e,__) => _onChange.add(new Delta._forProxy(e['data']))]);
+    call('on', ['changeAnnotation', (_,__) => _onChangeAnnotation.add(this)]);
     call('on', ['changeBreakpoint', (_,__) => _onChangeBreakpoint.add(this)]);
     call('on', ['changeOverwrite', (_,__) => _onChangeOverwrite.add(this)]);
     call('on', ['changeScrollLeft', 
@@ -119,6 +129,7 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   
   void _onDispose() {
     _onChange.close();
+    _onChangeAnnotation.close();
     _onChangeBreakpoint.close();
     _onChangeOverwrite.close();
     _onChangeScrollLeft.close();
@@ -133,6 +144,8 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   
   bool adjustWrapLimit(int desiredLimit, int printMargin) =>
       call('adjustWrapLimit', [desiredLimit, printMargin]);
+  
+  void clearAnnotations() => call('clearAnnotations');
   
   void clearBreakpoint(int row) => call('clearBreakpoint', [row]);
   

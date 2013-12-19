@@ -2,6 +2,9 @@
 
 ## 0.1.6-dev+12.2.2013
 
+- Added the `Annotation` class and expose the `onChangeAnnotation`, 
+`annotations`, and `clearAnnotations` members on the `EditSession` class.
+
 ## 0.1.5+12.2.2013
 
 - Added `containerElement` and `mouseEventTarget` getters to the 

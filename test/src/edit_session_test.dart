@@ -31,6 +31,7 @@ void testDispose() {
   final noop0 = (){};
   final noop1 = (_){};
   session.onChange.listen(noop1, onDone: expectAsync0(noop0));
+  session.onChangeAnnotation.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeBreakpoint.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeOverwrite.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeScrollLeft.listen(noop1, onDone: expectAsync0(noop0));
@@ -383,6 +384,45 @@ void testAddGutterDecoration() {
 void testRemoveGutterDecoration() {
   session.onChangeBreakpoint.listen(expectAsync1((_){})); 
   session.removeGutterDecoration(0, 'cssnarf');
+}
+
+@Test()
+void testGetAnnotations() {
+  expect(session.annotations, isEmpty); 
+}
+
+@Test()
+void testSetAnnotations() {
+  session.onChangeAnnotation.listen(expectAsync1((_) {
+    expect(session.annotations.length, equals(2));
+    expect(session.annotations[0], equals(const Annotation(
+      row: 42,
+      text: 'snarf')));
+    expect(session.annotations[1], equals(const Annotation(
+      row: 16,
+      text: 'ignored', 
+      html: '<span>ruh-roh</span>', 
+      type: Annotation.ERROR)));
+  }));
+  session.annotations = [
+    const Annotation(row: 42, text: 'snarf'),
+    const Annotation(
+      row: 16,
+      text: 'ignored', 
+      html: '<span>ruh-roh</span>', 
+      type: Annotation.ERROR) ];
+}
+
+@Test()
+void testClearAnnotations() {
+  session.annotations = [const Annotation(row: 42, text: 'foo')];
+  expect(session.annotations.length, equals(1));
+  expect(session.annotations[0], equals(
+    const Annotation(row: 42, text: 'foo')));
+  session.onChangeAnnotation.listen(expectAsync1((_) {
+    expect(session.annotations, isEmpty);
+  }));
+  session.clearAnnotations();
 }
 
 @Test() 

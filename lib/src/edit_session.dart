@@ -12,6 +12,9 @@ abstract class EditSession extends _Disposable {
   /// Fired whenever the [document] changes.
   Stream<Delta> get onChange;
   
+  /// Fired whenever one of the [annotations] changes.
+  Stream get onChangeAnnotation;
+  
   /// Fired whenever the gutter changes, either by setting or removing
   /// breakpoints, or when the gutter decorations change.
   Stream get onChangeBreakpoint;
@@ -33,6 +36,9 @@ abstract class EditSession extends _Disposable {
   
   /// Fired whenever the [useWrapMode] changes.
   Stream get onChangeWrapMode;
+  
+  /// The current annotations for this session.
+  List<Annotation> annotations;
   
   /// A map from row index to CSS class name for all of the breakpoints in the 
   /// current [document].
@@ -139,6 +145,10 @@ abstract class EditSession extends _Disposable {
   // TODO(rms): undocumented and complex in ace.js, but a key ingredient in the
   // line wrapping code so we should deduce some documentation...
   bool adjustWrapLimit(int desiredLimit, int printMargin);
+  
+  /// Clears all [annotations] for this session and fires an 
+  /// [onChangeAnnotation] event.
+  void clearAnnotations();
   
   /// Removes a breakpoint on the given [row] and fires an 
   /// [onChangeBreakPoint] event.
