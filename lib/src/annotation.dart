@@ -46,7 +46,7 @@ class Annotation {
   int get hashCode => 
       html.hashCode ^ row.hashCode ^ text.hashCode ^ type.hashCode;
     
-  js.JsObject _toProxy() => _jsify({
+  js.JsObject _toProxy() => _jsMap({
     'html': html, 
     'row' : row,
     'text': text,

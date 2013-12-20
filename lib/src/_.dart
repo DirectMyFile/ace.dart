@@ -18,6 +18,14 @@ Future<js.JsObject> _loadModule(String moduleType, String modulePath) {
   return completer.future;
 }
 
+js.JsObject _jsArray(list) => new js.JsArray.from(list);
+
+js.JsObject _jsMap(map) {
+  final jsMap = new js.JsObject(_context['Object']);
+  map.forEach((k, v) => jsMap[k] = v);
+  return jsMap;
+}
+
 js.JsObject _jsify(obj) => new js.JsObject.jsify(obj);
 
 List _list(js.JsObject array) => JSON.decode(_stringify(array));

@@ -32,8 +32,8 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   List<Annotation>
     get annotations => _list(call('getAnnotations')).map((a) => 
         new Annotation._(_jsify(a))).toList();
-    set annotations(List<Annotation> annotations) => 
-        call('setAnnotations', [_jsify(annotations.map((a) => a._toProxy()))]);
+    set annotations(List<Annotation> annotations) => call('setAnnotations', 
+        [_jsArray(annotations.map((a) => a._toProxy()))]);
   
   Map<int, String> get breakpoints => _list(call('getBreakpoints')).asMap();
   
@@ -200,7 +200,8 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   void setBreakpoint(int row, {String className: 'ace_breakpoint'}) =>
       call('setBreakpoint', [row, className]);
   
-  void setBreakpoints(List<int> rows) => call('setBreakpoints', [_jsify(rows)]);
+  void setBreakpoints(List<int> rows) => 
+      call('setBreakpoints', [_jsArray(rows)]);
   
   void setWrapLimitRange({int min, int max}) => 
       call('setWrapLimitRange', [min, max]);

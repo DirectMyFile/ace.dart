@@ -56,7 +56,7 @@ class SearchOptions {
       wrap: m['wrap'] == null ? false : m['wrap']);
   
   js.JsObject _toProxy() =>
-      _jsify({ 
+      _jsMap({ 
         'backwards': backwards,
         'caseSensitive': caseSensitive,
         'needle': needle,
