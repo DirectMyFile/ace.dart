@@ -400,7 +400,6 @@ void testSetAnnotations() {
       text: 'snarf')));
     expect(session.annotations[1], equals(const Annotation(
       row: 16,
-      text: 'ignored', 
       html: '<span>ruh-roh</span>', 
       type: Annotation.ERROR)));
   }));
@@ -408,7 +407,6 @@ void testSetAnnotations() {
     const Annotation(row: 42, text: 'snarf'),
     const Annotation(
       row: 16,
-      text: 'ignored', 
       html: '<span>ruh-roh</span>', 
       type: Annotation.ERROR) ];
 }
