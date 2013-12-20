@@ -28,7 +28,7 @@ class Annotation {
     this.text : null,
     this.type : INFO });
     
-  Annotation._(js.JsObject proxy) : this(
+  Annotation._(proxy) : this(
     html: proxy['html'],
     row : proxy['row'] == null ? 0 : proxy['row'],
     text: proxy['text'],
