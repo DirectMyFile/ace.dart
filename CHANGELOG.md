@@ -2,6 +2,11 @@
 
 ## 0.1.6-dev+12.2.2013
 
+- Optimized some list and map conversions on the `dart:js` boundary.
+- Added the `Annotation` class and expose the `onChangeAnnotation`, 
+`annotations`, and `clearAnnotations` members on the `EditSession` class.
+- Added a new `example/annotations`.
+
 ## 0.1.5+12.2.2013
 
 - Added `containerElement` and `mouseEventTarget` getters to the 

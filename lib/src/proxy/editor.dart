@@ -163,7 +163,7 @@ class _EditorProxy extends _HasProxy implements Editor {
   getOption(String name) => call('getOption', [name]);
   
   Map<String, dynamic> getOptions(List<String> optionNames) =>
-      _map(call('getOptions', [_jsify(optionNames)]));  
+      _map(call('getOptions', [_jsArray(optionNames)]));  
   
   void gotoPageDown() => call('gotoPageDown');
   

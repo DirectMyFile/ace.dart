@@ -8,6 +8,7 @@ import 'dart:math' as math;
 
 part 'src/_.dart';
 part 'src/anchor.dart';
+part 'src/annotation.dart';
 part 'src/delta.dart';
 part 'src/document.dart';
 part 'src/editor.dart';

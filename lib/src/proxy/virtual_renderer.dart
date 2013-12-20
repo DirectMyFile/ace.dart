@@ -31,7 +31,7 @@ class _VirtualRendererProxy extends _HasProxy implements VirtualRenderer {
   getOption(String name) => call('getOption', [name]);
   
   Map<String, dynamic> getOptions(List<String> optionNames) =>
-      _map(call('getOptions', [_jsify(optionNames)]));
+      _map(call('getOptions', [_jsArray(optionNames)]));
   
   void setOption(String name, value) => call('setOption', [name, value]);
   
