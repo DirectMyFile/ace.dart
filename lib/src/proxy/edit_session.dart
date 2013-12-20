@@ -31,7 +31,7 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   
   List<Annotation>
     get annotations => _list(call('getAnnotations')).map((a) => 
-        new Annotation._(_jsify(a))).toList(growable: false);
+        new Annotation._(_jsify(a))).toList();
     set annotations(List<Annotation> annotations) => 
         call('setAnnotations', [_jsify(annotations.map((a) => a._toProxy()))]);
   
