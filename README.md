@@ -2,12 +2,7 @@
 
 [Dart language][dart] bindings for [Ace][ace].
 
-[![Build Status](https://drone.io/github.com/rmsmith/ace.dart/status.png)][badge]
-
-## Documentation
-
-Please consult our [API documentation][api] as well as the 
-[Ace API reference][ace-api].
+[![Build Status][status]][badge] | [API][api] | [Ace API][ace-api]
 
 ## Ace.js
 
@@ -29,3 +24,4 @@ _Ace.js uses a BSD license as described in its own [LICENSE][ace-license] file._
 [dart]: http://www.dartlang.org/
 [license]: https://github.com/rmsmith/ace.dart/blob/master/LICENSE
 [semantic versioning]: http://semver.org/
+[status]: https://drone.io/github.com/rmsmith/ace.dart/status.png
