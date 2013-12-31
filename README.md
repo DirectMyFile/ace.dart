@@ -2,7 +2,7 @@
 
 [Dart language][dart] bindings for [Ace][ace].
 
-[![Build Status][status]][badge] | [API][api] | [Ace API][ace-api]
+[![Build Status][status]][badge] | [Ace.dart API][api] | [Ace.js API][ace-api]
 
 ## Ace.js
 
