@@ -25,7 +25,7 @@ abstract class Delta {
   : this._(proxy['action'], new Range._(proxy['range']));
   
   js.JsObject _toProxy() => 
-      _jsify({'action': action, 'range': range._toProxy()});
+      _jsMap({'action': action, 'range': range._toProxy()});
 }
 
 class InsertLinesDelta extends Delta {  
@@ -40,7 +40,7 @@ class InsertLinesDelta extends Delta {
   : super._fromProxy(proxy)
   , lines = _list(proxy['lines']);
   
-  js.JsObject _toProxy() => super._toProxy()..['lines'] = _jsify(lines);
+  js.JsObject _toProxy() => super._toProxy()..['lines'] = _jsArray(lines);
 }
 
 class InsertTextDelta extends Delta {
@@ -77,7 +77,7 @@ class RemoveLinesDelta extends Delta {
   
   js.JsObject _toProxy() => 
       super._toProxy()
-      ..['lines'] = _jsify(lines)
+      ..['lines'] = _jsArray(lines)
       ..['nl'] = nl;
 }
 
