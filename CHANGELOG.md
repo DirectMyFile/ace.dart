@@ -2,6 +2,9 @@
 
 ## 0.1.6-dev+12.2.2013
 
+- Added the `UndoManagerBase` class and implemented the 
+`EditSession.undoManager` setter; the argument to this setter _must_ be an 
+object derived from `UndoManagerBase`.
 - Optimized some list and map conversions on the `dart:js` boundary.
 - Added the `Annotation` class and expose the `onChangeAnnotation`, 
 `annotations`, and `clearAnnotations` members on the `EditSession` class.
