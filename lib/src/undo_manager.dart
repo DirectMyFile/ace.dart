@@ -36,19 +36,6 @@ abstract class UndoManager extends _Disposable {
   Range undo({bool select: true});
 }
 
-class UndoManagerDelta {
-
-  final String group;
-  final List<Delta> deltas;
-  
-  UndoManagerDelta(this.group, this.deltas);
-  
-  UndoManagerDelta._(proxy) : this(
-      proxy['group'],
-      proxy['deltas'].map((delta) => 
-          new Delta._forProxy(delta)).toList(growable: false));
-}
-
 /// A base class for implementing [UndoManager].
 /// 
 /// When setting [EditSession.undoManager] the argument _must_ be an object
@@ -87,4 +74,17 @@ abstract class UndoManagerBase extends _HasReverseProxy implements UndoManager {
     _proxy.deleteProperty('reset');
     _proxy.deleteProperty('undo');
   }
+}
+
+class UndoManagerDelta {
+
+  final String group;
+  final List<Delta> deltas;
+  
+  UndoManagerDelta(this.group, this.deltas);
+  
+  UndoManagerDelta._(proxy) : this(
+      proxy['group'],
+      proxy['deltas'].map((delta) => 
+          new Delta._forProxy(delta)).toList(growable: false));
 }
