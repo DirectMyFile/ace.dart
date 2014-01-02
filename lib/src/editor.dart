@@ -265,6 +265,14 @@ abstract class Editor extends _Disposable implements OptionsProvider {
   /// Converts the current [selection] entirely into uppercase characters.
   void toUpperCase();
   
+  /// Transposes two characters on either side of the current [cursorPosition].
+  /// 
+  /// When called at the end of a line, rather than transposing the last 
+  /// character of the line with the newline, which would be useless, this 
+  /// method transposes the last two characters on the line.
+  /// 
+  /// If the current [selection] is not empty or the current [cursorPosition]
+  /// is at the beginning of a line then this method does nothing.
   void transposeLetters();
   
   /// Performs an undo operation on the current [EditSession.document], 

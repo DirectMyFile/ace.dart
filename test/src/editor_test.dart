@@ -605,3 +605,16 @@ void testSetKeyBindingKeyboardHandlerVim() {
     expect(editor.keyBinding.keyboardHandler.name, equals(KeyboardHandler.VIM));
   }));
 }
+
+@Test()
+void testTransposeLetters() {
+  editor.setValue('snarf', 1);
+  editor.transposeLetters();
+  expect(editor.value, equals('snafr'));
+  editor.navigateLeft(3);
+  editor.transposeLetters();
+  expect(editor.value, equals('sanfr'));
+  editor.navigateLineStart();
+  editor.transposeLetters();
+  expect(editor.value, equals('sanfr'));
+}
