@@ -143,8 +143,11 @@ abstract class Editor extends _Disposable implements OptionsProvider {
   /// Insert [text] at the current [cursorPosition].
   void insert(String text);
   
+  /// Returns `true` if the given [row] is currently fully visible on the 
+  /// screen.
   bool isRowFullyVisible(int row);
   
+  /// Returns `true` if the given [row] is currently visible on the screen.
   bool isRowVisible(int row);
   
   /// Move the cursor down in the document the specified number of [times].
