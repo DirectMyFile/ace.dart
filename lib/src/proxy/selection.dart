@@ -19,9 +19,8 @@ class _SelectionProxy extends _HasProxy implements Selection {
   Range get range => new Range._(call('getRange'));
   
   _SelectionProxy(EditSession session) 
-  : this._(new js.JsObject(
-        _modules['ace/selection'][Selection], 
-        [(session as _EditSessionProxy)._proxy]));
+  : this._(new js.JsObject(_modules['ace/selection']['Selection'], 
+      [(session as _EditSessionProxy)._proxy]));
   
   _SelectionProxy._(js.JsObject proxy) : super(proxy) {
     call('on', ['changeCursor', (_,__) => _onChangeCursor.add(this)]);
