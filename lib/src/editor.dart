@@ -109,6 +109,7 @@ abstract class Editor extends _Disposable implements OptionsProvider {
   /// Blurs the current [textInput].
   void blur();
   
+  /// Centers the current [selection] on the screen.
   void centerSelection();
   
   /// Clears the current [selection].
