@@ -225,6 +225,10 @@ abstract class Editor extends _Disposable implements OptionsProvider {
   /// Remove the word directly to the right of the current [selection].
   void removeWordRight();  
   
+  /// Triggers a resize of this editor.
+  /// 
+  /// If [force] is `true` then the size is recomputed even if neither the 
+  /// height nor width have changed.
   void resize(bool force);
   
   /// Scrolls the document down a page but does _not_ change the 
