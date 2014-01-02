@@ -1,6 +1,7 @@
 @TestGroup(description: 'EditSession')
 library ace.test.edit_session;
 
+import 'dart:async';
 import 'package:ace/ace.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
@@ -210,6 +211,27 @@ void testGetUndoManager() {
   expect(undoManager, isNotNull);
   expect(undoManager.hasUndo, isFalse);
   expect(undoManager.hasRedo, isFalse);
+}
+
+class MockUndoManager extends UndoManagerBase {  
+  final mock = new Mock<UndoManager>();
+  noSuchMethod(Invocation invocation) => mock.noSuchMethod(invocation);
+}
+
+@Test()
+void testSetUndoManager() {
+  final undoManager = new MockUndoManager();
+  session.undoManager = undoManager;
+  session.value = 'snarf';    
+  session.insert(const Point(0, 0), 'ahoy');
+  expect(undoManager.mock.calls(#reset), once);  
+  final verify = expectAsync0(() {
+    expect(undoManager.mock.calls(#onExecuted), once);
+  });
+  // The UndoManager is notified internally after some delay; there does not 
+  // seem to be any event that we can observe to reliably know when the 
+  // UndoManager is updated.
+  new Future.delayed(const Duration(seconds: 1), verify); 
 }
 
 @Test()
