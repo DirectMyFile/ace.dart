@@ -49,9 +49,15 @@ class UndoManagerDelta {
           new Delta._forProxy(delta)).toList(growable: false));
 }
 
+/// A base class for implementing [UndoManager].
+/// 
+/// When setting [EditSession.undoManager] the argument _must_ be an object
+/// derived from this class.
 abstract class UndoManagerBase extends _HasReverseProxy implements UndoManager {
   
   EditSession _session;
+  /// The [EditSession] whose undo stack this undo manager manages; may be 
+  /// `null` until the first [UndoManagerDelta] is executed.
   EditSession get session => _session;
   
   UndoManagerBase() {
