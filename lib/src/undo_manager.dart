@@ -53,7 +53,7 @@ abstract class UndoManagerBase extends _HasReverseProxy implements UndoManager {
         _session = new _EditSessionProxy._(options['args'][1]);
       }   
       List<UndoManagerDelta> deltas =_list(options['args'][0]).map((proxy) => 
-          new UndoManagerDelta._(proxy)).toList(growable: false);      
+          new UndoManagerDelta._fromProxy(proxy)).toList(growable: false);      
       bool merge = options['merge'];
       onExecuted(deltas, merge);
     });
@@ -79,11 +79,12 @@ abstract class UndoManagerBase extends _HasReverseProxy implements UndoManager {
 class UndoManagerDelta {
 
   final String group;
+  
   final List<Delta> deltas;
   
-  UndoManagerDelta(this.group, this.deltas);
+  UndoManagerDelta._(this.group, this.deltas);
   
-  UndoManagerDelta._(proxy) : this(
+  UndoManagerDelta._fromProxy(proxy) : this._(
       proxy['group'],
       proxy['deltas'].map((delta) => 
           new Delta._forProxy(delta)).toList(growable: false));
