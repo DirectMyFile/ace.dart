@@ -2,7 +2,7 @@ part of ace;
 
 class _Document implements Document {
   
-  static final _newLineRegExp = new RegExp(r"/^.*?(\r\n|\r|\n)/m");
+  static final _newLineRegExp = new RegExp(r"^.*?(\r?\n)");
   
   final List<String> _lines = new List<String>();
   String _autoNewLine = "\n";
@@ -89,7 +89,7 @@ class _Document implements Document {
   
   void _detectNewLine(String text) {
     var match = _newLineRegExp.firstMatch(text);
-    _autoNewLine = match != null ? match : "\n";
+    _autoNewLine = match != null ? match[1] : "\n";
   }
   
   List<String> getAllLines() => _lines.toList(growable: false);
