@@ -8,6 +8,9 @@ class _UndoManagerProxy extends _HasProxy implements UndoManager {
   
   _UndoManagerProxy._(js.JsObject proxy) : super(proxy);
   
+  void onExecuted(List<UndoManagerDelta> deltas, bool merge) => 
+      throw new UnsupportedError('This method may only be called internally.');
+  
   Range redo({bool select: true}) => new Range._(call('redo', [!select]));
   
   void reset() => call('reset');

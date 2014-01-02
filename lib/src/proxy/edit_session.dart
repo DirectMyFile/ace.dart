@@ -82,7 +82,10 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   
   UndoManager
     get undoManager => new _UndoManagerProxy._(call('getUndoManager'));
-    set undoManager(UndoManager undoManager) => throw new UnimplementedError();
+    set undoManager(UndoManager undoManager) {
+      assert(undoManager is UndoManagerBase);
+      call('setUndoManager', [(undoManager as UndoManagerBase)._proxy]);
+    }
   
   bool
     get undoSelect => _proxy[r'$undoSelect'];
