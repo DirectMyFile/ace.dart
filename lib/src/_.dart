@@ -83,3 +83,22 @@ abstract class _HasProxy extends _Disposable {
   
   void _onDispose() {}
 }
+
+abstract class _HasReverseProxy extends _Disposable {
+  
+  js.JsObject _proxy;
+  
+  bool get _hasProxy => _proxy != null;
+  
+  _HasReverseProxy([String ctorName = 'Object', List ctorArgs]) 
+  : _proxy = new js.JsObject(_context[ctorName], ctorArgs);
+  
+  void dispose() {
+    if (_hasProxy) {
+      _onDispose();
+      _proxy = null;
+    }
+  }
+  
+  void _onDispose() {}
+}

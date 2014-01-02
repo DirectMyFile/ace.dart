@@ -21,7 +21,7 @@ abstract class Delta {
   
   Delta._(this.action, this.range);
   
-  Delta._fromProxy(js.JsObject proxy) 
+  Delta._fromProxy(proxy)
   : this._(proxy['action'], new Range._(proxy['range']));
   
   js.JsObject _toProxy() => 
