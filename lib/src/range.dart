@@ -188,7 +188,7 @@ class Range implements Comparable<Range> {
       start.row == row && start.column == column;
   
   js.JsObject _toProxy() => 
-      new js.JsObject(_modules['ace/range'][Range], 
+      new js.JsObject(_modules['ace/range']['Range'], 
           [start.row, start.column, end.row, end.column]);
   
   String toString() => 
