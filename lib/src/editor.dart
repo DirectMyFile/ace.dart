@@ -137,6 +137,7 @@ abstract class Editor extends _Disposable implements OptionsProvider {
   /// Scrolls the document up a page and updates the [cursorPosition].
   void gotoPageUp();
   
+  /// Indents the current line.
   void indent();
   
   /// Insert [text] at the current [cursorPosition].

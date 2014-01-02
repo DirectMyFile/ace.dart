@@ -121,6 +121,14 @@ void testBlockOutdent() {
 }
 
 @Test()
+void testIndent() {
+  expect(editor.cursorPosition, equals(const Point(0, 0)));
+  editor.session.tabSize = 6;
+  editor.indent();
+  expect(editor.cursorPosition, equals(const Point(0, 6)));
+}
+
+@Test()
 void testFirstVisibleRow() {
   expect(editor.firstVisibleRow, equals(0));
 }
