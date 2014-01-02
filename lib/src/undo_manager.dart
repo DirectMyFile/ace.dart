@@ -44,7 +44,7 @@ abstract class UndoManagerBase extends _HasReverseProxy implements UndoManager {
   
   EditSession _session;
   /// The [EditSession] whose undo stack this undo manager manages; may be 
-  /// `null` until the first [UndoManagerDelta] is executed.
+  /// `null` until the first call to [onExecuted].
   EditSession get session => _session;
   
   UndoManagerBase() {
