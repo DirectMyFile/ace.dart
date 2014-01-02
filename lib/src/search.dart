@@ -42,18 +42,17 @@ class SearchOptions {
                  this.wholeWord: false,
                  this.wrap: false});  
   
-  SearchOptions._(proxy) : this.__(_map(proxy));    
-  
-  SearchOptions.__(Map m) : this(
-      backwards: m['backwards'] == null ? false : m['backwards'],
-      caseSensitive: m['caseSensitive'] == null ? false : m['caseSensitive'],
-      needle: m['needle'] == null ? '' : m['needle'],
-      range: m['range'] == null ? null : new Range._(_jsify(m['range'])),
-      regExp: m['regExp'] == null ? false : m['regExp'],
-      skipCurrent: m['skipCurrent'] == null ? false : m['skipCurrent'],
-      start: m['start'] == null ? null : new Range._(_jsify(m['start'])),
-      wholeWord: m['wholeWord'] == null ? false : m['wholeWord'],
-      wrap: m['wrap'] == null ? false : m['wrap']);
+  SearchOptions._(proxy) : this(
+      backwards: proxy['backwards'] == null ? false : proxy['backwards'],
+      caseSensitive: proxy['caseSensitive'] == null ? false 
+          : proxy['caseSensitive'],
+      needle: proxy['needle'] == null ? '' : proxy['needle'],
+      range: proxy['range'] == null ? null : new Range._(proxy['range']),
+      regExp: proxy['regExp'] == null ? false : proxy['regExp'],
+      skipCurrent: proxy['skipCurrent'] == null ? false : proxy['skipCurrent'],
+      start: proxy['start'] == null ? null : new Range._(proxy['start']),
+      wholeWord: proxy['wholeWord'] == null ? false : proxy['wholeWord'],
+      wrap: proxy['wrap'] == null ? false : proxy['wrap']);
   
   js.JsObject _toProxy() =>
       _jsMap({ 
