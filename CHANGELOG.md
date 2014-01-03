@@ -1,5 +1,7 @@
 # Ace.dart Changes
 
+## 0.1.7-dev+12.2.2013
+
 ## 0.1.6+12.2.2013
 
 - Added the `UndoManagerBase` class and implemented the 
