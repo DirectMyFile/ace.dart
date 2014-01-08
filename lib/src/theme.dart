@@ -14,7 +14,9 @@ abstract class Theme extends _Disposable {
   static const ECLIPSE                  = 'eclipse';
   static const GITHUB                   = 'github';
   static const IDLE_FINGERS             = 'idle_fingers';
+  static const KATZENMILCH              = 'katzenmilch';
   static const KR                       = 'kr_theme';
+  static const KUROIR                   = 'kuroir';
   static const MERBIVORE                = 'merbivore';
   static const MERBIVORE_SOFT           = 'merbivore_soft';
   static const MONO_INDUSTRIAL          = 'mono_industrial';
@@ -42,11 +44,11 @@ abstract class Theme extends _Disposable {
   static const List<String> THEMES = 
       const [ AMBIANCE, CHAOS, CHROME, CLOUDS, CLOUDS_MIDNIGHT, COBALT,
               CRIMSON_EDITOR, DAWN, DREAMWEAVER, ECLIPSE, GITHUB, IDLE_FINGERS,
-              KR, MERBIVORE, MERBIVORE_SOFT, MONO_INDUSTRIAL, MONOKAI, 
-              PASTEL_ON_DARK, SOLARIZED_DARK, SOLARIZED_LIGHT, TERMINAL, 
-              TEXTMATE, TOMORROW, TOMORROW_NIGHT, TOMORROW_NIGHT_BLUE, 
-              TOMORROW_NIGHT_BRIGHT, TOMORROW_NIGHT_EIGHTIES, TWILIGHT, 
-              VIBRANT_INK, XCODE ];
+              KATZENMILCH, KR, KUROIR, MERBIVORE, MERBIVORE_SOFT, 
+              MONO_INDUSTRIAL, MONOKAI, PASTEL_ON_DARK, SOLARIZED_DARK, 
+              SOLARIZED_LIGHT, TERMINAL, TEXTMATE, TOMORROW, TOMORROW_NIGHT, 
+              TOMORROW_NIGHT_BLUE, TOMORROW_NIGHT_BRIGHT, 
+              TOMORROW_NIGHT_EIGHTIES, TWILIGHT, VIBRANT_INK, XCODE ];
   
   String get cssClass;
   
