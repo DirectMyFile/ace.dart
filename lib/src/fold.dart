@@ -3,6 +3,7 @@ part of ace;
 abstract class Fold extends RangeList {
   
   Placeholder get placeholder;
+  
   Range get range; 
   
   factory Fold(Range range, Placeholder placeholder) {
@@ -18,6 +19,7 @@ class FoldChangeEvent {
   static const UPDATE = null;
   
   final String action;
+  
   final Fold data;  
   
   FoldChangeEvent._(this.data, this.action);
