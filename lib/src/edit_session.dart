@@ -7,7 +7,7 @@ part of ace;
 /// 
 /// An instance of [EditSession] may be attached to only one [Document].  An
 /// instance of [Document] may be attached to more than one [EditSession].
-abstract class EditSession extends _Disposable {
+abstract class EditSession extends _Disposable implements Folding {
   
   /// Fired whenever the [document] changes.
   Stream<Delta> get onChange;
@@ -18,6 +18,9 @@ abstract class EditSession extends _Disposable {
   /// Fired whenever the gutter changes, either by setting or removing
   /// breakpoints, or when the gutter decorations change.
   Stream get onChangeBreakpoint;
+  
+  /// Fired whenever a code fold is added, removed or updated.
+  Stream<FoldChangeEvent> get onChangeFold;
   
   /// Fired whenever the [overwrite] changes.
   Stream get onChangeOverwrite;

@@ -11,6 +11,9 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   final _onChangeBreakpoint = new StreamController.broadcast();
   Stream get onChangeBreakpoint => _onChangeBreakpoint.stream;
   
+  final _onChangeFold = new StreamController<FoldChangeEvent>.broadcast();
+  Stream<FoldChangeEvent> get onChangeFold => _onChangeFold.stream;
+  
   final _onChangeOverwrite = new StreamController.broadcast();
   Stream get onChangeOverwrite => _onChangeOverwrite.stream;
   
@@ -30,8 +33,11 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   Stream get onChangeWrapMode => _onChangeWrapMode.stream;
   
   List<Annotation>
-    get annotations => _list(call('getAnnotations')).map((a) => 
-        new Annotation._(a)).toList();
+    get annotations {
+      final proxies = call('getAnnotations');
+      return new List<Annotation>.generate(proxies['length'], 
+        (i) => new Annotation._(proxies[i]));
+    }
     set annotations(List<Annotation> annotations) => call('setAnnotations', 
         [_jsArray(annotations.map((a) => a._toProxy()))]);
   
@@ -120,6 +126,10 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
                 (e,__) => _onChange.add(new Delta._forProxy(e['data']))]);
     call('on', ['changeAnnotation', (_,__) => _onChangeAnnotation.add(this)]);
     call('on', ['changeBreakpoint', (_,__) => _onChangeBreakpoint.add(this)]);
+    call('on', ['changeFold', (e,__) {
+      _onChangeFold.add(new FoldChangeEvent._(
+          new _FoldProxy._(e['data']), e['action']));
+    }]);
     call('on', ['changeOverwrite', (_,__) => _onChangeOverwrite.add(this)]);
     call('on', ['changeScrollLeft', 
                 (e,__) => _onChangeScrollLeft.add(e.toInt())]);
@@ -134,6 +144,7 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
     _onChange.close();
     _onChangeAnnotation.close();
     _onChangeBreakpoint.close();
+    _onChangeFold.close();
     _onChangeOverwrite.close();
     _onChangeScrollLeft.close();
     _onChangeScrollTop.close();
@@ -141,6 +152,9 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
     _onChangeWrapLimit.close();
     _onChangeWrapMode.close();
   }
+  
+  Fold addFold(Fold fold) => new _FoldProxy._(
+      call('addFold', [(fold as _FoldProxy)._proxy]));
   
   void addGutterDecoration(int row, String className) =>
       call('addGutterDecoration', [row, className]);
@@ -163,8 +177,19 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   int duplicateLines(int firstRow, int lastRow) =>
       call('duplicateLines', [firstRow, lastRow]);
   
+  List<Fold> getAllFolds() {
+    final proxies = call('getAllFolds');
+    return new List<Fold>.generate(proxies['length'], 
+        (i) => new _FoldProxy._(proxies[i]));
+  }
+        
   Range getAWordRange(int row, int column) =>
       new Range._(call('getAWordRange', [row, column]));
+  
+  Fold getFoldAt(int row, int column, {int side}) {
+    final proxy = call('getFoldAt', [row, column, side]);
+    return proxy == null ? null : new _FoldProxy._(proxy);
+  }
   
   String getLine(int row) => call('getLine', [row]);
   
@@ -190,6 +215,9 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
       call('moveLinesUp', [firstRow, lastRow]);
   
   Point remove(Range range) => new Point._(call('remove', [range._toProxy()]));
+  
+  void removeFold(Fold fold) => 
+      call('removeFold', [(fold as _FoldProxy)._proxy]);
   
   void removeGutterDecoration(int row, String className) =>
       call('removeGutterDecoration', [row, className]);

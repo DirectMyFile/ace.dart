@@ -34,6 +34,7 @@ void testDispose() {
   session.onChange.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeAnnotation.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeBreakpoint.listen(noop1, onDone: expectAsync0(noop0));
+  session.onChangeFold.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeOverwrite.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeScrollLeft.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeScrollTop.listen(noop1, onDone: expectAsync0(noop0));
@@ -507,5 +508,41 @@ void testScreenToDocumentPosition() {
   int screenRow = session.documentToScreenRow(word.row, word.column);
   int screenColumn = session.documentToScreenColumn(word.row, word.column);  
   expect(session.screenToDocumentPosition(screenRow, screenColumn), 
-      equals(word));      
+      equals(word));
+}
+
+void _verifyFold(Fold actual, Fold expected) {
+  expect(actual.range, expected.range);
+  expect(actual.placeholder.length, expected.placeholder.length);
+}
+  
+@Test()
+void testAddFold() {
+  Fold f = new Fold(
+      new Range(0, 0, 0, 5),
+      new Placeholder(session, 2, const Point(0, 1), [], 'snarf', 'foo'));
+  session.onChangeFold.listen(expectAsync1((FoldChangeEvent ev) {
+    expect(ev.action, FoldChangeEvent.ADD);
+    _verifyFold(ev.data, f);
+  }));
+  final added = session.addFold(f);
+  _verifyFold(added, f);
+  final folds = session.getAllFolds();
+  expect(folds.length, 1);
+  _verifyFold(folds[0], f);
+}
+
+@Test()
+void testRemoveFold() {
+  Fold f = new Fold(
+      new Range(0, 8, 1, 15),
+      new Placeholder(session, 7, const Point(1, 2), [], 'snarf', 'foo'));
+  session.addFold(f);
+  expect(session.getAllFolds().length, 1);
+  session.onChangeFold.listen(expectAsync1((FoldChangeEvent ev) {
+    expect(ev.action, FoldChangeEvent.REMOVE);
+    _verifyFold(ev.data, f);
+  }));
+  session.removeFold(f);
+  expect(session.getAllFolds(), isEmpty);
 }
