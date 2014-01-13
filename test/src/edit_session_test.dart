@@ -585,3 +585,33 @@ void testAddFrontMarker() {
   expect(marker.inFront, isTrue);
   expect(marker.type, Marker.LINE);
 }
+
+@Test()
+void testRemoveBackMarker() {
+  final range = new Range(1, 2, 3, 4);
+  final className = 'snarf';
+  final markerId = session.addMarker(range, className);
+  expect(markerId, isNotNull);
+  expect(session.getMarkers(inFront: true), isEmpty);
+  expect(session.getMarkers().length, 1);
+  session.onChangeBackMarker.listen(expectAsync1(noop1));
+  session.onChangeFrontMarker.listen((_) => fail('No front marker removed.'));
+  session.removeMarker(markerId);
+  expect(session.getMarkers(inFront: true), isEmpty);
+  expect(session.getMarkers(), isEmpty);
+}
+
+@Test()
+void testRemoveFrontMarker() {
+  final range = new Range(5, 6, 7, 8);
+  final className = 'foo';
+  final markerId = session.addMarker(range, className, inFront: true);
+  expect(markerId, isNotNull);
+  expect(session.getMarkers(), isEmpty);
+  expect(session.getMarkers(inFront: true).length, 1);
+  session.onChangeFrontMarker.listen(expectAsync1(noop1));
+  session.onChangeBackMarker.listen((_) => fail('No back marker removed.'));
+  session.removeMarker(markerId);
+  expect(session.getMarkers(inFront: true), isEmpty);
+  expect(session.getMarkers(), isEmpty);
+}

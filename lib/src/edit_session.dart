@@ -237,6 +237,12 @@ abstract class EditSession extends _Disposable implements Folding {
   /// Removes the given CSS [className] from the given [row].
   void removeGutterDecoration(int row, String className);
   
+  /// Removes the marker with the given [markerId]. 
+  /// 
+  /// If the marker was in front, this method fires an [onChangeFrontMarker] 
+  /// event; if it was in the back then it fires an [onChangeBackMarker] event.
+  void removeMarker(int markerId);
+  
   /// Replaces a given [range] in the [document] with the new [text] and returns
   /// a point at the end of the new text.
   Point replace(Range range, String text);

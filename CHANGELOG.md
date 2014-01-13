@@ -3,8 +3,8 @@
 ## 0.1.8-dev+1.8.2014
 
 - Added the `Marker` class and expose the `onChangeBackMarker`, 
-`onChangeFrontMarker`, `addMarker`, and `getMarkers` members on the 
-`EditSession` class.
+`onChangeFrontMarker`, `addMarker`, `getMarkers` and `removeMarker` members on 
+the `EditSession` class.
 - Added the `Fold`, `FoldLine`, `Placeholder` and `RangeList` classes.
 - Added the `Folding` abstract class and have `EditSession` implement it. 
 - Added the `onChangeFold` event stream to `EditSession`.

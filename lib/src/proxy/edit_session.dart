@@ -244,6 +244,8 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   void removeGutterDecoration(int row, String className) =>
       call('removeGutterDecoration', [row, className]);
   
+  void removeMarker(int markerId) => call('removeMarker', [markerId]);
+  
   Point replace(Range range, String text) => 
       new Point._(call('replace', [range._toProxy(), text]));
   
