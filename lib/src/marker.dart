@@ -2,7 +2,10 @@ part of ace;
 
 class Marker {
   
-  static const LINE = 'line';
+  static const FULL_LINE    = 'fullLine';
+  static const LINE         = 'line';
+  static const SCREEN_LINE  = 'screenLine';
+  static const TEXT         = 'text';
   
   /// The CSS class for this marker.
   final String className;
