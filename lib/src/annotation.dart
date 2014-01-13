@@ -50,5 +50,6 @@ class Annotation {
     'html': html, 
     'row' : row,
     'text': text,
-    'type': type });
+    'type': type
+  });
 }
