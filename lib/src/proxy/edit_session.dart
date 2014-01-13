@@ -8,11 +8,17 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   final _onChangeAnnotation = new StreamController.broadcast();
   Stream get onChangeAnnotation => _onChangeAnnotation.stream;
   
+  final _onChangeBackMarker = new StreamController.broadcast();
+  Stream get onChangeBackMarker => _onChangeBackMarker.stream;
+  
   final _onChangeBreakpoint = new StreamController.broadcast();
   Stream get onChangeBreakpoint => _onChangeBreakpoint.stream;
   
   final _onChangeFold = new StreamController<FoldChangeEvent>.broadcast();
   Stream<FoldChangeEvent> get onChangeFold => _onChangeFold.stream;
+  
+  final _onChangeFrontMarker = new StreamController.broadcast();
+  Stream get onChangeFrontMarker => _onChangeFrontMarker.stream;
   
   final _onChangeOverwrite = new StreamController.broadcast();
   Stream get onChangeOverwrite => _onChangeOverwrite.stream;
@@ -125,11 +131,13 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
     call('on', ['change', 
                 (e,__) => _onChange.add(new Delta._forProxy(e['data']))]);
     call('on', ['changeAnnotation', (_,__) => _onChangeAnnotation.add(this)]);
+    call('on', ['changeBackMarker', (_,__) => _onChangeBackMarker.add(this)]);
     call('on', ['changeBreakpoint', (_,__) => _onChangeBreakpoint.add(this)]);
     call('on', ['changeFold', (e,__) {
       _onChangeFold.add(new FoldChangeEvent._(
           new _FoldProxy._(e['data']), e['action']));
     }]);
+    call('on', ['changeFrontMarker', (_,__) => _onChangeFrontMarker.add(this)]);
     call('on', ['changeOverwrite', (_,__) => _onChangeOverwrite.add(this)]);
     call('on', ['changeScrollLeft', 
                 (e,__) => _onChangeScrollLeft.add(e.toInt())]);
@@ -143,8 +151,10 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   void _onDispose() {
     _onChange.close();
     _onChangeAnnotation.close();
+    _onChangeBackMarker.close();
     _onChangeBreakpoint.close();
     _onChangeFold.close();
+    _onChangeFrontMarker.close();
     _onChangeOverwrite.close();
     _onChangeScrollLeft.close();
     _onChangeScrollTop.close();
@@ -158,6 +168,10 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   
   void addGutterDecoration(int row, String className) =>
       call('addGutterDecoration', [row, className]);
+  
+  int addMarker(Range range, String className, 
+      { String type: Marker.LINE, bool inFront: false }) =>
+      call('addMarker', [range._toProxy(), className, type, inFront]);
   
   bool adjustWrapLimit(int desiredLimit, int printMargin) =>
       call('adjustWrapLimit', [desiredLimit, printMargin]);
@@ -192,6 +206,14 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   }
   
   String getLine(int row) => call('getLine', [row]);
+  
+  Map<int, Marker> getMarkers({ bool inFront: false }) {
+    final markers = _map(call('getMarkers', [inFront]));
+    markers.forEach((k, v) {
+      markers[k] = new Marker._fromProxy(v);
+    });
+    return markers;
+  }
   
   int getRowLength(int row) => call('getRowLength', [row]);
   

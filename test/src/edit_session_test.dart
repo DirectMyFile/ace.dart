@@ -10,8 +10,9 @@ import '_.dart';
 EditSession session;
 @Setup
 setup() {  
-  session = new EditSession(new Document(text: sampleText), 
-    new Mode('ace/mode/text'));
+  session = new EditSession(
+      new Document(text: sampleText), 
+      new Mode('ace/mode/text'));
 }
 
 @Test()
@@ -29,12 +30,12 @@ void testCreateEditSession() {
 
 @Test()
 void testDispose() {
-  final noop0 = (){};
-  final noop1 = (_){};
   session.onChange.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeAnnotation.listen(noop1, onDone: expectAsync0(noop0));
+  session.onChangeBackMarker.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeBreakpoint.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeFold.listen(noop1, onDone: expectAsync0(noop0));
+  session.onChangeFrontMarker.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeOverwrite.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeScrollLeft.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeScrollTop.listen(noop1, onDone: expectAsync0(noop0));
@@ -545,4 +546,42 @@ void testRemoveFold() {
   }));
   session.removeFold(f);
   expect(session.getAllFolds(), isEmpty);
+}
+
+@Test()
+void testAddBackMarker() {
+  final range = new Range(1, 2, 3, 4);
+  final className = 'snarf';
+  session.onChangeBackMarker.listen(expectAsync1(noop1));
+  session.onChangeFrontMarker.listen((_) => fail('No front marker was added.'));
+  final markerId = session.addMarker(range, className);
+  expect(markerId, isNotNull);
+  expect(session.getMarkers(inFront: true), isEmpty);
+  final markers = session.getMarkers();
+  expect(markers.length, 1);
+  final marker = markers[markers.keys.first];
+  expect(marker.id, markerId);
+  expect(marker.range, new Range(1, 2, 3, 4));
+  expect(marker.className, 'snarf');
+  expect(marker.inFront, isFalse);
+  expect(marker.type, Marker.LINE);
+}
+
+@Test()
+void testAddFrontMarker() {
+  final range = new Range(5, 6, 7, 8);
+  final className = 'foo';
+  session.onChangeFrontMarker.listen(expectAsync1(noop1));
+  session.onChangeBackMarker.listen((_) => fail('No back marker was added.'));
+  final markerId = session.addMarker(range, className, inFront: true);
+  expect(markerId, isNotNull);
+  expect(session.getMarkers(), isEmpty);
+  final markers = session.getMarkers(inFront: true);
+  expect(markers.length, 1);
+  final marker = markers[markers.keys.first];
+  expect(marker.id, markerId);
+  expect(marker.range, new Range(5, 6, 7, 8));
+  expect(marker.className, 'foo');
+  expect(marker.inFront, isTrue);
+  expect(marker.type, Marker.LINE);
 }

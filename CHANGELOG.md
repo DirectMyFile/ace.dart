@@ -2,6 +2,10 @@
 
 ## 0.1.8-dev+1.8.2014
 
+- Added the `Marker` class and expose the `onChangeBackMarker`, 
+`onChangeFrontMarker`, `addMarker`, and `getMarkers` members on the 
+`EditSession` class.
+
 ## 0.1.7+1.8.2014
 
 - Updated to ace-builds version 01.08.2014.

@@ -18,6 +18,7 @@ part 'src/fold_line.dart';
 part 'src/folding.dart';
 part 'src/keyboard_handler.dart';
 part 'src/key_binding.dart';
+part 'src/marker.dart';
 part 'src/mode.dart';
 part 'src/options_provider.dart';
 part 'src/placeholder.dart';

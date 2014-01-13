@@ -15,12 +15,18 @@ abstract class EditSession extends _Disposable implements Folding {
   /// Fired whenever one of the [annotations] changes.
   Stream get onChangeAnnotation;
   
+  /// Fired whenever a back marker changes.
+  Stream get onChangeBackMarker;
+  
   /// Fired whenever the gutter changes, either by setting or removing
   /// breakpoints, or when the gutter decorations change.
   Stream get onChangeBreakpoint;
   
   /// Fired whenever a code fold is added, removed or updated.
   Stream<FoldChangeEvent> get onChangeFold;
+  
+  /// Fired whenever a front marker changes.
+  Stream get onChangeFrontMarker;
   
   /// Fired whenever the [overwrite] changes.
   Stream get onChangeOverwrite;
@@ -145,6 +151,14 @@ abstract class EditSession extends _Disposable implements Folding {
   /// Adds the given CSS [className] to the given [row].
   void addGutterDecoration(int row, String className);
   
+  /// Adds a new marker to the given [range] and returns the marker's id. 
+  ///
+  /// If [inFront] is `true`, a front marker is defined and an 
+  /// [onChangeFrontMarker] event fires; otherwise, a back marker is defined 
+  /// and an [onChangeBackMarker] event fires.
+  int addMarker(Range range, String className, 
+      { String type: Marker.LINE, bool inFront: false });
+  
   // TODO(rms): undocumented and complex in ace.js, but a key ingredient in the
   // line wrapping code so we should deduce some documentation...
   bool adjustWrapLimit(int desiredLimit, int printMargin);
@@ -180,6 +194,10 @@ abstract class EditSession extends _Disposable implements Folding {
   /// Returns a verbatim copy of the given line [row] as it is in the current 
   /// [document].
   String getLine(int row);
+  
+  /// Returns a map from marker id to [Marker] for all of the front markers if
+  /// [inFront] is given as `true` or else all of the back markers.
+  Map<int, Marker> getMarkers({ bool inFront: false });
   
   /// Returns the number of screen rows in a wrapped line for the given [row].
   int getRowLength(int row);
