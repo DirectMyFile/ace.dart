@@ -26,13 +26,15 @@ class Annotation {
     this.html : null,
     this.row  : 0,
     this.text : null,
-    this.type : INFO });
-    
+    this.type : INFO
+  });
+  
   Annotation._(proxy) : this(
     html: proxy['html'],
     row : proxy['row'] == null ? 0 : proxy['row'],
     text: proxy['text'],
-    type: proxy['type'] == null ? INFO : proxy['type'] );
+    type: proxy['type'] == null ? INFO : proxy['type']
+  );
     
   bool operator ==(Object other) {
     if(identical(this, other)) return true;
