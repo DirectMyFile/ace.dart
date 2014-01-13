@@ -13,7 +13,7 @@ Editor editor;
 void setup() {
   html.document.body.append(new html.Element.div()..id = 'editor');
   editor = edit(html.querySelector('#editor'))
-      ..setValue(sampleText, -1);
+  ..setValue(sampleText, -1);
 }
 
 @Teardown
@@ -37,8 +37,6 @@ void testEditNullThrows() {
 
 @Test()
 void testDispose() {
-  final noop0 = (){};
-  final noop1 = (_){};
   editor.onBlur.listen(noop1, onDone: expectAsync0(noop0));
   editor.onChange.listen(noop1, onDone: expectAsync0(noop0));
   editor.onChangeSession.listen(noop1, onDone: expectAsync0(noop0));

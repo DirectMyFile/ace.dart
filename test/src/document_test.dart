@@ -17,8 +17,6 @@ setup(TestRun run) {
 
 @Test()
 void testDispose() {
-  final noop0 = (){};
-  final noop1 = (_){};
   document.onChange.listen(noop1, onDone: expectAsync0(noop0));
   document.dispose();
 }

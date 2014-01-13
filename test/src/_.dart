@@ -6,6 +6,7 @@ const PROXY = 'proxy';
 const PURE = 'pure';
 const IMPLEMENTATIONS = const [PROXY, PURE];
 
+final noop0 = (){};
 final noop1 = (_){};
 
 const String sampleTextLine0 = 
