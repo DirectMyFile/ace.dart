@@ -452,13 +452,13 @@ void testClearAnnotations() {
 
 @Test() 
 void testGetBreakpoints() {
-  expect(session.breakpoints, isEmpty);
+  expect(session.getBreakpoints(), isEmpty);
 }
 
 @Test()
 void testSetBreakpoint() {
   session.onChangeBreakpoint.listen(expectAsync1((_) {
-    expect(session.breakpoints[2], equals('ace_breakpoint'));
+    expect(session.getBreakpoints()[2], equals('ace_breakpoint'));
   }));  
   session.setBreakpoint(2);
 }
@@ -466,9 +466,10 @@ void testSetBreakpoint() {
 @Test()
 void testSetBreakpoints() {
   session.onChangeBreakpoint.listen(expectAsync1((_) {
-    expect(session.breakpoints[2], isNotNull);
-    expect(session.breakpoints[3], isNotNull);
-    expect(session.breakpoints[4], isNotNull);
+    final breakpoints = session.getBreakpoints();
+    expect(breakpoints[2], isNotNull);
+    expect(breakpoints[3], isNotNull);
+    expect(breakpoints[4], isNotNull);
   }));  
   session.setBreakpoints([2, 3, 4]);
 }
@@ -476,7 +477,7 @@ void testSetBreakpoints() {
 @Test()
 void testSetBreakpointWithClassName() {
   session.onChangeBreakpoint.listen(expectAsync1((_) {
-    expect(session.breakpoints[4], equals('fancy_breakpoint'));
+    expect(session.getBreakpoints()[4], equals('fancy_breakpoint'));
   }));  
   session.setBreakpoint(4, className: 'fancy_breakpoint');
 }
@@ -484,9 +485,9 @@ void testSetBreakpointWithClassName() {
 @Test()
 void testClearBreakpoint() {
   session.setBreakpoint(3);
-  expect(session.breakpoints[3], isNotNull);
+  expect(session.getBreakpoints()[3], isNotNull);
   session.onChangeBreakpoint.listen(expectAsync1((_) {
-    expect(session.breakpoints[3], isNull);
+    expect(session.getBreakpoints()[3], isNull);
   }));
   session.clearBreakpoint(3);
 }
@@ -494,10 +495,10 @@ void testClearBreakpoint() {
 @Test()
 void testClearBreakpoints() {
   session.setBreakpoints([1, 4]);
-  expect(session.breakpoints[1], isNotNull);
-  expect(session.breakpoints[4], isNotNull);
+  expect(session.getBreakpoints()[1], isNotNull);
+  expect(session.getBreakpoints()[4], isNotNull);
   session.onChangeBreakpoint.listen(expectAsync1((_) {
-    expect(session.breakpoints, isEmpty);
+    expect(session.getBreakpoints(), isEmpty);
   }));
   session.clearBreakpoints();
 }

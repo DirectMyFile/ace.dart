@@ -45,14 +45,7 @@ abstract class EditSession extends _Disposable implements Folding {
   
   /// Fired whenever the [useWrapMode] changes.
   Stream get onChangeWrapMode;
-   
-  /// A map from row index to CSS class name for all of the breakpoints in the 
-  /// current [document].
-  /// 
-  /// A value of _null_ for any given row index indicates that no breakpoint is
-  /// set for that row.
-  Map<int, String> get breakpoints;
-  
+
   /// The current [Document] associated with this session.
   Document document;
   
@@ -190,6 +183,13 @@ abstract class EditSession extends _Disposable implements Folding {
   /// 
   /// Start from the given [row] and [column].
   Range getAWordRange(int row, int column);
+  
+  /// Returns a map from row index to CSS class name for all of the breakpoints
+  /// in the current [document].
+  /// 
+  /// A value of _null_ for any given row index indicates that no breakpoint is
+  /// set for that row.
+  Map<int, String> getBreakpoints();
   
   /// Returns a verbatim copy of the given line [row] as it is in the current 
   /// [document].

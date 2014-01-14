@@ -38,8 +38,6 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   final _onChangeWrapMode = new StreamController.broadcast();
   Stream get onChangeWrapMode => _onChangeWrapMode.stream;
   
-  Map<int, String> get breakpoints => _list(call('getBreakpoints')).asMap();
-  
   Document
     get document => new _DocumentProxy._(call('getDocument'));
     set document(Document document) {
@@ -196,6 +194,8 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
         
   Range getAWordRange(int row, int column) =>
       new Range._(call('getAWordRange', [row, column]));
+  
+  Map<int, String> getBreakpoints() => _list(call('getBreakpoints')).asMap();
   
   Fold getFoldAt(int row, int column, {int side}) {
     final proxy = call('getFoldAt', [row, column, side]);

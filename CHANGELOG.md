@@ -2,6 +2,8 @@
 
 ## 0.2.0-dev+1.8.2014
 
+- Replaced the `EditSession.breakpoints` getter with the `getBreakpoints` 
+method.
 - Split `EditSession.annotations` getter/setter into the `getAnnotations` and
 `setAnnotations` methods; this matches `ace.js` and helps to clarify their 
 separate behavior.
