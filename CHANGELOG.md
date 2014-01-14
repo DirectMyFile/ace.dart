@@ -7,6 +7,8 @@ method.
 - Split `EditSession.annotations` getter/setter into the `getAnnotations` and
 `setAnnotations` methods; this matches `ace.js` and helps to clarify their 
 separate behavior.
+- Added the static `Mode.extensionMap` getter; the user may modify this map to
+configure the `new Mode.forFile` factory.
 - Added the `new Mode.named` factory, `name` getter, and enumeration constants 
 to `Mode`.
 - Added the `onChangeSelection` event stream to `Editor`.
