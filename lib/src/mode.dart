@@ -131,41 +131,7 @@ abstract class Mode extends _Disposable {
     TEX, TEXT, TEXTILE, TOML, TWIG, TYPESCRIPT, VBSCRIPT, VELOCITY, VERILOG, 
     VHDL, XML, XQUERY, YAML
   ];
-  
-  static const Map<String, String> _extensionMap = const {
-    'bat'       : BATCHFILE,
-    'c'         : C_CPP,
-    'cc'        : C_CPP,
-    'cpp'       : C_CPP,
-    'coffee'    : COFFEE,
-    'cs'        : CSHARP,
-    'css'       : CSS,
-    'dart'      : DART,
-    'go'        : GOLANG,
-    'h'         : C_CPP,
-    'hs'        : HASKELL,
-    'html'      : HTML,
-    'hx'        : HAXE,
-    'java'      : JAVA,
-    'js'        : JAVASCRIPT,
-    'json'      : JSON,
-    'less'      : LESS,
-    'lua'       : LUA,
-    'markdown'  : MARKDOWN,
-    'md'        : MARKDOWN,
-    'php'       : PHP,
-    'properties': PROPERTIES,
-    'py'        : PYTHON,
-    'rb'        : RUBY,
-    'scala'     : SCALA,
-    'scss'      : SCSS,
-    'sh'        : SH,
-    'svg'       : SVG,
-    'ts'        : TYPESCRIPT,
-    'xml'       : XML,
-    'yaml'      : YAML
-  };
-  
+    
   /// Whether or not this mode has finished loading.
   bool get isLoaded;
       
@@ -182,15 +148,7 @@ abstract class Mode extends _Disposable {
   /// 
   /// This is a path such as `ace/mode/text`.
   String get path;
-  
-  /// Creates a mode for the given [filePath], based on its file extension.
-  factory Mode.forFile(String filePath) {
-    final ext = _ext(filePath);
-    var mode = _extensionMap[ext];
-    if (mode == null) mode = 'text';
-    return new Mode('ace/mode/$mode');
-  }
-  
+    
   /// Creates a mode for the given [name].
   /// 
   /// The [name] should be one of the values in [MODES].

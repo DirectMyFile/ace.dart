@@ -1,7 +1,10 @@
 # Ace.dart Changes
 
-## 0.1.8-dev+1.8.2014
+## 0.2.0-dev+1.8.2014
 
+- Removed the `new Mode.forFile` factory; this was a subjective, incomplete, 
+and static mapping and it is preferable to delegate such logic to an application
+which can map dynamically based on context and/or user preferences.
 - Added the `new Mode.named` factory, `name` getter, and enumeration constants 
 to `Mode`.
 - Added the `onChangeSelection` event stream to `Editor`.
