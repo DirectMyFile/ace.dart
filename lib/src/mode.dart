@@ -190,10 +190,14 @@ abstract class Mode extends _Disposable {
   String get path;
   
   /// Creates a mode for the given [filePath], based on its file extension.
+  /// 
+  /// This factory selects a mode using the current [extensionMap].  If there
+  /// is no matching value for the given [filePath] then this returns the
+  /// [TEXT] mode.
   factory Mode.forFile(String filePath) {
     final ext = _ext(filePath);
     var mode = extensionMap[ext];
-    if (mode == null) mode = Mode.TEXT;
+    if (mode == null) mode = TEXT;
     return new Mode.named(mode);
   }
   
