@@ -174,8 +174,8 @@ void testSelectMethod(Function selectionMethod,
   expect(selection.range, 
       equals(new Range.fromPoints(beforeCursor, beforeCursor)));
   // TODO(rms): investigate why `onChangeSelection` fires 2 times.
-  selection.onChangeSelection.listen(expectAsync1((_) {}, count: 2));
-  selection.onChangeCursor.listen(expectAsync1((_) {}));
+  selection.onChangeSelection.listen(expectAsync1(noop1, count: 2));
+  selection.onChangeCursor.listen(expectAsync1(noop1));
   Function.apply(selectionMethod, positionalArgs);
   expect(selection.cursor, equals(afterCursor));
   expect(selection.range, 

@@ -14,6 +14,9 @@ abstract class Editor extends _Disposable implements OptionsProvider {
   /// Fired whenever the [session.document] changes.
   Stream<Delta> get onChange;
   
+  /// Fired whenever the [selection] changes.
+  Stream get onChangeSelection;
+  
   /// Fired whenever the [session] changes.
   Stream<EditSessionChangeEvent> get onChangeSession;
   

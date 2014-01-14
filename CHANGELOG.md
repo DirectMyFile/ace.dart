@@ -2,6 +2,7 @@
 
 ## 0.1.8-dev+1.8.2014
 
+- Added the `onChangeSelection` event stream to `Editor`.
 - Added the `Marker` class and expose the `onChangeBackMarker`, 
 `onChangeFrontMarker`, `addMarker`, `getMarkers` and `removeMarker` members on 
 the `EditSession` class.

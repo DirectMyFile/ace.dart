@@ -8,6 +8,9 @@ class _EditorProxy extends _HasProxy implements Editor {
   final _onChange = new StreamController<Delta>.broadcast();
   Stream<Delta> get onChange => _onChange.stream;
   
+  final _onChangeSelection = new StreamController.broadcast();
+  Stream get onChangeSelection => _onChangeSelection.stream;
+  
   final _onChangeSession = 
       new StreamController<EditSessionChangeEvent>.broadcast();
   Stream<EditSessionChangeEvent> get onChangeSession => 
@@ -120,6 +123,7 @@ class _EditorProxy extends _HasProxy implements Editor {
     call('on', ['blur', (_,__) => _onBlur.add(this)]);
     call('on', ['change', (e,__) =>
         _onChange.add(new Delta._forProxy(e['data']))]);
+    call('on', ['changeSelection', (_,__) => _onChangeSelection.add(this)]);
     call('on', ['changeSession', (e,__) {
       _onChangeSession.add(new EditSessionChangeEvent._(
           new _EditSessionProxy._(e['oldSession']),
@@ -133,6 +137,7 @@ class _EditorProxy extends _HasProxy implements Editor {
   void _onDispose() {
     _onBlur.close();
     _onChange.close();
+    _onChangeSelection.close();
     _onChangeSession.close();
     _onCopy.close();
     _onFocus.close();
