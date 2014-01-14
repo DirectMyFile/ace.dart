@@ -61,7 +61,8 @@ abstract class Theme extends _Disposable {
   
   /// The name of this theme.
   /// 
-  /// The [name] should be one of the values in [THEMES].
+  /// The [name] is one of the values in [THEMES] or a custom theme not defined
+  /// in this package.
   String get name;
       
   /// Completes when this theme [isLoaded].

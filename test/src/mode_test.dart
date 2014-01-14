@@ -9,41 +9,15 @@ import '_.dart';
 const _ACE_MODE_PATH = 'ace/mode/';
 
 @Test()
-void testCreateModeFromModePath() {
-  final verifyMode = (String modePath) {
-    final mode = new Mode(modePath)
+void testCreateModeNamed() {
+  final verifyMode = (String modeName) {
+    final mode = new Mode.named(modeName)
     ..onLoad.then(expectAsync1(noop1));
     expect(mode, isNotNull);
-    expect(mode.path, equals(modePath));
+    expect(mode.name, modeName);
+    expect(mode.path, '${_ACE_MODE_PATH}$modeName');
   };
-  verifyMode('${_ACE_MODE_PATH}batchfile');
-  verifyMode('${_ACE_MODE_PATH}c_cpp');
-  verifyMode('${_ACE_MODE_PATH}coffee');
-  verifyMode('${_ACE_MODE_PATH}csharp');
-  verifyMode('${_ACE_MODE_PATH}css');
-  verifyMode('${_ACE_MODE_PATH}dart');
-  verifyMode('${_ACE_MODE_PATH}golang');
-  verifyMode('${_ACE_MODE_PATH}haxe');
-  verifyMode('${_ACE_MODE_PATH}html');
-  verifyMode('${_ACE_MODE_PATH}haskell');
-  verifyMode('${_ACE_MODE_PATH}java'); 
-  verifyMode('${_ACE_MODE_PATH}javascript'); 
-  verifyMode('${_ACE_MODE_PATH}json');
-  verifyMode('${_ACE_MODE_PATH}less');
-  verifyMode('${_ACE_MODE_PATH}lua');
-  verifyMode('${_ACE_MODE_PATH}markdown');
-  verifyMode('${_ACE_MODE_PATH}php');
-  verifyMode('${_ACE_MODE_PATH}properties');
-  verifyMode('${_ACE_MODE_PATH}python');
-  verifyMode('${_ACE_MODE_PATH}ruby');
-  verifyMode('${_ACE_MODE_PATH}scala');
-  verifyMode('${_ACE_MODE_PATH}scss');
-  verifyMode('${_ACE_MODE_PATH}sh');
-  verifyMode('${_ACE_MODE_PATH}svg');
-  verifyMode('${_ACE_MODE_PATH}text');
-  verifyMode('${_ACE_MODE_PATH}typescript');
-  verifyMode('${_ACE_MODE_PATH}xml');
-  verifyMode('${_ACE_MODE_PATH}yaml');
+  Mode.MODES.forEach((String modeName) => verifyMode(modeName));
 }
 
 @Test()

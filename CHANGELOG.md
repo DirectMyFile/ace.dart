@@ -2,6 +2,8 @@
 
 ## 0.1.8-dev+1.8.2014
 
+- Added the `new Mode.named` factory, `name` getter, and enumeration constants 
+to `Mode`.
 - Added the `onChangeSelection` event stream to `Editor`.
 - Added the `Marker` class and expose the `onChangeBackMarker`, 
 `onChangeFrontMarker`, `addMarker`, `getMarkers` and `removeMarker` members on 

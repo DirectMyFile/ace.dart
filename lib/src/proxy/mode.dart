@@ -6,6 +6,8 @@ class _ModeProxy extends _HasProxy implements Mode {
   
   bool get isLoaded => _hasProxy;
     
+  String get name => _ext(path, separator: '/');
+    
   Future get onLoad => _onHasProxy;
   
   get _mode => _hasProxy ? _proxy : path;
