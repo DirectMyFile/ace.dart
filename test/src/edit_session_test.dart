@@ -412,37 +412,40 @@ void testRemoveGutterDecoration() {
 
 @Test()
 void testGetAnnotations() {
-  expect(session.annotations, isEmpty); 
+  expect(session.getAnnotations(), isEmpty); 
 }
 
 @Test()
 void testSetAnnotations() {
   session.onChangeAnnotation.listen(expectAsync1((_) {
-    expect(session.annotations.length, equals(2));
-    expect(session.annotations[0], equals(const Annotation(
+    final annotations = session.getAnnotations();
+    expect(annotations.length, equals(2));
+    expect(annotations[0], equals(const Annotation(
       row: 42,
       text: 'snarf')));
-    expect(session.annotations[1], equals(const Annotation(
+    expect(annotations[1], equals(const Annotation(
       row: 16,
       html: '<span>ruh-roh</span>', 
       type: Annotation.ERROR)));
   }));
-  session.annotations = [
+  session.setAnnotations([
     const Annotation(row: 42, text: 'snarf'),
     const Annotation(
       row: 16,
       html: '<span>ruh-roh</span>', 
-      type: Annotation.ERROR) ];
+      type: Annotation.ERROR) 
+  ]);
 }
 
 @Test()
 void testClearAnnotations() {
-  session.annotations = [const Annotation(row: 42, text: 'foo')];
-  expect(session.annotations.length, equals(1));
-  expect(session.annotations[0], equals(
+  session.setAnnotations([const Annotation(row: 42, text: 'foo')]);
+  final annotations = session.getAnnotations();
+  expect(annotations.length, equals(1));
+  expect(annotations[0], equals(
     const Annotation(row: 42, text: 'foo')));
   session.onChangeAnnotation.listen(expectAsync1((_) {
-    expect(session.annotations, isEmpty);
+    expect(session.getAnnotations(), isEmpty);
   }));
   session.clearAnnotations();
 }

@@ -2,6 +2,9 @@
 
 ## 0.2.0-dev+1.8.2014
 
+- Split `EditSession.annotations` getter/setter into the `getAnnotations` and
+`setAnnotations` methods; this matches `ace.js` and helps to clarify their 
+separate behavior.
 - Removed the `new Mode.forFile` factory; this was a subjective, incomplete, 
 and static mapping and it is preferable to delegate such logic to an application
 which can map dynamically based on context and/or user preferences.

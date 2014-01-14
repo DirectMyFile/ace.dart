@@ -45,10 +45,7 @@ abstract class EditSession extends _Disposable implements Folding {
   
   /// Fired whenever the [useWrapMode] changes.
   Stream get onChangeWrapMode;
-  
-  /// The current annotations for this session.
-  List<Annotation> annotations;
-  
+   
   /// A map from row index to CSS class name for all of the breakpoints in the 
   /// current [document].
   /// 
@@ -186,6 +183,9 @@ abstract class EditSession extends _Disposable implements Folding {
   /// Duplicates all of the text from [firstRow] to [lastRow], inclusive.
   int duplicateLines(int firstRow, int lastRow);
   
+  /// Returns a copy of the current annotations for this session.
+  List<Annotation> getAnnotations();
+  
   /// Gets the [Range] of a word, including its right whitespace.
   /// 
   /// Start from the given [row] and [column].
@@ -252,6 +252,10 @@ abstract class EditSession extends _Disposable implements Folding {
   /// This takes into account code folding, word wrap, [tabSize], and any other 
   /// visual modifications.
   Point screenToDocumentPosition(int row, int column);
+  
+  /// Sets the annotations for this session and fires an [onChangeAnnotation] 
+  /// event.
+  void setAnnotations(List<Annotation> annotations);
   
   /// Sets a breakpoint on the given [row] using the optional CSS [className]
   /// and fires an [onChangeBreakPoint] event.
