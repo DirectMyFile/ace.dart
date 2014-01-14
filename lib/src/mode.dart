@@ -166,6 +166,12 @@ abstract class Mode extends _Disposable {
     'yaml'      : YAML
   };
   
+  /// A map from file extension to mode used by the [new Mode.forFile] factory.
+  /// 
+  /// This map is initialized with a default mapping; it may be modified to 
+  /// customize the behavior of the [new Mode.forFile] factory.
+  static final Map<String, String> extensionMap = new Map.from(_extensionMap);
+  
   /// Whether or not this mode has finished loading.
   bool get isLoaded;
       
@@ -186,9 +192,9 @@ abstract class Mode extends _Disposable {
   /// Creates a mode for the given [filePath], based on its file extension.
   factory Mode.forFile(String filePath) {
     final ext = _ext(filePath);
-    var mode = _extensionMap[ext];
-    if (mode == null) mode = 'text';
-    return new Mode('ace/mode/$mode');
+    var mode = extensionMap[ext];
+    if (mode == null) mode = Mode.TEXT;
+    return new Mode.named(mode);
   }
   
   /// Creates a mode for the given [name].

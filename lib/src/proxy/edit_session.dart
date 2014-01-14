@@ -38,17 +38,6 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   final _onChangeWrapMode = new StreamController.broadcast();
   Stream get onChangeWrapMode => _onChangeWrapMode.stream;
   
-  List<Annotation>
-    get annotations {
-      final proxies = call('getAnnotations');
-      return new List<Annotation>.generate(proxies['length'], 
-        (i) => new Annotation._(proxies[i]));
-    }
-    set annotations(List<Annotation> annotations) => call('setAnnotations', 
-        [_jsArray(annotations.map((a) => a._toProxy()))]);
-  
-  Map<int, String> get breakpoints => _list(call('getBreakpoints')).asMap();
-  
   Document
     get document => new _DocumentProxy._(call('getDocument'));
     set document(Document document) {
@@ -196,9 +185,17 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
     return new List<Fold>.generate(proxies['length'], 
         (i) => new _FoldProxy._(proxies[i]));
   }
+  
+  List<Annotation> getAnnotations() {
+    final proxies = call('getAnnotations');
+    return new List<Annotation>.generate(proxies['length'], 
+      (i) => new Annotation._(proxies[i]));
+  }
         
   Range getAWordRange(int row, int column) =>
       new Range._(call('getAWordRange', [row, column]));
+  
+  Map<int, String> getBreakpoints() => _list(call('getBreakpoints')).asMap();
   
   Fold getFoldAt(int row, int column, {int side}) {
     final proxy = call('getFoldAt', [row, column, side]);
@@ -251,6 +248,9 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   
   Point screenToDocumentPosition(int row, int column) =>
       new Point._(call('screenToDocumentPosition', [row, column]));
+  
+  void setAnnotations(List<Annotation> annotations) => 
+      call('setAnnotations', [_jsArray(annotations.map((a) => a._toProxy()))]);
   
   void setBreakpoint(int row, {String className: 'ace_breakpoint'}) =>
       call('setBreakpoint', [row, className]);
