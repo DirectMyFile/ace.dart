@@ -21,7 +21,7 @@ void testCreateModeNamed() {
 }
 
 @Test()
-void testCreateModeFromFilePath() {
+void testCreateModeForFile() {
   final verifyMode = (String filePath, String modeName) {
     final mode = new Mode.forFile(filePath)
     ..onLoad.then(expectAsync1(noop1));
@@ -60,4 +60,10 @@ void testCreateModeFromFilePath() {
   verifyMode('omg.ts',              Mode.TYPESCRIPT);
   verifyMode('verbose.xml',         Mode.XML);
   verifyMode('pubspec.yaml',        Mode.YAML);
+  Mode.extensionMap.addAll({ 
+    'a': Mode.DART,
+    'b': Mode.COLDFUSION
+  });
+  verifyMode('custom.a',            Mode.DART);
+  verifyMode('custom.b',            Mode.COLDFUSION);
 }
