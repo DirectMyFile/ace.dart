@@ -137,7 +137,7 @@ abstract class Editor extends _Disposable implements OptionsProvider {
   
   /// Moves the cursor to the specified line number, and also into the
   /// indiciated column.
-  void gotoLine(int lineNumber, int column, bool animate);
+  void gotoLine(int lineNumber, [int column = 0, bool animate = false]);
   
   /// Scrolls the document down a page and updates the [cursorPosition].
   void gotoPageDown();

@@ -626,13 +626,16 @@ void testGotoLine() {
   editor.gotoLine(2, 2, false);
   expect(editor.selectionRange.start.row, equals(1));
   expect(editor.selectionRange.start.column, equals(2));
-  editor.gotoLine(1, 1, false);
-  expect(editor.selectionRange.start.row, equals(0));
-  expect(editor.selectionRange.start.column, equals(1));
-  editor.gotoLine(0, 1, false);
+  editor.gotoLine(1);
   expect(editor.selectionRange.start.row, equals(0));
   expect(editor.selectionRange.start.column, equals(0));
-  editor.gotoLine(3, 1, false);
+  editor.gotoLine(2, 99, true);
+  expect(editor.selectionRange.start.row, equals(1));
+  expect(editor.selectionRange.start.column, equals(6));
+  editor.gotoLine(0, 99);
+  expect(editor.selectionRange.start.row, equals(0));
+  expect(editor.selectionRange.start.column, equals(0));
+  editor.gotoLine(3, 1);
   expect(editor.selectionRange.start.row, equals(1));
   expect(editor.selectionRange.start.column, equals(6));
 }
