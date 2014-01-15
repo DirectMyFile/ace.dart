@@ -619,3 +619,20 @@ void testTransposeLetters() {
   editor.transposeLetters();
   expect(editor.value, equals('sanfr'));
 }
+
+@Test()
+void testGotoLine() {
+  editor.setValue('line 1\nline 2');
+  editor.gotoLine(2, 2, false);
+  expect(editor.selectionRange.start.row, equals(1));
+  expect(editor.selectionRange.start.column, equals(2));
+  editor.gotoLine(1, 1, false);
+  expect(editor.selectionRange.start.row, equals(0));
+  expect(editor.selectionRange.start.column, equals(1));
+  editor.gotoLine(0, 1, false);
+  expect(editor.selectionRange.start.row, equals(0));
+  expect(editor.selectionRange.start.column, equals(0));
+  editor.gotoLine(3, 1, false);
+  expect(editor.selectionRange.start.row, equals(1));
+  expect(editor.selectionRange.start.column, equals(6));
+}
