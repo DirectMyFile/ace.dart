@@ -2,8 +2,14 @@
 library ace.test.range;
 
 import 'package:ace/ace.dart';
+import 'package:ace/proxy.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
+
+@Setup
+setup() {  
+  implementation = aceProxyImplementation;
+}
 
 @Test()
 void testRangeCtor() {

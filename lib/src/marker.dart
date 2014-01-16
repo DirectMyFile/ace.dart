@@ -24,21 +24,13 @@ class Marker {
   /// The type of this marker; defaults to [LINE].
   final String type;
   
-  Marker._({
+  Marker({
     this.range, 
     this.className,
     this.id      : null,
     this.inFront : false,
     this.type    : LINE 
   });
-  
-  Marker._fromProxy(proxy) : this._(
-    range     : proxy['range'] == null ? null : new Range._(proxy['range']),
-    className : proxy['clazz'],
-    id        : proxy['id'],
-    inFront   : proxy['inFront'],
-    type      : proxy['type']
-  );
   
   bool operator ==(Object other) {
     if(identical(this, other)) return true;
@@ -56,12 +48,4 @@ class Marker {
       ^ inFront.hashCode 
       ^ range.hashCode 
       ^ type.hashCode;
-  
-  js.JsObject _toProxy() => _jsMap({
-    'clazz'   : className,
-    'id'      : id,
-    'inFront' : inFront,
-    'range'   : range == null ? null : range._toProxy(),
-    'type'    : type
-  });
 }

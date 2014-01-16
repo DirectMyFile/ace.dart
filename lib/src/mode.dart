@@ -1,6 +1,6 @@
 part of ace;
 
-abstract class Mode extends _Disposable {
+abstract class Mode extends Disposable {
   
   static const ABAP                 = 'abap';
   static const ACTIONSCRIPT         = 'actionscript';
@@ -195,7 +195,7 @@ abstract class Mode extends _Disposable {
   /// is no matching value for the extension in [filePath] then this returns
   /// the [TEXT] mode.
   factory Mode.forFile(String filePath) {
-    final ext = _ext(filePath);
+    final ext = implementation.getExtension(filePath);
     var mode = extensionMap[ext];
     if (mode == null) mode = TEXT;
     return new Mode.named(mode);
@@ -209,5 +209,5 @@ abstract class Mode extends _Disposable {
   /// Creates a mode for the given [path].
   /// 
   /// The [path] is a path such as `ace/mode/text`.
-  factory Mode(String path) => new _ModeProxy(path);
+  factory Mode(String path) => implementation.createMode(path);
 }

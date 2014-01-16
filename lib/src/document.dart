@@ -6,7 +6,7 @@ part of ace;
 /// array points to a row in the document.
 /// 
 /// An instance of [Document] may be attached to more than one [EditSession].
-abstract class Document extends _Disposable {
+abstract class Document extends Disposable {
 
   /// Fired whenever this document changes.
   Stream<Delta> get onChange;
@@ -26,17 +26,7 @@ abstract class Document extends _Disposable {
   String value;
 
   /// Creates a new Document with the given [text], if any, or else it is empty.
-  /// 
-  /// **WARNING** do not set [useExperimental] to `true` in production code; 
-  /// this is an experimental flag to enable continuous integration testing of a 
-  /// work-in-progress pure Dart implementation, and may be removed at any time.
-  factory Document({ String text: '', bool useExperimental: false }) {
-    if (useExperimental) {
-      return new _Document(text);
-    } else {
-      return new _DocumentProxy(text);
-    }
-  }
+  factory Document({ String text: '' }) => implementation.createDocument(text);
   
   /// Applies all of the given [deltas] to this document in the order given.
   void applyDeltas(List<Delta> deltas);

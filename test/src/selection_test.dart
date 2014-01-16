@@ -2,6 +2,7 @@
 library ace.test.selection;
 
 import 'package:ace/ace.dart';
+import 'package:ace/proxy.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 import '_.dart';
@@ -11,6 +12,7 @@ Selection selection;
 
 @Setup
 setup() {
+  implementation = aceProxyImplementation;
   session = new EditSession(new Document(text: sampleText), 
       new Mode('ace/mode/text'));
   selection = new Selection(session);

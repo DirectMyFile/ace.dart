@@ -40,41 +40,17 @@ class SearchOptions {
                  this.skipCurrent: false,
                  this.start,
                  this.wholeWord: false,
-                 this.wrap: false});  
-  
-  SearchOptions._(proxy) : this(
-      backwards: proxy['backwards'] == null ? false : proxy['backwards'],
-      caseSensitive: proxy['caseSensitive'] == null ? false 
-          : proxy['caseSensitive'],
-      needle: proxy['needle'] == null ? '' : proxy['needle'],
-      range: proxy['range'] == null ? null : new Range._(proxy['range']),
-      regExp: proxy['regExp'] == null ? false : proxy['regExp'],
-      skipCurrent: proxy['skipCurrent'] == null ? false : proxy['skipCurrent'],
-      start: proxy['start'] == null ? null : new Range._(proxy['start']),
-      wholeWord: proxy['wholeWord'] == null ? false : proxy['wholeWord'],
-      wrap: proxy['wrap'] == null ? false : proxy['wrap']);
-  
-  js.JsObject _toProxy() =>
-      _jsMap({ 
-        'backwards': backwards,
-        'caseSensitive': caseSensitive,
-        'needle': needle,
-        'range': range == null ? null : range._toProxy(),
-        'regExp': regExp,
-        'skipCurrent': skipCurrent,
-        'start': start == null ? null : start._toProxy(),
-        'wholeWord': wholeWord,
-        'wrap': wrap });
+                 this.wrap: false}); 
 }
 
 /// Handles text searches within a [Document].
-abstract class Search extends _Disposable {
+abstract class Search extends Disposable {
   
   /// The current [SearchOptions].
   SearchOptions options;
   
   /// Creates a new Search with default [SearchOptions]. 
-  factory Search() => new _SearchProxy();
+  factory Search() => implementation.createSearch();
   
   /// Searches for [options.needle] in the given [session]. 
   /// 

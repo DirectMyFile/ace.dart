@@ -1,8 +1,8 @@
-part of ace;
+part of ace.proxy;
 
 class _SelectionProxy extends _HasProxy implements Selection {
 
-  Point get cursor => new Point._(call('getCursor'));
+  Point get cursor => _point(call('getCursor'));
   
   bool get isBackwards => call('isBackwards');
   
@@ -16,7 +16,7 @@ class _SelectionProxy extends _HasProxy implements Selection {
   final _onChangeSelection = new StreamController.broadcast();
   Stream get onChangeSelection => _onChangeSelection.stream;
   
-  Range get range => new Range._(call('getRange'));
+  Range get range => _range(call('getRange'));
   
   _SelectionProxy(EditSession session) 
   : this._(new js.JsObject(_modules['ace/selection']['Selection'], 

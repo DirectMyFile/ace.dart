@@ -1,4 +1,4 @@
-part of ace;
+part of ace.proxy;
 
 class _ModeProxy extends _HasProxy implements Mode {
   
@@ -6,7 +6,7 @@ class _ModeProxy extends _HasProxy implements Mode {
   
   bool get isLoaded => _hasProxy;
     
-  String get name => _ext(path, separator: '/');
+  String get name => implementation.getExtension(path, separator: '/');
     
   Future get onLoad => _onHasProxy;
   

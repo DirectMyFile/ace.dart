@@ -1,10 +1,11 @@
-part of ace;
+part of ace.proxy;
 
 class _KeyboardHandlerProxy extends _HasProxy implements KeyboardHandler {
 
   bool get isLoaded => _hasProxy;
   
-  String get name => (path == null) ? null : _ext(path, separator: '/');
+  String get name => (path == null) ? null 
+      : implementation.getExtension(path, separator: '/');
   
   Future get onLoad => _onHasProxy;
   

@@ -1,4 +1,4 @@
-part of ace;
+part of ace.proxy;
 
 class _AnchorProxy extends _HasProxy implements Anchor {
   
@@ -7,16 +7,15 @@ class _AnchorProxy extends _HasProxy implements Anchor {
   
   Document get document => new _DocumentProxy._(call('getDocument'));
   
-  Point get position => new Point._(call('getPosition'));
+  Point get position => _point(call('getPosition'));
   
   _AnchorProxy(Document document, int row, int column) 
   : this._(new js.JsObject(_modules['ace/anchor']['Anchor'], 
       [(document as _DocumentProxy)._proxy, row, column]));
   
   _AnchorProxy._(proxy) : super(proxy) {
-    call('on', ['change', (e,__) =>
-        _onChange.add(new AnchorChangeEvent._(
-            new Point._(e['old']), new Point._(e['value'])))]);
+    call('on', ['change', (e,__) => _onChange.add(
+        new AnchorChangeEvent(_point(e['old']), _point(e['value'])))]);
   }
   
   void _onDispose() {

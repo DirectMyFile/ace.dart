@@ -1,5 +1,5 @@
 name: ace
-version: 0.2.1-dev+1.8.2014
+version: 0.3.0-dev+1.8.2014
 author: Ross Smith <dev@futureperfect.info>
 description: High performance code editor for the web.
 homepage: https://github.com/rmsmith/ace.dart

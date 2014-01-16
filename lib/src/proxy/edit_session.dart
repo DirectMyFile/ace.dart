@@ -1,4 +1,4 @@
-part of ace;
+part of ace.proxy;
 
 class _EditSessionProxy extends _HasProxy implements EditSession {
 
@@ -117,13 +117,12 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
       [(document as _DocumentProxy)._proxy, (mode as _ModeProxy)._mode]));
   
   _EditSessionProxy._(js.JsObject proxy) : super(proxy) {
-    call('on', ['change', 
-                (e,__) => _onChange.add(new Delta._forProxy(e['data']))]);
+    call('on', ['change', (e,__) => _onChange.add(_delta(e['data']))]);
     call('on', ['changeAnnotation', (_,__) => _onChangeAnnotation.add(this)]);
     call('on', ['changeBackMarker', (_,__) => _onChangeBackMarker.add(this)]);
     call('on', ['changeBreakpoint', (_,__) => _onChangeBreakpoint.add(this)]);
     call('on', ['changeFold', (e,__) {
-      _onChangeFold.add(new FoldChangeEvent._(
+      _onChangeFold.add(new FoldChangeEvent(
           new _FoldProxy._(e['data']), e['action']));
     }]);
     call('on', ['changeFrontMarker', (_,__) => _onChangeFrontMarker.add(this)]);
@@ -160,7 +159,7 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   
   int addMarker(Range range, String className, 
       { String type: Marker.LINE, bool inFront: false }) =>
-      call('addMarker', [range._toProxy(), className, type, inFront]);
+      call('addMarker', [_jsRange(range), className, type, inFront]);
   
   bool adjustWrapLimit(int desiredLimit, int printMargin) =>
       call('adjustWrapLimit', [desiredLimit, printMargin]);
@@ -189,11 +188,11 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   List<Annotation> getAnnotations() {
     final proxies = call('getAnnotations');
     return new List<Annotation>.generate(proxies['length'], 
-      (i) => new Annotation._(proxies[i]));
+      (i) => _annotation(proxies[i]));
   }
         
   Range getAWordRange(int row, int column) =>
-      new Range._(call('getAWordRange', [row, column]));
+      _range(call('getAWordRange', [row, column]));
   
   Map<int, String> getBreakpoints() => _list(call('getBreakpoints')).asMap();
   
@@ -207,25 +206,25 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   Map<int, Marker> getMarkers({ bool inFront: false }) {
     final markers = _map(call('getMarkers', [inFront]));
     markers.forEach((k, v) {
-      markers[k] = new Marker._fromProxy(v);
+      markers[k] = _marker(v);
     });
     return markers;
   }
   
   int getRowLength(int row) => call('getRowLength', [row]);
   
-  String getTextRange(Range range) => call('getTextRange', [range._toProxy()]);
+  String getTextRange(Range range) => call('getTextRange', [_jsRange(range)]);
   
   Range getWordRange(int row, int column) => 
-      new Range._(call('getWordRange', [row, column]));      
+      _range(call('getWordRange', [row, column]));      
 
   void indentRows(int startRow, int endRow, String indentString) =>
       call('indentRows', [startRow, endRow, indentString]);
   
   Point insert(Point position, String text) =>
-      new Point._(call('insert', [position._toProxy(), text]));
+      _point(call('insert', [_jsPoint(position), text]));
   
-  bool isTabStop(Point position) => call('isTabStop', [position._toProxy()]);
+  bool isTabStop(Point position) => call('isTabStop', [_jsPoint(position)]);
   
   int moveLinesDown(int firstRow, int lastRow) =>
       call('moveLinesDown', [firstRow, lastRow]);
@@ -233,7 +232,7 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   int moveLinesUp(int firstRow, int lastRow) =>
       call('moveLinesUp', [firstRow, lastRow]);
   
-  Point remove(Range range) => new Point._(call('remove', [range._toProxy()]));
+  Point remove(Range range) => _point(call('remove', [_jsRange(range)]));
   
   void removeFold(Fold fold) => 
       call('removeFold', [(fold as _FoldProxy)._proxy]);
@@ -244,13 +243,13 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   void removeMarker(int markerId) => call('removeMarker', [markerId]);
   
   Point replace(Range range, String text) => 
-      new Point._(call('replace', [range._toProxy(), text]));
+      _point(call('replace', [_jsRange(range), text]));
   
   Point screenToDocumentPosition(int row, int column) =>
-      new Point._(call('screenToDocumentPosition', [row, column]));
+      _point(call('screenToDocumentPosition', [row, column]));
   
-  void setAnnotations(List<Annotation> annotations) => 
-      call('setAnnotations', [_jsArray(annotations.map((a) => a._toProxy()))]);
+  void setAnnotations(List<Annotation> annotations) => call('setAnnotations', 
+      [_jsArray(annotations.map((a) => _jsMap(a.toMap())))]);
   
   void setBreakpoint(int row, {String className: 'ace_breakpoint'}) =>
       call('setBreakpoint', [row, className]);

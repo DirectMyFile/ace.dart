@@ -6,10 +6,8 @@ abstract class Fold extends RangeList {
   
   Range get range; 
   
-  factory Fold(Range range, Placeholder placeholder) {
-    assert(placeholder is _PlaceholderProxy);
-    return new _FoldProxy(range, placeholder);
-  }
+  factory Fold(Range range, Placeholder placeholder) => 
+      implementation.createFold(range, placeholder);
 }
 
 class FoldChangeEvent {
@@ -22,5 +20,5 @@ class FoldChangeEvent {
   
   final Fold data;  
   
-  FoldChangeEvent._(this.data, this.action);
+  FoldChangeEvent(this.data, this.action);
 }

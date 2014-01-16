@@ -4,6 +4,7 @@ library ace.test.editor;
 import 'dart:async';
 import 'dart:html' as html;
 import 'package:ace/ace.dart';
+import 'package:ace/proxy.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 import '_.dart';
@@ -11,6 +12,7 @@ import '_.dart';
 Editor editor;
 @Setup
 void setup() {
+  implementation = aceProxyImplementation;
   html.document.body.append(new html.Element.div()..id = 'editor');
   editor = edit(html.querySelector('#editor'))
   ..setValue(sampleText, -1);

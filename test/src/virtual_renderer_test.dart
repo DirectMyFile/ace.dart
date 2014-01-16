@@ -3,12 +3,14 @@ library ace.test.virtual_renderer;
 
 import 'dart:html' as html;
 import 'package:ace/ace.dart';
+import 'package:ace/proxy.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 
 VirtualRenderer renderer;
 @Setup
 setup() {
+  implementation = aceProxyImplementation;
   html.document.body.append(new html.Element.div()..id = 'editor');  
   renderer = edit(html.querySelector('#editor')).renderer;
 }

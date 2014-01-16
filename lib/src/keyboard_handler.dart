@@ -1,6 +1,6 @@
 part of ace;
 
-abstract class KeyboardHandler extends _Disposable {
+abstract class KeyboardHandler extends Disposable {
 
   static const DEFAULT  = null;
   static const EMACS    = 'emacs';
@@ -33,7 +33,7 @@ abstract class KeyboardHandler extends _Disposable {
   /// The [name] should be one of the values in [BINDINGS].
   factory KeyboardHandler.named(String name) {
     if (name == DEFAULT) {
-      return new _KeyboardHandlerProxy._(DEFAULT);
+      return implementation.createKeyboardHandler(DEFAULT);
     } else {
       return new KeyboardHandler('ace/keyboard/$name');
     }
@@ -42,5 +42,6 @@ abstract class KeyboardHandler extends _Disposable {
   /// Creates a keyboard for the given [path].
   /// 
   /// The [path] is a path such as `ace/keyboard/emacs`.
-  factory KeyboardHandler(String path) => new _KeyboardHandlerProxy(path);
+  factory KeyboardHandler(String path) => 
+      implementation.createKeyboardHandler(path);
 }

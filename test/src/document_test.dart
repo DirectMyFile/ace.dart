@@ -2,17 +2,20 @@
 library ace.test.document;
 
 import 'package:ace/ace.dart';
+import 'package:ace/proxy.dart';
+import 'package:ace/pure.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 import '_.dart';
 
 Document document;
-bool useExperimental;
 
 @Setup
 setup(TestRun run) { 
-  document = new Document(text: sampleText, useExperimental: run.id == PURE);
-  useExperimental = run.id == PURE;
+  implementation = (run.id == PURE) 
+      ? acePureImplementation 
+      : aceProxyImplementation;
+  document = new Document(text: sampleText);
 }
 
 @Test()
@@ -274,7 +277,7 @@ if ("aaa".split(/a/).length == 0)
     return text.replace(/\r\n|\r/g, "\n").split("\n");
   }
 ''';    
-  final doc = new Document(text: dogfood, useExperimental: useExperimental);
+  final doc = new Document(text: dogfood);
   expect(doc.value, equals(dogfood));
 }
 
@@ -288,7 +291,6 @@ after a newline some text.
 and then a little bit more.
 
 ''';
-  final doc = new Document(text: startsWithNewLine, 
-      useExperimental: useExperimental);
+  final doc = new Document(text: startsWithNewLine);
   expect(doc.value, equals(startsWithNewLine));
 }

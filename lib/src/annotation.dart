@@ -28,13 +28,6 @@ class Annotation {
     this.text : null,
     this.type : INFO
   });
-  
-  Annotation._(proxy) : this(
-    html: proxy['html'],
-    row : proxy['row'] == null ? 0 : proxy['row'],
-    text: proxy['text'],
-    type: proxy['type'] == null ? INFO : proxy['type']
-  );
     
   bool operator ==(Object other) {
     if(identical(this, other)) return true;
@@ -46,10 +39,10 @@ class Annotation {
   int get hashCode => 
       html.hashCode ^ row.hashCode ^ text.hashCode ^ type.hashCode;
     
-  js.JsObject _toProxy() => _jsMap({
+  Map toMap() => {
     'html': html, 
     'row' : row,
     'text': text,
     'type': type
-  });
+  };
 }

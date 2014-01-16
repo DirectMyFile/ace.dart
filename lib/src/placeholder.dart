@@ -1,6 +1,6 @@
 part of ace;
 
-abstract class Placeholder extends _Disposable {
+abstract class Placeholder extends Disposable {
   
   int get length;
   
@@ -10,9 +10,6 @@ abstract class Placeholder extends _Disposable {
       Point position,
       Iterable<Point> others,
       String mainClass,
-      String othersClass) {
-    assert(session is _EditSessionProxy);
-    return new _PlaceholderProxy(
-      session, length, position, others, mainClass, othersClass);
-  }
+      String othersClass) => implementation.createPlaceholder(
+          session, length, position, others, mainClass, othersClass);
 }

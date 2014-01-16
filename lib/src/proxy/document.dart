@@ -1,4 +1,4 @@
-part of ace;
+part of ace.proxy;
 
 class _DocumentProxy extends _HasProxy implements Document {
   
@@ -22,8 +22,7 @@ class _DocumentProxy extends _HasProxy implements Document {
       new js.JsObject(_modules['ace/document']['Document'], [text]));
     
   _DocumentProxy._(js.JsObject proxy) : super(proxy) {
-    call('on', ['change', (e,__) => 
-        _onChange.add(new Delta._forProxy(e['data']))]);
+    call('on', ['change', (e,__) => _onChange.add(_delta(e['data']))]);
   }
   
   void _onDispose() {
@@ -31,7 +30,7 @@ class _DocumentProxy extends _HasProxy implements Document {
   }
   
   void applyDeltas(List<Delta> deltas) =>
-      call('applyDeltas', [_jsArray(deltas.map((delta) => delta._toProxy()))]);
+      call('applyDeltas', [_jsArray(deltas.map((delta) => _jsDelta(delta)))]);
   
   Anchor createAnchor(int row, int column) =>
       new _AnchorProxy._(call('createAnchor', [row, column]));
@@ -43,32 +42,32 @@ class _DocumentProxy extends _HasProxy implements Document {
   
   String getLine(int row) => call('getLine', [row]);
   
-  String getTextRange(Range range) => call('getTextRange', [range._toProxy()]);
+  String getTextRange(Range range) => call('getTextRange', [_jsRange(range)]);
   
   Point indexToPosition(int index, {int startRow: 0}) =>
-      new Point._(call('indexToPosition', [index, startRow]));
+      _point(call('indexToPosition', [index, startRow]));
   
   Point insert(Point position, String text) =>
-      new Point._(call('insert', [position._toProxy(), text]));
+      _point(call('insert', [_jsPoint(position), text]));
   
   Point insertInLine(Point position, String text) =>
-      new Point._(call('insertInLine', [position._toProxy(), text]));
+      _point(call('insertInLine', [_jsPoint(position), text]));
   
   Point insertLines(int row, List<String> lines) =>
-      new Point._(call('insertLines', [row, _jsArray(lines)]));
+      _point(call('insertLines', [row, _jsArray(lines)]));
   
   Point insertNewLine(Point position) =>
-      new Point._(call('insertNewLine', [position._toProxy()]));
+      _point(call('insertNewLine', [_jsPoint(position)]));
   
   bool isNewLine(String text) => call('isNewLine', [text]);      
   
   int positionToIndex(Point position, {int startRow: 0}) =>
-      call('positionToIndex', [position._toProxy(), startRow]);
+      call('positionToIndex', [_jsPoint(position), startRow]);
   
-  Point remove(Range range) => new Point._(call('remove', [range._toProxy()]));
+  Point remove(Range range) => _point(call('remove', [_jsRange(range)]));
   
   Point removeInLine(int row, int startColumn, int endColumn) =>
-      new Point._(call('removeInLine', [row, startColumn, endColumn]));
+      _point(call('removeInLine', [row, startColumn, endColumn]));
   
   List<String> removeLines(int startRow, int endRow) => 
       _list(call('removeLines', [startRow, endRow]));
@@ -76,8 +75,8 @@ class _DocumentProxy extends _HasProxy implements Document {
   void removeNewLine(int row) => call('removeNewLine', [row]);
   
   Point replace(Range range, String text) => 
-      new Point._(call('replace', [range._toProxy(), text]));
+      _point(call('replace', [_jsRange(range), text]));
   
-  void revertDeltas(List<Delta> deltas) => 
-      call('revertDeltas', [_jsArray(deltas.map((delta) => delta._toProxy()))]);
+  void revertDeltas(List<Delta> deltas) => call('revertDeltas', 
+      [_jsArray(deltas.map((delta) => _jsDelta(delta)))]);
 }

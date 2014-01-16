@@ -1,6 +1,6 @@
 part of ace;
 
-abstract class Theme extends _Disposable {
+abstract class Theme extends Disposable {
   
   static const AMBIANCE                 = 'ambiance';
   static const CHAOS                    = 'chaos';
@@ -81,5 +81,5 @@ abstract class Theme extends _Disposable {
   /// Creates a theme for the given [path].
   /// 
   /// The [path] is a path such as `ace/theme/monokai`.
-  factory Theme(String path) => new _ThemeProxy(path);
+  factory Theme(String path) => implementation.createTheme(path);
 }
