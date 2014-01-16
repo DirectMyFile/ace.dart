@@ -11,7 +11,7 @@ separate behavior.
 configure the `new Mode.forFile` factory.
 - Added the `new Mode.named` factory, `name` getter, and enumeration constants 
 to `Mode`.
-- Added the `onChangeSelection` event stream to `Editor`.
+- Added `gotoLine` and the `onChangeSelection` event stream to `Editor`.
 - Added the `Marker` class and expose the `onChangeBackMarker`, 
 `onChangeFrontMarker`, `addMarker`, `getMarkers` and `removeMarker` members on 
 the `EditSession` class.

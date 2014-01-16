@@ -135,8 +135,8 @@ abstract class Editor extends _Disposable implements OptionsProvider {
   /// Brings the current [textInput] into focus.
   void focus();
   
-  /// Moves the cursor to the specified line number, and also into the
-  /// indiciated column.
+  /// Moves the [cursorPosition] to the specified [lineNumber], and also into 
+  /// the indiciated [column].
   void gotoLine(int lineNumber, [int column = 0, bool animate = false]);
   
   /// Scrolls the document down a page and updates the [cursorPosition].

@@ -626,16 +626,21 @@ void testGotoLine() {
   editor.gotoLine(2, 2, false);
   expect(editor.selectionRange.start.row, equals(1));
   expect(editor.selectionRange.start.column, equals(2));
+  expect(editor.cursorPosition, equals(const Point(1, 2)));
   editor.gotoLine(1);
   expect(editor.selectionRange.start.row, equals(0));
   expect(editor.selectionRange.start.column, equals(0));
+  expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.gotoLine(2, 99, true);
   expect(editor.selectionRange.start.row, equals(1));
   expect(editor.selectionRange.start.column, equals(6));
+  expect(editor.cursorPosition, equals(const Point(1, 6)));
   editor.gotoLine(0, 99);
   expect(editor.selectionRange.start.row, equals(0));
   expect(editor.selectionRange.start.column, equals(0));
+  expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.gotoLine(3, 1);
   expect(editor.selectionRange.start.row, equals(1));
   expect(editor.selectionRange.start.column, equals(6));
+  expect(editor.cursorPosition, equals(const Point(1, 6)));
 }
