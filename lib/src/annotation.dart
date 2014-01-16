@@ -38,11 +38,4 @@ class Annotation {
   
   int get hashCode => 
       html.hashCode ^ row.hashCode ^ text.hashCode ^ type.hashCode;
-    
-  Map toMap() => {
-    'html': html, 
-    'row' : row,
-    'text': text,
-    'type': type
-  };
 }
