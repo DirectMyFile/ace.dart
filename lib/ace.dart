@@ -29,7 +29,24 @@ part 'src/theme.dart';
 part 'src/undo_manager.dart';
 part 'src/virtual_renderer.dart';
 
-// TODO(rms): document
+/// The current [Implementation].
+/// 
+/// This must be set by the user of this library prior to making any other
+/// calls to this library.  Currently there is only one production-ready 
+/// implementation and it should be set in a `main` function or other 
+/// bootstrapping logic.  For example:
+/// 
+///     import 'package:ace/ace.dart' as ace;
+///     import 'package:ace/proxy.dart';
+///
+///     main() {
+///       ace.implementation = aceProxyImplementation;
+///       ...
+///     }
+///     
+/// This configuration step exists so that the library import graph for your 
+/// presentation logic can be decoupled from both `dart:html` and `dart:js` to 
+/// allow for console-based testing.
 Implementation implementation;
 
 /// Creates a new [EditSession] with the given [text] and language [mode].
