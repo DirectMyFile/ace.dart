@@ -1,4 +1,4 @@
-part of ace;
+part of ace.proxy;
 
 class _EditorProxy extends _HasProxy implements Editor {
   
@@ -27,7 +27,7 @@ class _EditorProxy extends _HasProxy implements Editor {
   
   String get copyText => call('getCopyText');
   
-  Point get cursorPosition => new Point._(call('getCursorPosition'));
+  Point get cursorPosition => _point(call('getCursorPosition'));
   
   int
     get dragDelay => call('getDragDelay');
@@ -89,7 +89,7 @@ class _EditorProxy extends _HasProxy implements Editor {
     
   Selection get selection => new _SelectionProxy._(call('getSelection'));
   
-  Range get selectionRange => new Range._(call('getSelectionRange'));
+  Range get selectionRange => _range(call('getSelectionRange'));
   
   EditSession
     get session => new _EditSessionProxy._(call('getSession'));
@@ -121,11 +121,10 @@ class _EditorProxy extends _HasProxy implements Editor {
     
   _EditorProxy._(js.JsObject proxy) : super(proxy) {
     call('on', ['blur', (_,__) => _onBlur.add(this)]);
-    call('on', ['change', (e,__) =>
-        _onChange.add(new Delta._forProxy(e['data']))]);
+    call('on', ['change', (e,__) => _onChange.add(_delta(e['data']))]);
     call('on', ['changeSelection', (_,__) => _onChangeSelection.add(this)]);
     call('on', ['changeSession', (e,__) {
-      _onChangeSession.add(new EditSessionChangeEvent._(
+      _onChangeSession.add(new EditSessionChangeEvent(
           new _EditSessionProxy._(e['oldSession']),
           new _EditSessionProxy._(e['session']))); 
     }]);

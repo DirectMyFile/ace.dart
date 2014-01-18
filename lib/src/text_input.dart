@@ -1,4 +1,4 @@
 part of ace;
 
-abstract class TextInput extends _Disposable {
+abstract class TextInput extends Disposable {
 }

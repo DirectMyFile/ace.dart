@@ -2,8 +2,14 @@
 library ace.test.require;
 
 import 'package:ace/ace.dart' as ace;
+import 'package:ace/proxy.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
+
+@Setup
+setup() {  
+  ace.implementation = aceProxyImplementation;
+}
 
 @Test()
 void testRequireLanguageTools() {

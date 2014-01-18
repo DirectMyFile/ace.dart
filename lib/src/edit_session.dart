@@ -7,7 +7,7 @@ part of ace;
 /// 
 /// An instance of [EditSession] may be attached to only one [Document].  An
 /// instance of [Document] may be attached to more than one [EditSession].
-abstract class EditSession extends _Disposable implements Folding {
+abstract class EditSession extends Disposable implements Folding {
   
   /// Fired whenever the [document] changes.
   Stream<Delta> get onChange;
@@ -136,7 +136,7 @@ abstract class EditSession extends _Disposable implements Folding {
   /// Creates a new EditSession and associates it with the given [document] and 
   /// text [mode].
   factory EditSession(Document document, Mode mode) => 
-      new _EditSessionProxy(document, mode);
+      implementation.createEditSessionFromDocument(document, mode);
     
   /// Adds the given CSS [className] to the given [row].
   void addGutterDecoration(int row, String className);

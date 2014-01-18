@@ -2,6 +2,7 @@
 library ace.test.search;
 
 import 'package:ace/ace.dart';
+import 'package:ace/proxy.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 import '_.dart';
@@ -11,6 +12,7 @@ EditSession session;
 
 @Setup
 setup() {
+  implementation = aceProxyImplementation;
   search = new Search();
   session = new EditSession(new Document(text: sampleText), 
       new Mode('ace/mode/text'));

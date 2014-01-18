@@ -8,24 +8,8 @@ abstract class Delta {
   
   /// The [Range] of this change within the document.
   final Range range;  
-  
-  factory Delta._forProxy(proxy) {
-    switch(proxy['action']) {
-      case 'insertLines': return new InsertLinesDelta._fromProxy(proxy);
-      case 'insertText': return new InsertTextDelta._fromProxy(proxy);
-      case 'removeLines': return new RemoveLinesDelta._fromProxy(proxy);
-      case 'removeText': return new RemoveTextDelta._fromProxy(proxy);
-      default: throw new UnsupportedError('Unknown action: ${proxy['action']}');
-    }
-  }
-  
-  Delta._(this.action, this.range);
-  
-  Delta._fromProxy(proxy)
-  : this._(proxy['action'], new Range._(proxy['range']));
-  
-  js.JsObject _toProxy() => 
-      _jsMap({'action': action, 'range': range._toProxy()});
+    
+  Delta(this.action, this.range);
 }
 
 class InsertLinesDelta extends Delta {  
@@ -33,14 +17,8 @@ class InsertLinesDelta extends Delta {
   /// The lines inserted in the document by this change.
   final Iterable<String> lines;
   
-  InsertLinesDelta._(Range range, this.lines)
-    : super._('insertLines', range);
-  
-  InsertLinesDelta._fromProxy(proxy) 
-  : super._fromProxy(proxy)
-  , lines = _list(proxy['lines']);
-  
-  js.JsObject _toProxy() => super._toProxy()..['lines'] = _jsArray(lines);
+  InsertLinesDelta(Range range, this.lines)
+    : super('insertLines', range);
 }
 
 class InsertTextDelta extends Delta {
@@ -48,14 +26,8 @@ class InsertTextDelta extends Delta {
   /// The text inserted in the document by this change.
   final String text;
   
-  InsertTextDelta._(Range range, this.text)
-  : super._('insertText', range);
-  
-  InsertTextDelta._fromProxy(proxy)
-  : super._fromProxy(proxy)
-  , text = proxy['text'];
-  
-  js.JsObject _toProxy() => super._toProxy()..['text'] = text;
+  InsertTextDelta(Range range, this.text)
+  : super('insertText', range);
 }
 
 class RemoveLinesDelta extends Delta {
@@ -67,18 +39,8 @@ class RemoveLinesDelta extends Delta {
   /// defined by [Document.newLineCharacter].
   final String nl;
   
-  RemoveLinesDelta._(Range range, this.lines, this.nl)
-    : super._('removeLines', range);
-  
-  RemoveLinesDelta._fromProxy(proxy) 
-    : super._fromProxy(proxy)
-    , lines = _list(proxy['lines'])
-    , nl = proxy['nl'];
-  
-  js.JsObject _toProxy() => 
-      super._toProxy()
-      ..['lines'] = _jsArray(lines)
-      ..['nl'] = nl;
+  RemoveLinesDelta(Range range, this.lines, this.nl)
+    : super('removeLines', range);
 }
 
 class RemoveTextDelta extends Delta {
@@ -86,12 +48,6 @@ class RemoveTextDelta extends Delta {
   /// The text removed from the document by this change.
   final String text;
   
-  RemoveTextDelta._(Range range, this.text)
-    : super._('removeText', range);
-  
-  RemoveTextDelta._fromProxy(proxy)
-    : super._fromProxy(proxy)
-    , text = proxy['text'];
-  
-  js.JsObject _toProxy() => super._toProxy()..['text'] = text;
+  RemoveTextDelta(Range range, this.text)
+    : super('removeText', range);
 }

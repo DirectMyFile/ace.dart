@@ -1,4 +1,4 @@
-part of ace;
+part of ace.pure;
 
 class _Anchor implements Anchor {
   
@@ -66,6 +66,6 @@ class _Anchor implements Anchor {
     final old = new Point(_row, _column);
     _row = pos.row;
     _column = pos.column;
-    _onChange.add(new AnchorChangeEvent._(old, pos));
+    _onChange.add(new AnchorChangeEvent(old, pos));
   }
 }

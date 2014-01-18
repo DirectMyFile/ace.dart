@@ -1,10 +1,10 @@
 part of ace;
 
 /// The renderer draws to the screen.
-abstract class VirtualRenderer extends _Disposable implements OptionsProvider {
+abstract class VirtualRenderer extends Disposable implements OptionsProvider {
   
   /// The root element containing this renderer.
-  html.Element get containerElement;
+  get containerElement;
   
   /// The index of the first visible row.
   int get firstVisibleRow;
@@ -13,7 +13,7 @@ abstract class VirtualRenderer extends _Disposable implements OptionsProvider {
   bool fixedWidthGutter;
   
   /// The element that the mouse events handlers are attached to.
-  html.Element get mouseEventTarget;
+  get mouseEventTarget;
   
   /// The column number of where the print margin is.
   int printMarginColumn;
@@ -23,8 +23,8 @@ abstract class VirtualRenderer extends _Disposable implements OptionsProvider {
   
   /// Creates a new VirtualRenderer within the given [container], applying the 
   /// given [theme].
-  factory VirtualRenderer(html.Element container, Theme theme) =>
-      new _VirtualRendererProxy(container, theme);
+  factory VirtualRenderer(container, Theme theme) => 
+      implementation.createVirtualRenderer(container, theme);
   
   /// Updates all of the layers, for all the rows.
   /// 

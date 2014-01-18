@@ -3,13 +3,15 @@ library ace.test.edit_session;
 
 import 'dart:async';
 import 'package:ace/ace.dart';
+import 'package:ace/proxy.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 import '_.dart';
 
 EditSession session;
 @Setup
-setup() {  
+setup() {
+  implementation = aceProxyImplementation;
   session = new EditSession(
       new Document(text: sampleText), 
       new Mode('ace/mode/text'));

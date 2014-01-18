@@ -1,8 +1,8 @@
-part of ace;
+part of ace.proxy;
 
 class _VirtualRendererProxy extends _HasProxy implements VirtualRenderer {
   
-  html.Element get containerElement => call('getContainerElement');
+  get containerElement => call('getContainerElement');
   
   int get firstVisibleRow => call('getFirstVisibleRow');
   
@@ -11,7 +11,7 @@ class _VirtualRendererProxy extends _HasProxy implements VirtualRenderer {
     set fixedWidthGutter(bool fixedWidthGutter) => 
         call('setOption', ['fixedWidthGutter', fixedWidthGutter]);
   
-  html.Element get mouseEventTarget => call('getMouseEventTarget');
+  get mouseEventTarget => call('getMouseEventTarget');
   
   int
     get printMarginColumn => call('getPrintMarginColumn');
@@ -22,7 +22,7 @@ class _VirtualRendererProxy extends _HasProxy implements VirtualRenderer {
     get showGutter => call('getShowGutter');
     set showGutter(bool value) => call('setShowGutter', [value]);
     
-  _VirtualRendererProxy(html.Element container, Theme theme) 
+  _VirtualRendererProxy(container, Theme theme) 
   : this._(new js.JsObject(_modules['ace/virtual_renderer'][VirtualRenderer], 
       [container, (theme as _ThemeProxy)._theme]));
     

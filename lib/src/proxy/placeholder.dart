@@ -1,4 +1,4 @@
-part of ace;
+part of ace.proxy;
 
 class _PlaceholderProxy extends _HasProxy implements Placeholder {
   
@@ -14,8 +14,8 @@ class _PlaceholderProxy extends _HasProxy implements Placeholder {
   : this._(new js.JsObject(_modules['ace/placeholder']['PlaceHolder'], 
       [(session as _EditSessionProxy)._proxy, 
       length, 
-      position._toProxy(),
-      _jsArray(others.map((Point p) => p._toProxy())),
+      _jsPoint(position),
+      _jsArray(others.map((Point p) => _jsPoint(p))),
       mainClass,
       othersClass]));
       

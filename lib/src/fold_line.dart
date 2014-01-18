@@ -1,4 +1,4 @@
 part of ace;
 
-abstract class FoldLine extends _Disposable {
+abstract class FoldLine extends Disposable {
 }

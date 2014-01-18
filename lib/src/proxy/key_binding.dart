@@ -1,4 +1,4 @@
-part of ace;
+part of ace.proxy;
 
 class _KeyBindingProxy extends _HasProxy implements KeyBinding {
 

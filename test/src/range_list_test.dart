@@ -2,12 +2,14 @@
 library ace.test.range_list;
 
 import 'package:ace/ace.dart';
+import 'package:ace/proxy.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 
 RangeList rangeList;
 @Setup
 setup() {  
+  implementation = aceProxyImplementation;
   rangeList = new RangeList();
 }
 

@@ -2,11 +2,17 @@
 library ace.test.mode;
 
 import 'package:ace/ace.dart';
+import 'package:ace/proxy.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 import '_.dart';
 
 const _ACE_MODE_PATH = 'ace/mode/';
+
+@Setup
+setup() {
+  implementation = aceProxyImplementation;
+}
 
 @Test()
 void testCreateModeNamed() {

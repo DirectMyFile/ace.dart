@@ -6,7 +6,7 @@ part of ace;
 /// The positions (row and column) used in a selection are in [Document] 
 /// coordinates representing the coordinates as they appear in the document 
 /// before applying soft wrap and folding.
-abstract class Selection extends _Disposable {
+abstract class Selection extends Disposable {
   
   /// The current position of the cursor.
   Point get cursor;
@@ -29,7 +29,8 @@ abstract class Selection extends _Disposable {
   Range get range;
   
   /// Creates a new [Selection] for the given [session].
-  factory Selection(EditSession session) => new _SelectionProxy(session);
+  factory Selection(EditSession session) => 
+      implementation.createSelection(session);
       
   void mergeOverlappingRanges();
   

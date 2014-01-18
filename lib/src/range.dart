@@ -57,14 +57,7 @@ class Range implements Comparable<Range> {
       return value;
     });
   }
-  
-  Range._(proxy) 
-  : this(
-      proxy['start']['row'], 
-      proxy['start']['column'], 
-      proxy['end']['row'], 
-      proxy['end']['column']);
-  
+    
   bool operator ==(Object other) {
     if(identical(this, other)) return true;
     if(other is! Range) return false; 
@@ -186,10 +179,6 @@ class Range implements Comparable<Range> {
   /// range's [start] point.
   bool isStart(int row, int column) => 
       start.row == row && start.column == column;
-  
-  js.JsObject _toProxy() => 
-      new js.JsObject(_modules['ace/range']['Range'], 
-          [start.row, start.column, end.row, end.column]);
   
   String toString() => 
       'Range: [${start.row}/${start.column}] -> [${end.row}/${end.column}]';

@@ -2,9 +2,15 @@
 library ace.test.keyboard_handler;
 
 import 'package:ace/ace.dart';
+import 'package:ace/proxy.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 import '_.dart';
+
+@Setup
+setup() {
+  implementation = aceProxyImplementation;
+}
 
 @Test()
 void testEmacsHandler() {

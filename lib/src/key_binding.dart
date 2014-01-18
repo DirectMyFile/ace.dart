@@ -1,5 +1,5 @@
 part of ace;
 
-abstract class KeyBinding extends _Disposable {
+abstract class KeyBinding extends Disposable {
   KeyboardHandler keyboardHandler;
 }

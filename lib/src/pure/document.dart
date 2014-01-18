@@ -1,4 +1,4 @@
-part of ace;
+part of ace.pure;
 
 class _Document implements Document {
   
@@ -165,7 +165,7 @@ class _Document implements Document {
       _lines.insert(position.row, lineText);
     }
     final end = new Point(position.row, position.column + text.length);
-    final delta = new InsertTextDelta._(
+    final delta = new InsertTextDelta(
         new Range.fromPoints(position, end), text);
     _onChange.add(delta);
     return end;
@@ -189,7 +189,7 @@ class _Document implements Document {
     }
     _lines.insertAll(row, lines);
     final range = new Range(row, 0, row + lines.length, 0);
-    final delta = new InsertLinesDelta._(range, lines); 
+    final delta = new InsertLinesDelta(range, lines); 
     _onChange.add(delta);
     return (end == null) ? range.end : end;
   }
@@ -207,7 +207,7 @@ class _Document implements Document {
         position.row + 1, 
         line.substring(position.column, line.length));
     final end = new Point(position.row + 1, 0);
-    final delta = new InsertTextDelta._(
+    final delta = new InsertTextDelta(
         new Range.fromPoints(position, end), newLineCharacter);
     _onChange.add(delta);
     return end;
@@ -267,7 +267,7 @@ class _Document implements Document {
     final newLine = line.substring(0, startColumn) + 
         line.substring(endColumn, line.length);
     _lines.replaceRange(row, row + 1, [newLine]);    
-    final delta = new RemoveTextDelta._(range, removed);
+    final delta = new RemoveTextDelta(range, removed);
     _onChange.add(delta);
     return range.start;
   }
@@ -281,7 +281,7 @@ class _Document implements Document {
   List<String> _removeLines(int startRow, int endRow) {
     final range = new Range(startRow, 0, endRow + 1, 0);
     final removed = _spliceList(_lines, startRow, endRow - startRow + 1);
-    final delta = new RemoveLinesDelta._(range, removed, newLineCharacter);
+    final delta = new RemoveLinesDelta(range, removed, newLineCharacter);
     _onChange.add(delta);
     return removed;
   }
@@ -292,7 +292,7 @@ class _Document implements Document {
     final range = new Range(row, firstLine.length, row + 1, 0);
     final line = firstLine + secondLine;
     _spliceList(_lines, row, 2, [line]);
-    final delta = new RemoveTextDelta._(range, newLineCharacter);
+    final delta = new RemoveTextDelta(range, newLineCharacter);
     _onChange.add(delta);
   }
   

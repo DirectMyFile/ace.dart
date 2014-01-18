@@ -4,7 +4,7 @@ part of ace;
 /// 
 /// Whenever text is inserted or deleted before the [document]'s cursor, the 
 /// [position] of the anchor is updated.
-abstract class Anchor extends _Disposable {
+abstract class Anchor extends Disposable {
 
   /// Fired whenever the [position] changes.
   Stream<AnchorChangeEvent> get onChange;
@@ -17,18 +17,8 @@ abstract class Anchor extends _Disposable {
   
   /// Creates a new Anchor and associates it with the given [document] at the
   /// given [row] and [column] starting position.
-  /// 
-  /// **WARNING** do not set [useExperimental] to `true` in production code; 
-  /// this is an experimental flag to enable continuous integration testing of a 
-  /// work-in-progress pure Dart implementation, and may be removed at any time.
-  factory Anchor(Document document, int row, int column, 
-                {bool useExperimental: false}) {
-    if (useExperimental) {
-      return new _Anchor(document, row, column);
-    } else {
-      return new _AnchorProxy(document, row, column);
-    }
-  }
+  factory Anchor(Document document, int row, int column) =>
+      implementation.createAnchor(document, row, column);
   
   /// Sets the anchor [position] to the specified [row] and [column]. 
   /// 
@@ -46,5 +36,5 @@ class AnchorChangeEvent {
   /// The new position of the anchor.
   final Point newPosition;  
   
-  AnchorChangeEvent._(this.oldPosition, this.newPosition);
+  AnchorChangeEvent(this.oldPosition, this.newPosition);
 }

@@ -1,4 +1,4 @@
-part of ace;
+part of ace.proxy;
 
 class _ThemeProxy extends _HasProxy implements Theme {
   
@@ -19,7 +19,7 @@ class _ThemeProxy extends _HasProxy implements Theme {
   
   bool get isLoaded => _hasProxy;
   
-  String get name => _ext(path, separator: '/');
+  String get name => implementation.getExtension(path, separator: '/');
   
   Future get onLoad => _onHasProxy;
   

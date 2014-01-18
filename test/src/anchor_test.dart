@@ -2,24 +2,28 @@
 library ace.test.anchor;
 
 import 'package:ace/ace.dart';
+import 'package:ace/proxy.dart';
+import 'package:ace/pure.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 import '_.dart';
 
 Anchor anchor;
 Document document;
-bool useExperimental;
+
 @Setup
 setup(TestRun run) {
-  document = new Document(text: sampleText, useExperimental: run.id == PURE);
-  anchor = new Anchor(document, 0, 0, useExperimental: run.id == PURE);
-  useExperimental = run.id == PURE;
+  implementation = (run.id == PURE) 
+      ? acePureImplementation 
+      : aceProxyImplementation;
+  document = new Document(text: sampleText);
+  anchor = new Anchor(document, 0, 0);
 }
 
 @Test()
 void testAnchorCtor() {
   final Anchor anchor = 
-      new Anchor(document, 0, 0, useExperimental: useExperimental);
+      new Anchor(document, 0, 0);
   expect(anchor, isNotNull);
   expect(anchor.position, equals(const Point(0, 0)));
   expect(anchor.document.value, equals(document.value));
