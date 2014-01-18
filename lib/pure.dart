@@ -8,7 +8,7 @@ part 'src/pure/_.dart';
 part 'src/pure/anchor.dart';
 part 'src/pure/document.dart';
 
-const Implementation acePureImplementation = const _PureImplementation();
+const Implementation ACE_PURE_IMPLEMENTATION = const _PureImplementation();
 
 class _PureImplementation extends Implementation {
   

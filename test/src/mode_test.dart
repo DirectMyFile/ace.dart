@@ -11,7 +11,7 @@ const _ACE_MODE_PATH = 'ace/mode/';
 
 @Setup
 setup() {
-  implementation = aceProxyImplementation;
+  implementation = ACE_PROXY_IMPLEMENTATION;
 }
 
 @Test()

@@ -5,7 +5,7 @@ import 'package:ace/ace.dart' as ace;
 import 'package:ace/proxy.dart';
 
 main() {
-  ace.implementation = aceProxyImplementation;
+  ace.implementation = ACE_PROXY_IMPLEMENTATION;
   var editor = ace.edit(querySelector('#editor'))
   ..theme = new ace.Theme('ace/theme/monokai')
   ..session.mode = new ace.Mode('ace/mode/dart')

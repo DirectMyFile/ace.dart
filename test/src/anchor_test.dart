@@ -14,8 +14,8 @@ Document document;
 @Setup
 setup(TestRun run) {
   implementation = (run.id == PURE) 
-      ? acePureImplementation 
-      : aceProxyImplementation;
+      ? ACE_PURE_IMPLEMENTATION 
+      : ACE_PROXY_IMPLEMENTATION;
   document = new Document(text: sampleText);
   anchor = new Anchor(document, 0, 0);
 }

@@ -12,7 +12,7 @@ EditSession session;
 
 @Setup
 setup() {
-  implementation = aceProxyImplementation;
+  implementation = ACE_PROXY_IMPLEMENTATION;
   search = new Search();
   session = new EditSession(new Document(text: sampleText), 
       new Mode('ace/mode/text'));

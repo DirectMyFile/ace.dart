@@ -12,7 +12,7 @@ import '_.dart';
 Editor editor;
 @Setup
 void setup() {
-  implementation = aceProxyImplementation;
+  implementation = ACE_PROXY_IMPLEMENTATION;
   html.document.body.append(new html.Element.div()..id = 'editor');
   editor = edit(html.querySelector('#editor'))
   ..setValue(sampleText, -1);

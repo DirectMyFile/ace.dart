@@ -11,7 +11,7 @@ import 'package:ace/ace.dart' as ace;
 import 'package:ace/proxy.dart';
 
 main() {
-  ace.implementation = aceProxyImplementation;
+  ace.implementation = ACE_PROXY_IMPLEMENTATION;
   ...
 }
 ```

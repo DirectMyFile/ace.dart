@@ -10,7 +10,7 @@ import 'package:unittest/unittest.dart';
 VirtualRenderer renderer;
 @Setup
 setup() {
-  implementation = aceProxyImplementation;
+  implementation = ACE_PROXY_IMPLEMENTATION;
   html.document.body.append(new html.Element.div()..id = 'editor');  
   renderer = edit(html.querySelector('#editor')).renderer;
 }

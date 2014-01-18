@@ -8,7 +8,7 @@ import 'package:unittest/unittest.dart';
 
 @Setup
 setup() {  
-  ace.implementation = aceProxyImplementation;
+  ace.implementation = ACE_PROXY_IMPLEMENTATION;
 }
 
 @Test()

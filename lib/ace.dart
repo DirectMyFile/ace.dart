@@ -39,7 +39,7 @@ part 'src/virtual_renderer.dart';
 ///     import 'package:ace/proxy.dart';
 ///
 ///     main() {
-///       ace.implementation = aceProxyImplementation;
+///       ace.implementation = ACE_PROXY_IMPLEMENTATION;
 ///       ...
 ///     }
 ///     

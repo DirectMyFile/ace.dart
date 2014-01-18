@@ -9,7 +9,7 @@ import 'package:unittest/unittest.dart';
 RangeList rangeList;
 @Setup
 setup() {  
-  implementation = aceProxyImplementation;
+  implementation = ACE_PROXY_IMPLEMENTATION;
   rangeList = new RangeList();
 }
 

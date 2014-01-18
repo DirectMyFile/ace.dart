@@ -11,7 +11,7 @@ import '_.dart';
 EditSession session;
 @Setup
 setup() {
-  implementation = aceProxyImplementation;
+  implementation = ACE_PROXY_IMPLEMENTATION;
   session = new EditSession(
       new Document(text: sampleText), 
       new Mode('ace/mode/text'));
