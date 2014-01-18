@@ -2,6 +2,20 @@
 
 ## 0.3.0-dev+1.8.2014
 
+- Decoupled the `Implementation` from the `ace` library by adding an `ace.proxy`
+library;  the library user is responsible for setting the `implementation` 
+variable prior to making any other calls to the `ace` library.  For example:
+
+```dart
+import 'package:ace/ace.dart' as ace;
+import 'package:ace/proxy.dart';
+
+main() {
+  ace.implementation = aceProxyImplementation;
+  ...
+}
+```
+
 ## 0.2.0+1.8.2014
 
 - Replaced the `EditSession.breakpoints` getter with the `getBreakpoints` 
