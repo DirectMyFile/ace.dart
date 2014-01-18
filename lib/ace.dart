@@ -31,9 +31,8 @@ part 'src/virtual_renderer.dart';
 
 /// The current [Implementation].
 /// 
-/// This must be set by the user of this library prior to making any other
-/// calls to this library.  Currently there is only one production-ready 
-/// implementation and it should be set in a `main` function or other 
+/// This must be set by the user prior to making any other calls to this 
+/// library.  This will typically be set in a `main` function or other 
 /// bootstrapping logic.  For example:
 /// 
 ///     import 'package:ace/ace.dart' as ace;
@@ -44,9 +43,8 @@ part 'src/virtual_renderer.dart';
 ///       ...
 ///     }
 ///     
-/// This configuration step exists so that the library import graph for your 
-/// presentation logic can be decoupled from both `dart:html` and `dart:js` to 
-/// allow for console-based testing.
+/// This library delegates to the implementation, to allow for multiple 
+/// implementations including mocks for console-based testing.
 Implementation implementation;
 
 /// Creates a new [EditSession] with the given [text] and language [mode].
