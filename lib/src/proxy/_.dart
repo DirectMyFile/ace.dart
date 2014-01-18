@@ -24,6 +24,13 @@ js.JsObject _jsMap(map) {
 
 js.JsObject _jsify(obj) => new js.JsObject.jsify(obj);
 
+js.JsObject _jsAnnotation(Annotation a) => _jsMap({
+  'html': a.html, 
+  'row' : a.row,
+  'text': a.text,
+  'type': a.type
+});
+
 js.JsObject _jsDelta(d) {
   final jsMap = _jsMap({ 'action': d.action, 'range': _jsRange(d.range) });
   if (d.action == 'insertLines' || d.action == 'removeLines') {

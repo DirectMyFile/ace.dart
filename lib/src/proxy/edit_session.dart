@@ -249,7 +249,7 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
       _point(call('screenToDocumentPosition', [row, column]));
   
   void setAnnotations(List<Annotation> annotations) => call('setAnnotations', 
-      [_jsArray(annotations.map((a) => _jsMap(a.toMap())))]);
+      [_jsArray(annotations.map((a) => _jsAnnotation(a)))]);
   
   void setBreakpoint(int row, {String className: 'ace_breakpoint'}) =>
       call('setBreakpoint', [row, className]);
