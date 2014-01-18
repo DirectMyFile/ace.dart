@@ -23,6 +23,7 @@ part 'src/proxy/theme.dart';
 part 'src/proxy/undo_manager.dart';
 part 'src/proxy/virtual_renderer.dart';
 
+/// An implementation that uses `dart:js` to proxy calls to `ace.js`.
 const Implementation aceProxyImplementation = const _ProxyImplementation();
 
 class _ProxyImplementation extends Implementation {
