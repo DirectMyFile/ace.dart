@@ -9,7 +9,7 @@ abstract class Delta {
   /// The [Range] of this change within the document.
   final Range range;  
     
-  Delta(this.action, this.range);
+  Delta._(this.action, this.range);
 }
 
 class InsertLinesDelta extends Delta {  
@@ -17,8 +17,7 @@ class InsertLinesDelta extends Delta {
   /// The lines inserted in the document by this change.
   final Iterable<String> lines;
   
-  InsertLinesDelta(Range range, this.lines)
-    : super('insertLines', range);
+  InsertLinesDelta(Range range, this.lines) : super._('insertLines', range);
 }
 
 class InsertTextDelta extends Delta {
@@ -26,8 +25,7 @@ class InsertTextDelta extends Delta {
   /// The text inserted in the document by this change.
   final String text;
   
-  InsertTextDelta(Range range, this.text)
-  : super('insertText', range);
+  InsertTextDelta(Range range, this.text) : super._('insertText', range);
 }
 
 class RemoveLinesDelta extends Delta {
@@ -40,7 +38,7 @@ class RemoveLinesDelta extends Delta {
   final String nl;
   
   RemoveLinesDelta(Range range, this.lines, this.nl)
-    : super('removeLines', range);
+  : super._('removeLines', range);
 }
 
 class RemoveTextDelta extends Delta {
@@ -48,6 +46,5 @@ class RemoveTextDelta extends Delta {
   /// The text removed from the document by this change.
   final String text;
   
-  RemoveTextDelta(Range range, this.text)
-    : super('removeText', range);
+  RemoveTextDelta(Range range, this.text) : super._('removeText', range);
 }
