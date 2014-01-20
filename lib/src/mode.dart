@@ -36,7 +36,6 @@ abstract class Mode extends Disposable {
   static const HASKELL              = 'haskell';
   static const HAXE                 = 'haxe';
   static const HTML                 = 'html';
-  static const HTML_COMPLETIONS     = 'html_completions';
   static const HTML_RUBY            = 'html_ruby';
   static const INI                  = 'ini';
   static const JACK                 = 'jack';
@@ -63,7 +62,6 @@ abstract class Mode extends Disposable {
   static const MATLAB               = 'matlab';
   static const MEL                  = 'mel';
   static const MUSHCODE             = 'mushcode';
-  static const MUSHCODE_HIGH_RULES  = 'mushcode_high_rules';
   static const MYSQL                = 'mysql';
   static const NIX                  = 'nix';
   static const OBJECTIVEC           = 'objectivec';
@@ -121,15 +119,14 @@ abstract class Mode extends Disposable {
     ABAP, ACTIONSCRIPT, ADA, APACHE_CONF, ASCIIDOC, ASSEMBLY_X86, AUTOHOTKEY,
     BATCHFILE, C9SEARCH, C_CPP, CLOJURE, COBOL, COFFEE, COLDFUSION, CSHARP, CSS,
     CURLY, D, DART, DIFF, DJANGO, DOT, EJS, ERLANG, FORTH, FTL, GLSL, GOLANG, 
-    GROOVY, HAML, HANDLEBARS, HASKELL, HAXE, HTML, HTML_COMPLETIONS, HTML_RUBY,
-    INI, JACK, JADE, JAVA, JAVASCRIPT, JSON, JSONIQ, JSP, JSX, JULIA, LATEX, 
-    LESS, LIQUID, LISP, LIVESCRIPT, LOGIQL, LSL, LUA, LUAPAGE, LUCENE, MAKEFILE,
-    MARKDOWN, MATLAB, MEL, MUSHCODE, MUSHCODE_HIGH_RULES, MYSQL, NIX, 
-    OBJECTIVEC, OCAML, PASCAL, PERL, PGSQL, PHP, PLAIN_TEXT, POWERSHELL, PROLOG,
-    PROPERTIES, PROTOBUF, PYTHON, R, RDOC, RHTML, RUBY, RUST, SASS, SCAD, SCALA,
-    SCHEME, SCSS, SH, SJS, SNIPPETS, SOY_TEMPLATE, SPACE, SQL, STYLUS, SVG, TCL,
-    TEX, TEXT, TEXTILE, TOML, TWIG, TYPESCRIPT, VBSCRIPT, VELOCITY, VERILOG, 
-    VHDL, XML, XQUERY, YAML
+    GROOVY, HAML, HANDLEBARS, HASKELL, HAXE, HTML, HTML_RUBY, INI, JACK, JADE, 
+    JAVA, JAVASCRIPT, JSON, JSONIQ, JSP, JSX, JULIA, LATEX, LESS, LIQUID, LISP, 
+    LIVESCRIPT, LOGIQL, LSL, LUA, LUAPAGE, LUCENE, MAKEFILE, MARKDOWN, MATLAB, 
+    MEL, MUSHCODE, MYSQL, NIX, OBJECTIVEC, OCAML, PASCAL, PERL, PGSQL, PHP, 
+    PLAIN_TEXT, POWERSHELL, PROLOG, PROPERTIES, PROTOBUF, PYTHON, R, RDOC, 
+    RHTML, RUBY, RUST, SASS, SCAD, SCALA, SCHEME, SCSS, SH, SJS, SNIPPETS, 
+    SOY_TEMPLATE, SPACE, SQL, STYLUS, SVG, TCL, TEX, TEXT, TEXTILE, TOML, 
+    TWIG, TYPESCRIPT, VBSCRIPT, VELOCITY, VERILOG, VHDL, XML, XQUERY, YAML
   ];
   
   static const Map<String, String> _extensionMap = const {
