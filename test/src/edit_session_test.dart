@@ -31,6 +31,16 @@ void testCreateEditSession() {
 }
 
 @Test()
+void testCreateEditSessionModeIsLoaded() {  
+  final mode = new Mode.named(Mode.DART);
+  mode.onLoad.then(expectAsync1((_) {
+    session = createEditSession(sampleText, mode);
+    expect(session, isNotNull); 
+    expect(session.value, equals(sampleText));
+  }));
+}
+
+@Test()
 void testDispose() {
   session.onChange.listen(noop1, onDone: expectAsync0(noop0));
   session.onChangeAnnotation.listen(noop1, onDone: expectAsync0(noop0));
