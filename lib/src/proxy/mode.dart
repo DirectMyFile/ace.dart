@@ -17,5 +17,5 @@ class _ModeProxy extends _HasProxy implements Mode {
       new Future.value(new js.JsObject(module['Mode']))))
   , path = path;
   
-  _ModeProxy._(js.JsObject proxy) : super(proxy), path = null;
+  _ModeProxy._(js.JsObject proxy, this.path) : super(proxy);
 }

@@ -48,7 +48,8 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   int get length => call('getLength');
   
   Mode
-    get mode => new _ModeProxy._(call('getMode'));
+    // TODO(rms): EditSession should implement OptionsProvider 
+    get mode => new _ModeProxy._(call('getMode'), call('getOption',['mode']));
     set mode(Mode mode) {
       assert(mode is _ModeProxy);
       call('setMode', [(mode as _ModeProxy)._mode]);

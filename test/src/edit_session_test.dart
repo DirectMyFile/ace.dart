@@ -37,6 +37,7 @@ void testCreateEditSessionModeIsLoaded() {
     session = createEditSession(sampleText, mode);
     expect(session, isNotNull); 
     expect(session.value, equals(sampleText));
+    expect(session.mode.name, equals(mode.name));
   }));
 }
 

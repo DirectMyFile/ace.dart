@@ -14,11 +14,24 @@ setup() {
   implementation = ACE_PROXY_IMPLEMENTATION;
 }
 
+// TODO(rms): send a pull request fixing these to ace.js
+const _MODE_ID_BUGS = const [ Mode.APACHE_CONF, Mode.DJANGO, Mode.GLSL, 
+                              Mode.LIVESCRIPT, Mode.LUAPAGE, Mode.LUCENE, 
+                              Mode.MEL, Mode.PROPERTIES ];
+
 @Test()
 void testCreateModeNamed() {
   final verifyMode = (String modeName) {
-    final mode = new Mode.named(modeName)
-    ..onLoad.then(expectAsync1(noop1));
+    final mode = new Mode.named(modeName);
+    mode.onLoad.then(expectAsync1((_) {
+      expect(mode.isLoaded, isTrue);
+      final session = createEditSession(sampleText, mode);
+      expect(session, isNotNull); 
+      if (!_MODE_ID_BUGS.contains(mode.name)) {
+        expect(session.mode.name, equals(mode.name));
+        expect(session.mode.path, equals(mode.path));
+      }
+    }));
     expect(mode, isNotNull);
     expect(mode.name, modeName);
     expect(mode.path, '${_ACE_MODE_PATH}$modeName');
