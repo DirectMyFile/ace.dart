@@ -1,5 +1,7 @@
 # Ace.dart Changes
 
+## 0.3.2-dev+1.8.2014
+
 ## 0.3.1+1.8.2014
 
 - Added an `OptionsProvider` implementation to the `EditSession`.
