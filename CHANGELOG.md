@@ -1,6 +1,6 @@
 # Ace.dart Changes
 
-## 0.3.1-dev+1.8.2014
+## 0.3.1+1.8.2014
 
 - Added an `OptionsProvider` implementation to the `EditSession`.
 - Fixed some bugs in `Mode` proxy objects.
