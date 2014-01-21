@@ -7,7 +7,8 @@ part of ace;
 /// 
 /// An instance of [EditSession] may be attached to only one [Document].  An
 /// instance of [Document] may be attached to more than one [EditSession].
-abstract class EditSession extends Disposable implements Folding {
+abstract class EditSession extends Disposable 
+    implements OptionsProvider, Folding {
   
   /// Fired whenever the [document] changes.
   Stream<Delta> get onChange;

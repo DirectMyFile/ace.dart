@@ -48,8 +48,11 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   int get length => call('getLength');
   
   Mode
-    // TODO(rms): EditSession should implement OptionsProvider 
-    get mode => new _ModeProxy._(call('getMode'), call('getOption',['mode']));
+    get mode {
+      final mode = call('getMode');
+      final proxy = (mode == js.JsObject) ? mode : null;
+      return new _ModeProxy._(proxy, getOption('mode'));
+    }
     set mode(Mode mode) {
       assert(mode is _ModeProxy);
       call('setMode', [(mode as _ModeProxy)._mode]);
@@ -212,6 +215,11 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
     return markers;
   }
   
+  getOption(String name) => call('getOption', [name]);
+  
+  Map<String, dynamic> getOptions(List<String> optionNames) =>
+      _map(call('getOptions', [_jsArray(optionNames)]));
+  
   int getRowLength(int row) => call('getRowLength', [row]);
   
   String getTextRange(Range range) => call('getTextRange', [_jsRange(range)]);
@@ -257,6 +265,11 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   
   void setBreakpoints(List<int> rows) => 
       call('setBreakpoints', [_jsArray(rows)]);
+  
+  void setOption(String name, value) => call('setOption', [name, value]);
+  
+  void setOptions(Map<String, dynamic> options) => 
+      call('setOptions', [_jsify(options)]);
   
   void setWrapLimitRange({int min, int max}) => 
       call('setWrapLimitRange', [min, max]);

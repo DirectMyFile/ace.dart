@@ -632,3 +632,35 @@ void testRemoveFrontMarker() {
   expect(session.getMarkers(inFront: true), isEmpty);
   expect(session.getMarkers(), isEmpty);
 }
+
+@Test()
+void testGetOption() {
+  session.tabSize = 7;
+  expect(session.getOption('tabSize'), equals(7));
+}
+
+@Test()
+void testGetOptions() {
+  session.tabSize = 3;
+  final tsMode = new Mode.named(Mode.TYPESCRIPT);
+  session.mode = tsMode;
+  var options = session.getOptions(['tabSize', 'mode']);
+  expect(options.keys.length, equals(2));
+  expect(options['tabSize'], equals(3));
+  expect(options['mode'], equals(tsMode.path));
+}
+
+@Test()
+void testSetOption() {
+  session.setOption('tabSize', 1);
+  expect(session.tabSize, equals(1));
+}
+
+@Test()
+void testSetOptions() {
+  final hamlMode = new Mode.named(Mode.HAML);
+  session.setOptions({ 'tabSize' : 5, 'mode' : hamlMode.path });
+  expect(session.tabSize, equals(5));
+  expect(session.mode.path, equals(hamlMode.path));
+}
+
