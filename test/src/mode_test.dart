@@ -14,7 +14,7 @@ setup() {
   implementation = ACE_PROXY_IMPLEMENTATION;
 }
 
-// TODO(rms): send a pull request fixing these to ace.js
+// TODO(rms): https://github.com/rmsmith/ace.dart/issues/31
 const _MODE_ID_BUGS = const [ Mode.APACHE_CONF, Mode.DJANGO, Mode.GLSL, 
                               Mode.LIVESCRIPT, Mode.LUAPAGE, Mode.LUCENE, 
                               Mode.MEL, Mode.PROPERTIES ];
