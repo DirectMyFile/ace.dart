@@ -14,6 +14,7 @@ import 'src/range_test.dart';
 import 'src/require_test.dart';
 import 'src/search_test.dart';
 import 'src/selection_test.dart';
+import 'src/theme_test.dart';
 import 'src/virtual_renderer_test.dart';
 
 main() {
