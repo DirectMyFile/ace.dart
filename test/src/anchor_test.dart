@@ -31,8 +31,6 @@ void testAnchorCtor() {
 
 @Test()
 void testAnchorDispose() {
-  final noop0 = (){};
-  final noop1 = (_){};
   anchor.onChange.listen(noop1, onDone: expectAsync0(noop0));
   anchor.dispose();
 }
