@@ -135,7 +135,7 @@ void testIsTabStop() {
 
 @Test()
 void testUseWrapMode() {
-  session.onChangeWrapMode.listen(expectAsync1((_){}, count: 1));
+  session.onChangeWrapMode.listen(expectAsync1(noop1, count: 1));
   session.useWrapMode = true;
   expect(session.useWrapMode, isTrue);
   session.useWrapMode = true; // Should not fire an event.
@@ -413,13 +413,13 @@ void testReplace() {
 
 @Test()
 void testAddGutterDecoration() {
-  session.onChangeBreakpoint.listen(expectAsync1((_){})); 
+  session.onChangeBreakpoint.listen(expectAsync1(noop1)); 
   session.addGutterDecoration(0, 'cssnarf');
 }
 
 @Test()
 void testRemoveGutterDecoration() {
-  session.onChangeBreakpoint.listen(expectAsync1((_){})); 
+  session.onChangeBreakpoint.listen(expectAsync1(noop1)); 
   session.removeGutterDecoration(0, 'cssnarf');
 }
 

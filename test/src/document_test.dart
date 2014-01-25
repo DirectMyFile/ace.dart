@@ -232,7 +232,7 @@ void testApplyDeltas() {
   final applyToNewDocument = () {
     var newDocument = new Document(text: sampleText);
     expect(newDocument.getAllLines(), isNot(equals(document.getAllLines())));        
-    newDocument.onChange.listen(expectAsync1((_) {}, count: 3));    
+    newDocument.onChange.listen(expectAsync1(noop1, count: 3));    
     newDocument.applyDeltas(observedDeltas);
     expect(newDocument.getAllLines(), equals(document.getAllLines()));
   };    

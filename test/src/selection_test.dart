@@ -29,8 +29,6 @@ void testSelectionCtor() {
 
 @Test()
 void testDispose() {
-  final noop0 = (){};
-  final noop1 = (_){};
   selection.onChangeCursor.listen(noop1, onDone: expectAsync0(noop0));
   selection.onChangeSelection.listen(noop1, onDone: expectAsync0(noop0));
   selection.dispose();
@@ -42,7 +40,7 @@ void testMoveMethod(Function moveMethod,
                     Point beforeCursor: const Point(0, 0),
                     Point afterCursor: const Point(0, 0)}) {
   expect(selection.cursor, equals(beforeCursor));
-  selection.onChangeCursor.listen(expectAsync1((_) {}));
+  selection.onChangeCursor.listen(expectAsync1(noop1));
   Function.apply(moveMethod, positionalArgs);
   expect(selection.cursor, equals(afterCursor));
 }
