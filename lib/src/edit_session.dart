@@ -144,8 +144,8 @@ abstract class EditSession extends Disposable
       { String type: Marker.LINE, bool inFront: false });
   
   /// Adjusts the [wrapLimit] using the given [desiredLimit], [printMargin] 
-  /// and the current [wrapLimitRange] and returns `true` if the value of 
-  /// [wrapLimit] is changed.
+  /// and the current value returned by [getWrapLimitRange] and returns `true` 
+  /// if the value of [wrapLimit] is changed.
   ///
   /// This method is called internally by the [VirtualRenderer] to update the
   /// [wrapLimit] as the available width changes and is not designed for calls
