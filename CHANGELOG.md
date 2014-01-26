@@ -2,6 +2,10 @@
 
 ## 0.3.2-dev+1.8.2014
 
+- Added the `wrapLimit` setter to `EditSession`.
+- Replaced the `EditSession.wrapLimitRange` getter with the `getWrapLimitRange` 
+method.
+
 ## 0.3.1+1.8.2014
 
 - Added an `OptionsProvider` implementation to the `EditSession`.
