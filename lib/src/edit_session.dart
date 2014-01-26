@@ -123,10 +123,14 @@ abstract class EditSession extends Disposable
   String value;
 
   /// The current wrap limit.
-  int get wrapLimit;
-  // TODO(rms): there is a _proxy.setWrapLimit(limit) but it calls through to
-  // `setWrapLimitRange(limit, limit)` which doesn't set the value of wrapLimit?
-  
+  ///
+  /// The wrap limit is calculated using the current value returned by 
+  /// [getWrapLimitRange].  Setting this field to a new `value` is equivalent to 
+  /// calling `setWrapLimitRange(min: value, max: value)` and does _not_ have an
+  /// immediate effect on the current wrap limit; the wrap limit is only updated
+  /// to a new value when [adjustWrapLimit] is called by the [VirtualRenderer].
+  int wrapLimit;
+
   /// Creates a new EditSession and associates it with the given [document] and 
   /// text [mode].
   factory EditSession(Document document, Mode mode) => 

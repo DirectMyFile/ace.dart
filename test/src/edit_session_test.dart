@@ -135,13 +135,23 @@ void testIsTabStop() {
 
 @Test()
 void testUseWrapMode() {
-  session.onChangeWrapMode.listen(expectAsync1(noop1, count: 1));
+  session.onChangeWrapMode.listen(expectAsync1(noop1, count: 2));
   session.useWrapMode = true;
   expect(session.useWrapMode, isTrue);
   session.useWrapMode = true; // Should not fire an event.
   expect(session.useWrapMode, isTrue);
-//  session.useWrapMode = false;
-//  expect(session.useWrapMode, isFalse);
+  session.useWrapMode = false;
+  expect(session.useWrapMode, isFalse);
+}
+
+@Test()
+void testSetWrapLimit() {
+  session.onChangeWrapMode.listen(expectAsync1((_) {  
+    final wrapLimitRange = session.getWrapLimitRange();
+    expect(wrapLimitRange['min'], equals(42));
+    expect(wrapLimitRange['max'], equals(42));
+  }));
+  session.wrapLimit = 42;
 }
 
 @Test()
