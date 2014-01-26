@@ -127,13 +127,6 @@ abstract class EditSession extends Disposable
   // TODO(rms): there is a _proxy.setWrapLimit(limit) but it calls through to
   // `setWrapLimitRange(limit, limit)` which doesn't set the value of wrapLimit?
   
-  /// Returns a map that defines the minimum and maximum of the [wrapLimit].
-  /// 
-  /// The map contains the keys `min` and `max`:
-  ///     { min: wrapLimitRange_min, max: wrapLimitRange_max }
-  // TODO(rms): define a class for this data.
-  Map get wrapLimitRange;
-  
   /// Creates a new EditSession and associates it with the given [document] and 
   /// text [mode].
   factory EditSession(Document document, Mode mode) => 
@@ -150,19 +143,24 @@ abstract class EditSession extends Disposable
   int addMarker(Range range, String className, 
       { String type: Marker.LINE, bool inFront: false });
   
-  // TODO(rms): undocumented and complex in ace.js, but a key ingredient in the
-  // line wrapping code so we should deduce some documentation...
+  /// Adjusts the [wrapLimit] using the given [desiredLimit], [printMargin] 
+  /// and the current [wrapLimitRange] and returns `true` if the value of 
+  /// [wrapLimit] is changed.
+  ///
+  /// This method is called internally by the [VirtualRenderer] to update the
+  /// [wrapLimit] as the available width changes and is not designed for calls
+  /// from outside of this library.
   bool adjustWrapLimit(int desiredLimit, int printMargin);
   
-  /// Clears all [annotations] for this session and fires an 
-  /// [onChangeAnnotation] event.
+  /// Clears all annotations for this session and fires an [onChangeAnnotation] 
+  /// event.
   void clearAnnotations();
   
   /// Removes a breakpoint on the given [row] and fires an 
   /// [onChangeBreakPoint] event.
   void clearBreakpoint(int row);
   
-  /// Removes all [breakpoints] on all rows and fires an [onChangeBreakPoint] 
+  /// Removes all breakpoints on all rows and fires an [onChangeBreakPoint] 
   /// event.
   void clearBreakpoints();
   
@@ -209,6 +207,13 @@ abstract class EditSession extends Disposable
   /// Returns the [Range] of the first word boundary it finds starting at the
   /// given [row] and [column].
   Range getWordRange(int row, int column);      
+  
+  /// Returns a map that defines the minimum and maximum of the [wrapLimit].
+  /// 
+  /// The map contains the keys `min` and `max`:
+  ///     { min: wrapLimitRange_min, max: wrapLimitRange_max }
+  // TODO(rms): define a class for this data.
+  Map getWrapLimitRange();
   
   /// Indents all of the rows from [startRow] to [endRow], inclusive, by 
   /// prefixing each row with the given [indentString].

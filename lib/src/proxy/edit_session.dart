@@ -114,8 +114,6 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   
   int get wrapLimit => call('getWrapLimit');
 
-  Map get wrapLimitRange => _map(call('getWrapLimitRange'));
-  
   _EditSessionProxy(Document document, Mode mode) 
   : this._(new js.JsObject(_context['ace']['EditSession'], 
       [(document as _DocumentProxy)._proxy, (mode as _ModeProxy)._mode]));
@@ -226,6 +224,8 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   
   Range getWordRange(int row, int column) => 
       _range(call('getWordRange', [row, column]));      
+
+  Map getWrapLimitRange() => _map(call('getWrapLimitRange'));
 
   void indentRows(int startRow, int endRow, String indentString) =>
       call('indentRows', [startRow, endRow, indentString]);
