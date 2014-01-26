@@ -148,8 +148,8 @@ void testUseWrapMode() {
 void testSetWrapLimit() {
   session.onChangeWrapMode.listen(expectAsync1((_) {  
     final wrapLimitRange = session.getWrapLimitRange();
-    expect(wrapLimitRange['min'], equals(42));
-    expect(wrapLimitRange['max'], equals(42));
+    expect(wrapLimitRange.min, equals(42));
+    expect(wrapLimitRange.max, equals(42));
   }));
   session.wrapLimit = 42;
 }
@@ -158,8 +158,8 @@ void testSetWrapLimit() {
 void testSetWrapLimitRange() {
   session.onChangeWrapMode.listen(expectAsync1((_) {    
     final wrapLimitRange = session.getWrapLimitRange();
-    expect(wrapLimitRange['min'], equals(63));
-    expect(wrapLimitRange['max'], equals(65));
+    expect(wrapLimitRange.min, equals(63));
+    expect(wrapLimitRange.max, equals(65));
   }));
   session.setWrapLimitRange(min: 63, max: 65);
 }
@@ -168,8 +168,8 @@ void testSetWrapLimitRange() {
 void testSetWrapLimitRangeMin() {
   session.onChangeWrapMode.listen(expectAsync1((_) { 
     final wrapLimitRange = session.getWrapLimitRange();
-    expect(wrapLimitRange['min'], equals(63));
-    expect(wrapLimitRange['max'], equals(null));
+    expect(wrapLimitRange.min, equals(63));
+    expect(wrapLimitRange.max, equals(null));
   }));
   session.setWrapLimitRange(min: 63);
 }
@@ -178,8 +178,8 @@ void testSetWrapLimitRangeMin() {
 void testSetWrapLimitRangeMax() {
   session.onChangeWrapMode.listen(expectAsync1((_) {    
     final wrapLimitRange = session.getWrapLimitRange();
-    expect(wrapLimitRange['min'], equals(null));
-    expect(wrapLimitRange['max'], equals(65));
+    expect(wrapLimitRange.min, equals(null));
+    expect(wrapLimitRange.max, equals(65));
   }));
   session.setWrapLimitRange(max: 65);
 }

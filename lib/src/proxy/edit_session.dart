@@ -227,8 +227,11 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   Range getWordRange(int row, int column) => 
       _range(call('getWordRange', [row, column]));      
 
-  Map getWrapLimitRange() => _map(call('getWrapLimitRange'));
-
+  WrapLimitRange getWrapLimitRange() {
+    final proxy = call('getWrapLimitRange');
+    return new WrapLimitRange(proxy['max'], proxy['min']);
+  }
+  
   void indentRows(int startRow, int endRow, String indentString) =>
       call('indentRows', [startRow, endRow, indentString]);
   

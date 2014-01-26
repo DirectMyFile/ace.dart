@@ -212,12 +212,8 @@ abstract class EditSession extends Disposable
   /// given [row] and [column].
   Range getWordRange(int row, int column);      
   
-  /// Returns a map that defines the minimum and maximum of the [wrapLimit].
-  /// 
-  /// The map contains the keys `min` and `max`:
-  ///     { min: wrapLimitRange_min, max: wrapLimitRange_max }
-  // TODO(rms): define a class for this data.
-  Map getWrapLimitRange();
+  /// Returns the current allowed range for the [wrapLimit].
+  WrapLimitRange getWrapLimitRange();
   
   /// Indents all of the rows from [startRow] to [endRow], inclusive, by 
   /// prefixing each row with the given [indentString].
@@ -275,9 +271,9 @@ abstract class EditSession extends Disposable
   /// [onChangeBreakpoint] event.
   void setBreakpoints(List<int> rows);
   
-  /// Sets the boundaries of line wrap. 
+  /// Sets the allowed range for the [wrapLimit]. 
   /// 
-  /// Either value can be `null` to have an unconstrained wrap, or, they can be 
+  /// Either value may be `null` to set an unconstrained wrap, or, they can be 
   /// the same number to pin the [wrapLimit].  The [min] wrap value specifies
   /// the left side wrap and the [max] wrap value specifies the right side wrap.
   /// If a new value for [min] or [max] is set then this method fires an 
@@ -286,4 +282,22 @@ abstract class EditSession extends Disposable
   
   /// Sets the value of [overwrite] to the opposite of its current value.
   void toggleOverwrite();
+}
+
+class WrapLimitRange {
+
+  final int max;
+  
+  final int min;
+
+  WrapLimitRange(this.max, this.min);
+  
+  bool operator ==(Object other) {
+    if(identical(this, other)) return true;
+    if(other is! WrapLimitRange) return false; 
+    final o = other;
+    return max == o.max && min == o.min;
+  }  
+  
+  int get hashCode => max.hashCode ^ min.hashCode;
 }
