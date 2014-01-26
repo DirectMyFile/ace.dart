@@ -1,6 +1,6 @@
 # Ace.dart Changes
 
-## 0.3.2-dev+1.8.2014
+## 0.3.2+1.8.2014
 
 - Added the `wrapLimit` setter to `EditSession`.
 - Replaced the `EditSession.wrapLimitRange` getter with the `getWrapLimitRange` 
