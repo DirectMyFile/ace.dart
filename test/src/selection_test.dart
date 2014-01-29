@@ -29,8 +29,8 @@ void testSelectionCtor() {
 
 @Test()
 void testDispose() {
-  selection.onChangeCursor.listen(noop1, onDone: expectAsync0(noop0));
-  selection.onChangeSelection.listen(noop1, onDone: expectAsync0(noop0));
+  selection.onChangeCursor.listen(noop, onDone: expectAsync0(noop));
+  selection.onChangeSelection.listen(noop, onDone: expectAsync0(noop));
   selection.dispose();
 }
 
@@ -40,7 +40,7 @@ void testMoveMethod(Function moveMethod,
                     Point beforeCursor: const Point(0, 0),
                     Point afterCursor: const Point(0, 0)}) {
   expect(selection.cursor, equals(beforeCursor));
-  selection.onChangeCursor.listen(expectAsync1(noop1));
+  selection.onChangeCursor.listen(expectAsync1(noop));
   Function.apply(moveMethod, positionalArgs);
   expect(selection.cursor, equals(afterCursor));
 }
@@ -174,8 +174,8 @@ void testSelectMethod(Function selectionMethod,
   expect(selection.range, 
       equals(new Range.fromPoints(beforeCursor, beforeCursor)));
   // TODO(rms): investigate why `onChangeSelection` fires 2 times.
-  selection.onChangeSelection.listen(expectAsync1(noop1, count: 2));
-  selection.onChangeCursor.listen(expectAsync1(noop1));
+  selection.onChangeSelection.listen(expectAsync1(noop, count: 2));
+  selection.onChangeCursor.listen(expectAsync1(noop));
   Function.apply(selectionMethod, positionalArgs);
   expect(selection.cursor, equals(afterCursor));
   expect(selection.range, 

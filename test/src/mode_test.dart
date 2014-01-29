@@ -43,7 +43,7 @@ void testCreateModeNamed() {
 void testCreateModeForFile() {
   final verifyMode = (String filePath, String modeName) {
     final mode = new Mode.forFile(filePath)
-    ..onLoad.then(expectAsync1(noop1));
+    ..onLoad.then(expectAsync1(noop));
     expect(mode, isNotNull);
     expect(mode.name, modeName);
     expect(mode.path, '${_ACE_MODE_PATH}$modeName');
