@@ -39,13 +39,13 @@ void testEditNullThrows() {
 
 @Test()
 void testDispose() {
-  editor.onBlur.listen(noop, onDone: expectAsync0(noop));
-  editor.onChange.listen(noop, onDone: expectAsync0(noop));
-  editor.onChangeSelection.listen(noop, onDone: expectAsync0(noop));
-  editor.onChangeSession.listen(noop, onDone: expectAsync0(noop));
-  editor.onCopy.listen(noop, onDone: expectAsync0(noop));
-  editor.onFocus.listen(noop, onDone: expectAsync0(noop));
-  editor.onPaste.listen(noop, onDone: expectAsync0(noop));
+  expectDone(editor.onBlur);
+  expectDone(editor.onChange);
+  expectDone(editor.onChangeSelection);
+  expectDone(editor.onChangeSession);
+  expectDone(editor.onCopy);
+  expectDone(editor.onFocus);
+  expectDone(editor.onPaste);
   editor.dispose();
 }
 
@@ -466,7 +466,7 @@ void testSelectAll() {
   expect(editor.cursorPosition, equals(const Point(0, 0)));
   expect(editor.selectionRange, equals(new Range(0, 0, 0, 0)));
   // TODO(rms): investigate why `onChangeSelection` fires 3 times.
-  editor.onChangeSelection.listen(expectAsync1(noop, count: 3));
+  expectNEvents(editor.onChangeSelection, 3);
   editor.selectAll();
   expect(editor.cursorPosition, equals(endCursor));
   expect(editor.selectionRange, 

@@ -20,7 +20,7 @@ setup(TestRun run) {
 
 @Test()
 void testDispose() {
-  document.onChange.listen(noop, onDone: expectAsync0(noop));
+  expectDone(document.onChange);
   document.dispose();
 }
 
@@ -232,7 +232,7 @@ void testApplyDeltas() {
   final applyToNewDocument = () {
     var newDocument = new Document(text: sampleText);
     expect(newDocument.getAllLines(), isNot(equals(document.getAllLines())));        
-    newDocument.onChange.listen(expectAsync1(noop, count: 3));    
+    expectNEvents(newDocument.onChange, 3);    
     newDocument.applyDeltas(observedDeltas);
     expect(newDocument.getAllLines(), equals(document.getAllLines()));
   };    

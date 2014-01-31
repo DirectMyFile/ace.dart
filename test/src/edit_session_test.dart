@@ -43,18 +43,18 @@ void testCreateEditSessionModeIsLoaded() {
 
 @Test()
 void testDispose() {
-  session.onChange.listen(noop, onDone: expectAsync0(noop));
-  session.onChangeAnnotation.listen(noop, onDone: expectAsync0(noop));
-  session.onChangeBackMarker.listen(noop, onDone: expectAsync0(noop));
-  session.onChangeBreakpoint.listen(noop, onDone: expectAsync0(noop));
-  session.onChangeFold.listen(noop, onDone: expectAsync0(noop));
-  session.onChangeFrontMarker.listen(noop, onDone: expectAsync0(noop));
-  session.onChangeOverwrite.listen(noop, onDone: expectAsync0(noop));
-  session.onChangeScrollLeft.listen(noop, onDone: expectAsync0(noop));
-  session.onChangeScrollTop.listen(noop, onDone: expectAsync0(noop));
-  session.onChangeTabSize.listen(noop, onDone: expectAsync0(noop));
-  session.onChangeWrapLimit.listen(noop, onDone: expectAsync0(noop));
-  session.onChangeWrapMode.listen(noop, onDone: expectAsync0(noop));
+  expectDone(session.onChange);
+  expectDone(session.onChangeAnnotation);
+  expectDone(session.onChangeBackMarker);
+  expectDone(session.onChangeBreakpoint);
+  expectDone(session.onChangeFold);
+  expectDone(session.onChangeFrontMarker);
+  expectDone(session.onChangeOverwrite);
+  expectDone(session.onChangeScrollLeft);
+  expectDone(session.onChangeScrollTop);
+  expectDone(session.onChangeTabSize);
+  expectDone(session.onChangeWrapLimit);
+  expectDone(session.onChangeWrapMode);
   session.dispose();
 }
 
@@ -135,7 +135,7 @@ void testIsTabStop() {
 
 @Test()
 void testUseWrapMode() {
-  session.onChangeWrapMode.listen(expectAsync1(noop, count: 2));
+  expectTwoEvents(session.onChangeWrapMode);
   session.useWrapMode = true;
   expect(session.useWrapMode, isTrue);
   session.useWrapMode = true; // Should not fire an event.
@@ -426,13 +426,13 @@ void testReplace() {
 
 @Test()
 void testAddGutterDecoration() {
-  session.onChangeBreakpoint.listen(expectAsync1(noop)); 
+  expectOneEvent(session.onChangeBreakpoint); 
   session.addGutterDecoration(0, 'cssnarf');
 }
 
 @Test()
 void testRemoveGutterDecoration() {
-  session.onChangeBreakpoint.listen(expectAsync1(noop)); 
+  expectOneEvent(session.onChangeBreakpoint); 
   session.removeGutterDecoration(0, 'cssnarf');
 }
 
@@ -582,8 +582,8 @@ void testRemoveFold() {
 void testAddBackMarker() {
   final range = new Range(1, 2, 3, 4);
   final className = 'snarf';
-  session.onChangeBackMarker.listen(expectAsync1(noop));
-  session.onChangeFrontMarker.listen((_) => fail('No front marker was added.'));
+  expectOneEvent(session.onChangeBackMarker);
+  expectNoEvents(session.onChangeFrontMarker);
   final markerId = session.addMarker(range, className);
   expect(markerId, isNotNull);
   expect(session.getMarkers(inFront: true), isEmpty);
@@ -601,8 +601,8 @@ void testAddBackMarker() {
 void testAddFrontMarker() {
   final range = new Range(5, 6, 7, 8);
   final className = 'foo';
-  session.onChangeFrontMarker.listen(expectAsync1(noop));
-  session.onChangeBackMarker.listen((_) => fail('No back marker was added.'));
+  expectOneEvent(session.onChangeFrontMarker);
+  expectNoEvents(session.onChangeBackMarker);
   final markerId = session.addMarker(range, className, inFront: true);
   expect(markerId, isNotNull);
   expect(session.getMarkers(), isEmpty);
@@ -624,8 +624,8 @@ void testRemoveBackMarker() {
   expect(markerId, isNotNull);
   expect(session.getMarkers(inFront: true), isEmpty);
   expect(session.getMarkers().length, 1);
-  session.onChangeBackMarker.listen(expectAsync1(noop));
-  session.onChangeFrontMarker.listen((_) => fail('No front marker removed.'));
+  expectOneEvent(session.onChangeBackMarker);
+  expectNoEvents(session.onChangeFrontMarker);
   session.removeMarker(markerId);
   expect(session.getMarkers(inFront: true), isEmpty);
   expect(session.getMarkers(), isEmpty);
@@ -639,8 +639,8 @@ void testRemoveFrontMarker() {
   expect(markerId, isNotNull);
   expect(session.getMarkers(), isEmpty);
   expect(session.getMarkers(inFront: true).length, 1);
-  session.onChangeFrontMarker.listen(expectAsync1(noop));
-  session.onChangeBackMarker.listen((_) => fail('No back marker removed.'));
+  expectOneEvent(session.onChangeFrontMarker);
+  expectNoEvents(session.onChangeBackMarker);
   session.removeMarker(markerId);
   expect(session.getMarkers(inFront: true), isEmpty);
   expect(session.getMarkers(), isEmpty);
