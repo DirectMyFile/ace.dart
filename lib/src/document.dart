@@ -18,7 +18,6 @@ abstract class Document extends Disposable {
   String get newLineCharacter;
       
   /// The new line mode.  May be one of `windows`, `unix` or `auto`.
-  // TODO(rms): enum
   String newLineMode;
     
   /// All the lines in this document as a single string, split by the 
