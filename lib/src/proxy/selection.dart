@@ -10,11 +10,11 @@ class _SelectionProxy extends _HasProxy implements Selection {
   
   bool get isMultiLine => call('isMultiLine');  
   
-  final _onChangeCursor = new StreamController.broadcast();
-  Stream get onChangeCursor => _onChangeCursor.stream;
+  final _onChangeCursor = new StreamController<Null>.broadcast();
+  Stream<Null> get onChangeCursor => _onChangeCursor.stream;
   
-  final _onChangeSelection = new StreamController.broadcast();
-  Stream get onChangeSelection => _onChangeSelection.stream;
+  final _onChangeSelection = new StreamController<Null>.broadcast();
+  Stream<Null> get onChangeSelection => _onChangeSelection.stream;
   
   Range get range => _range(call('getRange'));
   
@@ -23,8 +23,8 @@ class _SelectionProxy extends _HasProxy implements Selection {
       [(session as _EditSessionProxy)._proxy]));
   
   _SelectionProxy._(js.JsObject proxy) : super(proxy) {
-    call('on', ['changeCursor', (_,__) => _onChangeCursor.add(this)]);
-    call('on', ['changeSelection', (_,__) => _onChangeSelection.add(this)]);
+    call('on', ['changeCursor', (_,__) => _onChangeCursor.add(null)]);
+    call('on', ['changeSelection', (_,__) => _onChangeSelection.add(null)]);
   }
   
   void _onDispose() {

@@ -2,14 +2,14 @@ part of ace.proxy;
 
 class _EditorProxy extends _HasProxy implements Editor {
   
-  final _onBlur = new StreamController.broadcast();
-  Stream get onBlur => _onBlur.stream;
+  final _onBlur = new StreamController<Null>.broadcast();
+  Stream<Null> get onBlur => _onBlur.stream;
 
   final _onChange = new StreamController<Delta>.broadcast();
   Stream<Delta> get onChange => _onChange.stream;
   
-  final _onChangeSelection = new StreamController.broadcast();
-  Stream get onChangeSelection => _onChangeSelection.stream;
+  final _onChangeSelection = new StreamController<Null>.broadcast();
+  Stream<Null> get onChangeSelection => _onChangeSelection.stream;
   
   final _onChangeSession = 
       new StreamController<EditSessionChangeEvent>.broadcast();
@@ -19,8 +19,8 @@ class _EditorProxy extends _HasProxy implements Editor {
   final _onCopy = new StreamController<String>.broadcast();
   Stream<String> get onCopy => _onCopy.stream;
   
-  final _onFocus = new StreamController.broadcast();
-  Stream get onFocus => _onFocus.stream;
+  final _onFocus = new StreamController<Null>.broadcast();
+  Stream<Null> get onFocus => _onFocus.stream;
   
   final _onPaste = new StreamController<String>.broadcast();
   Stream<String> get onPaste => _onPaste.stream;  
@@ -120,16 +120,16 @@ class _EditorProxy extends _HasProxy implements Editor {
   String get value => call('getValue');
     
   _EditorProxy._(js.JsObject proxy) : super(proxy) {
-    call('on', ['blur', (_,__) => _onBlur.add(this)]);
+    call('on', ['blur', (_,__) => _onBlur.add(null)]);
     call('on', ['change', (e,__) => _onChange.add(_delta(e['data']))]);
-    call('on', ['changeSelection', (_,__) => _onChangeSelection.add(this)]);
+    call('on', ['changeSelection', (_,__) => _onChangeSelection.add(null)]);
     call('on', ['changeSession', (e,__) {
       _onChangeSession.add(new EditSessionChangeEvent(
           new _EditSessionProxy._(e['oldSession']),
           new _EditSessionProxy._(e['session']))); 
     }]);
     call('on', ['copy', (e,__) => _onCopy.add(e)]);
-    call('on', ['focus', (_,__) => _onFocus.add(this)]);
+    call('on', ['focus', (_,__) => _onFocus.add(null)]);
     call('on', ['paste', (e,__) => _onPaste.add(e)]);
   }
   

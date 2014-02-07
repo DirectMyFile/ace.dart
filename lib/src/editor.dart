@@ -9,13 +9,13 @@ part of ace;
 abstract class Editor extends Disposable implements OptionsProvider {
   
   /// Fired whenever this editor has been blurred.
-  Stream get onBlur;
+  Stream<Null> get onBlur;
   
   /// Fired whenever the [session.document] changes.
   Stream<Delta> get onChange;
   
   /// Fired whenever the [selection] changes.
-  Stream get onChangeSelection;
+  Stream<Null> get onChangeSelection;
   
   /// Fired whenever the [session] changes.
   Stream<EditSessionChangeEvent> get onChangeSession;
@@ -24,7 +24,7 @@ abstract class Editor extends Disposable implements OptionsProvider {
   Stream<String> get onCopy;
   
   /// Fired whenever this editor comes into focus.
-  Stream get onFocus;
+  Stream<Null> get onFocus;
   
   /// Fired whenever text is pasted.
   Stream<String> get onPaste;  

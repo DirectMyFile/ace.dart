@@ -67,7 +67,7 @@ void testCallMethodOnDisposedEditorThrows() {
 void testBlur() {
   editor.focus();
   editor.onBlur.listen(expectAsync1((e) {
-    expect(e, equals(editor));
+    expect(e, isNull);
     expect(editor.isFocused, isFalse);
   }));    
   editor.blur();
@@ -77,7 +77,7 @@ void testBlur() {
 void testFocus() {
   editor.blur();
   editor.onFocus.listen(expectAsync1((e) {
-    expect(e, equals(editor));
+    expect(e, isNull);
     expect(editor.isFocused, isTrue);
   }));
   editor.focus();

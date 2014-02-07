@@ -20,10 +20,10 @@ abstract class Selection extends Disposable {
   bool get isMultiLine;  
   
   /// Fired whenever the [cursor] position changes.
-  Stream get onChangeCursor;
+  Stream<Null> get onChangeCursor;
   
   /// Fired whenever the cursor selection changes.
-  Stream get onChangeSelection;
+  Stream<Null> get onChangeSelection;
   
   /// The current [Range] of the selected text.
   Range get range;

@@ -14,23 +14,23 @@ abstract class EditSession extends Disposable
   Stream<Delta> get onChange;
   
   /// Fired whenever one of the [annotations] changes.
-  Stream get onChangeAnnotation;
+  Stream<Null> get onChangeAnnotation;
   
   /// Fired whenever a back marker changes.
-  Stream get onChangeBackMarker;
+  Stream<Null> get onChangeBackMarker;
   
   /// Fired whenever the gutter changes, either by setting or removing
   /// breakpoints, or when the gutter decorations change.
-  Stream get onChangeBreakpoint;
+  Stream<Null> get onChangeBreakpoint;
   
   /// Fired whenever a code fold is added, removed or updated.
   Stream<FoldChangeEvent> get onChangeFold;
   
   /// Fired whenever a front marker changes.
-  Stream get onChangeFrontMarker;
+  Stream<Null> get onChangeFrontMarker;
   
   /// Fired whenever the [overwrite] changes.
-  Stream get onChangeOverwrite;
+  Stream<Null> get onChangeOverwrite;
   
   /// Fired whenever the [scrollLeft] changes.
   Stream<int> get onChangeScrollLeft;
@@ -39,13 +39,13 @@ abstract class EditSession extends Disposable
   Stream<int> get onChangeScrollTop;
   
   /// Fired whenever the [tabSize] changes.
-  Stream get onChangeTabSize;
+  Stream<Null> get onChangeTabSize;
   
   /// Fired whenever the [wrapLimit] changes.
-  Stream get onChangeWrapLimit;
+  Stream<Null> get onChangeWrapLimit;
   
   /// Fired whenever the [useWrapMode] changes.
-  Stream get onChangeWrapMode;
+  Stream<Null> get onChangeWrapMode;
 
   /// The current [Document] associated with this session.
   Document document;

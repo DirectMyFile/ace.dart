@@ -5,23 +5,23 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   final _onChange = new StreamController<Delta>.broadcast();
   Stream<Delta> get onChange => _onChange.stream;
   
-  final _onChangeAnnotation = new StreamController.broadcast();
-  Stream get onChangeAnnotation => _onChangeAnnotation.stream;
+  final _onChangeAnnotation = new StreamController<Null>.broadcast();
+  Stream<Null> get onChangeAnnotation => _onChangeAnnotation.stream;
   
-  final _onChangeBackMarker = new StreamController.broadcast();
-  Stream get onChangeBackMarker => _onChangeBackMarker.stream;
+  final _onChangeBackMarker = new StreamController<Null>.broadcast();
+  Stream<Null> get onChangeBackMarker => _onChangeBackMarker.stream;
   
-  final _onChangeBreakpoint = new StreamController.broadcast();
-  Stream get onChangeBreakpoint => _onChangeBreakpoint.stream;
+  final _onChangeBreakpoint = new StreamController<Null>.broadcast();
+  Stream<Null> get onChangeBreakpoint => _onChangeBreakpoint.stream;
   
   final _onChangeFold = new StreamController<FoldChangeEvent>.broadcast();
   Stream<FoldChangeEvent> get onChangeFold => _onChangeFold.stream;
   
-  final _onChangeFrontMarker = new StreamController.broadcast();
-  Stream get onChangeFrontMarker => _onChangeFrontMarker.stream;
+  final _onChangeFrontMarker = new StreamController<Null>.broadcast();
+  Stream<Null> get onChangeFrontMarker => _onChangeFrontMarker.stream;
   
-  final _onChangeOverwrite = new StreamController.broadcast();
-  Stream get onChangeOverwrite => _onChangeOverwrite.stream;
+  final _onChangeOverwrite = new StreamController<Null>.broadcast();
+  Stream<Null> get onChangeOverwrite => _onChangeOverwrite.stream;
   
   final _onChangeScrollLeft = new StreamController<int>.broadcast();
   Stream<int> get onChangeScrollLeft => _onChangeScrollLeft.stream;
@@ -29,14 +29,14 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   final _onChangeScrollTop = new StreamController<int>.broadcast();
   Stream<int> get onChangeScrollTop => _onChangeScrollTop.stream;
   
-  final _onChangeTabSize = new StreamController.broadcast();
-  Stream get onChangeTabSize => _onChangeTabSize.stream;
+  final _onChangeTabSize = new StreamController<Null>.broadcast();
+  Stream<Null> get onChangeTabSize => _onChangeTabSize.stream;
   
-  final _onChangeWrapLimit = new StreamController.broadcast();
-  Stream get onChangeWrapLimit => _onChangeWrapLimit.stream;
+  final _onChangeWrapLimit = new StreamController<Null>.broadcast();
+  Stream<Null> get onChangeWrapLimit => _onChangeWrapLimit.stream;
   
-  final _onChangeWrapMode = new StreamController.broadcast();
-  Stream get onChangeWrapMode => _onChangeWrapMode.stream;
+  final _onChangeWrapMode = new StreamController<Null>.broadcast();
+  Stream<Null> get onChangeWrapMode => _onChangeWrapMode.stream;
   
   Document
     get document => new _DocumentProxy._(call('getDocument'));
@@ -122,22 +122,22 @@ class _EditSessionProxy extends _HasProxy implements EditSession {
   
   _EditSessionProxy._(js.JsObject proxy) : super(proxy) {
     call('on', ['change', (e,__) => _onChange.add(_delta(e['data']))]);
-    call('on', ['changeAnnotation', (_,__) => _onChangeAnnotation.add(this)]);
-    call('on', ['changeBackMarker', (_,__) => _onChangeBackMarker.add(this)]);
-    call('on', ['changeBreakpoint', (_,__) => _onChangeBreakpoint.add(this)]);
+    call('on', ['changeAnnotation', (_,__) => _onChangeAnnotation.add(null)]);
+    call('on', ['changeBackMarker', (_,__) => _onChangeBackMarker.add(null)]);
+    call('on', ['changeBreakpoint', (_,__) => _onChangeBreakpoint.add(null)]);
     call('on', ['changeFold', (e,__) {
       _onChangeFold.add(new FoldChangeEvent(
           new _FoldProxy._(e['data']), e['action']));
     }]);
-    call('on', ['changeFrontMarker', (_,__) => _onChangeFrontMarker.add(this)]);
-    call('on', ['changeOverwrite', (_,__) => _onChangeOverwrite.add(this)]);
+    call('on', ['changeFrontMarker', (_,__) => _onChangeFrontMarker.add(null)]);
+    call('on', ['changeOverwrite', (_,__) => _onChangeOverwrite.add(null)]);
     call('on', ['changeScrollLeft', 
                 (e,__) => _onChangeScrollLeft.add(e.toInt())]);
     call('on', ['changeScrollTop', 
                 (e,__) => _onChangeScrollTop.add(e.toInt())]);
-    call('on', ['changeTabSize', (_,__) => _onChangeTabSize.add(this)]);
-    call('on', ['changeWrapLimit', (_,__) => _onChangeWrapLimit.add(this)]);
-    call('on', ['changeWrapMode', (_,__) => _onChangeWrapMode.add(this)]);
+    call('on', ['changeTabSize', (_,__) => _onChangeTabSize.add(null)]);
+    call('on', ['changeWrapLimit', (_,__) => _onChangeWrapLimit.add(null)]);
+    call('on', ['changeWrapMode', (_,__) => _onChangeWrapMode.add(null)]);
   }
   
   void _onDispose() {
