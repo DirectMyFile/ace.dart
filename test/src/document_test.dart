@@ -71,7 +71,7 @@ void testIndexToPosition() {
 
 @Test()
 void testInsert() {
-  document.onChange.listen(expectAsync1((Delta delta) {
+  document.onChange.listen(expectAsync((Delta delta) {
     expect(delta, const isInstanceOf<InsertTextDelta>());
     expect(delta.range, equals(new Range(0, 0, 0, 5)));
     InsertTextDelta insertTextDelta = delta;
@@ -83,7 +83,7 @@ void testInsert() {
 
 @Test()
 void testInsertInLine() {
-  document.onChange.listen(expectAsync1((Delta delta) {
+  document.onChange.listen(expectAsync((Delta delta) {
     expect(delta, const isInstanceOf<InsertTextDelta>());
     expect(delta.range, equals(new Range(0, 0, 0, 5)));
     InsertTextDelta insertTextDelta = delta;
@@ -95,7 +95,7 @@ void testInsertInLine() {
 
 @Test()
 void testInsertLines() {
-  document.onChange.listen(expectAsync1((Delta delta) {
+  document.onChange.listen(expectAsync((Delta delta) {
     expect(delta, const isInstanceOf<InsertLinesDelta>());
     expect(delta.range, equals(new Range(0, 0, 2, 0)));
     InsertLinesDelta insertLinesDelta = delta;
@@ -108,7 +108,7 @@ void testInsertLines() {
 
 @Test()
 void testInsertNewLine() {
-  document.onChange.listen(expectAsync1((Delta delta) {
+  document.onChange.listen(expectAsync((Delta delta) {
     expect(delta, const isInstanceOf<InsertTextDelta>());
     expect(delta.range, equals(new Range(0, 0, 1, 0)));
     InsertTextDelta insertTextDelta = delta;
@@ -155,7 +155,7 @@ void testPositionToIndex() {
 
 @Test()
 void testRemove() {
-  document.onChange.listen(expectAsync1((Delta delta) {
+  document.onChange.listen(expectAsync((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());
     expect(delta.range, equals(new Range(0, 0, 0, 10)));
     RemoveTextDelta removeTextDelta = delta;
@@ -167,7 +167,7 @@ void testRemove() {
 
 @Test()
 void testRemoveInLine() {
-  document.onChange.listen(expectAsync1((Delta delta) {
+  document.onChange.listen(expectAsync((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());
     expect(delta.range, equals(new Range(0, 10, 0, 20)));
     RemoveTextDelta removeTextDelta = delta;
@@ -179,7 +179,7 @@ void testRemoveInLine() {
 
 @Test()
 void testRemoveLines() {
-  document.onChange.listen(expectAsync1((Delta delta) {
+  document.onChange.listen(expectAsync((Delta delta) {
     expect(delta, const isInstanceOf<RemoveLinesDelta>());
     expect(delta.range, equals(new Range(2, 0, 4, 0)));
     RemoveLinesDelta removeLinesDelta = delta;
@@ -194,7 +194,7 @@ void testRemoveLines() {
 
 @Test()
 void testRemoveNewLine() {
-  document.onChange.listen(expectAsync1((Delta delta) {
+  document.onChange.listen(expectAsync((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());
     expect(delta.range, equals(new Range(3, sampleTextLine3.length, 4, 0)));
     RemoveTextDelta removeTextDelta = delta;
@@ -206,7 +206,7 @@ void testRemoveNewLine() {
 @Test()
 void testReplace() {
   int onChangeCount = 0;
-  document.onChange.listen(expectAsync1((Delta delta) {    
+  document.onChange.listen(expectAsync((Delta delta) {    
     switch (onChangeCount++) {
       case 0:
         expect(delta, const isInstanceOf<RemoveTextDelta>());
@@ -237,7 +237,7 @@ void testApplyDeltas() {
     expect(newDocument.getAllLines(), equals(document.getAllLines()));
   };    
   int observedDeltaCount = 0;
-  document.onChange.listen(expectAsync1((Delta delta) { 
+  document.onChange.listen(expectAsync((Delta delta) { 
       observedDeltas.add(delta);
       if (++observedDeltaCount == 3) applyToNewDocument();
   }, count: 3));  
@@ -250,7 +250,7 @@ void testApplyDeltas() {
 void testRevertDeltas() {
   final deltas = new List<Delta>();
   int observedDeltaCount = 0;
-  document.onChange.listen(expectAsync1((Delta delta) {    
+  document.onChange.listen(expectAsync((Delta delta) {    
     if (++observedDeltaCount <= 3) deltas.add(delta);
     if (observedDeltaCount == 3) document.revertDeltas(deltas);
     if (observedDeltaCount == 6) expect(document.value, equals(sampleText));

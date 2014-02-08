@@ -17,7 +17,7 @@ setup() {
 void testCreateThemeNamed() {
   final verifyTheme = (String themeName) {
     final theme = new Theme.named(themeName);
-    theme.onLoad.then(expectAsync1((_) {
+    theme.onLoad.then(expectAsync((_) {
       expect(theme.isLoaded, isTrue);
     }));
     expect(theme, isNotNull);

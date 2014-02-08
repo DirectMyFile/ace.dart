@@ -66,7 +66,7 @@ void testCallMethodOnDisposedEditorThrows() {
 @Test()
 void testBlur() {
   editor.focus();
-  editor.onBlur.listen(expectAsync1((e) {
+  editor.onBlur.listen(expectAsync((e) {
     expect(e, isNull);
     expect(editor.isFocused, isFalse);
   }));    
@@ -76,7 +76,7 @@ void testBlur() {
 @Test()
 void testFocus() {
   editor.blur();
-  editor.onFocus.listen(expectAsync1((e) {
+  editor.onFocus.listen(expectAsync((e) {
     expect(e, isNull);
     expect(editor.isFocused, isTrue);
   }));
@@ -137,7 +137,7 @@ void testFirstVisibleRow() {
 @Test()
 void testInsert() {
   expect(editor.cursorPosition, equals(const Point(0, 0)));
-  editor.onChange.listen(expectAsync1((Delta delta) {
+  editor.onChange.listen(expectAsync((Delta delta) {
     expect(delta, const isInstanceOf<InsertTextDelta>());
     expect(delta.range, equals(new Range(0, 0, 0, 5)));
     InsertTextDelta insertTextDelta = delta;
@@ -249,7 +249,7 @@ void testNavigateWordRight() {
 @Test()
 void testRemoveToLineEnd() {
   expect(editor.cursorPosition, equals(const Point(0, 0)));
-  editor.onChange.listen(expectAsync1((Delta delta) {
+  editor.onChange.listen(expectAsync((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());
     expect(delta.range, equals(new Range(0, 0, 0, 73)));
     RemoveTextDelta removeTextDelta = delta;    
@@ -262,7 +262,7 @@ void testRemoveToLineEnd() {
 @Test()
 void testRemoveToLineStart() {
   editor.navigateLineEnd();
-  editor.onChange.listen(expectAsync1((Delta delta) {
+  editor.onChange.listen(expectAsync((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());
     expect(delta.range, equals(new Range(0, 0, 0, 73)));
     RemoveTextDelta removeTextDelta = delta;    
@@ -276,7 +276,7 @@ void testRemoveToLineStart() {
 void testRemoveWordLeft() {
   editor.setValue(sampleText, 1);
   expect(editor.cursorPosition, equals(const Point(5, 76)));  
-  editor.onChange.listen(expectAsync1((Delta delta) {
+  editor.onChange.listen(expectAsync((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());
     expect(delta.range, equals(new Range(5, 75, 5, 76)));
     RemoveTextDelta removeTextDelta = delta;
@@ -289,7 +289,7 @@ void testRemoveWordLeft() {
 @Test()
 void testRemoveWordRight() {
   expect(editor.cursorPosition, equals(const Point(0, 0)));
-  editor.onChange.listen(expectAsync1((Delta delta) {
+  editor.onChange.listen(expectAsync((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());
     expect(delta.range, equals(new Range(0, 0, 0, 5)));
     RemoveTextDelta removeTextDelta = delta;
@@ -368,7 +368,7 @@ void testHighlightSelectedWord() {
 @Test()
 void testSetOverwrite() {
   final bool initialValue = editor.overwrite;
-  editor.session.onChangeOverwrite.listen(expectAsync1((_) {
+  editor.session.onChangeOverwrite.listen(expectAsync((_) {
     expect(editor.overwrite, isNot(initialValue));
   })); 
   editor.overwrite = !initialValue;
@@ -377,7 +377,7 @@ void testSetOverwrite() {
 @Test()
 void testToggleOverwrite() {
   final bool initialValue = editor.overwrite;
-  editor.session.onChangeOverwrite.listen(expectAsync1((_) {
+  editor.session.onChangeOverwrite.listen(expectAsync((_) {
     expect(editor.overwrite, isNot(initialValue));
   })); 
   editor.toggleOverwrite();
@@ -388,7 +388,7 @@ void testSetSession() {
   final EditSession initialSession = editor.session;
   final EditSession newSession = createEditSession('snarf', 
       new Mode('ace/mode/text'));
-  editor.onChangeSession.listen(expectAsync1((EditSessionChangeEvent ev) {
+  editor.onChangeSession.listen(expectAsync((EditSessionChangeEvent ev) {
     expect(ev.oldSession.value, equals(initialSession.value));
     expect(ev.newSession.value, equals(newSession.value));
   })); 
@@ -402,7 +402,7 @@ void testGetCopyText() {
   final end = new Point(0, sampleTextLine0.length);
   expect(editor.cursorPosition, equals(end));
   expect(editor.selectionRange, equals(new Range.fromPoints(start, end)));  
-  editor.onCopy.listen(expectAsync1((String copyText) {
+  editor.onCopy.listen(expectAsync((String copyText) {
     expect(copyText, equals(sampleTextLine0));
   }));
   final String copyText = editor.copyText;
@@ -442,7 +442,7 @@ void testSetReadOnly() {
 
 @Test()
 void testUndoRedo() {
-  final verify = expectAsync0(() {
+  final verify = expectAsync(() {
     expect(editor.session.undoManager.hasUndo, isTrue);
     editor.undo();  
     expect(editor.session.undoManager.hasUndo, isFalse);
@@ -559,7 +559,7 @@ void testGetKeyBinding() {
 @Test()
 void testSetKeyboardHandlerDefault() {
   editor.keyboardHandler = new KeyboardHandler.named(KeyboardHandler.DEFAULT)
-  ..onLoad.then(expectAsync1((_) {
+  ..onLoad.then(expectAsync((_) {
     expect(editor.keyboardHandler.name, equals(KeyboardHandler.DEFAULT));
   }));
 }
@@ -567,7 +567,7 @@ void testSetKeyboardHandlerDefault() {
 @Test()
 void testSetKeyboardHandlerEmacs() {
   editor.keyboardHandler = new KeyboardHandler.named(KeyboardHandler.EMACS)
-  ..onLoad.then(expectAsync1((_) {
+  ..onLoad.then(expectAsync((_) {
     expect(editor.keyboardHandler.name, equals(KeyboardHandler.EMACS));
   }));  
 }
@@ -575,7 +575,7 @@ void testSetKeyboardHandlerEmacs() {
 @Test()
 void testSetKeyboardHandlerVim() {
   editor.keyboardHandler = new KeyboardHandler.named(KeyboardHandler.VIM)
-  ..onLoad.then(expectAsync1((_) {
+  ..onLoad.then(expectAsync((_) {
     expect(editor.keyboardHandler.name, equals(KeyboardHandler.VIM));
   }));  
 }
@@ -584,7 +584,7 @@ void testSetKeyboardHandlerVim() {
 void testSetKeyBindingKeyboardHandlerDefault() {
   var handler = new KeyboardHandler.named(KeyboardHandler.DEFAULT);
   editor.keyBinding.keyboardHandler = handler;
-  handler.onLoad.then(expectAsync1((_) {
+  handler.onLoad.then(expectAsync((_) {
     expect(editor.keyBinding.keyboardHandler.name, 
         equals(KeyboardHandler.DEFAULT));
   }));
@@ -594,7 +594,7 @@ void testSetKeyBindingKeyboardHandlerDefault() {
 void testSetKeyBindingKeyboardHandlerEmacs() {
   var handler = new KeyboardHandler.named(KeyboardHandler.EMACS);
   editor.keyBinding.keyboardHandler = handler;
-  handler.onLoad.then(expectAsync1((_) {
+  handler.onLoad.then(expectAsync((_) {
     expect(editor.keyBinding.keyboardHandler.name, 
         equals(KeyboardHandler.EMACS));
   }));
@@ -604,7 +604,7 @@ void testSetKeyBindingKeyboardHandlerEmacs() {
 void testSetKeyBindingKeyboardHandlerVim() {
   var handler = new KeyboardHandler.named(KeyboardHandler.VIM);
   editor.keyBinding.keyboardHandler = handler;
-  handler.onLoad.then(expectAsync1((_) {
+  handler.onLoad.then(expectAsync((_) {
     expect(editor.keyBinding.keyboardHandler.name, equals(KeyboardHandler.VIM));
   }));
 }

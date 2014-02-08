@@ -33,7 +33,7 @@ void testCreateEditSession() {
 @Test()
 void testCreateEditSessionModeIsLoaded() {  
   final mode = new Mode.named(Mode.DART);
-  mode.onLoad.then(expectAsync1((_) {
+  mode.onLoad.then(expectAsync((_) {
     session = createEditSession(sampleText, mode);
     expect(session, isNotNull); 
     expect(session.value, equals(sampleText));
@@ -96,7 +96,7 @@ void testValue() {
 
 @Test()
 void testSetTabSize() {
-  session.onChangeTabSize.listen(expectAsync1((_) {    
+  session.onChangeTabSize.listen(expectAsync((_) {    
     expect(session.tabSize, equals(7));    
   }));
   session.tabSize = 7;
@@ -146,7 +146,7 @@ void testUseWrapMode() {
 
 @Test()
 void testSetWrapLimit() {
-  session.onChangeWrapMode.listen(expectAsync1((_) {  
+  session.onChangeWrapMode.listen(expectAsync((_) {  
     final wrapLimitRange = session.getWrapLimitRange();
     expect(wrapLimitRange.min, equals(42));
     expect(wrapLimitRange.max, equals(42));
@@ -156,7 +156,7 @@ void testSetWrapLimit() {
 
 @Test()
 void testSetWrapLimitRange() {
-  session.onChangeWrapMode.listen(expectAsync1((_) {    
+  session.onChangeWrapMode.listen(expectAsync((_) {    
     final wrapLimitRange = session.getWrapLimitRange();
     expect(wrapLimitRange.min, equals(63));
     expect(wrapLimitRange.max, equals(65));
@@ -166,7 +166,7 @@ void testSetWrapLimitRange() {
 
 @Test()
 void testSetWrapLimitRangeMin() {
-  session.onChangeWrapMode.listen(expectAsync1((_) { 
+  session.onChangeWrapMode.listen(expectAsync((_) { 
     final wrapLimitRange = session.getWrapLimitRange();
     expect(wrapLimitRange.min, equals(63));
     expect(wrapLimitRange.max, equals(null));
@@ -176,7 +176,7 @@ void testSetWrapLimitRangeMin() {
 
 @Test()
 void testSetWrapLimitRangeMax() {
-  session.onChangeWrapMode.listen(expectAsync1((_) {    
+  session.onChangeWrapMode.listen(expectAsync((_) {    
     final wrapLimitRange = session.getWrapLimitRange();
     expect(wrapLimitRange.min, equals(null));
     expect(wrapLimitRange.max, equals(65));
@@ -188,7 +188,7 @@ void testSetWrapLimitRangeMax() {
 void testAdjustWrapLimit() {
   session.useWrapMode = true;
   session.setWrapLimitRange(min: 63, max: 65);  
-  session.onChangeWrapLimit.listen(expectAsync1((_) {    
+  session.onChangeWrapLimit.listen(expectAsync((_) {    
     expect(session.wrapLimit, equals(64));
   }));  
   expect(session.adjustWrapLimit(64, 80), isTrue);
@@ -197,7 +197,7 @@ void testAdjustWrapLimit() {
 
 @Test()
 void testSetScrollLeft() {
-  session.onChangeScrollLeft.listen(expectAsync1((int scrollLeft) {
+  session.onChangeScrollLeft.listen(expectAsync((int scrollLeft) {
     expect(scrollLeft, equals(13));
     expect(session.scrollLeft, equals(13));
   })); 
@@ -206,7 +206,7 @@ void testSetScrollLeft() {
 
 @Test()
 void testSetScrollTop() {
-  session.onChangeScrollTop.listen(expectAsync1((int scrollTop) {
+  session.onChangeScrollTop.listen(expectAsync((int scrollTop) {
     expect(scrollTop, equals(42));
     expect(session.scrollTop, equals(42));
   })); 
@@ -216,7 +216,7 @@ void testSetScrollTop() {
 @Test()
 void testSetOverwrite() {
   final bool initialValue = session.overwrite;
-  session.onChangeOverwrite.listen(expectAsync1((_) {
+  session.onChangeOverwrite.listen(expectAsync((_) {
     expect(session.overwrite, isNot(initialValue));
   })); 
   session.overwrite = !initialValue;
@@ -225,7 +225,7 @@ void testSetOverwrite() {
 @Test()
 void testToggleOverwrite() {
   final bool initialValue = session.overwrite;
-  session.onChangeOverwrite.listen(expectAsync1((_) {
+  session.onChangeOverwrite.listen(expectAsync((_) {
     expect(session.overwrite, isNot(initialValue));
   })); 
   session.toggleOverwrite();
@@ -253,7 +253,7 @@ void testSetUndoManager() {
   session.value = 'snarf';    
   session.insert(const Point(0, 0), 'ahoy');
   expect(undoManager.mock.calls(#reset), once);  
-  final verify = expectAsync0(() {
+  final verify = expectAsync(() {
     expect(undoManager.mock.calls(#onExecuted), once);
   });
   // The UndoManager is notified internally after some delay; there does not 
@@ -315,7 +315,7 @@ void testIndentRows() {
 
 @Test()
 void testInsert() {
-  session.onChange.listen(expectAsync1((Delta delta) {
+  session.onChange.listen(expectAsync((Delta delta) {
     expect(delta, const isInstanceOf<InsertTextDelta>());
     expect(delta.range, equals(new Range(0, 0, 0, 5)));
     InsertTextDelta insertTextDelta = delta;
@@ -391,7 +391,7 @@ void testDuplicateLines() {
 
 @Test()
 void testRemove() {
-  session.onChange.listen(expectAsync1((Delta delta) {
+  session.onChange.listen(expectAsync((Delta delta) {
     expect(delta, const isInstanceOf<RemoveTextDelta>());
     expect(delta.range, equals(new Range(0, 0, 0, 10)));
     RemoveTextDelta removeTextDelta = delta;
@@ -404,7 +404,7 @@ void testRemove() {
 @Test()
 void testReplace() {
   int onChangeCount = 0;
-  session.onChange.listen(expectAsync1((Delta delta) {    
+  session.onChange.listen(expectAsync((Delta delta) {    
     switch (onChangeCount++) {
       case 0:
         expect(delta, const isInstanceOf<RemoveTextDelta>());
@@ -443,7 +443,7 @@ void testGetAnnotations() {
 
 @Test()
 void testSetAnnotations() {
-  session.onChangeAnnotation.listen(expectAsync1((_) {
+  session.onChangeAnnotation.listen(expectAsync((_) {
     final annotations = session.getAnnotations();
     expect(annotations.length, equals(2));
     expect(annotations[0], equals(const Annotation(
@@ -470,7 +470,7 @@ void testClearAnnotations() {
   expect(annotations.length, equals(1));
   expect(annotations[0], equals(
     const Annotation(row: 42, text: 'foo')));
-  session.onChangeAnnotation.listen(expectAsync1((_) {
+  session.onChangeAnnotation.listen(expectAsync((_) {
     expect(session.getAnnotations(), isEmpty);
   }));
   session.clearAnnotations();
@@ -483,7 +483,7 @@ void testGetBreakpoints() {
 
 @Test()
 void testSetBreakpoint() {
-  session.onChangeBreakpoint.listen(expectAsync1((_) {
+  session.onChangeBreakpoint.listen(expectAsync((_) {
     expect(session.getBreakpoints()[2], equals('ace_breakpoint'));
   }));  
   session.setBreakpoint(2);
@@ -491,7 +491,7 @@ void testSetBreakpoint() {
 
 @Test()
 void testSetBreakpoints() {
-  session.onChangeBreakpoint.listen(expectAsync1((_) {
+  session.onChangeBreakpoint.listen(expectAsync((_) {
     final breakpoints = session.getBreakpoints();
     expect(breakpoints[2], isNotNull);
     expect(breakpoints[3], isNotNull);
@@ -502,7 +502,7 @@ void testSetBreakpoints() {
 
 @Test()
 void testSetBreakpointWithClassName() {
-  session.onChangeBreakpoint.listen(expectAsync1((_) {
+  session.onChangeBreakpoint.listen(expectAsync((_) {
     expect(session.getBreakpoints()[4], equals('fancy_breakpoint'));
   }));  
   session.setBreakpoint(4, className: 'fancy_breakpoint');
@@ -512,7 +512,7 @@ void testSetBreakpointWithClassName() {
 void testClearBreakpoint() {
   session.setBreakpoint(3);
   expect(session.getBreakpoints()[3], isNotNull);
-  session.onChangeBreakpoint.listen(expectAsync1((_) {
+  session.onChangeBreakpoint.listen(expectAsync((_) {
     expect(session.getBreakpoints()[3], isNull);
   }));
   session.clearBreakpoint(3);
@@ -523,7 +523,7 @@ void testClearBreakpoints() {
   session.setBreakpoints([1, 4]);
   expect(session.getBreakpoints()[1], isNotNull);
   expect(session.getBreakpoints()[4], isNotNull);
-  session.onChangeBreakpoint.listen(expectAsync1((_) {
+  session.onChangeBreakpoint.listen(expectAsync((_) {
     expect(session.getBreakpoints(), isEmpty);
   }));
   session.clearBreakpoints();
@@ -552,7 +552,7 @@ void testAddFold() {
   Fold f = new Fold(
       new Range(0, 0, 0, 5),
       new Placeholder(session, 2, const Point(0, 1), [], 'snarf', 'foo'));
-  session.onChangeFold.listen(expectAsync1((FoldChangeEvent ev) {
+  session.onChangeFold.listen(expectAsync((FoldChangeEvent ev) {
     expect(ev.action, FoldChangeEvent.ADD);
     _verifyFold(ev.data, f);
   }));
@@ -570,7 +570,7 @@ void testRemoveFold() {
       new Placeholder(session, 7, const Point(1, 2), [], 'snarf', 'foo'));
   session.addFold(f);
   expect(session.getAllFolds().length, 1);
-  session.onChangeFold.listen(expectAsync1((FoldChangeEvent ev) {
+  session.onChangeFold.listen(expectAsync((FoldChangeEvent ev) {
     expect(ev.action, FoldChangeEvent.REMOVE);
     _verifyFold(ev.data, f);
   }));
@@ -676,4 +676,3 @@ void testSetOptions() {
   expect(session.tabSize, equals(5));
   expect(session.mode.path, equals(hamlMode.path));
 }
-

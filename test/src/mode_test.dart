@@ -23,7 +23,7 @@ const _MODE_ID_BUGS = const [ Mode.APACHE_CONF, Mode.DJANGO, Mode.GLSL,
 void testCreateModeNamed() {
   final verifyMode = (String modeName) {
     final mode = new Mode.named(modeName);
-    mode.onLoad.then(expectAsync1((_) {
+    mode.onLoad.then(expectAsync((_) {
       expect(mode.isLoaded, isTrue);
       final session = createEditSession(sampleText, mode);
       expect(session, isNotNull); 
