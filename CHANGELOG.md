@@ -1,6 +1,9 @@
 # Ace.dart Changes
 
-## 0.3.3-dev+1.8.2014
+## 0.3.3+1.8.2014
+
+- Changed the data carried by a number of 'empty' streams from `this` to `null`
+for performance reasons.
 
 ## 0.3.2+1.8.2014
 
