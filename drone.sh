@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Install Dartium content_shell
 $DART_SDK/../chromium/download_contentshell.sh
 unzip content_shell-linux-x64-release.zip
