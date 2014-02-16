@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # Install Dartium content_shell
 $DART_SDK/../chromium/download_contentshell.sh
