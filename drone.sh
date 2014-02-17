@@ -9,14 +9,14 @@ mv drt*/* ./content_shell
 # Get package dependencies
 pub get
 
-# Build test application javascript
-pub build test
-
 # Start virtual frame buffer
 sudo start xvfb
 
 # Run tests as dart w/ content_shell
 ./content_shell/content_shell --dump-render-tree test/ace_test.html
+
+# Build test application javascript
+pub build test
 
 # TODO: is there a Chromium content_shell we can run here instead of Dartium?
 # Run tests as javascript w/ content_shell
