@@ -6,14 +6,21 @@ unzip content_shell-linux-x64-release.zip
 mkdir content_shell
 mv drt*/* ./content_shell
 
-# Pub get dependencies
+# Get package dependencies
 pub get
+
+# Build test application javascript
+pub build test
 
 # Start virtual frame buffer
 sudo start xvfb
 
-# Run tests in Dartium content_shell
+# Run tests as dart w/ content_shell
 ./content_shell/content_shell --dump-render-tree test/ace_test.html
+
+# TODO: is there a Chromium content_shell we can run here instead of Dartium?
+# Run tests as javascript w/ content_shell
+./content_shell/content_shell --dump-render-tree build/test/ace_test.html
 
 # TODO: find a replacement for dartdoc ... you will be missed
 # Generate API docs and push to gh-pages
