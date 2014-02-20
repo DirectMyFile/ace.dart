@@ -1,7 +1,7 @@
 name: ace
 version: 0.3.4-dev+1.8.2014
 author: Ross Smith <dev@futureperfect.info>
-description: High performance code editor for the web.
+description: Dart bindings for the Ace code editor.
 homepage: https://github.com/rmsmith/ace.dart
 documentation: http://rmsmith.github.com/ace.dart/ace.html
 environment:
