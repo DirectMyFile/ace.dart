@@ -38,6 +38,9 @@ abstract class Editor extends Disposable implements OptionsProvider {
   /// The current mouse drag delay, in milliseconds.
   int dragDelay;
 
+  /// Whether to fade in/out the fold widgets on mouse hover.
+  bool fadeFoldWidgets;
+  
   /// The index of the first visible row.
   int get firstVisibleRow;
   
