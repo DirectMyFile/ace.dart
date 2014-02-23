@@ -336,6 +336,14 @@ void testDragDelay() {
 }
 
 @Test()
+void testFadeFoldWidgets() {
+  editor.fadeFoldWidgets = true;
+  expect(editor.fadeFoldWidgets, equals(true));
+  editor.fadeFoldWidgets = false;
+  expect(editor.fadeFoldWidgets, equals(false));
+}
+
+@Test()
 void testScrollSpeed() {
   editor.dragDelay = 7;
   expect(editor.dragDelay, equals(7));

@@ -33,6 +33,10 @@ class _EditorProxy extends _HasProxy implements Editor {
     get dragDelay => call('getDragDelay');
     set dragDelay(int dragDelay) => call('setDragDelay', [dragDelay]);
   
+  bool
+    get fadeFoldWidgets => call('getFadeFoldWidgets');
+    set fadeFoldWidgets(bool value) => call('setFadeFoldWidgets', [value]);
+  
   int get firstVisibleRow => call('getFirstVisibleRow');
   
   int
