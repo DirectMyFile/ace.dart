@@ -3,6 +3,7 @@
 ## 0.3.4-dev+1.8.2014
 
 - Added the `fadeFoldWidgets` getter / setter to `Editor`.
+- Added the `getLineRange` method to `Selection`.
 
 ## 0.3.3+1.8.2014
 
