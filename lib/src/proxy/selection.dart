@@ -32,6 +32,9 @@ class _SelectionProxy extends _HasProxy implements Selection {
     _onChangeSelection.close();
   }
   
+  Range getLineRange(int row, [bool excludeLastChar = false]) =>
+      _range(call('getLineRange', [row, excludeLastChar]));
+  
   void mergeOverlappingRanges() => call('mergeOverlappingRanges');
   
   void moveCursorBy(int rows, int columns) => 
