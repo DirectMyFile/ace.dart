@@ -33,7 +33,7 @@ abstract class Selection extends Disposable {
       implementation.createSelection(session);
   
   /// Return the [Range] for the given [row].
-  Range getLineRange(int row, [bool excludeLastChar = false]);
+  Range getLineRange(int row, {bool excludeLastChar: false});
   
   void mergeOverlappingRanges();
   

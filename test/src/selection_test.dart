@@ -37,7 +37,9 @@ void testDispose() {
 @Test()
 void testGetLineRange() {
   expect(selection.getLineRange(3), equals(new Range(3, 0, 4, 0)));
-  expect(selection.getLineRange(3, true), equals(new Range(3, 0, 3, 73)));
+  expect(
+      selection.getLineRange(3, excludeLastChar: true),
+      equals(new Range(3, 0, 3, 73)));
 }
 
 // Utility function for testing the various 'move*' methods.
