@@ -31,7 +31,10 @@ abstract class Selection extends Disposable {
   /// Creates a new [Selection] for the given [session].
   factory Selection(EditSession session) => 
       implementation.createSelection(session);
-      
+  
+  /// Return the [Range] for the given [row].
+  Range getLineRange(int row, {bool excludeLastChar: false});
+  
   void mergeOverlappingRanges();
   
   /// Moves the [cursor] position by the given number of [rows] and [columns]
