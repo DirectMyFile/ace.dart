@@ -1,7 +1,8 @@
 # Ace.dart Changes
 
-## 0.3.4-dev+1.8.2014
+## 0.3.4-dev+2.28.2014
 
+- Updated to ace-builds version 02.28.2014.
 - Added the `fadeFoldWidgets` getter / setter to `Editor`.
 - Added the `getLineRange` method to `Selection`.
 
