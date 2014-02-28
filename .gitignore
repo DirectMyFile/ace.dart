@@ -1,5 +1,6 @@
 pubspec.lock
 packages
 build/
+dartdoc-viewer/
 docs/
 *.dart.*js*
