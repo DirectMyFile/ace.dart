@@ -2,7 +2,7 @@
 
 [Dart language][dart] bindings for [Ace][ace].
 
-[![Build Status][status]][badge] | ~~[Dart API][api]~~ | [JavaScript API][ace-api]
+[![Build Status][status]][badge] | [Dart API][api] | [JavaScript API][ace-api]
 
 ## Ace.js
 
@@ -19,7 +19,7 @@ _Ace.js uses a BSD license as described in its own [LICENSE][ace-license] file._
 [ace-builds]: https://github.com/ajaxorg/ace-builds/
 [ace-license]: https://github.com/rmsmith/ace.dart/blob/master/lib/src/js/LICENSE
 [ace-readme]: https://github.com/rmsmith/ace.dart/blob/master/lib/src/js/README.md
-[api]: http://rmsmith.github.com/ace.dart/ace.html
+[api]: http://rmsmith.github.com/ace.dart/index.html#ace
 [badge]: https://drone.io/github.com/rmsmith/ace.dart/latest
 [dart]: http://www.dartlang.org/
 [license]: https://github.com/rmsmith/ace.dart/blob/master/LICENSE
