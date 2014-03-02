@@ -38,7 +38,7 @@ rm -r packages/
 mkdir packages
 cd dartdoc-viewer/client/out/web/
 rsync -rv --exclude=packages . ../../../..
-rsync -rv --exclude=*.dart ../packages ../../../../packages
+rsync -rv --exclude=*.dart ../packages ../../../..
 cd ../../../../
 git add -A
 git commit -m"auto commit from drone"
