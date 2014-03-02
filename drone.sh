@@ -29,7 +29,13 @@ pub build test
 # cd docs/
 # cp -r . ..
 # cd ../
-# git add -A
-# git commit -m"auto commit from drone"
-# git remote set-url origin git@github.com:rmsmith/ace.dart.git
-# git push origin gh-pages
+
+docgen --compile --package-root packages --no-include-sdk --no-include-dependent-packages lib/ace.dart lib/proxy.dart
+git checkout gh-pages
+cd dartdoc-viewer/client/out/web/
+cp -r . ../../../..
+cd ../../../../
+git add -A
+git commit -m"auto commit from drone"
+git remote set-url origin git@github.com:rmsmith/ace.dart.git
+git push origin gh-pages
