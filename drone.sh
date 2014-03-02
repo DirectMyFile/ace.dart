@@ -24,9 +24,9 @@ pub build test
 
 # Generate API docs and push to gh-pages
 docgen --compile --package-root packages --no-include-sdk --no-include-dependent-packages lib/ace.dart lib/proxy.dart
-git checkout gh-pages
 rm -r packages/
 mkdir packages
+git checkout gh-pages
 cd dartdoc-viewer/client/out/web/
 rsync -rv --exclude=packages . ../../../..
 rsync -rv --exclude=*.dart ../packages ../../../..
