@@ -134,6 +134,7 @@ abstract class Mode extends Disposable {
   ];
   
   static const Map<String, String> _extensionMap = const {
+    'as'        : ACTIONSCRIPT,
     'bat'       : BATCHFILE,
     'c'         : C_CPP,
     'cc'        : C_CPP,

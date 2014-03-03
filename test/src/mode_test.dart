@@ -41,6 +41,7 @@ void testCreateModeForFile() {
     expect(mode.name, modeName);
     expect(mode.path, '${_ACE_MODE_PATH}$modeName');
   };
+  verifyMode('flashy.as',           Mode.ACTIONSCRIPT);
   verifyMode('some/script.bat',     Mode.BATCHFILE);
   verifyMode('vm/allocator.c',      Mode.C_CPP);
   verifyMode('vm/allocator.cc',     Mode.C_CPP);
