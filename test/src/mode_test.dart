@@ -62,6 +62,8 @@ void testCreateModeForFile() {
   verifyMode('flexible.lua',        Mode.LUA);
   verifyMode('README.md',           Mode.MARKDOWN);
   verifyMode('CHANGELOG.markdown',  Mode.MARKDOWN);
+  verifyMode('scripts/regex.pl',    Mode.PERL);
+  verifyMode('module.pm',           Mode.PERL);
   verifyMode('server/run.php',      Mode.PHP);
   verifyMode('build.properties',    Mode.PROPERTIES);
   verifyMode('goog/devserver.py',   Mode.PYTHON);
