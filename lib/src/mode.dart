@@ -148,6 +148,7 @@ abstract class Mode extends Disposable {
     'hs'        : HASKELL,
     'html'      : HTML,
     'hx'        : HAXE,
+    'ini'       : INI,
     'java'      : JAVA,
     'js'        : JAVASCRIPT,
     'json'      : JSON,

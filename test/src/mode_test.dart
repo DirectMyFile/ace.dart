@@ -55,6 +55,7 @@ void testCreateModeForFile() {
   verifyMode('ro/bot.hx',           Mode.HAXE);
   verifyMode('browser.html',        Mode.HTML);
   verifyMode('safe.hs',             Mode.HASKELL);
+  verifyMode('config.ini',          Mode.INI);
   verifyMode('midp/midlet.java',    Mode.JAVA);
   verifyMode('some/legacy.js',      Mode.JAVASCRIPT);  
   verifyMode('data.json',           Mode.JSON);

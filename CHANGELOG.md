@@ -2,8 +2,8 @@
 
 ## 0.3.5-dev+2.28.2014
 
-- Added `.as`, `.pl`, `.pm`, and `.sass` to the extension map used by the 
-`new Mode.forFile` factory.
+- Added `.as`, `.ini`, `.pl`, `.pm`, and `.sass` to the extension map used by 
+the `new Mode.forFile` factory.
 
 ## 0.3.4+2.28.2014
 
