@@ -68,6 +68,7 @@ void testCreateModeForFile() {
   verifyMode('build.properties',    Mode.PROPERTIES);
   verifyMode('goog/devserver.py',   Mode.PYTHON);
   verifyMode('converter.rb',        Mode.RUBY);
+  verifyMode('cheeky.sass',         Mode.SASS);
   verifyMode('actor.scala',         Mode.SCALA);
   verifyMode('converter.scss',      Mode.SCSS);
   verifyMode('run.sh',              Mode.SH);

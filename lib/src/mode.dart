@@ -161,6 +161,7 @@ abstract class Mode extends Disposable {
     'properties': PROPERTIES,
     'py'        : PYTHON,
     'rb'        : RUBY,
+    'sass'      : SASS,
     'scala'     : SCALA,
     'scss'      : SCSS,
     'sh'        : SH,
