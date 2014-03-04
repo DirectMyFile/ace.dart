@@ -3,7 +3,7 @@ version: 0.3.5-dev+2.28.2014
 author: Ross Smith <dev@futureperfect.info>
 description: Dart bindings for the Ace code editor.
 homepage: https://github.com/rmsmith/ace.dart
-documentation: http://rmsmith.github.com/ace.dart/ace.html
+documentation: http://rmsmith.github.com/ace.dart/index.html#ace
 environment:
   sdk: '>=1.0.0 <2.0.0'
 dependencies:
