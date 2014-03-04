@@ -32,6 +32,6 @@ rsync -rv --exclude=packages . ../../../..
 rsync -rv --exclude=*.dart ../packages ../../../..
 cd ../../../../
 git add -A
-git commit -m"auto commit from drone"
+git diff-index --quiet HEAD || git commit -m"auto commit from drone"
 git remote set-url origin git@github.com:rmsmith/ace.dart.git
 git push origin gh-pages
