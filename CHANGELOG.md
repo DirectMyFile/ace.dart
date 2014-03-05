@@ -1,5 +1,7 @@
 # Ace.dart Changes
 
+## 0.3.6-dev+2.28.2014
+
 ## 0.3.5+2.28.2014
 
 - Fixed a bug in the `Editor.onPaste` event stream that arrived with a change in
