@@ -654,3 +654,13 @@ void testGotoLine() {
   expect(editor.selectionRange.start.column, equals(6));
   expect(editor.cursorPosition, equals(const Point(1, 6)));
 }
+
+@Test()
+void testPaste() {
+  editor.onPaste.listen(expectAsync((String text) {
+    expect(text, equals('42'));
+  }));
+  editor.setValue('snarf', 1);
+  editor.paste('42');
+  expect(editor.value, equals('snarf42'));
+}

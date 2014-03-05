@@ -2,6 +2,9 @@
 
 ## 0.3.5-dev+2.28.2014
 
+- Fixed a bug in the `Editor.onPaste` event stream that arrived with a change in
+`ace-builds` 02.28.2014. 
+- Added the `paste` method to `Editor`.
 - Added `.as`, `.ini`, `.pl`, `.pm`, and `.sass` to the extension map used by 
 the `new Mode.forFile` factory.
 

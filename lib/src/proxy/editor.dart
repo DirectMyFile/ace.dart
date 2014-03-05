@@ -134,7 +134,7 @@ class _EditorProxy extends _HasProxy implements Editor {
     }]);
     call('on', ['copy', (e,__) => _onCopy.add(e)]);
     call('on', ['focus', (_,__) => _onFocus.add(null)]);
-    call('on', ['paste', (e,__) => _onPaste.add(e)]);
+    call('on', ['paste', (e,__) => _onPaste.add(e['text'])]);
   }
   
   void _onDispose() {
@@ -209,6 +209,8 @@ class _EditorProxy extends _HasProxy implements Editor {
   void navigateWordLeft() => call('navigateWordLeft');
   
   void navigateWordRight() => call('navigateWordRight');
+  
+  void paste(String text) => call('onPaste', [text]);
   
   void redo() => call('redo');
   

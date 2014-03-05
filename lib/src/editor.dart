@@ -218,6 +218,9 @@ abstract class Editor extends Disposable implements OptionsProvider {
   /// Note that this does de-select the current [selection].
   void navigateWordRight();
   
+  /// Paste the given [text] into this editor.
+  void paste(String text);
+  
   /// Performs a redo operation on the current [EditSession.document], 
   /// reapplying the last change.
   /// 
