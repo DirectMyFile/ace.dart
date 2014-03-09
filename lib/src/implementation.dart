@@ -6,6 +6,12 @@ abstract class Implementation {
   
   Anchor createAnchor(Document document, int row, int column);
   
+  Command createCommand(String name, BindKey bindKey, exec(Editor), 
+      {bool readOnly: false, String scrollIntoView, String multiSelectAction});
+  
+  CommandManager createCommandManager({String platform, 
+      Iterable<Command> commands});
+  
   Document createDocument(String text);
   
   EditSession createEditSession(String text, Mode mode);

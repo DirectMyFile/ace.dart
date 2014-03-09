@@ -18,7 +18,8 @@ abstract class Command extends Disposable {
   
   factory Command(String name, BindKey bindKey, exec(Editor), 
       {bool readOnly: false, String scrollIntoView, String multiSelectAction})
-      => throw new UnimplementedError();
+      => implementation.createCommand(name, bindKey, exec, readOnly: readOnly, 
+          scrollIntoView: scrollIntoView, multiSelectAction: multiSelectAction);
 }
 
 class BindKey {
