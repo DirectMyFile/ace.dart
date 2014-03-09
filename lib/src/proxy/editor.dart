@@ -145,7 +145,6 @@ class _EditorProxy extends _HasProxy implements Editor {
     _onCopy.close();
     _onFocus.close();
     _onPaste.close();
-    call('destroy');
   }
   
   void alignCursors() => call('alignCursors');
@@ -163,6 +162,8 @@ class _EditorProxy extends _HasProxy implements Editor {
   int copyLinesDown() => call('copyLinesDown');
   
   int copyLinesUp() => call('copyLinesUp');
+  
+  void destroy() => call('destroy');
   
   void exitMultiSelectMode() => call('exitMultiSelectMode');
   
