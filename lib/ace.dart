@@ -4,6 +4,8 @@ import 'dart:async';
 
 part 'src/anchor.dart';
 part 'src/annotation.dart';
+part 'src/command.dart';
+part 'src/command_manager.dart';
 part 'src/delta.dart';
 part 'src/disposable.dart';
 part 'src/document.dart';
