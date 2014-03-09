@@ -19,9 +19,6 @@ class _UndoManagerProxy extends _HasProxy implements UndoManager {
 }
 
 /// A base class for implementing [UndoManager].
-/// 
-/// When setting [EditSession.undoManager] the argument _must_ be an object
-/// derived from this class.
 abstract class UndoManagerBase extends _HasReverseProxy implements UndoManager {
   
   EditSession _session;
