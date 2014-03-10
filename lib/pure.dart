@@ -22,7 +22,8 @@ class _PureImplementation extends Implementation {
   
   Command createCommand(String name, BindKey bindKey, exec(Editor), 
       {bool readOnly: false, String scrollIntoView, String multiSelectAction}) 
-      => throw new UnimplementedError();
+      => new _Command(name, bindKey, exec, readOnly: readOnly, 
+          scrollIntoView: scrollIntoView, multiSelectAction: multiSelectAction);
      
   CommandManager createCommandManager(String platform, 
       Iterable<Command> commands) => throw new UnimplementedError();
