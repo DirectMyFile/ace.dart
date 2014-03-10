@@ -136,6 +136,8 @@ abstract class Editor extends Disposable implements OptionsProvider {
   /// the current [selectionRange].
   int copyLinesUp();
   
+  void execCommand(Command command);
+  
   void exitMultiSelectMode();
   
   /// Brings the current [textInput] into focus.

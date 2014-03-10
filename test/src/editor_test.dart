@@ -672,3 +672,17 @@ void testGetCommandManager() {
   final commands = cm.getCommands();
   expect(commands, isNot(isEmpty));
 }
+
+@Test()
+void testExecCommand() {
+  final c = new Command(
+      'paste-answer',
+      const BindKey(mac: 'Command-A', win: 'Ctrl-A'),
+      (editor) {
+        editor.paste('42');
+      });  
+  editor.setValue('snarf', 1);
+  editor.commands.addCommand(c);
+  editor.execCommand(c);
+  expect(editor.value, equals('snarf42'));
+}

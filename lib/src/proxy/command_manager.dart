@@ -11,13 +11,13 @@ class _CommandManagerProxy extends _HasProxy implements CommandManager {
   _CommandManagerProxy._(js.JsObject proxy) : super(proxy);
   
   void addCommand(Command command) {
-    assert(command is _CommandReverseProxy);
-    call('addCommand', [(command as _CommandReverseProxy)._proxy]);
+    assert(command is _CommandReverseProxy || command is _CommandProxy);
+    call('addCommand', [(command as dynamic)._proxy]);
   }
   
   bool exec(Command command) {
-    assert(command is _CommandReverseProxy);
-    return call('exec', [(command as _CommandReverseProxy)._proxy]);
+    assert(command is _CommandReverseProxy || command is _CommandProxy);
+    return call('exec', [(command as dynamic)._proxy]);
   }
   
   List<Command> getCommands() {
@@ -27,7 +27,7 @@ class _CommandManagerProxy extends _HasProxy implements CommandManager {
   }
   
   void removeCommand(Command command) {
-    assert(command is _CommandReverseProxy);
-    call('removeCommand', [(command as _CommandReverseProxy)._proxy]);
+    assert(command is _CommandReverseProxy || command is _CommandProxy);
+    call('removeCommand', [(command as dynamic)._proxy]);
   }
 }
