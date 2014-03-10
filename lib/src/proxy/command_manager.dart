@@ -25,9 +25,7 @@ class _CommandManagerProxy extends _HasProxy implements CommandManager {
     final keys = _context['Object'].callMethod('keys', [proxies]);
     return keys.map((String k) => new _CommandProxy._(proxies[k])).toList();
   }
-  
-  void removeCommand(Command command) {
-    assert(command is _CommandReverseProxy || command is _CommandProxy);
-    call('removeCommand', [(command as dynamic)._proxy]);
-  }
+    
+  void removeCommand(String commandName) => 
+      call('removeCommand', [commandName]);
 }

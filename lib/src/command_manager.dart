@@ -20,9 +20,6 @@ abstract class CommandManager extends Disposable {
   /// Returns a copy of the current commands for this manager.
   List<Command> getCommands();
   
-  /// Removes the given [command] from this manager.
-  /// 
-  /// This method will remove _any_ existing command with the same `name` as the
-  /// given [command].
-  void removeCommand(Command command);  
+  /// Removes any command with the given [commandName] from this manager.
+  void removeCommand(String commandName);
 }

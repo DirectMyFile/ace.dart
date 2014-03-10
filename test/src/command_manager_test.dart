@@ -36,7 +36,7 @@ void testCtor() {
 
 @Test()
 void testRemoveCommand() {
-  manager.removeCommand(command);
+  manager.removeCommand(command.name);
   expect(manager.getCommands(), isEmpty);
 }
 
