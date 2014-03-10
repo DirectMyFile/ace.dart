@@ -25,6 +25,12 @@ abstract class Command extends Disposable {
   
   BindKey get bindKey;
  
+  /// The function to execute for this command.
+  /// 
+  /// This function receives an [Editor] instance when called.  As an example
+  /// consider a function to indent the current line of an editor:
+  /// 
+  ///     (editor) => editor.indent();
   Function get exec;
   
   /// Whether or not this command applies to read-only [Editor] instances.
