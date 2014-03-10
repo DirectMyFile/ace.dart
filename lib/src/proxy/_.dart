@@ -31,6 +31,11 @@ js.JsObject _jsAnnotation(Annotation a) => _jsMap({
   'type': a.type
 });
 
+js.JsObject _jsBindKey(BindKey bk) => _jsMap({
+  'win' : bk.win,
+  'mac' : bk.mac
+});
+
 js.JsObject _jsDelta(d) {
   final jsMap = _jsMap({ 'action': d.action, 'range': _jsRange(d.range) });
   if (d.action == 'insertLines' || d.action == 'removeLines') {
