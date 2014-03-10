@@ -6,16 +6,18 @@ import 'package:ace/proxy.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 
+int commandExecCount;
 Command command;
 CommandManager manager;
 @Setup
 setup() {
   implementation = ACE_PROXY_IMPLEMENTATION;  
+  commandExecCount = 0;
   command = new Command(
       "gotoline", 
       const BindKey(mac: 'Command-L', win: 'Ctrl-L'),
       (editor) {
-        // TODO
+        commandExecCount++;
       });  
   manager = new CommandManager('mac', [command]);
 }
@@ -41,10 +43,19 @@ void testRemoveCommand() {
 @Test()
 void testAddCommand() {
   final c = new Command(
-      "find",
+      'find',
       const BindKey(mac: 'Command-F', win: 'Ctrl-F'),
       noop);
   manager.addCommand(c);
   final commands = manager.getCommands();
   expect(commands.length, equals(2));
+  final find = commands.singleWhere((command) => command.name == 'find');
+  expect(find.bindKey, const BindKey(mac: 'Command-F', win: 'Ctrl-F'));
+}
+
+@Test()
+void testExec() {
+  expect(commandExecCount, isZero);
+  expect(manager.exec(command), isTrue);
+  expect(commandExecCount, equals(1));
 }

@@ -15,6 +15,11 @@ class _CommandManagerProxy extends _HasProxy implements CommandManager {
     call('addCommand', [(command as _CommandReverseProxy)._proxy]);
   }
   
+  bool exec(Command command) {
+    assert(command is _CommandReverseProxy);
+    return call('exec', [(command as _CommandReverseProxy)._proxy]);
+  }
+  
   List<Command> getCommands() {
     final proxies = _proxy['commands'];
     final keys = _context['Object'].callMethod('keys', [proxies]);

@@ -31,10 +31,13 @@ class _CommandReverseProxy extends _HasReverseProxy
       {this.readOnly: false, this.scrollIntoView, this.multiSelectAction}) {
     _proxy['name'] = name;
     _proxy['bindKey'] = _jsBindKey(bindKey);
-    _proxy['exec'] = new js.JsFunction.withThis((_, editor) {
-      final _editor = new _EditorProxy._(editor, listen: false);
+    _proxy['exec'] = new js.JsFunction.withThis((_, editor, args) {
+      final _editor = editor == null ? null 
+          : new _EditorProxy._(editor, listen: false);
       final result = exec(_editor);
-      _editor.dispose();
+      if (_editor != null) {
+        _editor.dispose();  
+      }
       return result;
     });
     _proxy['readOnly'] = readOnly;

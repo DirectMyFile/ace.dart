@@ -7,6 +7,8 @@ abstract class CommandManager extends Disposable {
   
   void addCommand(Command command);
   
+  bool exec(Command command);
+  
   List<Command> getCommands();
   
   void removeCommand(Command command);  
