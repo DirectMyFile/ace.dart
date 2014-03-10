@@ -9,8 +9,8 @@ abstract class Implementation {
   Command createCommand(String name, BindKey bindKey, exec(Editor), 
       {bool readOnly: false, String scrollIntoView, String multiSelectAction});
   
-  CommandManager createCommandManager({String platform, 
-      Iterable<Command> commands});
+  CommandManager createCommandManager(String platform, 
+      Iterable<Command> commands);
   
   Document createDocument(String text);
   

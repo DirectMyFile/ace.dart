@@ -23,8 +23,8 @@ class _PureImplementation extends Implementation {
       {bool readOnly: false, String scrollIntoView, String multiSelectAction}) 
       => throw new UnimplementedError();
      
-  CommandManager createCommandManager({String platform, 
-      Iterable<Command> commands}) => throw new UnimplementedError();
+  CommandManager createCommandManager(String platform, 
+      Iterable<Command> commands) => throw new UnimplementedError();
   
   Document createDocument(String text) => new _Document(text);
   
