@@ -25,6 +25,8 @@ class _EditorProxy extends _HasProxy implements Editor {
   final _onPaste = new StreamController<String>.broadcast();
   Stream<String> get onPaste => _onPaste.stream;  
   
+  CommandManager get commands => new _CommandManagerProxy._(_proxy['commands']);
+  
   String get copyText => call('getCopyText');
   
   Point get cursorPosition => _point(call('getCursorPosition'));

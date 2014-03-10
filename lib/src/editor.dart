@@ -29,6 +29,9 @@ abstract class Editor extends Disposable implements OptionsProvider {
   /// Fired whenever text is pasted.
   Stream<String> get onPaste;  
   
+  /// The current [CommandManager] for this editor.
+  CommandManager get commands;
+  
   /// The string of text in the current [selectionRange].
   String get copyText;
   

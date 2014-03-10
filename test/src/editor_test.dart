@@ -664,3 +664,11 @@ void testPaste() {
   editor.paste('42');
   expect(editor.value, equals('snarf42'));
 }
+
+@Test()
+void testGetCommandManager() {
+  final cm = editor.commands;
+  expect(cm, isNotNull);
+  final commands = cm.getCommands();
+  expect(commands, isNot(isEmpty));
+}
