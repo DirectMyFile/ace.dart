@@ -23,7 +23,15 @@ abstract class Command extends Disposable {
 }
 
 class BindKey {
-  final String win;
   final String mac;
-  const BindKey({this.win, this.mac});
+  final String win;  
+  const BindKey({this.mac, this.win});
+  bool operator ==(Object other) {
+    if(identical(this, other)) return true;
+    if(other is! BindKey) return false; 
+    final o = other;
+    return mac == o.mac && win == o.win;
+  }    
+  int get hashCode => mac.hashCode ^ win.hashCode;
+  String toString() => 'BindKey(mac: $mac, win: $win)';
 }

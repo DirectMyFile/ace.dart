@@ -15,8 +15,11 @@ class _CommandManagerProxy extends _HasProxy implements CommandManager {
     call('addCommand', [(command as _CommandReverseProxy)._proxy]);
   }
   
-  List<Command> getCommands() => _map(_proxy['commands']).values
-      .map((v) => new _CommandProxy._(v)).toList();
+  List<Command> getCommands() {
+    final proxies = _proxy['commands'];
+    final keys = _context['Object'].callMethod('keys', [proxies]);
+    return keys.map((String k) => new _CommandProxy._(proxies[k])).toList();
+  }
   
   void removeCommand(Command command) {
     assert(command is _CommandReverseProxy);

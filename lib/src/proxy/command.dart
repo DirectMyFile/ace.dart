@@ -3,17 +3,17 @@ part of ace.proxy;
 class _CommandProxy extends _HasProxy implements Command {
   
   String get name => _proxy['name'];
-  BindKey get bindKey => _bindKey(_proxy);
+  BindKey get bindKey => _bindKey(_proxy['bindKey']);
   Function get exec => _exec;
   bool get readOnly => _proxy['readOnly'];
   String get scrollIntoView => _proxy['scrollIntoView'];
   String get multiSelectAction => _proxy['multiSelectAction'];
   
   _CommandProxy._(proxy) : super(proxy);
-  
+    
   _exec(Editor editor) {
-    assert(editor is _EditorProxy);
-    return call('exec', [(editor as _EditorProxy)._proxy]);    
+    assert(editor is _EditorProxy);    
+    return _proxy['exec'].apply([(editor as _EditorProxy)._proxy]);    
   }
 }
 
