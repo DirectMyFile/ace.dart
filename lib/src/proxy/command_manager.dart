@@ -15,10 +15,7 @@ class _CommandManagerProxy extends _HasProxy implements CommandManager {
     call('addCommand', [(command as dynamic)._proxy]);
   }
   
-  bool exec(Command command) {
-    assert(command is _CommandReverseProxy || command is _CommandProxy);
-    return call('exec', [(command as dynamic)._proxy]);
-  }
+  bool exec(String commandName) => call('exec', [commandName]);
   
   List<Command> getCommands() {
     final proxies = _proxy['commands'];

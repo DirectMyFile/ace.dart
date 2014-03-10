@@ -136,7 +136,7 @@ abstract class Editor extends Disposable implements OptionsProvider {
   /// the current [selectionRange].
   int copyLinesUp();
   
-  void execCommand(Command command);
+  void execCommand(String commandName);
   
   void exitMultiSelectMode();
   

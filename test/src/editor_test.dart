@@ -683,6 +683,6 @@ void testExecCommand() {
       });  
   editor.setValue('snarf', 1);
   editor.commands.addCommand(c);
-  editor.execCommand(c);
+  editor.execCommand('paste-answer');
   expect(editor.value, equals('snarf42'));
 }

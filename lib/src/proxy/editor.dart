@@ -175,10 +175,7 @@ class _EditorProxy extends _HasProxy implements Editor {
   
   void destroy() => call('destroy');
   
-  void execCommand(Command command) {
-    assert(command is _CommandReverseProxy || command is _CommandProxy);    
-    call('execCommand', [(command as dynamic)._proxy]);  
-  }
+  void execCommand(String commandName) => call('execCommand', [commandName]);
   
   void exitMultiSelectMode() => call('exitMultiSelectMode');
   

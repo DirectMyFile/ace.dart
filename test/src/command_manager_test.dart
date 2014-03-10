@@ -66,7 +66,7 @@ void testAddCommandSameName() {
   final commands = manager.getCommands();
   expect(commands.length, equals(1));
   expect(commands[0].bindKey, const BindKey(mac: 'Command-F', win: 'Ctrl-F'));  
-  manager.exec(c);
+  manager.exec(c.name);
   expect(commandExecCount, isZero);
   expect(count, equals(1));
 }
@@ -74,6 +74,6 @@ void testAddCommandSameName() {
 @Test()
 void testExec() {
   expect(commandExecCount, isZero);
-  expect(manager.exec(command), isTrue);
+  expect(manager.exec(command.name), isTrue);
   expect(commandExecCount, equals(1));
 }
