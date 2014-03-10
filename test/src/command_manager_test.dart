@@ -14,7 +14,7 @@ setup() {
   implementation = ACE_PROXY_IMPLEMENTATION;  
   commandExecCount = 0;
   command = new Command(
-      "gotoline", 
+      'gotoline', 
       const BindKey(mac: 'Command-L', win: 'Ctrl-L'),
       (editor) {
         commandExecCount++;
@@ -51,6 +51,24 @@ void testAddCommand() {
   expect(commands.length, equals(2));
   final find = commands.singleWhere((command) => command.name == 'find');
   expect(find.bindKey, const BindKey(mac: 'Command-F', win: 'Ctrl-F'));
+}
+
+@Test()
+void testAddCommandSameName() {
+  int count = 0;
+  final c = new Command(
+      'gotoline',
+      const BindKey(mac: 'Command-F', win: 'Ctrl-F'),
+      (editor) {
+        count++;
+      });  
+  manager.addCommand(c);
+  final commands = manager.getCommands();
+  expect(commands.length, equals(1));
+  expect(commands[0].bindKey, const BindKey(mac: 'Command-F', win: 'Ctrl-F'));  
+  manager.exec(c);
+  expect(commandExecCount, isZero);
+  expect(count, equals(1));
 }
 
 @Test()
