@@ -6,6 +6,7 @@ import 'ace.dart';
 
 part 'src/pure/_.dart';
 part 'src/pure/anchor.dart';
+part 'src/pure/command.dart';
 part 'src/pure/document.dart';
 
 const Implementation ACE_PURE_IMPLEMENTATION = const _PureImplementation();
