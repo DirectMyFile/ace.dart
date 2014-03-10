@@ -1,6 +1,6 @@
 # Ace.dart Changes
 
-## 0.3.6-dev+3.8.2014
+## 0.3.6+3.8.2014
 
 - Added the `commands` getter and the `execCommand` method to `Editor`.
 - Added the `Command` and `CommandManager` classes.
