@@ -7,6 +7,8 @@ import 'ace.dart';
 
 part 'src/proxy/_.dart';
 part 'src/proxy/anchor.dart';
+part 'src/proxy/command.dart';
+part 'src/proxy/command_manager.dart';
 part 'src/proxy/document.dart';
 part 'src/proxy/editor.dart';
 part 'src/proxy/edit_session.dart';
@@ -34,6 +36,15 @@ class _ProxyImplementation extends Implementation {
     assert(document is _DocumentProxy);
     return new _AnchorProxy(document, row, column);
   }
+  
+  Command createCommand(String name, BindKey bindKey, exec(Editor), 
+      {bool readOnly: false, String scrollIntoView, String multiSelectAction}) 
+      => new _CommandReverseProxy(name, bindKey, exec, readOnly: readOnly, 
+          scrollIntoView: scrollIntoView, multiSelectAction: multiSelectAction);
+  
+  CommandManager createCommandManager(String platform, 
+      Iterable<Command> commands) => 
+          new _CommandManagerProxy(platform, commands);
   
   Document createDocument(String text) => new _DocumentProxy(text);
   

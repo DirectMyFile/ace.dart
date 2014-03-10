@@ -29,6 +29,9 @@ abstract class Editor extends Disposable implements OptionsProvider {
   /// Fired whenever text is pasted.
   Stream<String> get onPaste;  
   
+  /// The current [CommandManager] for this editor.
+  CommandManager get commands;
+  
   /// The string of text in the current [selectionRange].
   String get copyText;
   
@@ -132,6 +135,8 @@ abstract class Editor extends Disposable implements OptionsProvider {
   /// This method copies entire rows, so the copied range may be larger than
   /// the current [selectionRange].
   int copyLinesUp();
+  
+  void execCommand(String commandName);
   
   void exitMultiSelectMode();
   

@@ -25,6 +25,8 @@ class _EditorProxy extends _HasProxy implements Editor {
   final _onPaste = new StreamController<String>.broadcast();
   Stream<String> get onPaste => _onPaste.stream;  
   
+  CommandManager get commands => new _CommandManagerProxy._(_proxy['commands']);
+  
   String get copyText => call('getCopyText');
   
   Point get cursorPosition => _point(call('getCursorPosition'));
@@ -122,29 +124,37 @@ class _EditorProxy extends _HasProxy implements Editor {
     }
   
   String get value => call('getValue');
-    
-  _EditorProxy._(js.JsObject proxy) : super(proxy) {
-    call('on', ['blur', (_,__) => _onBlur.add(null)]);
-    call('on', ['change', (e,__) => _onChange.add(_delta(e['data']))]);
-    call('on', ['changeSelection', (_,__) => _onChangeSelection.add(null)]);
-    call('on', ['changeSession', (e,__) {
-      _onChangeSession.add(new EditSessionChangeEvent(
-          new _EditSessionProxy._(e['oldSession']),
-          new _EditSessionProxy._(e['session']))); 
-    }]);
-    call('on', ['copy', (e,__) => _onCopy.add(e)]);
-    call('on', ['focus', (_,__) => _onFocus.add(null)]);
-    call('on', ['paste', (e,__) => _onPaste.add(e['text'])]);
+  
+  final bool _isListening;
+  
+  _EditorProxy._(js.JsObject proxy, {bool listen: true}) 
+  : super(proxy)
+  , _isListening = listen {
+    if (listen) {
+      call('on', ['blur', (_,__) => _onBlur.add(null)]);
+      call('on', ['change', (e,__) => _onChange.add(_delta(e['data']))]);
+      call('on', ['changeSelection', (_,__) => _onChangeSelection.add(null)]);
+      call('on', ['changeSession', (e,__) {
+        _onChangeSession.add(new EditSessionChangeEvent(
+            new _EditSessionProxy._(e['oldSession']),
+            new _EditSessionProxy._(e['session']))); 
+      }]);
+      call('on', ['copy', (e,__) => _onCopy.add(e)]);
+      call('on', ['focus', (_,__) => _onFocus.add(null)]);
+      call('on', ['paste', (e,__) => _onPaste.add(e['text'])]);
+    }
   }
   
   void _onDispose() {
-    _onBlur.close();
-    _onChange.close();
-    _onChangeSelection.close();
-    _onChangeSession.close();
-    _onCopy.close();
-    _onFocus.close();
-    _onPaste.close();
+    if (_isListening) {
+      _onBlur.close();
+      _onChange.close();
+      _onChangeSelection.close();
+      _onChangeSession.close();
+      _onCopy.close();
+      _onFocus.close();
+      _onPaste.close();
+    }
   }
   
   void alignCursors() => call('alignCursors');
@@ -164,6 +174,8 @@ class _EditorProxy extends _HasProxy implements Editor {
   int copyLinesUp() => call('copyLinesUp');
   
   void destroy() => call('destroy');
+  
+  void execCommand(String commandName) => call('execCommand', [commandName]);
   
   void exitMultiSelectMode() => call('exitMultiSelectMode');
   

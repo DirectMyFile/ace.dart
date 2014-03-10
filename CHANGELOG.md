@@ -2,6 +2,8 @@
 
 ## 0.3.6-dev+3.8.2014
 
+- Added the `commands` getter and the `execCommand` method to `Editor`.
+- Added the `Command` and `CommandManager` classes.
 - Updated to ace-builds version 03.08.2014.
 
 ## 0.3.5+2.28.2014

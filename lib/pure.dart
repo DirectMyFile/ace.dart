@@ -19,6 +19,13 @@ class _PureImplementation extends Implementation {
     return new _Anchor(document, row, column);
   }
   
+  Command createCommand(String name, BindKey bindKey, exec(Editor), 
+      {bool readOnly: false, String scrollIntoView, String multiSelectAction}) 
+      => throw new UnimplementedError();
+     
+  CommandManager createCommandManager(String platform, 
+      Iterable<Command> commands) => throw new UnimplementedError();
+  
   Document createDocument(String text) => new _Document(text);
   
   EditSession createEditSession(String text, Mode mode) => 
