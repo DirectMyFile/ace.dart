@@ -1,5 +1,22 @@
 part of ace.proxy;
 
+class _CommandProxy extends _HasProxy implements Command {
+  
+  String get name => _proxy['name'];
+  BindKey get bindKey => _bindKey(_proxy);
+  Function get exec => _exec;
+  bool get readOnly => _proxy['readOnly'];
+  String get scrollIntoView => _proxy['scrollIntoView'];
+  String get multiSelectAction => _proxy['multiSelectAction'];
+  
+  _CommandProxy._(proxy) : super(proxy);
+  
+  _exec(Editor editor) {
+    assert(editor is _EditorProxy);
+    return call('exec', [(editor as _EditorProxy)._proxy]);    
+  }
+}
+
 class _CommandReverseProxy extends _HasReverseProxy 
     implements Command {
   

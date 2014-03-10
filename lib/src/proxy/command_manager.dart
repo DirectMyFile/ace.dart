@@ -15,7 +15,8 @@ class _CommandManagerProxy extends _HasProxy implements CommandManager {
     call('addCommand', [(command as _CommandReverseProxy)._proxy]);
   }
   
-  Map<String, Command> getCommands() => throw new UnimplementedError();
+  List<Command> getCommands() => _map(_proxy['commands']).values
+      .map((v) => new _CommandProxy._(v)).toList();
   
   void removeCommand(Command command) {
     assert(command is _CommandReverseProxy);

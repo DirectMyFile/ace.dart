@@ -88,6 +88,8 @@ Annotation _annotation(proxy) => new Annotation(
     text: proxy['text'],
     type: proxy['type'] == null ? Annotation.INFO : proxy['type']);
 
+BindKey _bindKey(proxy) => new BindKey(mac: proxy['mac'], win: proxy['win']);
+
 Delta _delta(proxy) {
   switch(proxy['action']) {
     case 'insertLines': return new InsertLinesDelta(
