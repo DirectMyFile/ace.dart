@@ -3,7 +3,7 @@ part of ace.pure;
 class _CommandManager extends Disposable implements CommandManager {
   
   final String _platform;
-  final Map<String, Command> _commands = new Map<String, Command>();
+  final List<Command> _commands = new List<Command>();
   final Map<int, Map<String, Command>> _commandKeyBinding = 
       new Map<int, Map<String, Command>>();
   
@@ -18,9 +18,24 @@ class _CommandManager extends Disposable implements CommandManager {
   
   bool exec(String commandName) => throw new UnimplementedError();
   
-  List<Command> getCommands() => throw new UnimplementedError();
+  List<Command> getCommands() => _commands.toList();
   
-  void removeCommand(String commandName) => throw new UnimplementedError();
+  void removeCommand(String commandName) {
+    _commands.removeWhere((c) => c.name == commandName);
+    var key;
+    for (Map m in _commandKeyBinding.values) {
+      for (int k in m.keys) {
+        if (m[k].name == commandName) {
+          key = k;
+          break;
+        }
+      }
+      if (key != null) {
+        m.remove(key);
+        break;
+      }
+    }
+  }
   
   void _bindKey(String key, Command command) {    
     key.split('|').forEach((String keyPart) {
