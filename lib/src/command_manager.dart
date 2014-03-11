@@ -11,6 +11,8 @@ abstract class CommandManager extends Disposable {
   /// given [command].
   void addCommand(Command command);
   
+  void addCommands(Iterable<Command> commands);
+  
   /// Executes the given [commandName] using this manager.
   /// 
   /// This method is called internally and not designed to be called from 
