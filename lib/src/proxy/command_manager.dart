@@ -15,6 +15,8 @@ class _CommandManagerProxy extends _HasProxy implements CommandManager {
     call('addCommand', [(command as dynamic)._proxy]);
   }
   
+  void addCommands(Iterable<Command> commands) => commands.forEach(addCommand);
+  
   bool exec(String commandName) => call('exec', [commandName]);
   
   List<Command> getCommands() {

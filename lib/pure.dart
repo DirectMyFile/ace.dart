@@ -1,12 +1,14 @@
 library ace.pure;
 
 import 'dart:async';
+import 'dart:html' as html;
 import 'dart:math' as math;
 import 'ace.dart';
 
 part 'src/pure/_.dart';
 part 'src/pure/anchor.dart';
 part 'src/pure/command.dart';
+part 'src/pure/command_manager.dart';
 part 'src/pure/document.dart';
 
 /// An implementation written in pure Dart.
@@ -27,7 +29,7 @@ class _PureImplementation extends Implementation {
           scrollIntoView: scrollIntoView, multiSelectAction: multiSelectAction);
      
   CommandManager createCommandManager(String platform, 
-      Iterable<Command> commands) => throw new UnimplementedError();
+      Iterable<Command> commands) => new _CommandManager(platform, commands);
   
   Document createDocument(String text) => new _Document(text);
   
