@@ -48,8 +48,5 @@ class _CommandManager extends Disposable implements CommandManager {
     });
   }
   
-  List _parseKeys(String keys) {
-    // TODO:
-    return null;
-  }
+  List _parseKeys(String keys) => throw new UnimplementedError();
 }
