@@ -53,6 +53,7 @@ void testCreateModeForFile() {
   verifyMode('ftw.dart',            Mode.DART);
   verifyMode('ready/set.go',        Mode.GOLANG);
   verifyMode('ro/bot.hx',           Mode.HAXE);
+  verifyMode('aol.htm',             Mode.HTML);
   verifyMode('browser.html',        Mode.HTML);
   verifyMode('safe.hs',             Mode.HASKELL);
   verifyMode('config.ini',          Mode.INI);

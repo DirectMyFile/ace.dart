@@ -2,6 +2,8 @@
 
 ## 0.3.7-dev+3.8.2014
 
+- Added `.htm` to the extension map used by the `new Mode.forFile` factory.
+
 ## 0.3.6+3.8.2014
 
 - Added the `commands` getter and the `execCommand` method to `Editor`.

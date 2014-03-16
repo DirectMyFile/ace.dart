@@ -146,6 +146,7 @@ abstract class Mode extends Disposable {
     'go'        : GOLANG,
     'h'         : C_CPP,
     'hs'        : HASKELL,
+    'htm'       : HTML,
     'html'      : HTML,
     'hx'        : HAXE,
     'ini'       : INI,
