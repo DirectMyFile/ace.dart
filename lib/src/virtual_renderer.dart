@@ -9,6 +9,9 @@ abstract class VirtualRenderer extends Disposable implements OptionsProvider {
   /// The index of the first visible row.
   int get firstVisibleRow;
   
+  /// The index of the last visible row.
+  int get lastVisibleRow;
+  
   /// Whether or not the gutter has a fixed width.
   bool fixedWidthGutter;
   

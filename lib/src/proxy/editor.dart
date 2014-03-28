@@ -41,6 +41,8 @@ class _EditorProxy extends _HasProxy implements Editor {
   
   int get firstVisibleRow => call('getFirstVisibleRow');
   
+  int get lastVisibleRow => call('getLastVisibleRow');
+  
   int
     get fontSize => call('getFontSize');
     set fontSize(int fontSize) => call('setFontSize', [fontSize]);

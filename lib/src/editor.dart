@@ -47,6 +47,9 @@ abstract class Editor extends Disposable implements OptionsProvider {
   /// The index of the first visible row.
   int get firstVisibleRow;
   
+  /// The index of the last visible row.
+  int get lastVisibleRow;
+  
   /// The font size in pixels for this editor's text.
   int fontSize;
 

@@ -6,6 +6,8 @@ class _VirtualRendererProxy extends _HasProxy implements VirtualRenderer {
   
   int get firstVisibleRow => call('getFirstVisibleRow');
   
+  int get lastVisibleRow => call('getLastVisibleRow');
+  
   bool
     get fixedWidthGutter => call('getOption', ['fixedWidthGutter']);
     set fixedWidthGutter(bool fixedWidthGutter) => 
