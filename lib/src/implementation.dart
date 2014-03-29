@@ -14,6 +14,8 @@ abstract class Implementation {
   
   Document createDocument(String text);
   
+  Editor createEditor(VirtualRenderer renderer, EditSession session);
+  
   EditSession createEditSession(String text, Mode mode);
   
   EditSession createEditSessionFromDocument(Document document, Mode mode);

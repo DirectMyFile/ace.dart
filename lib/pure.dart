@@ -33,6 +33,9 @@ class _PureImplementation extends Implementation {
   
   Document createDocument(String text) => new _Document(text);
   
+  Editor createEditor(VirtualRenderer renderer, EditSession session) =>
+      throw new UnimplementedError();
+  
   EditSession createEditSession(String text, Mode mode) => 
       throw new UnimplementedError();
   

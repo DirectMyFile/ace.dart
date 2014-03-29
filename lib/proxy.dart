@@ -48,6 +48,12 @@ class _ProxyImplementation extends Implementation {
   
   Document createDocument(String text) => new _DocumentProxy(text);
   
+  Editor createEditor(VirtualRenderer renderer, EditSession session) {
+    assert(renderer is HasProxy);
+    assert(session is HasProxy);
+    return new _EditorProxy(renderer, session);
+  }
+  
   EditSession createEditSession(String text, Mode mode) {
     assert(mode is _ModeProxy);
     return new _EditSessionProxy._(_ace.callMethod('createEditSession', 

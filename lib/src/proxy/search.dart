@@ -1,6 +1,6 @@
 part of ace.proxy;
 
-class _SearchProxy extends _HasProxy implements Search {
+class _SearchProxy extends HasProxy implements Search {
   
   SearchOptions
     get options => _searchOptions(call('getOptions'));

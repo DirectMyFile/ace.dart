@@ -1,6 +1,6 @@
 part of ace.proxy;
 
-class _ThemeProxy extends _HasProxy implements Theme {
+class _ThemeProxy extends HasProxy implements Theme {
   
   String get cssClass {
     if (!isLoaded) throw new StateError('$path is not yet loaded.');

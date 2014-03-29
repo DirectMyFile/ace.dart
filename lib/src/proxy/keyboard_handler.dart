@@ -1,6 +1,6 @@
 part of ace.proxy;
 
-class _KeyboardHandlerProxy extends _HasProxy implements KeyboardHandler {
+class _KeyboardHandlerProxy extends HasProxy implements KeyboardHandler {
 
   bool get isLoaded => _hasProxy;
   

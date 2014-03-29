@@ -1,6 +1,6 @@
 part of ace.proxy;
 
-class _CommandManagerProxy extends _HasProxy implements CommandManager {
+class _CommandManagerProxy extends HasProxy implements CommandManager {
   
   _CommandManagerProxy(String platform, Iterable<Command> commands)
   : this._(new js.JsObject(

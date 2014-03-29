@@ -1,6 +1,6 @@
 part of ace.proxy;
 
-class _KeyBindingProxy extends _HasProxy implements KeyBinding {
+class _KeyBindingProxy extends HasProxy implements KeyBinding {
 
   KeyboardHandler
     get keyboardHandler => 
