@@ -27,7 +27,7 @@ abstract class UndoManagerBase extends _HasReverseProxy implements UndoManager {
   EditSession get session => _session;
   
   UndoManagerBase() {
-    _proxy['execute'] = new js.JsFunction.withThis((_, options) {
+    _proxy['execute'] = (options) {
       if (_session == null) {
         _session = new _EditSessionProxy._(options['args'][1]);
       }   
@@ -35,14 +35,12 @@ abstract class UndoManagerBase extends _HasReverseProxy implements UndoManager {
           _undoManagerDelta(proxy)).toList(growable: false);      
       bool merge = options['merge'];
       onExecuted(deltas, merge);
-    });
-    _proxy['hasRedo'] = new js.JsFunction.withThis((_) => hasRedo);
-    _proxy['hasUndo'] = new js.JsFunction.withThis((_) => hasUndo);    
-    _proxy['redo'] = new js.JsFunction.withThis((_,[bool dontSelect = false]) => 
-        redo(select: !dontSelect));
-    _proxy['reset'] = new js.JsFunction.withThis((_) => reset());
-    _proxy['undo'] = new js.JsFunction.withThis((_,[bool dontSelect = false]) => 
-        undo(select: !dontSelect)); 
+    };
+    _proxy['hasRedo'] = () => hasRedo;
+    _proxy['hasUndo'] = () => hasUndo;    
+    _proxy['redo'] = ([bool dontSelect = false]) => redo(select: !dontSelect);
+    _proxy['reset'] = () => reset();
+    _proxy['undo'] = ([bool dontSelect = false]) => undo(select: !dontSelect); 
   }
   
   void _onDispose() {
