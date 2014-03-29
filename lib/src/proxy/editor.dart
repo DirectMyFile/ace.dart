@@ -130,7 +130,7 @@ class _EditorProxy extends HasProxy implements Editor {
   final bool _isListening;
   
   _EditorProxy(VirtualRenderer renderer, EditSession session) 
-    : this._(new js.JsObject(_context['ace']['Editor'],
+    : this._(new js.JsObject(_modules['ace/editor']['Editor'],
         [(renderer as HasProxy).jsProxy, (session as HasProxy).jsProxy]));
   
   _EditorProxy._(js.JsObject proxy, {bool listen: true}) 
