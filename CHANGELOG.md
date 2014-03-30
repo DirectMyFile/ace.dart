@@ -2,6 +2,7 @@
 
 ## 0.3.7-dev+3.8.2014
 
+- Added the `lastVisibleRow` getter to `Editor` and `VirtualRenderer`.
 - Added `.htm` to the extension map used by the `new Mode.forFile` factory.
 
 ## 0.3.6+3.8.2014
