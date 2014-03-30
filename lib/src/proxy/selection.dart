@@ -1,6 +1,6 @@
 part of ace.proxy;
 
-class _SelectionProxy extends _HasProxy implements Selection {
+class _SelectionProxy extends HasProxy implements Selection {
 
   Point get cursor => _point(call('getCursor'));
   

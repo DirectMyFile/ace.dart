@@ -1,6 +1,6 @@
 part of ace.proxy;
 
-class _EditSessionProxy extends _HasProxy implements EditSession {
+class _EditSessionProxy extends HasProxy implements EditSession {
 
   final _onChange = new StreamController<Delta>.broadcast();
   Stream<Delta> get onChange => _onChange.stream;

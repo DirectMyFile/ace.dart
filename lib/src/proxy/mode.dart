@@ -1,6 +1,6 @@
 part of ace.proxy;
 
-class _ModeProxy extends _HasProxy implements Mode {
+class _ModeProxy extends HasProxy implements Mode {
   
   final String path;
   

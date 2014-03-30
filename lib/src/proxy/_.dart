@@ -135,25 +135,28 @@ UndoManagerDelta _undoManagerDelta(proxy) => new UndoManagerDelta(
     proxy['group'],
     proxy['deltas'].map((delta) => _delta(delta)).toList(growable: false));
 
-abstract class _HasProxy extends Disposable {
+abstract class HasProxy extends Disposable {
   
   js.JsObject _proxy;
   
   final Future _onHasProxy;
   
   bool get _hasProxy => _proxy != null;
-      
-  _HasProxy.async(Future<js.JsObject> proxyFuture) 
+  
+  // We don't expose `proxy` as it is easily shadowed by `dart:core`.
+  js.JsObject get jsProxy => _proxy;
+  
+  HasProxy.async(Future<js.JsObject> proxyFuture) 
       : _onHasProxy = proxyFuture {
     proxyFuture.then((proxy) => _proxy = proxy);
   }
   
-  _HasProxy(js.JsObject proxy) 
+  HasProxy(js.JsObject proxy) 
       : _proxy = proxy
       , _onHasProxy = new Future.value();
   
   call(String name, [List args]) => _proxy.callMethod(name, args);
-  
+      
   void dispose() {
     if (_hasProxy) {
       _onDispose();

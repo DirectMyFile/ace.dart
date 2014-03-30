@@ -1,6 +1,6 @@
 part of ace.proxy;
 
-class _UndoManagerProxy extends _HasProxy implements UndoManager {
+class _UndoManagerProxy extends HasProxy implements UndoManager {
   
   bool get hasRedo => call('hasRedo');
   

@@ -1,6 +1,6 @@
 part of ace.proxy;
 
-class _RangeListProxy extends _HasProxy implements RangeList {
+class _RangeListProxy extends HasProxy implements RangeList {
   
   List<Range> 
     get ranges => _rangeList(_proxy['ranges']);

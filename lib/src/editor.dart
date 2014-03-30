@@ -110,6 +110,9 @@ abstract class Editor extends Disposable implements OptionsProvider {
   /// Returns the current [session.value].
   String get value;
   
+  factory Editor(VirtualRenderer renderer, EditSession session) =>
+      implementation.createEditor(renderer, session);
+  
   void alignCursors();
   
   /// Indents the current line by the current [session.tabSize].

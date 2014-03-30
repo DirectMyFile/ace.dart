@@ -1,6 +1,6 @@
 part of ace.proxy;
 
-class _DocumentProxy extends _HasProxy implements Document {
+class _DocumentProxy extends HasProxy implements Document {
   
   final _onChange = new StreamController<Delta>.broadcast();
   Stream<Delta> get onChange => _onChange.stream;

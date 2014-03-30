@@ -1,6 +1,6 @@
 part of ace.proxy;
 
-class _EditorProxy extends _HasProxy implements Editor {
+class _EditorProxy extends HasProxy implements Editor {
   
   final _onBlur = new StreamController<Null>.broadcast();
   Stream<Null> get onBlur => _onBlur.stream;
@@ -128,6 +128,10 @@ class _EditorProxy extends _HasProxy implements Editor {
   String get value => call('getValue');
   
   final bool _isListening;
+  
+  _EditorProxy(VirtualRenderer renderer, EditSession session) 
+    : this._(new js.JsObject(_modules['ace/editor']['Editor'],
+        [(renderer as HasProxy).jsProxy, (session as HasProxy).jsProxy]));
   
   _EditorProxy._(js.JsObject proxy, {bool listen: true}) 
   : super(proxy)

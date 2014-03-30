@@ -1,6 +1,6 @@
 part of ace.proxy;
 
-class _CommandProxy extends _HasProxy implements Command {
+class _CommandProxy extends HasProxy implements Command {
   
   String get name => _proxy['name'];
   BindKey get bindKey => _bindKey(_proxy['bindKey']);

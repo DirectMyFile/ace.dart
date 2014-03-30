@@ -1,6 +1,6 @@
 part of ace.proxy;
 
-class _AnchorProxy extends _HasProxy implements Anchor {
+class _AnchorProxy extends HasProxy implements Anchor {
   
   final _onChange = new StreamController<AnchorChangeEvent>.broadcast();
   Stream<AnchorChangeEvent> get onChange => _onChange.stream;

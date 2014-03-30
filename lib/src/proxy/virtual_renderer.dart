@@ -1,6 +1,6 @@
 part of ace.proxy;
 
-class _VirtualRendererProxy extends _HasProxy implements VirtualRenderer {
+class _VirtualRendererProxy extends HasProxy implements VirtualRenderer {
   
   get containerElement => call('getContainerElement');
   

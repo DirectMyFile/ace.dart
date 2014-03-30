@@ -1,6 +1,6 @@
 part of ace.proxy;
 
-class _PlaceholderProxy extends _HasProxy implements Placeholder {
+class _PlaceholderProxy extends HasProxy implements Placeholder {
   
   int get length => _proxy['length'];
   
