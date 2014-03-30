@@ -8,21 +8,34 @@ import 'package:ace/proxy.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 import '_.dart';
+import 'mocks.dart';
 
+// TODO: transition all of the tests to use the `mockRenderer`
 Editor editor;
+Editor editorWithMockRenderer;
+MockVirtualRenderer mockRenderer;
+
 @Setup
 void setup() {
   implementation = ACE_PROXY_IMPLEMENTATION;
   html.document.body.append(new html.Element.div()..id = 'editor');
   editor = edit(html.querySelector('#editor'))
   ..setValue(sampleText, -1);
+  mockRenderer = new MockVirtualRenderer();
+  final session = new EditSession(new Document(text: sampleText), 
+      new Mode.named(Mode.TEXT));    
+  editorWithMockRenderer = new Editor(mockRenderer, session);
 }
 
 @Teardown
 void teardown() {
-  html.document.body.children.remove(html.querySelector('#editor'));
-  editor.dispose();
+  html.document.body.children.remove(html.querySelector('#editor'));  
+  editor.dispose();  
   editor = null;
+  editorWithMockRenderer.dispose();
+  editorWithMockRenderer = null;
+  mockRenderer.dispose();
+  mockRenderer = null;
 }
 
 @Test()
@@ -131,7 +144,16 @@ void testIndent() {
 
 @Test()
 void testFirstVisibleRow() {
-  expect(editor.firstVisibleRow, equals(0));
+  mockRenderer.getters[#firstVisibleRow] = () => 42;
+  expect(editorWithMockRenderer.firstVisibleRow, equals(42));
+  expect(mockRenderer.calls(#firstVisibleRow), once);
+}
+
+@Test()
+void testLastVisibleRow() {
+  mockRenderer.getters[#lastVisibleRow] = () => 18;
+  expect(editorWithMockRenderer.lastVisibleRow, equals(18));
+  expect(mockRenderer.calls(#lastVisibleRow), once);
 }
 
 @Test()
