@@ -1,5 +1,5 @@
 name: ace
-version: 0.3.7-dev+3.8.2014
+version: 0.3.7-dev+4.11.2014
 author: Ross Smith <dev@futureperfect.info>
 description: Dart bindings for the Ace code editor.
 homepage: https://github.com/rmsmith/ace.dart

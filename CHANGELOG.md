@@ -1,7 +1,8 @@
 # Ace.dart Changes
 
-## 0.3.7-dev+3.8.2014
+## 0.3.7-dev+4.11.2014
 
+- Updated to ace-builds version 04.11.2014.
 - Added the `lastVisibleRow` getter to `Editor` and `VirtualRenderer`.
 - Added `.htm` to the extension map used by the `new Mode.forFile` factory.
 
