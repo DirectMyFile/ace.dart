@@ -1,9 +1,7 @@
 This directory contains a work-in-progress pure Dart implementation.
 
 As a user of `ace.dart` you should ignore this implementation for the time 
-being; none of the classes defined here are instantiated on any of the default
-code paths and they should therefore be removed by the `dart2js` tree shaker and
-have no impact on your application.
+being.
 
 As a contributor to `ace.dart` you may be interested to contribute to the 
 development of this implementation.  It is in the very early stages, but the 
