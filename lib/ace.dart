@@ -6,6 +6,7 @@ part 'src/anchor.dart';
 part 'src/annotation.dart';
 part 'src/command.dart';
 part 'src/command_manager.dart';
+part 'src/completion.dart';
 part 'src/delta.dart';
 part 'src/disposable.dart';
 part 'src/document.dart';
@@ -66,3 +67,7 @@ Editor edit(element) {
 /// 
 /// The [modulePath] is a path such as `ace/ext/language_tools`.
 require(String modulePath) => implementation.require(modulePath);
+
+/// Add a new code completion provider.
+void addCompleter(CodeCompleter completer) =>
+    implementation.addCompleter(completer);

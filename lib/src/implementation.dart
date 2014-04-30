@@ -53,4 +53,6 @@ abstract class Implementation {
   }
   
   require(String modulePath);
+  
+  void addCompleter(CodeCompleter completer);
 }

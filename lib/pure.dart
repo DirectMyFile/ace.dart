@@ -73,4 +73,6 @@ class _PureImplementation extends Implementation {
   Editor edit(element) => throw new UnimplementedError();
   
   require(String modulePath) => throw new UnimplementedError();
+  
+  void addCompleter(CodeCompleter completer) => throw new UnimplementedError();
 }
