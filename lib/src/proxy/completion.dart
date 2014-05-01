@@ -11,8 +11,7 @@ class _CodeCompleterReverseProxy extends _HasReverseProxy {
     print('completer called: ${prefix}');
     
     final _editor = new _EditorProxy._(editor, listen: false);
-    // TODO: I think we want something here like `listen: false`.
-    final _session = new _EditSessionProxy._(session);
+    final _session = new _EditSessionProxy._(session, listen: false);
 
     completer(_editor, _session, pos, prefix).then((results) {
       js.JsArray arr = new js.JsArray.from(results.map(_convertCompletion));

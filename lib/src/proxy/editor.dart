@@ -127,7 +127,7 @@ class _EditorProxy extends HasProxy implements Editor {
   
   String get value => call('getValue');
   
-  final bool _isListening;
+  final bool _listen;
   
   _EditorProxy(VirtualRenderer renderer, EditSession session) 
     : this._(new js.JsObject(_modules['ace/editor']['Editor'],
@@ -135,7 +135,7 @@ class _EditorProxy extends HasProxy implements Editor {
   
   _EditorProxy._(js.JsObject proxy, {bool listen: true}) 
   : super(proxy)
-  , _isListening = listen {
+  , _listen = listen {
     if (listen) {
       call('on', ['blur', (_,__) => _onBlur.add(null)]);
       call('on', ['change', (e,__) => _onChange.add(_delta(e['data']))]);
@@ -152,7 +152,7 @@ class _EditorProxy extends HasProxy implements Editor {
   }
   
   void _onDispose() {
-    if (_isListening) {
+    if (_listen) {
       _onBlur.close();
       _onChange.close();
       _onChangeSelection.close();
