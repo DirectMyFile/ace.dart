@@ -35,8 +35,8 @@ void testAddCompleter() {
   expect(langTools, isNotNull);  
   AutoCompleter completer = new AutoCompleter(expectAsync(
       (editor, session, position, prefix) {    
-    return new Future.value([new Completion('foo', 'bar', 42)]);
-  }));  
+    return new Future.value([new Completion('snarf')]);
+  }));
   langTools.addCompleter(completer);
   editor.setOption('enableBasicAutocompletion', true);  
   editor.execCommand('startAutocomplete');

@@ -14,9 +14,8 @@ main() {
   // Add a custom auto-completer (advanced usage - not required)
   langTools.addCompleter(new ace.AutoCompleter(
       (editor, session, position, prefix) {    
-    return new Future.value([
-      new ace.Completion('foo', 'the answer', 42, meta: 'snarf')
-    ]);
+    return new Future.value([new ace.Completion('answer', 
+        snippet:'<answer></answer>', score: 42, meta: 'snarf')]);
   }));
   
   var editor = ace.edit(querySelector('#editor'))
@@ -25,7 +24,8 @@ main() {
   
   // Enable autocompletion.
   ..setOptions({
+    // Use the `ctrl + SPACE` keys to trigger basic auto-completion.
     'enableBasicAutocompletion' : true,
     'enableSnippets' : true
-  });  
+  });
 }

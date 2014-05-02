@@ -1,11 +1,21 @@
 part of ace;
 
 class Completion {
-  final String name;
+  /// The display string and default value for this completion.
+  /// 
+  /// If this completion's [snippet] is `null` this value will be inserted.
   final String value;
+  
+  /// An optional string to insert in the document for this completion.
+  final String snippet;
+  
+  /// An optional score for this completion result; bigger is better.
   final int score;
+  
+  /// An optional string that is displayed during auto-completion if specified.
   final String meta;
-  Completion(this.name, this.value, this.score, {this.meta});
+  
+  Completion(this.value, {this.snippet, this.score, this.meta});
 }
 
 abstract class AutoCompleter extends Disposable {

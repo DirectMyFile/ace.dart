@@ -38,10 +38,14 @@ js.JsObject _jsBindKey(BindKey bk) => _jsMap({
 
 js.JsObject _jsCompletion(Completion c) {
   final jsMap = _jsMap({
-    'name'  : c.name,
-    'value' : c.value,
-    'score' : c.score        
+    'value' : c.value
   });
+  if (c.snippet != null) {
+    jsMap['snippet'] = c.snippet;
+  }
+  if (c.score != null) {
+    jsMap['score'] = c.score;
+  }
   if (c.meta != null) {
     jsMap['meta'] = c.meta;
   }
