@@ -12,7 +12,7 @@ class _CodeCompleterReverseProxy extends _HasReverseProxy
           : new _EditorProxy._(editor, listen: false);
       final _session = session == null ? null 
           : new _EditSessionProxy._(session, listen: false);        
-      getCompletions(_editor, _session, pos, prefix)
+      getCompletions(_editor, _session, _point(pos), prefix)
       ..then((results) {
         callback.apply([null, _jsArray(results.map(_jsCompletion))]);
       })

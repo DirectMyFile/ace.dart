@@ -13,7 +13,7 @@ abstract class CodeCompleter extends Disposable {
   Function get getCompletions;
   
   factory CodeCompleter(Future<List<Completion>> getCompletions(
-      Editor editor, EditSession session, int position, String prefix)) {
+      Editor editor, EditSession session, Point position, String prefix)) {
     return implementation.createCodeCompleter(getCompletions);
   }
 }

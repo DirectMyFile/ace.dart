@@ -24,7 +24,7 @@ class _PureImplementation extends Implementation {
   }
   
   CodeCompleter createCodeCompleter(Future<List<Completion>> getCompletions(
-      Editor editor, EditSession session, int position, String prefix)) =>
+      Editor editor, EditSession session, Point position, String prefix)) =>
       throw new UnimplementedError();
   
   Command createCommand(String name, BindKey bindKey, exec(Editor), 

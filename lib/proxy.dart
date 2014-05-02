@@ -39,7 +39,7 @@ class _ProxyImplementation extends Implementation {
   }
   
   CodeCompleter createCodeCompleter(Future<List<Completion>> getCompletions(
-      Editor editor, EditSession session, int position, String prefix)) 
+      Editor editor, EditSession session, Point position, String prefix)) 
       => new _CodeCompleterReverseProxy(getCompletions);
   
   Command createCommand(String name, BindKey bindKey, exec(Editor), 
