@@ -15,4 +15,5 @@ setup() {
 void testRequireLanguageTools() {
   var langTools = ace.require('ace/ext/language_tools');
   expect(langTools, isNotNull);  
+  expect(langTools, const isInstanceOf<ace.LanguageTools>());
 }
