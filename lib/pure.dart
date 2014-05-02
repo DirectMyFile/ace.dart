@@ -23,6 +23,10 @@ class _PureImplementation extends Implementation {
     return new _Anchor(document, row, column);
   }
   
+  AutoCompleter createAutoCompleter(Future<List<Completion>> getCompletions(
+      Editor editor, EditSession session, Point position, String prefix)) =>
+      throw new UnimplementedError();
+  
   Command createCommand(String name, BindKey bindKey, exec(Editor), 
       {bool readOnly: false, String scrollIntoView, String multiSelectAction}) 
       => new _Command(name, bindKey, exec, readOnly: readOnly, 

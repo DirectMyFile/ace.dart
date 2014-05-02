@@ -15,6 +15,7 @@ part 'src/proxy/edit_session.dart';
 part 'src/proxy/fold.dart';
 part 'src/proxy/keyboard_handler.dart';
 part 'src/proxy/key_binding.dart';
+part 'src/proxy/language_tools.dart';
 part 'src/proxy/mode.dart';
 part 'src/proxy/placeholder.dart';
 part 'src/proxy/range_list.dart';
@@ -36,6 +37,10 @@ class _ProxyImplementation extends Implementation {
     assert(document is _DocumentProxy);
     return new _AnchorProxy(document, row, column);
   }
+  
+  AutoCompleter createAutoCompleter(Future<List<Completion>> getCompletions(
+      Editor editor, EditSession session, Point position, String prefix)) 
+      => new _AutoCompleterReverseProxy(getCompletions);
   
   Command createCommand(String name, BindKey bindKey, exec(Editor), 
       {bool readOnly: false, String scrollIntoView, String multiSelectAction}) 
@@ -112,7 +117,11 @@ class _ProxyImplementation extends Implementation {
   Editor edit(element) => 
       new _EditorProxy._(_ace.callMethod('edit', [element]));
   
-  require(String modulePath) { 
-    return _ace.callMethod('require', [modulePath]);
+  require(String modulePath) {
+    final module = _ace.callMethod('require', [modulePath]);    
+    if (modulePath == 'ace/ext/language_tools') {
+      return new _LanguageToolsProxy._(module);
+    }    
+    return module;
   }
 }

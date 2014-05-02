@@ -115,44 +115,53 @@ class _EditSessionProxy extends HasProxy implements EditSession {
   int 
     get wrapLimit => call('getWrapLimit');
     set wrapLimit(int wrapLimit) => call('setWrapLimit', [wrapLimit]);
-
+  
+  final bool _listen;
+    
   _EditSessionProxy(Document document, Mode mode) 
   : this._(new js.JsObject(_context['ace']['EditSession'], 
       [(document as _DocumentProxy)._proxy, (mode as _ModeProxy)._mode]));
   
-  _EditSessionProxy._(js.JsObject proxy) : super(proxy) {
-    call('on', ['change', (e,__) => _onChange.add(_delta(e['data']))]);
-    call('on', ['changeAnnotation', (_,__) => _onChangeAnnotation.add(null)]);
-    call('on', ['changeBackMarker', (_,__) => _onChangeBackMarker.add(null)]);
-    call('on', ['changeBreakpoint', (_,__) => _onChangeBreakpoint.add(null)]);
-    call('on', ['changeFold', (e,__) {
-      _onChangeFold.add(new FoldChangeEvent(
-          new _FoldProxy._(e['data']), e['action']));
-    }]);
-    call('on', ['changeFrontMarker', (_,__) => _onChangeFrontMarker.add(null)]);
-    call('on', ['changeOverwrite', (_,__) => _onChangeOverwrite.add(null)]);
-    call('on', ['changeScrollLeft', 
-                (e,__) => _onChangeScrollLeft.add(e.toInt())]);
-    call('on', ['changeScrollTop', 
-                (e,__) => _onChangeScrollTop.add(e.toInt())]);
-    call('on', ['changeTabSize', (_,__) => _onChangeTabSize.add(null)]);
-    call('on', ['changeWrapLimit', (_,__) => _onChangeWrapLimit.add(null)]);
-    call('on', ['changeWrapMode', (_,__) => _onChangeWrapMode.add(null)]);
+  _EditSessionProxy._(js.JsObject proxy, {bool listen: true}) 
+  : super(proxy)
+  , _listen = listen {
+    if (listen) {
+      call('on', ['change', (e,__) => _onChange.add(_delta(e['data']))]);
+      call('on', ['changeAnnotation', (_,__) => _onChangeAnnotation.add(null)]);
+      call('on', ['changeBackMarker', (_,__) => _onChangeBackMarker.add(null)]);
+      call('on', ['changeBreakpoint', (_,__) => _onChangeBreakpoint.add(null)]);
+      call('on', ['changeFold', (e,__) {
+        _onChangeFold.add(new FoldChangeEvent(
+            new _FoldProxy._(e['data']), e['action']));
+      }]);
+      call('on', ['changeFrontMarker', 
+                  (_,__) => _onChangeFrontMarker.add(null)]);
+      call('on', ['changeOverwrite', (_,__) => _onChangeOverwrite.add(null)]);
+      call('on', ['changeScrollLeft', 
+                  (e,__) => _onChangeScrollLeft.add(e.toInt())]);
+      call('on', ['changeScrollTop', 
+                  (e,__) => _onChangeScrollTop.add(e.toInt())]);
+      call('on', ['changeTabSize', (_,__) => _onChangeTabSize.add(null)]);
+      call('on', ['changeWrapLimit', (_,__) => _onChangeWrapLimit.add(null)]);
+      call('on', ['changeWrapMode', (_,__) => _onChangeWrapMode.add(null)]);
+    }
   }
   
   void _onDispose() {
-    _onChange.close();
-    _onChangeAnnotation.close();
-    _onChangeBackMarker.close();
-    _onChangeBreakpoint.close();
-    _onChangeFold.close();
-    _onChangeFrontMarker.close();
-    _onChangeOverwrite.close();
-    _onChangeScrollLeft.close();
-    _onChangeScrollTop.close();
-    _onChangeTabSize.close();
-    _onChangeWrapLimit.close();
-    _onChangeWrapMode.close();
+    if (_listen) {
+      _onChange.close();
+      _onChangeAnnotation.close();
+      _onChangeBackMarker.close();
+      _onChangeBreakpoint.close();
+      _onChangeFold.close();
+      _onChangeFrontMarker.close();
+      _onChangeOverwrite.close();
+      _onChangeScrollLeft.close();
+      _onChangeScrollTop.close();
+      _onChangeTabSize.close();
+      _onChangeWrapLimit.close();
+      _onChangeWrapMode.close();
+    }
   }
   
   Fold addFold(Fold fold) => new _FoldProxy._(

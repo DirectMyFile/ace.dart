@@ -17,6 +17,7 @@ part 'src/folding.dart';
 part 'src/implementation.dart';
 part 'src/keyboard_handler.dart';
 part 'src/key_binding.dart';
+part 'src/language_tools.dart';
 part 'src/marker.dart';
 part 'src/mode.dart';
 part 'src/options_provider.dart';

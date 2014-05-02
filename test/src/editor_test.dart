@@ -11,6 +11,7 @@ import '_.dart';
 import 'mocks.dart';
 
 // TODO: transition all of the tests to use the `mockRenderer`
+html.Element container;
 Editor editor;
 Editor editorWithMockRenderer;
 MockVirtualRenderer mockRenderer;
@@ -18,8 +19,9 @@ MockVirtualRenderer mockRenderer;
 @Setup
 void setup() {
   implementation = ACE_PROXY_IMPLEMENTATION;
-  html.document.body.append(new html.Element.div()..id = 'editor');
-  editor = edit(html.querySelector('#editor'))
+  container = new html.Element.div();
+  html.document.body.append(container);
+  editor = edit(container)
   ..setValue(sampleText, -1);
   mockRenderer = new MockVirtualRenderer();
   final session = new EditSession(new Document(text: sampleText), 
@@ -29,9 +31,10 @@ void setup() {
 
 @Teardown
 void teardown() {
-  html.document.body.children.remove(html.querySelector('#editor'));  
+  html.document.body.children.remove(container);  
   editor.dispose();  
   editor = null;
+  container = null;
   editorWithMockRenderer.dispose();
   editorWithMockRenderer = null;
   mockRenderer.dispose();
@@ -40,7 +43,6 @@ void teardown() {
 
 @Test()
 void testEditElement() {
-  final Editor editor = edit(html.querySelector('#editor'));
   expect(editor, isNotNull);
 }
 
