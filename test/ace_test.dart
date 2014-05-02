@@ -8,6 +8,7 @@ import 'src/document_test.dart';
 import 'src/editor_test.dart';
 import 'src/edit_session_test.dart';
 import 'src/keyboard_handler_test.dart';
+import 'src/language_tools_test.dart';
 import 'src/mode_test.dart';
 import 'src/point_test.dart';
 import 'src/range_list_test.dart';
