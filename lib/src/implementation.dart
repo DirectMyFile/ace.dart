@@ -6,6 +6,9 @@ abstract class Implementation {
   
   Anchor createAnchor(Document document, int row, int column);
   
+  CodeCompleter createCodeCompleter(Future<List<Completion>> getCompletions(
+      Editor editor, EditSession session, int position, String prefix));
+  
   Command createCommand(String name, BindKey bindKey, exec(Editor), 
       {bool readOnly: false, String scrollIntoView, String multiSelectAction});
   

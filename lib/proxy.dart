@@ -38,6 +38,10 @@ class _ProxyImplementation extends Implementation {
     return new _AnchorProxy(document, row, column);
   }
   
+  CodeCompleter createCodeCompleter(Future<List<Completion>> getCompletions(
+      Editor editor, EditSession session, int position, String prefix)) 
+      => new _CodeCompleterReverseProxy(getCompletions);
+  
   Command createCommand(String name, BindKey bindKey, exec(Editor), 
       {bool readOnly: false, String scrollIntoView, String multiSelectAction}) 
       => new _CommandReverseProxy(name, bindKey, exec, readOnly: readOnly, 

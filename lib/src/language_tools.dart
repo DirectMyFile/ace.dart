@@ -8,8 +8,15 @@ class Completion {
   Completion(this.name, this.value, this.score, {this.meta});
 }
 
-typedef Future<List<Completion>> CodeCompleter(Editor editor,
-    EditSession session, int position, String prefix);
+abstract class CodeCompleter extends Disposable {
+  
+  Function get getCompletions;
+  
+  factory CodeCompleter(Future<List<Completion>> getCompletions(
+      Editor editor, EditSession session, int position, String prefix)) {
+    return implementation.createCodeCompleter(getCompletions);
+  }
+}
 
 abstract class LanguageTools extends Disposable {
   

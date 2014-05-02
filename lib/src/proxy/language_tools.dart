@@ -1,25 +1,39 @@
 part of ace.proxy;
 
-class _CodeCompleterReverseProxy extends _HasReverseProxy {
-  final CodeCompleter completer;
+class _CodeCompleterReverseProxy extends _HasReverseProxy 
+    implements CodeCompleter {
   
-  _CodeCompleterReverseProxy(this.completer) {
-    _proxy['getCompletions'] = _getCompletions;
-  }
+  final Function getCompletions;
   
-  void _getCompletions(editor, session, pos, prefix, js.JsFunction callback) {
-    print('completer called: ${prefix}');
+  _CodeCompleterReverseProxy(this.getCompletions) {
+      _proxy['getCompletions'] = (editor, session, pos, prefix, 
+          js.JsFunction callback) {
+        final _editor = editor == null ? null 
+            : new _EditorProxy._(editor, listen: false);
+        final _session = session == null ? null 
+            : new _EditSessionProxy._(session, listen: false);        
+        getCompletions(_editor, _session, pos, prefix)
+        ..then((results) {
+          callback.apply([null, _jsArray(results.map(_jsCompletion))]);
+        })
+        ..catchError((e) {
+          // TODO: should we pass the error (string) as the first argument?
+          callback.apply([null, _jsArray([])]);
+        })
+        ..whenComplete(() {
+          if (_editor != null) {
+            _editor.dispose();  
+          }
+          if (_session != null) {
+            _session.dispose();
+          }
+        });
+      };
+    }
     
-    final _editor = new _EditorProxy._(editor, listen: false);
-    final _session = new _EditSessionProxy._(session, listen: false);
-
-    completer(_editor, _session, pos, prefix)
-    .then((results) {
-      callback.apply([null, _jsArray(results.map(_jsCompletion))]);
-    }).catchError((e) {
-      callback.apply([null, _jsArray([])]);
-    });
-  }
+    void _onDispose() {
+      _proxy.deleteProperty('getCompletions');
+    }
 }
 
 class _LanguageToolsProxy extends HasProxy implements LanguageTools {
@@ -27,10 +41,7 @@ class _LanguageToolsProxy extends HasProxy implements LanguageTools {
   _LanguageToolsProxy._(js.JsObject proxy) : super(proxy);
   
   void addCompleter(CodeCompleter completer) {
-    // TODO: this is problematic as the user has no chance to dispose of the
-    // reverseProxy, we should refactor to have the user provide us with the
-    // proxy object as with the commands
-    var reverseProxy = new _CodeCompleterReverseProxy(completer);
-    call('addCompleter', [reverseProxy._proxy]);
+    assert(completer is _CodeCompleterReverseProxy);
+    call('addCompleter', [(completer as _CodeCompleterReverseProxy)._proxy]);
   }
 }
