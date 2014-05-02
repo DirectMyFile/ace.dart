@@ -14,7 +14,9 @@ main() {
   // Add a custom auto-completer (advanced usage - not required)
   langTools.addCompleter(new ace.AutoCompleter(
       (editor, session, position, prefix) {    
-    return new Future.value([new ace.Completion('foo', 'the answer', 42)]);
+    return new Future.value([
+      new ace.Completion('foo', 'the answer', 42, meta: 'snarf')
+    ]);
   }));
   
   var editor = ace.edit(querySelector('#editor'))
