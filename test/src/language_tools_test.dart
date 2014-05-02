@@ -33,11 +33,17 @@ void teardown() {
 void testAddCompleter() {
   LanguageTools langTools = require('ace/ext/language_tools');
   expect(langTools, isNotNull);  
+  Point wordStart = sampleTextWordStart(3, 2);
+  Point wordMiddle = new Point(wordStart.row, wordStart.column + 1);
+  String wordPrefix = sampleTextWords[3][2].substring(0, 1);  
   AutoCompleter completer = new AutoCompleter(expectAsync(
-      (editor, session, position, prefix) {    
+      (editor, session, position, prefix) {
+    expect(position, equals(wordMiddle));
+    expect(prefix, equals(wordPrefix));
     return new Future.value([new Completion('snarf')]);
   }));
   langTools.addCompleter(completer);
   editor.setOption('enableBasicAutocompletion', true);  
+  editor.navigateTo(wordMiddle.row, wordMiddle.column);
   editor.execCommand('startAutocomplete');
 }
