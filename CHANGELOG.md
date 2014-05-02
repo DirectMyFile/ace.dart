@@ -2,6 +2,10 @@
 
 ## 0.3.8-dev+4.11.2014
 
+- Added the `LanguageTools`, `AutoCompleter` and `Completion` classes to support
+the `ace/ext/language_tools` extension.  An instance of `LanguageTools` is now
+returned by a call to `require('ace/ext/language_tools')`.
+
 ## 0.3.7+4.11.2014
 
 - Updated to ace-builds version 04.11.2014.
