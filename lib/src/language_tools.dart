@@ -18,6 +18,11 @@ abstract class CodeCompleter extends Disposable {
   }
 }
 
+/// An extension that provides autocomplete customization.
+/// 
+/// This extension can be loaded using the [require] function:
+///     
+///     ace.LanguageTools langTools = ace.require('ace/ext/language_tools'); 
 abstract class LanguageTools extends Disposable {
   
   /// Add a new code completion provider.
