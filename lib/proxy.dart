@@ -9,13 +9,13 @@ part 'src/proxy/_.dart';
 part 'src/proxy/anchor.dart';
 part 'src/proxy/command.dart';
 part 'src/proxy/command_manager.dart';
-part 'src/proxy/completion.dart';
 part 'src/proxy/document.dart';
 part 'src/proxy/editor.dart';
 part 'src/proxy/edit_session.dart';
 part 'src/proxy/fold.dart';
 part 'src/proxy/keyboard_handler.dart';
 part 'src/proxy/key_binding.dart';
+part 'src/proxy/language_tools.dart';
 part 'src/proxy/mode.dart';
 part 'src/proxy/placeholder.dart';
 part 'src/proxy/range_list.dart';
@@ -113,13 +113,11 @@ class _ProxyImplementation extends Implementation {
   Editor edit(element) => 
       new _EditorProxy._(_ace.callMethod('edit', [element]));
   
-  require(String modulePath) { 
-    return _ace.callMethod('require', [modulePath]);
-  }
-  
-  void addCompleter(CodeCompleter completer) {
-    var reverseProxy = new _CodeCompleterReverseProxy(completer);
-    var langTools = require('ace/ext/language_tools');
-    langTools.callMethod('addCompleter', [reverseProxy._proxy]);
+  require(String modulePath) {
+    final module = _ace.callMethod('require', [modulePath]);    
+    if (modulePath == 'ace/ext/language_tools') {
+      return new _LanguageToolsProxy._(module);
+    }    
+    return module;
   }
 }

@@ -11,3 +11,9 @@ class Completion {
 
 typedef Future<List<Completion>> CodeCompleter(Editor editor,
     EditSession session, int position, String prefix);
+
+abstract class LanguageTools extends Disposable {
+  
+  /// Add a new code completion provider.
+  void addCompleter(CodeCompleter completer);
+}

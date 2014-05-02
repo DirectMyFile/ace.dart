@@ -31,3 +31,16 @@ class _CodeCompleterReverseProxy extends _HasReverseProxy {
     return proxy;
   }
 }
+
+class _LanguageToolsProxy extends HasProxy implements LanguageTools {
+  
+  _LanguageToolsProxy._(js.JsObject proxy) : super(proxy);
+  
+  void addCompleter(CodeCompleter completer) {
+    // TODO: this is problematic as the user has no chance to dispose of the
+    // reverseProxy, we should refactor to have the user provide us with the
+    // proxy object as with the commands
+    var reverseProxy = new _CodeCompleterReverseProxy(completer);
+    call('addCompleter', [reverseProxy._proxy]);
+  }
+}
