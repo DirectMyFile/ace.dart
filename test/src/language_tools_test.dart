@@ -34,13 +34,10 @@ void testAddCodeCompleter() {
   LanguageTools langTools = require('ace/ext/language_tools');
   expect(langTools, isNotNull);  
   CodeCompleter completer = new CodeCompleter(expectAsync(
-      (editor, session, position, prefix) {
-    return new Future.value([]);
+      (editor, session, position, prefix) {    
+    return new Future.value([new Completion('foo', 'bar', 42)]);
   }));  
   langTools.addCompleter(completer);
-  editor.setOptions({
-    'enableBasicAutocompletion' : true,
-    'enableSnippets' : true
-  });  
+  editor.setOption('enableBasicAutocompletion', true);  
   editor.execCommand('startAutocomplete');
 }
