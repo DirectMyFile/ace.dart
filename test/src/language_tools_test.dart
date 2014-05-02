@@ -9,21 +9,24 @@ import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 import '_.dart';
 
+html.Element container;
 Editor editor;
 
 @Setup
 setup() {  
   implementation = ACE_PROXY_IMPLEMENTATION;
-  html.document.body.append(new html.Element.div()..id = 'editor');
-    editor = edit(html.querySelector('#editor'))
-    ..setValue(sampleText, -1);
+  container = new html.Element.div();
+  html.document.body.append(container);
+  editor = edit(container)
+  ..setValue(sampleText, -1);
 }
 
 @Teardown
 void teardown() {
-  html.document.body.children.remove(html.querySelector('#editor'));  
+  html.document.body.children.remove(container);  
   editor.dispose();  
   editor = null;
+  container = null;
 }
 
 @Test()
