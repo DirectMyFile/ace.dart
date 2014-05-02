@@ -36,6 +36,18 @@ js.JsObject _jsBindKey(BindKey bk) => _jsMap({
   'mac' : bk.mac
 });
 
+js.JsObject _jsCompletion(Completion c) {
+  final jsMap = _jsMap({
+    'name'  : c.name,
+    'value' : c.value,
+    'score' : c.score        
+  });
+  if (c.meta != null) {
+    jsMap['meta'] = c.meta;
+  }
+  return jsMap;
+}
+
 js.JsObject _jsDelta(d) {
   final jsMap = _jsMap({ 'action': d.action, 'range': _jsRange(d.range) });
   if (d.action == 'insertLines' || d.action == 'removeLines') {
