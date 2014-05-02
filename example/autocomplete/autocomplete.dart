@@ -14,7 +14,7 @@ main() {
   // Add a custom auto-completer (advanced usage - not required)
   langTools.addCompleter(new ace.AutoCompleter(
       (editor, session, position, prefix) {    
-    return new Future.value([new ace.Completion('answer', 
+    return new Future.value([const ace.Completion('answer', 
         snippet:'<answer></answer>', score: 42, meta: 'snarf')]);
   }));
   

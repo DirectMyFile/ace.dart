@@ -15,7 +15,7 @@ class Completion {
   /// An optional string that is displayed during auto-completion if specified.
   final String meta;
   
-  Completion(this.value, {this.snippet, this.score, this.meta});
+  const Completion(this.value, {this.snippet, this.score, this.meta});
 }
 
 abstract class AutoCompleter extends Disposable {

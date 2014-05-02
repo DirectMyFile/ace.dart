@@ -40,7 +40,7 @@ void testAddCompleter() {
       (editor, session, position, prefix) {
     expect(position, equals(wordMiddle));
     expect(prefix, equals(wordPrefix));
-    return new Future.value([new Completion('snarf')]);
+    return new Future.value([const Completion('snarf')]);
   }));
   langTools.addCompleter(completer);
   editor.setOption('enableBasicAutocompletion', true);  
