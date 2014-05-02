@@ -1,11 +1,11 @@
 part of ace.proxy;
 
-class _CodeCompleterReverseProxy extends _HasReverseProxy 
-    implements CodeCompleter {
+class _AutoCompleterReverseProxy extends _HasReverseProxy 
+    implements AutoCompleter {
   
   final Function getCompletions;
   
-  _CodeCompleterReverseProxy(this.getCompletions) {
+  _AutoCompleterReverseProxy(this.getCompletions) {
     _proxy['getCompletions'] = (editor, session, pos, prefix, 
         js.JsFunction callback) {
       final _editor = editor == null ? null 
@@ -40,8 +40,8 @@ class _LanguageToolsProxy extends HasProxy implements LanguageTools {
   
   _LanguageToolsProxy._(js.JsObject proxy) : super(proxy);
   
-  void addCompleter(CodeCompleter completer) {
-    assert(completer is _CodeCompleterReverseProxy);
-    call('addCompleter', [(completer as _CodeCompleterReverseProxy)._proxy]);
+  void addCompleter(AutoCompleter completer) {
+    assert(completer is _AutoCompleterReverseProxy);
+    call('addCompleter', [(completer as _AutoCompleterReverseProxy)._proxy]);
   }
 }

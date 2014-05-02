@@ -23,7 +23,7 @@ class _PureImplementation extends Implementation {
     return new _Anchor(document, row, column);
   }
   
-  CodeCompleter createCodeCompleter(Future<List<Completion>> getCompletions(
+  AutoCompleter createAutoCompleter(Future<List<Completion>> getCompletions(
       Editor editor, EditSession session, Point position, String prefix)) =>
       throw new UnimplementedError();
   

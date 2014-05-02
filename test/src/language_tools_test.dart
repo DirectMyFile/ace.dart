@@ -30,10 +30,10 @@ void teardown() {
 }
 
 @Test()
-void testAddCodeCompleter() {
+void testAddCompleter() {
   LanguageTools langTools = require('ace/ext/language_tools');
   expect(langTools, isNotNull);  
-  CodeCompleter completer = new CodeCompleter(expectAsync(
+  AutoCompleter completer = new AutoCompleter(expectAsync(
       (editor, session, position, prefix) {    
     return new Future.value([new Completion('foo', 'bar', 42)]);
   }));  

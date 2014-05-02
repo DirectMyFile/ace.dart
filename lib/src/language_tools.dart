@@ -8,23 +8,23 @@ class Completion {
   Completion(this.name, this.value, this.score, {this.meta});
 }
 
-abstract class CodeCompleter extends Disposable {
+abstract class AutoCompleter extends Disposable {
   
   Function get getCompletions;
   
-  factory CodeCompleter(Future<List<Completion>> getCompletions(
+  factory AutoCompleter(Future<List<Completion>> getCompletions(
       Editor editor, EditSession session, Point position, String prefix)) {
-    return implementation.createCodeCompleter(getCompletions);
+    return implementation.createAutoCompleter(getCompletions);
   }
 }
 
-/// An extension that provides autocomplete customization.
+/// An extension that provides auto-completion customization.
 /// 
 /// This extension can be loaded using the [require] function:
 ///     
 ///     ace.LanguageTools langTools = ace.require('ace/ext/language_tools'); 
 abstract class LanguageTools extends Disposable {
   
-  /// Add a new code completion provider.
-  void addCompleter(CodeCompleter completer);
+  /// Add a new auto-completion provider.
+  void addCompleter(AutoCompleter completer);
 }

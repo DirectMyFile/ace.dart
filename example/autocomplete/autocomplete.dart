@@ -11,8 +11,8 @@ main() {
   // Load the language tools extension.
   ace.LanguageTools langTools = ace.require('ace/ext/language_tools');
   
-  // Add a custom completer (advanced usage - not required)
-  langTools.addCompleter(new ace.CodeCompleter(
+  // Add a custom auto-completer (advanced usage - not required)
+  langTools.addCompleter(new ace.AutoCompleter(
       (editor, session, position, prefix) {    
     return new Future.value([new ace.Completion('foo', 'the answer', 42)]);
   }));

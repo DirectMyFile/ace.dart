@@ -38,9 +38,9 @@ class _ProxyImplementation extends Implementation {
     return new _AnchorProxy(document, row, column);
   }
   
-  CodeCompleter createCodeCompleter(Future<List<Completion>> getCompletions(
+  AutoCompleter createAutoCompleter(Future<List<Completion>> getCompletions(
       Editor editor, EditSession session, Point position, String prefix)) 
-      => new _CodeCompleterReverseProxy(getCompletions);
+      => new _AutoCompleterReverseProxy(getCompletions);
   
   Command createCommand(String name, BindKey bindKey, exec(Editor), 
       {bool readOnly: false, String scrollIntoView, String multiSelectAction}) 
