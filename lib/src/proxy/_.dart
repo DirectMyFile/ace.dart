@@ -14,6 +14,8 @@ Future<js.JsObject> _loadModule(String moduleType, String modulePath) {
 
 js.JsObject _jsArray(list) => new js.JsArray.from(list);
 
+js.JsObject _jsObject() => new js.JsObject(_context['Object']);
+
 js.JsObject _jsMap(map) {
   final jsMap = new js.JsObject(_context['Object']);
   map.forEach((k, v) {
@@ -173,25 +175,6 @@ abstract class HasProxy extends Disposable {
   
   call(String name, [List args]) => _proxy.callMethod(name, args);
       
-  void dispose() {
-    if (_hasProxy) {
-      _onDispose();
-      _proxy = null;
-    }
-  }
-  
-  void _onDispose() {}
-}
-
-abstract class _HasReverseProxy extends Disposable {
-  
-  js.JsObject _proxy;
-  
-  bool get _hasProxy => _proxy != null;
-  
-  _HasReverseProxy([String ctorName = 'Object', List ctorArgs]) 
-  : _proxy = new js.JsObject(_context[ctorName], ctorArgs);
-  
   void dispose() {
     if (_hasProxy) {
       _onDispose();

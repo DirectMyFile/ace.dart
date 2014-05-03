@@ -17,8 +17,7 @@ class _CommandProxy extends HasProxy implements Command {
   }
 }
 
-class _CommandReverseProxy extends _HasReverseProxy 
-    implements Command {
+class _CommandReverseProxy extends HasProxy implements Command {
   
   final String name;
   final BindKey bindKey;
@@ -28,7 +27,8 @@ class _CommandReverseProxy extends _HasReverseProxy
   final String multiSelectAction;
   
   _CommandReverseProxy(this.name, this.bindKey, this.exec, 
-      {this.readOnly: false, this.scrollIntoView, this.multiSelectAction}) {
+      {this.readOnly: false, this.scrollIntoView, this.multiSelectAction})
+      : super(_jsObject()) {
     _proxy['name'] = name;
     _proxy['bindKey'] = _jsBindKey(bindKey);
     _proxy['exec'] = (editor, args) {

@@ -19,14 +19,14 @@ class _UndoManagerProxy extends HasProxy implements UndoManager {
 }
 
 /// A base class for implementing [UndoManager].
-abstract class UndoManagerBase extends _HasReverseProxy implements UndoManager {
+abstract class UndoManagerBase extends HasProxy implements UndoManager {
   
   EditSession _session;
   /// The [EditSession] whose undo stack this undo manager manages; may be 
   /// `null` until the first call to [UndoManager.onExecuted].
   EditSession get session => _session;
   
-  UndoManagerBase() {
+  UndoManagerBase() : super(_jsObject()) {
     _proxy['execute'] = (options) {
       if (_session == null) {
         _session = new _EditSessionProxy._(options['args'][1]);
