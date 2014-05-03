@@ -21,7 +21,7 @@ class _CommandManagerProxy extends HasProxy implements CommandManager {
   
   List<Command> getCommands() {
     final proxies = _proxy['commands'];
-    final keys = _context['Object'].callMethod('keys', [proxies]);
+    final keys = _objectProto.callMethod('keys', [proxies]);
     return keys.map((String k) => new _CommandProxy._(proxies[k])).toList();
   }
     
