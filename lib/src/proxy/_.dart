@@ -164,14 +164,13 @@ abstract class HasProxy extends Disposable {
   // We don't expose `proxy` as it is easily shadowed by `dart:core`.
   js.JsObject get jsProxy => _proxy;
   
-  HasProxy.async(Future<js.JsObject> proxyFuture) 
-      : _onHasProxy = proxyFuture {
-    proxyFuture.then((proxy) => _proxy = proxy);
+  HasProxy.async(Future<js.JsObject> getProxy) : _onHasProxy = getProxy {
+    getProxy.then((proxy) => _proxy = proxy);
   }
   
   HasProxy(js.JsObject proxy) 
-      : _proxy = proxy
-      , _onHasProxy = new Future.value();
+  : _proxy = proxy
+  , _onHasProxy = null;
   
   call(String name, [List args]) => _proxy.callMethod(name, args);
       

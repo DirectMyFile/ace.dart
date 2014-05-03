@@ -20,6 +20,6 @@ class _KeyboardHandlerProxy extends HasProxy implements KeyboardHandler {
   , path = path;
 
   _KeyboardHandlerProxy._(js.JsObject proxy) 
-  : super(proxy)
+  : super.async(new Future.sync(() => proxy))
   , path = (proxy == null) ? null : proxy[r'$id'];
 }
