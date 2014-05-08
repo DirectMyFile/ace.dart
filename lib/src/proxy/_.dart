@@ -152,7 +152,7 @@ SearchOptions _searchOptions(proxy) => new SearchOptions(
 
 UndoManagerDelta _undoManagerDelta(proxy) => new UndoManagerDelta(
     proxy['group'],
-    proxy['deltas'].map((delta) => _delta(delta)).toList(growable: false));
+    proxy['deltas'].map(_delta).toList(growable: false));
 
 abstract class HasProxy extends Disposable {
   

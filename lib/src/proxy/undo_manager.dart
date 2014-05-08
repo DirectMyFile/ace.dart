@@ -31,8 +31,8 @@ abstract class UndoManagerBase extends HasProxy implements UndoManager {
       if (_session == null) {
         _session = new _EditSessionProxy._(options['args'][1]);
       }   
-      List<UndoManagerDelta> deltas =_list(options['args'][0]).map((proxy) => 
-          _undoManagerDelta(proxy)).toList(growable: false);      
+      List<UndoManagerDelta> deltas =_list(options['args'][0]).map(
+          _undoManagerDelta).toList(growable: false);      
       bool merge = options['merge'];
       onExecuted(deltas, merge);
     };
