@@ -15,7 +15,7 @@ class _PlaceholderProxy extends HasProxy implements Placeholder {
       [(session as _EditSessionProxy)._proxy, 
       length, 
       _jsPoint(position),
-      _jsArray(others.map((Point p) => _jsPoint(p))),
+      _jsArray(others.map(_jsPoint)),
       mainClass,
       othersClass]));
       

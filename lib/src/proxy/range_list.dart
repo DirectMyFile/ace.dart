@@ -5,7 +5,7 @@ class _RangeListProxy extends HasProxy implements RangeList {
   List<Range> 
     get ranges => _rangeList(_proxy['ranges']);
     set ranges(List<Range> ranges) {
-      _proxy['ranges'] = _jsArray(ranges.map((r) => _jsRange(r)));
+      _proxy['ranges'] = _jsArray(ranges.map(_jsRange));
     }
     
   _RangeListProxy() 
@@ -17,7 +17,7 @@ class _RangeListProxy extends HasProxy implements RangeList {
       _rangeList(call('add', [_jsRange(range)]));
 
   List<List<Range>> addList(Iterable<Range> ranges) {
-    final lists = call('addList', [_jsArray(ranges.map((r) => _jsRange(r)))]);
+    final lists = call('addList', [_jsArray(ranges.map(_jsRange))]);
     return new List.generate(lists['length'], (i) => _rangeList(lists[i]));
   }
   
