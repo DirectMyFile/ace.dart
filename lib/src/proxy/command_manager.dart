@@ -6,7 +6,7 @@ class _CommandManagerProxy extends HasProxy implements CommandManager {
   : this._(new js.JsObject(
       _modules['ace/commands/command_manager']['CommandManager'], 
       [platform, _jsArray(commands.map((command) => 
-          (command as dynamic)._proxy))]));
+          (command as HasProxy)._proxy))]));
   
   _CommandManagerProxy._(js.JsObject proxy) : super(proxy);
   
