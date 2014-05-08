@@ -12,7 +12,7 @@ class _CommandManagerProxy extends HasProxy implements CommandManager {
   
   void addCommand(Command command) {
     assert(command is _CommandReverseProxy || command is _CommandProxy);
-    call('addCommand', [(command as dynamic)._proxy]);
+    call('addCommand', [(command as HasProxy)._proxy]);
   }
   
   void addCommands(Iterable<Command> commands) => commands.forEach(addCommand);
