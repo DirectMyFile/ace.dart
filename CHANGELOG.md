@@ -1,5 +1,7 @@
 # Ace.dart Changes
 
+## 0.3.9-dev+4.11.2014
+
 ## 0.3.8+4.11.2014
 
 - Added the `LanguageTools`, `AutoCompleter` and `Completion` classes to support
