@@ -5,6 +5,12 @@ class _EditorProxy extends _HasProxy implements Editor {
   final _onBlur = new StreamController<Null>.broadcast();
   Stream<Null> get onBlur => _onBlur.stream;
 
+  final _onLinkClick = new StreamController<Point>.broadcast();
+  Stream<Point> get onLinkClick => _onLinkClick.stream;
+
+  final _onLinkHover = new StreamController<Point>.broadcast();
+  Stream<Point> get onLinkHover => _onLinkHover.stream;
+
   final _onChange = new StreamController<Delta>.broadcast();
   Stream<Delta> get onChange => _onChange.stream;
   
@@ -134,6 +140,10 @@ class _EditorProxy extends _HasProxy implements Editor {
   , _isListening = listen {
     if (listen) {
       call('on', ['blur', (_,__) => _onBlur.add(null)]);
+      call('on', ['linkClick', (e,__) => _onLinkClick.add(new Point(e['position']['row'],
+          e['position']['column']))]);
+      call('on', ['linkHover', (e,__) => _onLinkHover.add(
+          new Point(e['position']['row'], e['position']['column']))]);
       call('on', ['change', (e,__) => _onChange.add(_delta(e['data']))]);
       call('on', ['changeSelection', (_,__) => _onChangeSelection.add(null)]);
       call('on', ['changeSession', (e,__) {
@@ -150,6 +160,8 @@ class _EditorProxy extends _HasProxy implements Editor {
   void _onDispose() {
     if (_isListening) {
       _onBlur.close();
+      _onLinkClick.close();
+      _onLinkHover.close();
       _onChange.close();
       _onChangeSelection.close();
       _onChangeSession.close();

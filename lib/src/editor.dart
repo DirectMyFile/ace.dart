@@ -11,6 +11,13 @@ abstract class Editor extends Disposable implements OptionsProvider {
   /// Fired whenever this editor has been blurred.
   Stream<Null> get onBlur;
   
+  /// Fired whenever user has clicked on a linking identifier in code.
+  Stream<Point> get onLinkClick;
+
+  /// Fired whenever user has hovered over a linking identifier in code with
+  /// appropriate modifier key down.
+  Stream<Point> get onLinkHover;
+
   /// Fired whenever the [session.document] changes.
   Stream<Delta> get onChange;
   
