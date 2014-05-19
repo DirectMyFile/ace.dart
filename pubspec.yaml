@@ -8,6 +8,6 @@ environment:
   sdk: '>=1.0.0 <2.0.0'
 dependencies:
 dev_dependencies:
-  bench: '>=0.2.25'
+  bench: '>=0.2.27'
   browser: '>=0.10.0'
-  unittest: '>=0.10.1'
+  unittest: '>=0.11.0'

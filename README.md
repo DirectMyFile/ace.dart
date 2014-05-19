@@ -1,6 +1,6 @@
 # Ace.dart
 
-[Dart language][dart] bindings for [Ace][ace].
+[Dart language][dart] bindings for the [Ace][ace] code editor.
 
 [![Build Status][status]][badge] | [Dart API][api] | [JavaScript API][ace-api]
 
