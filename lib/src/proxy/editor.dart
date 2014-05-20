@@ -247,6 +247,11 @@ class _EditorProxy extends HasProxy implements Editor {
   
   void scrollPageUp() => call('scrollPageUp');
   
+  void scrollToLine(int line, {bool center: false, bool animate: false}) =>
+    call('scrollToLine', [line, center, animate]);
+  
+  void scrollToRow(int row) => call('scrollToRow', [row]);
+  
   void selectAll() => call('selectAll');
   
   void setOption(String name, value) => call('setOption', [name, value]);

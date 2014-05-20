@@ -266,6 +266,15 @@ abstract class Editor extends Disposable implements OptionsProvider {
   /// Scrolls the document up a page but does _not_ change the [cursorPosition].
   void scrollPageUp();
   
+  /// Scrolls to the given [line] number.
+  /// 
+  /// If [center] is `true` the given line will be centered on the screen.
+  /// If [animate] is `true` the scroll will be animated.
+  void scrollToLine(int line, {bool center: false, bool animate: false});
+  
+  /// Scrolls to the given [row].
+  void scrollToRow(int row);
+  
   /// Selects all the text in this editor.
   void selectAll();
   

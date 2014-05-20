@@ -710,3 +710,23 @@ void testExecCommand() {
   editor.execCommand('paste-answer');
   expect(editor.value, equals('snarf42'));
 }
+
+@Test()
+void testScrollToLine() {
+  // TODO: force resize to workaround known issue:
+  // https://groups.google.com/forum/#!topic/ace-discuss/Dyz8U2N16HQ
+  editor.resize(true);
+  expect(editor.session.scrollTop, isZero);
+  editor.scrollToLine(2);
+  expect(editor.session.scrollTop, greaterThanOrEqualTo(2 * editor.fontSize));
+}
+
+@Test()
+void testScrollToRow() {
+  // TODO: force resize to workaround known issue:
+  // https://groups.google.com/forum/#!topic/ace-discuss/Dyz8U2N16HQ
+  editor.resize(true);
+  expect(editor.session.scrollTop, isZero);
+  editor.scrollToRow(2);
+  expect(editor.session.scrollTop, greaterThanOrEqualTo(2 * editor.fontSize));
+}
