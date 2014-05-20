@@ -57,7 +57,6 @@ abstract class EditSession extends Disposable
   Mode mode;
     
   /// The new line mode.  May be one of `windows`, `unix` or `auto`.
-  // TODO(rms): enum
   String newLineMode;
 
   /// Whether or not overwrite is enabled in this session.

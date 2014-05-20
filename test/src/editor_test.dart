@@ -497,7 +497,7 @@ void testSelectAll() {
       sampleTextLines[sampleTextLines.length - 1].length);  
   expect(editor.cursorPosition, equals(const Point(0, 0)));
   expect(editor.selectionRange, equals(new Range(0, 0, 0, 0)));
-  // TODO(rms): investigate why `onChangeSelection` fires 3 times.
+  // TODO: investigate why `onChangeSelection` fires 3 times.
   expectNEvents(editor.onChangeSelection, 3);
   editor.selectAll();
   expect(editor.cursorPosition, equals(endCursor));
