@@ -676,3 +676,12 @@ void testSetOptions() {
   expect(session.tabSize, equals(5));
   expect(session.mode.path, equals(hamlMode.path));
 }
+
+@Test()
+void testGetTokenAt() {
+  Token t = session.getTokenAt(2);
+  expect(t.type, equals(Token.TEXT));
+  expect(t.index, isZero);
+  expect(t.start, isZero);
+  expect(t.value, equals(sampleTextLine2));
+}

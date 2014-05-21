@@ -29,6 +29,7 @@ part 'src/search.dart';
 part 'src/selection.dart';
 part 'src/text_input.dart';
 part 'src/theme.dart';
+part 'src/token.dart';
 part 'src/undo_manager.dart';
 part 'src/virtual_renderer.dart';
 

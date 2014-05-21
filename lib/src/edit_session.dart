@@ -207,6 +207,9 @@ abstract class EditSession extends Disposable
   /// Returns all of the text within the given [range] of the [document].
   String getTextRange(Range range);
   
+  /// Returns the token at the given [row].
+  Token getTokenAt(int row, [int column]);
+  
   /// Returns the [Range] of the first word boundary it finds starting at the
   /// given [row] and [column].
   Range getWordRange(int row, int column);      

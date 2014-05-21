@@ -233,6 +233,9 @@ class _EditSessionProxy extends HasProxy implements EditSession {
   
   String getTextRange(Range range) => call('getTextRange', [_jsRange(range)]);
   
+  Token getTokenAt(int row, [int column]) => 
+      _token(call('getTokenAt', [row, column]));
+  
   Range getWordRange(int row, int column) => 
       _range(call('getWordRange', [row, column]));      
 

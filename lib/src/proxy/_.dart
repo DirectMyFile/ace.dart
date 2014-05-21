@@ -150,6 +150,12 @@ SearchOptions _searchOptions(proxy) => new SearchOptions(
     wholeWord: proxy['wholeWord'] == null ? false : proxy['wholeWord'],
     wrap: proxy['wrap'] == null ? false : proxy['wrap']);
 
+Token _token(proxy) => new Token(
+    type:  proxy['type'],
+    value: proxy['value'],
+    index: proxy['index'] == null ? null : proxy['index'],
+    start: proxy['start'] == null ? null : proxy['start']);
+
 UndoManagerDelta _undoManagerDelta(proxy) => new UndoManagerDelta(
     proxy['group'],
     proxy['deltas'].map(_delta).toList(growable: false));
