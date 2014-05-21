@@ -210,6 +210,9 @@ abstract class EditSession extends Disposable
   /// Returns the token at the given [row].
   Token getTokenAt(int row, [int column]);
   
+  /// Returns a copy of the tokens at the given [row].
+  List<Token> getTokens(int row);
+  
   /// Returns the [Range] of the first word boundary it finds starting at the
   /// given [row] and [column].
   Range getWordRange(int row, int column);      

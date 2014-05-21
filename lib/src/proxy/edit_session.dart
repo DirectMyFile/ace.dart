@@ -201,7 +201,7 @@ class _EditSessionProxy extends HasProxy implements EditSession {
   List<Annotation> getAnnotations() {
     final proxies = call('getAnnotations');
     return new List<Annotation>.generate(proxies['length'], 
-      (i) => _annotation(proxies[i]));
+        (i) => _annotation(proxies[i]));
   }
         
   Range getAWordRange(int row, int column) =>
@@ -235,6 +235,12 @@ class _EditSessionProxy extends HasProxy implements EditSession {
   
   Token getTokenAt(int row, [int column]) => 
       _token(call('getTokenAt', [row, column]));
+  
+  List<Token> getTokens(int row) {
+    final proxies = call('getTokens', [row]);
+    return new List<Token>.generate(proxies['length'], 
+        (i) => _token(proxies[i]));
+  }
   
   Range getWordRange(int row, int column) => 
       _range(call('getWordRange', [row, column]));      

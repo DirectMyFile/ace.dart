@@ -681,7 +681,18 @@ void testSetOptions() {
 void testGetTokenAt() {
   Token t = session.getTokenAt(2);
   expect(t.type, equals(Token.TEXT));
+  expect(t.value, equals(sampleTextLine2));
   expect(t.index, isZero);
   expect(t.start, isZero);
-  expect(t.value, equals(sampleTextLine2));
 }
+
+@Test()
+void testGetTokens() {
+  List<Token> tokens = session.getTokens(2);
+  expect(tokens.length, equals(1));
+  expect(tokens[0].type, equals(Token.TEXT));
+  expect(tokens[0].value, equals(sampleTextLine2));
+  expect(tokens[0].index, isNull);
+  expect(tokens[0].start, isNull);  
+}
+
