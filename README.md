@@ -12,10 +12,10 @@ follows [semantic versioning][]._
 This package maintains a copy of the latest [ace-builds][] `src-min-noconflict` 
 governed by its own BSD [LICENSE][ace-license].
 
-The javascript releases occur approximately once per month, and the version 
-currently in use by this package is maintained in the version string 
-metadata.  For example, in `ace.dart` version `0.0.4+9.11.2013` we provide a 
-copy of `ace-builds` version `9.11.2013`.
+The `ace-builds` occur approximately once per month, and the version currently 
+in use by this package is maintained in the version string metadata.  For 
+example, in `ace.dart` version `0.0.4+9.11.2013` we provide a copy of 
+`ace-builds` version `9.11.2013`.
 
 Please note that you may choose to use a different version of `ace.js` in your 
 html without requiring any change to this package:
