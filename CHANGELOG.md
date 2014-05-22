@@ -1,6 +1,6 @@
 # Ace.dart Changes
 
-## 0.3.9-dev+4.11.2014
+## 0.4.0-dev+4.11.2014
 
 - Added the `scrollToLine` and `scrollToRow` methods to `Editor`.
 - Added the `getTokenAt` and `getTokens` methods to `EditSession` and the 
@@ -11,6 +11,12 @@
 ace.require('ace/ext/linking');
 editor.setOptions({'enableMultiselect' : false, 'enableLinking' : true});
 ```
+
+- Changed the return type of `Disposable.dispose` from `void` to `Future`.
+- Changed the implementation regarding event streams of proxy objects such that 
+they are created lazily and only attached to the underlying JavaScript object 
+when there is an active stream subscription.  This is a significant performance
+enhancement both in terms of application code size and runtime execution.
 
 ## 0.3.8+4.11.2014
 
