@@ -11,6 +11,13 @@ abstract class Editor extends Disposable implements OptionsProvider {
   /// Fired whenever this editor has been blurred.
   Stream<Null> get onBlur;
   
+  /// Fired whenever user has clicked on a linking identifier in code.
+  Stream<LinkEvent> get onLinkClick;
+
+  /// Fired whenever user has hovered over a linking identifier in code with
+  /// appropriate modifier key down.
+  Stream<LinkEvent> get onLinkHover;
+
   /// Fired whenever the [session.document] changes.
   Stream<Delta> get onChange;
   
@@ -316,6 +323,17 @@ abstract class Editor extends Disposable implements OptionsProvider {
   void undo();
   
   void updateSelectionMarkers();
+}
+
+class LinkEvent {
+  /// The document character position the mouse cursor was at the time of the
+  /// event.
+  final Point position;
+
+  /// The relevant token to the link event.
+  final Token token;
+
+  LinkEvent(this.position, this.token);
 }
 
 class EditSessionChangeEvent {
