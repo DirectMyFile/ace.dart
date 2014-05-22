@@ -4,15 +4,29 @@
 
 [![Build Status][status]][badge] | [Dart API][api] | [JavaScript API][ace-api]
 
-## Ace.js
-
-This package maintains a copy of the latest [ace-builds][] as described in this
-[README][ace-readme] and governed by its own [LICENSE][ace-license].
-
 _Ace.dart uses the MIT license as described in the [LICENSE][license] file, and 
 follows [semantic versioning][]._
 
-_Ace.js uses a BSD license as described in its own [LICENSE][ace-license] file._
+## Ace.js
+
+This package maintains a copy of the latest [ace-builds][] `src-min-noconflict` 
+governed by its own BSD [LICENSE][ace-license].
+
+The javascript releases occur approximately once per month, and the version 
+currently in use by this package is maintained in the version string 
+metadata.  For example, in `ace.dart` version `0.0.4+9.11.2013` we provide a 
+copy of `ace-builds` version `9.11.2013`.
+
+Please note that you may choose to use a different version of `ace.js` in your 
+html without requiring any change to this package:
+
+```html
+<script type="text/javascript" charset="utf-8" src="path/to/your/ace.js">
+</script>
+```
+
+As long as the version of `ace.js` you use is compatible, the Dart wrapper code
+should continue to function.
 
 [ace]: http://ace.ajax.org/
 [ace-api]: http://ace.ajax.org/#nav=api

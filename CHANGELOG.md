@@ -16,7 +16,7 @@ editor.setOptions({'enableMultiselect' : false, 'enableLinking' : true});
 - Changed the implementation regarding event streams of proxy objects such that 
 they are created lazily and only attached to the underlying JavaScript object 
 when there is an active stream subscription.  This is a significant performance
-enhancement both in terms of application code size and runtime execution.
+enhancement both in terms of compiled application code size and execution.
 
 ## 0.3.8+4.11.2014
 
