@@ -5,11 +5,11 @@ class _EditorProxy extends HasProxy implements Editor {
   final _onBlur = new StreamController<Null>.broadcast();
   Stream<Null> get onBlur => _onBlur.stream;
 
-  final _onLinkClick = new StreamController<Point>.broadcast();
-  Stream<Point> get onLinkClick => _onLinkClick.stream;
+  final _onLinkClick = new StreamController<LinkEvent>.broadcast();
+  Stream<LinkEvent> get onLinkClick => _onLinkClick.stream;
 
-  final _onLinkHover = new StreamController<Point>.broadcast();
-  Stream<Point> get onLinkHover => _onLinkHover.stream;
+  final _onLinkHover = new StreamController<LinkEvent>.broadcast();
+  Stream<LinkEvent> get onLinkHover => _onLinkHover.stream;
 
   final _onChange = new StreamController<Delta>.broadcast();
   Stream<Delta> get onChange => _onChange.stream;
@@ -31,6 +31,16 @@ class _EditorProxy extends HasProxy implements Editor {
   final _onPaste = new StreamController<String>.broadcast();
   Stream<String> get onPaste => _onPaste.stream;  
   
+  static LinkEvent _linkEventFromJsObject(js.JsObject e) {
+    js.JsObject jsPosition = e['position'];
+    js.JsObject jsToken = e['token'];
+    Point position = new Point(jsPosition['row'], jsPosition['column']);
+    Token token = (jsToken == null) ? null : new Token(index: jsToken['index'],
+        start: jsToken['start'], type: jsToken['type'],
+        value: jsToken['value']);
+    return new LinkEvent(position, token);
+  }
+
   CommandManager get commands => new _CommandManagerProxy._(_proxy['commands']);
   
   String get copyText => call('getCopyText');
@@ -144,10 +154,10 @@ class _EditorProxy extends HasProxy implements Editor {
   , _listen = listen {
     if (listen) {
       call('on', ['blur', (_,__) => _onBlur.add(null)]);
-      call('on', ['linkClick', (e,__) => _onLinkClick.add(new Point(e['position']['row'],
-          e['position']['column']))]);
-      call('on', ['linkHover', (e,__) => _onLinkHover.add(
-          new Point(e['position']['row'], e['position']['column']))]);
+      call('on', ['linkClick', (e,__) =>
+          _onLinkClick.add(_linkEventFromJsObject(e))]);
+      call('on', ['linkHover', (e,__) =>
+          _onLinkHover.add(_linkEventFromJsObject(e))]);
       call('on', ['change', (e,__) => _onChange.add(_delta(e['data']))]);
       call('on', ['changeSelection', (_,__) => _onChangeSelection.add(null)]);
       call('on', ['changeSession', (e,__) {
