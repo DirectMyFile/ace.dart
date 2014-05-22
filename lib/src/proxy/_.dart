@@ -204,15 +204,15 @@ class _Event<T> extends Disposable {
   final String _name;
   final Function _onEvent;
     
-  StreamController<T> _on;
+  StreamController<T> _s;
   js.JsFunction _cb;
   
   Stream<T> get stream {
-    if (_on == null) {
-      _on = new StreamController<T>.broadcast(
+    if (_s == null) {
+      _s = new StreamController<T>.broadcast(
         onListen: () {
           _cb = _proxy.call('addEventListener', [_name, (e,__) {
-            _on.add(_onEvent == null ? null : _onEvent(e));
+            _s.add(_onEvent == null ? null : _onEvent(e));
           }]);
         },
         onCancel: () {
@@ -221,13 +221,13 @@ class _Event<T> extends Disposable {
         }
       );
     }
-    return _on.stream;
+    return _s.stream;
   }
   
   _Event(this._proxy, this._name, [this._onEvent(event)]);
   
   Future dispose() {
-    if (_on == null) return new Future.value();
-    return _on.close();
+    if (_s == null) return new Future.value();
+    return _s.close();
   }
 }
