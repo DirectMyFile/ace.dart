@@ -10,11 +10,21 @@ class _SelectionProxy extends HasProxy implements Selection {
   
   bool get isMultiLine => call('isMultiLine');  
   
-  final _onChangeCursor = new StreamController<Null>.broadcast();
-  Stream<Null> get onChangeCursor => _onChangeCursor.stream;
+  _Event<Null> _onChangeCursor;
+  Stream<Null> get onChangeCursor {
+    if (_onChangeCursor == null) {
+      _onChangeCursor = new _Event<Null>(this, 'changeCursor');
+    }
+    return _onChangeCursor.stream;
+  }
   
-  final _onChangeSelection = new StreamController<Null>.broadcast();
-  Stream<Null> get onChangeSelection => _onChangeSelection.stream;
+  _Event<Null> _onChangeSelection;
+  Stream<Null> get onChangeSelection {
+    if (_onChangeSelection == null) {
+      _onChangeSelection = new _Event<Null>(this, 'changeSelection');
+    }
+    return _onChangeSelection.stream;
+  }
   
   Range get range => _range(call('getRange'));
   
@@ -22,14 +32,13 @@ class _SelectionProxy extends HasProxy implements Selection {
   : this._(new js.JsObject(_modules['ace/selection']['Selection'], 
       [(session as _EditSessionProxy)._proxy]));
   
-  _SelectionProxy._(js.JsObject proxy) : super(proxy) {
-    call('on', ['changeCursor', (_,__) => _onChangeCursor.add(null)]);
-    call('on', ['changeSelection', (_,__) => _onChangeSelection.add(null)]);
-  }
+  _SelectionProxy._(js.JsObject proxy) : super(proxy);
   
-  void _onDispose() {
-    _onChangeCursor.close();
-    _onChangeSelection.close();
+  Future _onDispose() {
+    final List<Future> f = new List<Future>();
+    if (_onChangeCursor != null) f.add(_onChangeCursor.dispose());
+    if (_onChangeSelection != null) f.add(_onChangeSelection.dispose());
+    return Future.wait(f);
   }
   
   Range getLineRange(int row, {bool excludeLastChar: false}) =>

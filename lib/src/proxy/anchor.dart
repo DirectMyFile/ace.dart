@@ -2,8 +2,14 @@ part of ace.proxy;
 
 class _AnchorProxy extends HasProxy implements Anchor {
   
-  final _onChange = new StreamController<AnchorChangeEvent>.broadcast();
-  Stream<AnchorChangeEvent> get onChange => _onChange.stream;
+  _Event<AnchorChangeEvent> _onChange;
+  Stream<AnchorChangeEvent> get onChange {
+    if (_onChange == null) {
+      _onChange = new _Event<AnchorChangeEvent>(this, 'change', (e) =>
+        new AnchorChangeEvent(_point(e['old']), _point(e['value'])));
+    }
+    return _onChange.stream;
+  }
   
   Document get document => new _DocumentProxy._(call('getDocument'));
   
@@ -13,14 +19,12 @@ class _AnchorProxy extends HasProxy implements Anchor {
   : this._(new js.JsObject(_modules['ace/anchor']['Anchor'], 
       [(document as _DocumentProxy)._proxy, row, column]));
   
-  _AnchorProxy._(proxy) : super(proxy) {
-    call('on', ['change', (e,__) => _onChange.add(
-        new AnchorChangeEvent(_point(e['old']), _point(e['value'])))]);
-  }
+  _AnchorProxy._(proxy) : super(proxy);
   
-  void _onDispose() {
-    _onChange.close();
+  Future _onDispose() {
     call('detach');
+    if (_onChange == null) return new Future.value();
+    return _onChange.dispose();
   }
   
   void setPosition(int row, int column, {bool clip: true}) => 

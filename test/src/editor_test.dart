@@ -73,9 +73,10 @@ void testDisposeTwiceThrows() {
 
 @Test()
 @ExpectError(isNoSuchMethodError)
-void testCallMethodOnDisposedEditorThrows() {
-  editor.dispose();
-  editor.blur();
+testCallMethodOnDisposedEditorThrows() {
+  return editor.dispose().then((_) {
+    editor.blur();
+  });  
 }
 
 @Test()

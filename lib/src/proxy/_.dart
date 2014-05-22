@@ -188,12 +188,46 @@ abstract class HasProxy extends Disposable {
   
   call(String name, [List args]) => _proxy.callMethod(name, args);
       
-  void dispose() {
-    if (_hasProxy) {
-      _onDispose();
+  Future dispose() {
+    if (!_hasProxy) return new Future.value();
+    return _onDispose().whenComplete(() {
       _proxy = null;
-    }
+    });
   }
   
-  void _onDispose() {}
+  Future _onDispose() => new Future.value();
+}
+
+class _Event<T> extends Disposable {
+  
+  final HasProxy _proxy;
+  final String _name;
+  final Function _onEvent;
+    
+  StreamController<T> _s;
+  js.JsFunction _cb;
+  
+  Stream<T> get stream {
+    if (_s == null) {
+      _s = new StreamController<T>.broadcast(
+        onListen: () {
+          _cb = _proxy.call('addEventListener', [_name, (e,__) {
+            _s.add(_onEvent == null ? null : _onEvent(e));
+          }]);
+        },
+        onCancel: () {
+          _proxy.call('removeEventListener', [_name, _cb]);
+          _cb = null;
+        }
+      );
+    }
+    return _s.stream;
+  }
+  
+  _Event(this._proxy, this._name, [this._onEvent(event)]);
+  
+  Future dispose() {
+    if (_s == null) return new Future.value();
+    return _s.close();
+  }
 }

@@ -7,10 +7,9 @@ class _AutoCompleterReverseProxy extends HasProxy implements AutoCompleter {
   _AutoCompleterReverseProxy(this.getCompletions) : super(_jsObject()) {
     _proxy['getCompletions'] = (editor, session, pos, prefix, 
         js.JsFunction callback) {
-      final _editor = editor == null ? null 
-          : new _EditorProxy._(editor, listen: false);
+      final _editor = editor == null ? null : new _EditorProxy._(editor);
       final _session = session == null ? null 
-          : new _EditSessionProxy._(session, listen: false);        
+          : new _EditSessionProxy._(session);        
       getCompletions(_editor, _session, _point(pos), prefix)
       .then((List<Completion> results) {
         callback.apply([null, _jsArray(results.map(_jsCompletion))]);
@@ -30,8 +29,9 @@ class _AutoCompleterReverseProxy extends HasProxy implements AutoCompleter {
     };
   }
     
-  void _onDispose() {
+  Future _onDispose() {
     _proxy.deleteProperty('getCompletions');
+    return new Future.value();
   }
 }
 

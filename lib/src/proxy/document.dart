@@ -2,8 +2,13 @@ part of ace.proxy;
 
 class _DocumentProxy extends HasProxy implements Document {
   
-  final _onChange = new StreamController<Delta>.broadcast();
-  Stream<Delta> get onChange => _onChange.stream;
+  _Event<Delta> _onChange;
+  Stream<Delta> get onChange {
+    if (_onChange == null) {
+      _onChange = new _Event<Delta>(this, 'change', (e) => _delta(e['data']));
+    }
+    return _onChange.stream;
+  }
 
   int get length => call('getLength');
   
@@ -21,12 +26,11 @@ class _DocumentProxy extends HasProxy implements Document {
   _DocumentProxy([String text = '']) : this._(
       new js.JsObject(_modules['ace/document']['Document'], [text]));
     
-  _DocumentProxy._(js.JsObject proxy) : super(proxy) {
-    call('on', ['change', (e,__) => _onChange.add(_delta(e['data']))]);
-  }
+  _DocumentProxy._(js.JsObject proxy) : super(proxy);
   
-  void _onDispose() {
-    _onChange.close();
+  Future _onDispose() {
+    if (_onChange == null) return new Future.value();
+    return _onChange.dispose();
   }
   
   void applyDeltas(List<Delta> deltas) =>

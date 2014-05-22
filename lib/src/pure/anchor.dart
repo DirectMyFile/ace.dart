@@ -29,9 +29,9 @@ class _Anchor implements Anchor {
     _documentChangeListener = null;
   }
   
-  void dispose() {
+  Future dispose() {
     _detach();
-    _onChange.close();
+    return _onChange.close();
   }
   
   Point _clipPositionToDocument(int row, int column) {

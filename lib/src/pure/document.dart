@@ -48,10 +48,8 @@ class _Document implements Document {
     }
   }
     
-  void dispose() {
-    _onChange.close();
-  }
-  
+  Future dispose() => _onChange.close();
+    
   void applyDeltas(List<Delta> deltas) {
     for (int i = 0; i < deltas.length; i++) {
       final delta = deltas[i];

@@ -2,41 +2,104 @@ part of ace.proxy;
 
 class _EditSessionProxy extends HasProxy implements EditSession {
 
-  final _onChange = new StreamController<Delta>.broadcast();
-  Stream<Delta> get onChange => _onChange.stream;
+  _Event<Delta> _onChange;
+  Stream<Delta> get onChange {
+    if (_onChange == null) {
+      _onChange = new _Event<Delta>(this, 'change', (e) => _delta(e['data']));
+    }
+    return _onChange.stream;
+  }
   
-  final _onChangeAnnotation = new StreamController<Null>.broadcast();
-  Stream<Null> get onChangeAnnotation => _onChangeAnnotation.stream;
+  _Event<Null> _onChangeAnnotation;
+  Stream<Null> get onChangeAnnotation {
+    if (_onChangeAnnotation == null) {
+      _onChangeAnnotation = new _Event<Null>(this, 'changeAnnotation');
+    }
+    return _onChangeAnnotation.stream;
+  }
   
-  final _onChangeBackMarker = new StreamController<Null>.broadcast();
-  Stream<Null> get onChangeBackMarker => _onChangeBackMarker.stream;
+  _Event<Null> _onChangeBackMarker;
+  Stream<Null> get onChangeBackMarker {
+    if (_onChangeBackMarker == null) {
+      _onChangeBackMarker = new _Event<Null>(this, 'changeBackMarker');
+    }
+    return _onChangeBackMarker.stream;
+  }
   
-  final _onChangeBreakpoint = new StreamController<Null>.broadcast();
-  Stream<Null> get onChangeBreakpoint => _onChangeBreakpoint.stream;
+  _Event<Null> _onChangeBreakpoint;
+  Stream<Null> get onChangeBreakpoint {
+    if (_onChangeBreakpoint == null) {
+      _onChangeBreakpoint = new _Event<Null>(this, 'changeBreakpoint');
+    }
+    return _onChangeBreakpoint.stream;
+  }
+    
+  _Event<FoldChangeEvent> _onChangeFold;
+  Stream<FoldChangeEvent> get onChangeFold {
+    if (_onChangeFold == null) {
+      _onChangeFold = new _Event<FoldChangeEvent>(this, 'changeFold', (e) =>
+          new FoldChangeEvent(new _FoldProxy._(e['data']), e['action']));
+    }
+    return _onChangeFold.stream;
+  }
   
-  final _onChangeFold = new StreamController<FoldChangeEvent>.broadcast();
-  Stream<FoldChangeEvent> get onChangeFold => _onChangeFold.stream;
+  _Event<Null> _onChangeFrontMarker;
+  Stream<Null> get onChangeFrontMarker {
+    if (_onChangeFrontMarker == null) {
+      _onChangeFrontMarker = new _Event<Null>(this, 'changeFrontMarker');
+    }
+    return _onChangeFrontMarker.stream;
+  }
   
-  final _onChangeFrontMarker = new StreamController<Null>.broadcast();
-  Stream<Null> get onChangeFrontMarker => _onChangeFrontMarker.stream;
+  _Event<Null> _onChangeOverwrite;
+  Stream<Null> get onChangeOverwrite {
+    if (_onChangeOverwrite == null) {
+      _onChangeOverwrite = new _Event<Null>(this, 'changeOverwrite');
+    }
+    return _onChangeOverwrite.stream;
+  }
+    
+  _Event<int> _onChangeScrollLeft;
+  Stream<int> get onChangeScrollLeft {
+    if (_onChangeScrollLeft == null) {
+      _onChangeScrollLeft = new _Event<int>(this, 'changeScrollLeft', (e) =>
+          e.toInt());
+    }
+    return _onChangeScrollLeft.stream;
+  }
   
-  final _onChangeOverwrite = new StreamController<Null>.broadcast();
-  Stream<Null> get onChangeOverwrite => _onChangeOverwrite.stream;
+  _Event<int> _onChangeScrollTop;
+  Stream<int> get onChangeScrollTop {
+    if (_onChangeScrollTop == null) {
+      _onChangeScrollTop = new _Event<int>(this, 'changeScrollTop', (e) =>
+          e.toInt());
+    }
+    return _onChangeScrollTop.stream;
+  }
   
-  final _onChangeScrollLeft = new StreamController<int>.broadcast();
-  Stream<int> get onChangeScrollLeft => _onChangeScrollLeft.stream;
+  _Event<Null> _onChangeTabSize;
+  Stream<Null> get onChangeTabSize {
+    if (_onChangeTabSize == null) {
+      _onChangeTabSize = new _Event<Null>(this, 'changeTabSize');
+    }
+    return _onChangeTabSize.stream;
+  }
   
-  final _onChangeScrollTop = new StreamController<int>.broadcast();
-  Stream<int> get onChangeScrollTop => _onChangeScrollTop.stream;
+  _Event<Null> _onChangeWrapLimit;
+  Stream<Null> get onChangeWrapLimit {
+    if (_onChangeWrapLimit == null) {
+      _onChangeWrapLimit = new _Event<Null>(this, 'changeWrapLimit');
+    }
+    return _onChangeWrapLimit.stream;
+  }
   
-  final _onChangeTabSize = new StreamController<Null>.broadcast();
-  Stream<Null> get onChangeTabSize => _onChangeTabSize.stream;
-  
-  final _onChangeWrapLimit = new StreamController<Null>.broadcast();
-  Stream<Null> get onChangeWrapLimit => _onChangeWrapLimit.stream;
-  
-  final _onChangeWrapMode = new StreamController<Null>.broadcast();
-  Stream<Null> get onChangeWrapMode => _onChangeWrapMode.stream;
+  _Event<Null> _onChangeWrapMode;
+  Stream<Null> get onChangeWrapMode {
+    if (_onChangeWrapMode == null) {
+      _onChangeWrapMode = new _Event<Null>(this, 'changeWrapMode');
+    }
+    return _onChangeWrapMode.stream;
+  }
   
   Document
     get document => new _DocumentProxy._(call('getDocument'));
@@ -115,53 +178,28 @@ class _EditSessionProxy extends HasProxy implements EditSession {
   int 
     get wrapLimit => call('getWrapLimit');
     set wrapLimit(int wrapLimit) => call('setWrapLimit', [wrapLimit]);
-  
-  final bool _listen;
-    
+      
   _EditSessionProxy(Document document, Mode mode) 
   : this._(new js.JsObject(_context['ace']['EditSession'], 
       [(document as _DocumentProxy)._proxy, (mode as _ModeProxy)._mode]));
   
-  _EditSessionProxy._(js.JsObject proxy, {bool listen: true}) 
-  : super(proxy)
-  , _listen = listen {
-    if (listen) {
-      call('on', ['change', (e,__) => _onChange.add(_delta(e['data']))]);
-      call('on', ['changeAnnotation', (_,__) => _onChangeAnnotation.add(null)]);
-      call('on', ['changeBackMarker', (_,__) => _onChangeBackMarker.add(null)]);
-      call('on', ['changeBreakpoint', (_,__) => _onChangeBreakpoint.add(null)]);
-      call('on', ['changeFold', (e,__) {
-        _onChangeFold.add(new FoldChangeEvent(
-            new _FoldProxy._(e['data']), e['action']));
-      }]);
-      call('on', ['changeFrontMarker', 
-                  (_,__) => _onChangeFrontMarker.add(null)]);
-      call('on', ['changeOverwrite', (_,__) => _onChangeOverwrite.add(null)]);
-      call('on', ['changeScrollLeft', 
-                  (e,__) => _onChangeScrollLeft.add(e.toInt())]);
-      call('on', ['changeScrollTop', 
-                  (e,__) => _onChangeScrollTop.add(e.toInt())]);
-      call('on', ['changeTabSize', (_,__) => _onChangeTabSize.add(null)]);
-      call('on', ['changeWrapLimit', (_,__) => _onChangeWrapLimit.add(null)]);
-      call('on', ['changeWrapMode', (_,__) => _onChangeWrapMode.add(null)]);
-    }
-  }
+  _EditSessionProxy._(js.JsObject proxy) : super(proxy); 
   
-  void _onDispose() {
-    if (_listen) {
-      _onChange.close();
-      _onChangeAnnotation.close();
-      _onChangeBackMarker.close();
-      _onChangeBreakpoint.close();
-      _onChangeFold.close();
-      _onChangeFrontMarker.close();
-      _onChangeOverwrite.close();
-      _onChangeScrollLeft.close();
-      _onChangeScrollTop.close();
-      _onChangeTabSize.close();
-      _onChangeWrapLimit.close();
-      _onChangeWrapMode.close();
-    }
+  Future _onDispose() {
+    final List<Future> f = new List<Future>();
+    if (_onChange != null) f.add(_onChange.dispose());
+    if (_onChangeAnnotation != null) f.add(_onChangeAnnotation.dispose());
+    if (_onChangeBackMarker != null) f.add(_onChangeBackMarker.dispose());
+    if (_onChangeBreakpoint != null) f.add(_onChangeBreakpoint.dispose());
+    if (_onChangeFold != null) f.add(_onChangeFold.dispose());
+    if (_onChangeFrontMarker != null) f.add(_onChangeFrontMarker.dispose());
+    if (_onChangeOverwrite != null) f.add(_onChangeOverwrite.dispose());
+    if (_onChangeScrollLeft != null) f.add(_onChangeScrollLeft.dispose());
+    if (_onChangeScrollTop != null) f.add(_onChangeScrollTop.dispose());
+    if (_onChangeTabSize != null) f.add(_onChangeTabSize.dispose());
+    if (_onChangeWrapLimit != null) f.add(_onChangeWrapLimit.dispose());
+    if (_onChangeWrapMode != null) f.add(_onChangeWrapMode.dispose());  
+    return Future.wait(f);
   }
   
   Fold addFold(Fold fold) => new _FoldProxy._(
