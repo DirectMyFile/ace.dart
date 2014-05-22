@@ -2,34 +2,80 @@ part of ace.proxy;
 
 class _EditorProxy extends HasProxy implements Editor {
   
-  final _onBlur = new StreamController<Null>.broadcast();
-  Stream<Null> get onBlur => _onBlur.stream;
-
-  final _onLinkClick = new StreamController<LinkEvent>.broadcast();
-  Stream<LinkEvent> get onLinkClick => _onLinkClick.stream;
-
-  final _onLinkHover = new StreamController<LinkEvent>.broadcast();
-  Stream<LinkEvent> get onLinkHover => _onLinkHover.stream;
-
-  final _onChange = new StreamController<Delta>.broadcast();
-  Stream<Delta> get onChange => _onChange.stream;
+  _Event<Null> _onBlur;
+  Stream<Null> get onBlur {
+    if (_onBlur == null) {
+      _onBlur = new _Event<Null>(this, 'blur');
+    }
+    return _onBlur.stream;
+  }
   
-  final _onChangeSelection = new StreamController<Null>.broadcast();
-  Stream<Null> get onChangeSelection => _onChangeSelection.stream;
+  _Event<LinkEvent> _onLinkClick;
+  Stream<LinkEvent> get onLinkClick {
+    if (_onLinkClick == null) {
+      _onLinkClick = new _Event<LinkEvent>(this, 'linkClick', _linkEvent);
+    }
+    return _onLinkClick.stream;
+  }
   
-  final _onChangeSession = 
-      new StreamController<EditSessionChangeEvent>.broadcast();
-  Stream<EditSessionChangeEvent> get onChangeSession => 
-      _onChangeSession.stream;
+  _Event<LinkEvent> _onLinkHover;
+  Stream<LinkEvent> get onLinkHover {
+    if (_onLinkHover == null) {
+      _onLinkHover = new _Event<LinkEvent>(this, 'linkHover', _linkEvent);
+    }
+    return _onLinkHover.stream;
+  }
   
-  final _onCopy = new StreamController<String>.broadcast();
-  Stream<String> get onCopy => _onCopy.stream;
+  _Event<Delta> _onChange;
+  Stream<Delta> get onChange {
+    if (_onChange == null) {
+      _onChange = new _Event<Delta>(this, 'change', (e) => _delta(e['data']));
+    }
+    return _onChange.stream;
+  }
   
-  final _onFocus = new StreamController<Null>.broadcast();
-  Stream<Null> get onFocus => _onFocus.stream;
+  _Event<Null> _onChangeSelection;
+  Stream<Null> get onChangeSelection {
+    if (_onChangeSelection == null) {
+      _onChangeSelection = new _Event<Null>(this, 'changeSelection');
+    }
+    return _onChangeSelection.stream;
+  }
   
-  final _onPaste = new StreamController<String>.broadcast();
-  Stream<String> get onPaste => _onPaste.stream;  
+  _Event<EditSessionChangeEvent> _onChangeSession;
+  Stream<EditSessionChangeEvent> get onChangeSession { 
+    if (_onChangeSession == null) {
+      _onChangeSession = new _Event<EditSessionChangeEvent>(this, 
+          'changeSession', (e) => new EditSessionChangeEvent(
+              new _EditSessionProxy._(e['oldSession']),
+              new _EditSessionProxy._(e['session'])));
+    }
+    return _onChangeSession.stream;
+  }
+  
+  _Event<String> _onCopy;
+  Stream<String> get onCopy {
+    if (_onCopy == null) {
+      _onCopy = new _Event<String>(this, 'copy', (e) => e);
+    }
+    return _onCopy.stream;
+  }
+  
+  _Event<Null> _onFocus;
+  Stream<Null> get onFocus {
+    if (_onFocus == null) {
+      _onFocus = new _Event<Null>(this, 'focus');
+    }
+    return _onFocus.stream;
+  }
+  
+  _Event<String> _onPaste;
+  Stream<String> get onPaste {
+    if (_onPaste == null) {
+      _onPaste = new _Event<String>(this, 'paste', (e) => e['text']);
+    }
+    return _onPaste.stream;  
+  }
   
   CommandManager get commands => new _CommandManagerProxy._(_proxy['commands']);
   
@@ -133,44 +179,24 @@ class _EditorProxy extends HasProxy implements Editor {
   
   String get value => call('getValue');
   
-  final bool _listen;
-  
   _EditorProxy(VirtualRenderer renderer, EditSession session) 
     : this._(new js.JsObject(_modules['ace/editor']['Editor'],
         [(renderer as HasProxy).jsProxy, (session as HasProxy).jsProxy]));
   
-  _EditorProxy._(js.JsObject proxy, {bool listen: true}) 
-  : super(proxy)
-  , _listen = listen {
-    if (listen) {
-      call('on', ['blur', (_,__) => _onBlur.add(null)]);
-      call('on', ['linkClick', (e,__) => _onLinkClick.add(_linkEvent(e))]);
-      call('on', ['linkHover', (e,__) => _onLinkHover.add(_linkEvent(e))]);
-      call('on', ['change', (e,__) => _onChange.add(_delta(e['data']))]);
-      call('on', ['changeSelection', (_,__) => _onChangeSelection.add(null)]);
-      call('on', ['changeSession', (e,__) {
-        _onChangeSession.add(new EditSessionChangeEvent(
-            new _EditSessionProxy._(e['oldSession']),
-            new _EditSessionProxy._(e['session']))); 
-      }]);
-      call('on', ['copy', (e,__) => _onCopy.add(e)]);
-      call('on', ['focus', (_,__) => _onFocus.add(null)]);
-      call('on', ['paste', (e,__) => _onPaste.add(e['text'])]);
-    }
-  }
+  _EditorProxy._(js.JsObject proxy) : super(proxy);
   
-  void _onDispose() {
-    if (_listen) {
-      _onBlur.close();
-      _onLinkClick.close();
-      _onLinkHover.close();
-      _onChange.close();
-      _onChangeSelection.close();
-      _onChangeSession.close();
-      _onCopy.close();
-      _onFocus.close();
-      _onPaste.close();
-    }
+  Future _onDispose() {    
+    final List<Future> f = new List<Future>();
+    if (_onBlur != null) f.add(_onBlur.dispose());
+    if (_onLinkClick != null) f.add(_onLinkClick.dispose());
+    if (_onLinkHover != null) f.add(_onLinkHover.dispose());
+    if (_onChange != null) f.add(_onChange.dispose());
+    if (_onChangeSelection != null) f.add(_onChangeSelection.dispose());
+    if (_onChangeSession != null) f.add(_onChangeSession.dispose());
+    if (_onCopy != null) f.add(_onCopy.dispose());
+    if (_onFocus != null) f.add(_onFocus.dispose());
+    if (_onPaste != null) f.add(_onPaste.dispose());
+    return Future.wait(f);
   }
   
   void alignCursors() => call('alignCursors');

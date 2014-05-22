@@ -32,8 +32,7 @@ class _CommandReverseProxy extends HasProxy implements Command {
     _proxy['name'] = name;
     _proxy['bindKey'] = _jsBindKey(bindKey);
     _proxy['exec'] = (editor, args) {
-      final _editor = editor == null ? null 
-          : new _EditorProxy._(editor, listen: false);
+      final _editor = editor == null ? null : new _EditorProxy._(editor);
       final result = exec(_editor);
       if (_editor != null) {
         _editor.dispose();  
@@ -49,7 +48,8 @@ class _CommandReverseProxy extends HasProxy implements Command {
     }
   }
   
-  void _onDispose() {
+  Future _onDispose() {
     _proxy.deleteProperty('exec');
+    return new Future.value();
   }
 }

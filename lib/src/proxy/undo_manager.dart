@@ -43,12 +43,13 @@ abstract class UndoManagerBase extends HasProxy implements UndoManager {
     _proxy['undo'] = ([bool dontSelect = false]) => undo(select: !dontSelect); 
   }
   
-  void _onDispose() {
+  Future _onDispose() {
     _proxy.deleteProperty('execute');
     _proxy.deleteProperty('hasRedo');
     _proxy.deleteProperty('hasUndo');    
     _proxy.deleteProperty('redo');
     _proxy.deleteProperty('reset');
     _proxy.deleteProperty('undo');
+    return new Future.value();
   }
 }
