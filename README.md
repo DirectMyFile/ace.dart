@@ -10,7 +10,7 @@ follows [semantic versioning][]._
 ## Ace.js
 
 This package maintains a copy of the latest [ace-builds][] `src-min-noconflict` 
-governed by its own BSD [LICENSE][ace-license].
+governed by its own [LICENSE][ace-license].
 
 The `ace-builds` occur approximately once per month, and the version currently 
 in use by this package is maintained in the version string metadata.  For 
