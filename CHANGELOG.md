@@ -5,6 +5,12 @@
 - Added the `scrollToLine` and `scrollToRow` methods to `Editor`.
 - Added the `getTokenAt` and `getTokens` methods to `EditSession` and the 
 `Token` class.
+- Added linking extension support; multiselect must be turned off to use:
+
+```dart
+ace.require('ace/ext/linking');
+editor.setOptions({'enableMultiselect' : false, 'enableLinking' : true});
+```
 
 ## 0.3.8+4.11.2014
 

@@ -123,6 +123,13 @@ Delta _delta(proxy) {
   }
 }
 
+LinkEvent _linkEvent(proxy) {
+  final t = proxy['token'];
+  final position = _point(proxy['position']);
+  final token = (t == null) ? null : _token(t);
+  return new LinkEvent(position, token);
+}
+
 Marker _marker(proxy) => new Marker(
     range     : proxy['range'] == null ? null : _range(proxy['range']),
     className : proxy['clazz'],
