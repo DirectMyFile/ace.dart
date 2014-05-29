@@ -1,4 +1,4 @@
-@TestGroup(description: 'Document', runs: IMPLEMENTATIONS)
+@TestGroup('Document', runs: IMPLEMENTATIONS)
 library ace.test.document;
 
 import 'package:ace/ace.dart';

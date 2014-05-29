@@ -1,4 +1,4 @@
-@TestGroup(description: 'RangeList')
+@TestGroup('RangeList')
 library ace.test.range_list;
 
 import 'package:ace/ace.dart';

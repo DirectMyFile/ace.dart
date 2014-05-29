@@ -1,4 +1,4 @@
-@TestGroup(description: 'Editor')
+@TestGroup('Editor')
 library ace.test.editor;
 
 import 'dart:async';

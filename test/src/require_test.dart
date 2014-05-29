@@ -1,4 +1,4 @@
-@TestGroup(description: 'ace.require')
+@TestGroup('ace.require')
 library ace.test.require;
 
 import 'package:ace/ace.dart' as ace;

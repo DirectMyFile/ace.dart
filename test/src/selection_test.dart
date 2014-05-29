@@ -1,4 +1,4 @@
-@TestGroup(description: 'Selection')
+@TestGroup('Selection')
 library ace.test.selection;
 
 import 'package:ace/ace.dart';

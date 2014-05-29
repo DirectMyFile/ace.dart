@@ -1,4 +1,4 @@
-@TestGroup(description: 'Search')
+@TestGroup('Search')
 library ace.test.search;
 
 import 'package:ace/ace.dart';

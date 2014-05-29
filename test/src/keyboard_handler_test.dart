@@ -1,4 +1,4 @@
-@TestGroup(description: 'KeyboardHandler')
+@TestGroup('KeyboardHandler')
 library ace.test.keyboard_handler;
 
 import 'package:ace/ace.dart';

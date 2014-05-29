@@ -1,4 +1,4 @@
-@TestGroup(description: 'CommandManager')
+@TestGroup('CommandManager')
 library ace.test.command_manager;
 
 import 'package:ace/ace.dart';

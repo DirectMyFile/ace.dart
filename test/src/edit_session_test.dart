@@ -1,4 +1,4 @@
-@TestGroup(description: 'EditSession')
+@TestGroup('EditSession')
 library ace.test.edit_session;
 
 import 'dart:async';

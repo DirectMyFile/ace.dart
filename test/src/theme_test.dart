@@ -1,4 +1,4 @@
-@TestGroup(description: 'Theme')
+@TestGroup('Theme')
 library ace.test.theme;
 
 import 'package:ace/ace.dart';

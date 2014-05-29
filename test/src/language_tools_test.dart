@@ -1,4 +1,4 @@
-@TestGroup(description: 'LanguageTools')
+@TestGroup('LanguageTools')
 library ace.test.language_tools;
 
 import 'dart:async';
