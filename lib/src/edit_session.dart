@@ -67,10 +67,10 @@ abstract class EditSession extends Disposable
   bool overwrite;
 
   /// Returns the length of the screen.
-  int get screenLength;
+  num get screenLength;
     
   /// Returns the width of the screen.
-  int get screenWidth;
+  num get screenWidth;
   
   /// The value of the distance between the left of the editor and the leftmost 
   /// part of the visible content.  Setting this to a new value fires an
