@@ -59,20 +59,18 @@ class _EditSessionProxy extends HasProxy implements EditSession {
     return _onChangeOverwrite.stream;
   }
     
-  _Event<int> _onChangeScrollLeft;
-  Stream<int> get onChangeScrollLeft {
+  _Event<num> _onChangeScrollLeft;
+  Stream<num> get onChangeScrollLeft {
     if (_onChangeScrollLeft == null) {
-      _onChangeScrollLeft = new _Event<int>(this, 'changeScrollLeft', (e) =>
-          e.toInt());
+      _onChangeScrollLeft = new _Event<num>(this, 'changeScrollLeft', (e) => e);
     }
     return _onChangeScrollLeft.stream;
   }
   
-  _Event<int> _onChangeScrollTop;
-  Stream<int> get onChangeScrollTop {
+  _Event<num> _onChangeScrollTop;
+  Stream<num> get onChangeScrollTop {
     if (_onChangeScrollTop == null) {
-      _onChangeScrollTop = new _Event<int>(this, 'changeScrollTop', (e) =>
-          e.toInt());
+      _onChangeScrollTop = new _Event<num>(this, 'changeScrollTop', (e) => e);
     }
     return _onChangeScrollTop.stream;
   }
@@ -134,13 +132,13 @@ class _EditSessionProxy extends HasProxy implements EditSession {
 
   num get screenWidth => call('getScreenWidth');
   
-  int
-    get scrollLeft => call('getScrollLeft').toInt();
-    set scrollLeft(int scrollLeft) => call('setScrollLeft', [scrollLeft]);  
+  num
+    get scrollLeft => call('getScrollLeft');
+    set scrollLeft(num scrollLeft) => call('setScrollLeft', [scrollLeft]);  
 
-  int
-    get scrollTop => call('getScrollTop').toInt();
-    set scrollTop(int scrollTop) => call('setScrollTop',[scrollTop]);
+  num
+    get scrollTop => call('getScrollTop');
+    set scrollTop(num scrollTop) => call('setScrollTop',[scrollTop]);
 
   int
     get tabSize => call('getTabSize');

@@ -33,10 +33,10 @@ abstract class EditSession extends Disposable
   Stream<Null> get onChangeOverwrite;
   
   /// Fired whenever the [scrollLeft] changes.
-  Stream<int> get onChangeScrollLeft;
+  Stream<num> get onChangeScrollLeft;
   
   /// Fired whenever the [scrollTop] changes.
-  Stream<int> get onChangeScrollTop;
+  Stream<num> get onChangeScrollTop;
   
   /// Fired whenever the [tabSize] changes.
   Stream<Null> get onChangeTabSize;
@@ -75,12 +75,12 @@ abstract class EditSession extends Disposable
   /// The value of the distance between the left of the editor and the leftmost 
   /// part of the visible content.  Setting this to a new value fires an
   /// [onChangeScrollLeft] event.
-  int scrollLeft;
+  num scrollLeft;
  
   /// The value of the distance between the top of the editor and the topmost 
   /// part of the visible content.  Setting this to a new value fires an
   /// [onChangeScrollTop] event.
-  int scrollTop;
+  num scrollTop;
  
   /// The number of spaces that define a soft tab.
   /// 

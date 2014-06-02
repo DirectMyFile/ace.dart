@@ -197,7 +197,7 @@ void testAdjustWrapLimit() {
 
 @Test()
 void testSetScrollLeft() {
-  session.onChangeScrollLeft.listen(expectAsync((int scrollLeft) {
+  session.onChangeScrollLeft.listen(expectAsync((num scrollLeft) {
     expect(scrollLeft, equals(13));
     expect(session.scrollLeft, equals(13));
   })); 
@@ -206,7 +206,7 @@ void testSetScrollLeft() {
 
 @Test()
 void testSetScrollTop() {
-  session.onChangeScrollTop.listen(expectAsync((int scrollTop) {
+  session.onChangeScrollTop.listen(expectAsync((num scrollTop) {
     expect(scrollTop, equals(42));
     expect(session.scrollTop, equals(42));
   })); 
