@@ -2,6 +2,8 @@
 
 ## 0.4.0-dev+4.11.2014
 
+- Changed the return type of `screenLength`, `screenWidth`, `scrollLeft` and
+`scrollTop` from `int` to `num` in `EditSession` to support sub-pixel precision.
 - Added the `scrollToLine` and `scrollToRow` methods to `Editor`.
 - Added the `getTokenAt` and `getTokens` methods to `EditSession` and the 
 `Token` class.
