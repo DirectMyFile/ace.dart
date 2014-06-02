@@ -130,9 +130,9 @@ class _EditSessionProxy extends HasProxy implements EditSession {
     get overwrite => call('getOverwrite');
     set overwrite(bool overwrite) => call('setOverwrite', [overwrite]);
   
-  int get screenLength => call('getScreenLength');
+  num get screenLength => call('getScreenLength');
 
-  int get screenWidth => call('getScreenWidth');
+  num get screenWidth => call('getScreenWidth');
   
   int
     get scrollLeft => call('getScrollLeft').toInt();

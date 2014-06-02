@@ -298,6 +298,12 @@ void testGetRowLength() {
 }
 
 @Test()
+void testScreenLength() {
+  // Verify that we can invoke `EditSession.screenLength`.
+  expect(session.screenLength, greaterThan(1));
+}
+
+@Test()
 void testIndentRows() {
   final prefix = 'I_AM_YOUR_PREFIX';
   session.indentRows(3, 4, prefix);
