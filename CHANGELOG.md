@@ -1,6 +1,6 @@
 # Ace.dart Changes
 
-## 0.4.0-dev+6.9.2014
+## 0.4.0+6.9.2014
 
 - Updated to ace-builds version 06.09.2014.
 - Added `.vala` to the extension map used by the `new Mode.forFile` factory.
