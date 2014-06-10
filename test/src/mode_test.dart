@@ -79,6 +79,7 @@ void testCreateModeForFile() {
   verifyMode('run.sh',              Mode.SH);
   verifyMode('flower.svg',          Mode.SVG);
   verifyMode('omg.ts',              Mode.TYPESCRIPT);
+  verifyMode('source.vala',         Mode.VALA);
   verifyMode('verbose.xml',         Mode.XML);
   verifyMode('pubspec.yaml',        Mode.YAML);
   Mode.extensionMap.addAll({ 

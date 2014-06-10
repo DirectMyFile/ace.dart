@@ -172,6 +172,7 @@ abstract class Mode extends Disposable {
     'sh'        : SH,
     'svg'       : SVG,
     'ts'        : TYPESCRIPT,
+    'vala'      : VALA,
     'xml'       : XML,
     'yaml'      : YAML
   };
