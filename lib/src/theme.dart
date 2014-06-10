@@ -5,6 +5,9 @@ abstract class Theme extends Disposable {
   static const AMBIANCE                 = 'ambiance';
   static const CHAOS                    = 'chaos';
   static const CHROME                   = 'chrome';
+  static const CLOUD9_DAY               = 'cloud9_day';
+  static const CLOUD9_NIGHT             = 'cloud9_night';
+  static const CLOUD9_NIGHT_LOW_COLOR   = 'cloud9_night_low_color';
   static const CLOUDS                   = 'clouds';
   static const CLOUDS_MIDNIGHT          = 'clouds_midnight';
   static const COBALT                   = 'cobalt';
@@ -42,12 +45,12 @@ abstract class Theme extends Disposable {
   /// using this package may choose to include a subset or a superset of these
   /// themes.
   static const List<String> THEMES = const [ 
-    AMBIANCE, CHAOS, CHROME, CLOUDS, CLOUDS_MIDNIGHT, COBALT, CRIMSON_EDITOR, 
-    DAWN, DREAMWEAVER, ECLIPSE, GITHUB, IDLE_FINGERS, KATZENMILCH, KR, KUROIR, 
-    MERBIVORE, MERBIVORE_SOFT, MONO_INDUSTRIAL, MONOKAI, PASTEL_ON_DARK, 
-    SOLARIZED_DARK, SOLARIZED_LIGHT, TERMINAL, TEXTMATE, TOMORROW, 
-    TOMORROW_NIGHT, TOMORROW_NIGHT_BLUE, TOMORROW_NIGHT_BRIGHT, 
-    TOMORROW_NIGHT_EIGHTIES, TWILIGHT, VIBRANT_INK, XCODE 
+    AMBIANCE, CHAOS, CHROME, CLOUD9_DAY, CLOUD9_NIGHT, CLOUD9_NIGHT_LOW_COLOR, 
+    CLOUDS, CLOUDS_MIDNIGHT, COBALT, CRIMSON_EDITOR, DAWN, DREAMWEAVER, ECLIPSE, 
+    GITHUB, IDLE_FINGERS, KATZENMILCH, KR, KUROIR, MERBIVORE, MERBIVORE_SOFT, 
+    MONO_INDUSTRIAL, MONOKAI, PASTEL_ON_DARK, SOLARIZED_DARK, SOLARIZED_LIGHT, 
+    TERMINAL, TEXTMATE, TOMORROW, TOMORROW_NIGHT, TOMORROW_NIGHT_BLUE, 
+    TOMORROW_NIGHT_BRIGHT, TOMORROW_NIGHT_EIGHTIES, TWILIGHT, VIBRANT_INK, XCODE 
   ];
   
   String get cssClass;

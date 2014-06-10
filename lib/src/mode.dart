@@ -6,6 +6,7 @@ abstract class Mode extends Disposable {
   static const ACTIONSCRIPT         = 'actionscript';
   static const ADA                  = 'ada';
   static const APACHE_CONF          = 'apache_conf';
+  static const APPLESCRIPT          = 'applescript';
   static const ASCIIDOC             = 'asciidoc';
   static const ASSEMBLY_X86         = 'assembly_x86';
   static const AUTOHOTKEY           = 'autohotkey';
@@ -24,6 +25,7 @@ abstract class Mode extends Disposable {
   static const DART                 = 'dart';
   static const DIFF                 = 'diff';
   static const DJANGO               = 'django';
+  static const DOCKERFILE           = 'dockerfile';
   static const DOT                  = 'dot';
   static const EJS                  = 'ejs';
   static const ERLANG               = 'erlang';
@@ -104,6 +106,7 @@ abstract class Mode extends Disposable {
   static const TOML                 = 'toml';
   static const TWIG                 = 'twig';
   static const TYPESCRIPT           = 'typescript';
+  static const VALA                 = 'vala';
   static const VBSCRIPT             = 'vbscript';
   static const VELOCITY             = 'velocity';
   static const VERILOG              = 'verilog';
@@ -119,18 +122,18 @@ abstract class Mode extends Disposable {
   /// using this package may choose to include a subset or a superset of these
   /// modes.
   static const List<String> MODES = const [ 
-    ABAP, ACTIONSCRIPT, ADA, APACHE_CONF, ASCIIDOC, ASSEMBLY_X86, AUTOHOTKEY,
-    BATCHFILE, C9SEARCH, C_CPP, CIRRU, CLOJURE, COBOL, COFFEE, COLDFUSION, 
-    CSHARP, CSS, CURLY, D, DART, DIFF, DJANGO, DOT, EJS, ERLANG, FORTH, FTL, 
-    GHERKIN, GLSL, GOLANG, GROOVY, HAML, HANDLEBARS, HASKELL, HAXE, HTML, 
-    HTML_RUBY, INI, JACK, JADE, JAVA, JAVASCRIPT, JSON, JSONIQ, JSP, JSX, JULIA, 
-    LATEX, LESS, LIQUID, LISP, LIVESCRIPT, LOGIQL, LSL, LUA, LUAPAGE, LUCENE, 
-    MAKEFILE, MARKDOWN, MATLAB, MEL, MUSHCODE, MYSQL, NIX, OBJECTIVEC, OCAML, 
-    PASCAL, PERL, PGSQL, PHP, PLAIN_TEXT, POWERSHELL, PROLOG, PROPERTIES, 
-    PROTOBUF, PYTHON, R, RDOC, RHTML, RUBY, RUST, SASS, SCAD, SCALA, SCHEME, 
-    SCSS, SH, SJS, SMARTY, SNIPPETS, SOY_TEMPLATE, SPACE, SQL, STYLUS, SVG, TCL, 
-    TEX, TEXT, TEXTILE, TOML, TWIG, TYPESCRIPT, VBSCRIPT, VELOCITY, VERILOG, 
-    VHDL, XML, XQUERY, YAML
+    ABAP, ACTIONSCRIPT, ADA, APACHE_CONF, APPLESCRIPT, ASCIIDOC, ASSEMBLY_X86, 
+    AUTOHOTKEY, BATCHFILE, C9SEARCH, C_CPP, CIRRU, CLOJURE, COBOL, COFFEE, 
+    COLDFUSION, CSHARP, CSS, CURLY, D, DART, DIFF, DJANGO, DOCKERFILE, DOT, EJS, 
+    ERLANG, FORTH, FTL, GHERKIN, GLSL, GOLANG, GROOVY, HAML, HANDLEBARS, 
+    HASKELL, HAXE, HTML, HTML_RUBY, INI, JACK, JADE, JAVA, JAVASCRIPT, JSON, 
+    JSONIQ, JSP, JSX, JULIA, LATEX, LESS, LIQUID, LISP, LIVESCRIPT, LOGIQL, LSL, 
+    LUA, LUAPAGE, LUCENE, MAKEFILE, MARKDOWN, MATLAB, MEL, MUSHCODE, MYSQL, NIX, 
+    OBJECTIVEC, OCAML, PASCAL, PERL, PGSQL, PHP, PLAIN_TEXT, POWERSHELL, PROLOG, 
+    PROPERTIES, PROTOBUF, PYTHON, R, RDOC, RHTML, RUBY, RUST, SASS, SCAD, SCALA, 
+    SCHEME, SCSS, SH, SJS, SMARTY, SNIPPETS, SOY_TEMPLATE, SPACE, SQL, STYLUS, 
+    SVG, TCL, TEX, TEXT, TEXTILE, TOML, TWIG, TYPESCRIPT, VALA, VBSCRIPT, 
+    VELOCITY, VERILOG, VHDL, XML, XQUERY, YAML
   ];
   
   static const Map<String, String> _extensionMap = const {

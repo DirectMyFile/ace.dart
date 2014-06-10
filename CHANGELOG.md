@@ -1,7 +1,8 @@
 # Ace.dart Changes
 
-## 0.4.0-dev+4.11.2014
+## 0.4.0-dev+6.9.2014
 
+- Updated to ace-builds version 06.09.2014.
 - Changed the return type of `screenLength`, `screenWidth`, `scrollLeft` and
 `scrollTop` from `int` to `num` in `EditSession` to support sub-pixel precision.
 - Added the `scrollToLine` and `scrollToRow` methods to `Editor`.
