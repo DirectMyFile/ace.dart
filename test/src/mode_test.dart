@@ -30,7 +30,7 @@ void testCreateModeNamed() {
     expect(mode.path, '${_ACE_MODE_PATH}$modeName');
   };
   Mode.MODES
-  // TODO: send a PR to fix applescript mode's path
+  // TODO: https://github.com/ajaxorg/ace/pull/2013
   .where((mode) => mode != Mode.APPLESCRIPT)
   .forEach((String modeName) => verifyMode(modeName));
 }
