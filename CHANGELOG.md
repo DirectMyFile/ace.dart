@@ -2,6 +2,9 @@
 
 ## 0.4.1-dev+6.9.2014
 
+- Removed API docgen to allow `pub.dartlang.org` to automatically link to the
+correct API docs for each version at `dartdocs.org`.
+
 ## 0.4.0+6.9.2014
 
 - Updated to ace-builds version 06.09.2014.
