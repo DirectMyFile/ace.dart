@@ -12,6 +12,8 @@ part 'src/pure/command_manager.dart';
 part 'src/pure/document.dart';
 
 /// An implementation written in pure Dart.
+/// 
+/// _This implementation is a work-in-progress and is not yet ready for use._
 const Implementation ACE_PURE_IMPLEMENTATION = const _PureImplementation();
 
 class _PureImplementation extends Implementation {
