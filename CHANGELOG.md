@@ -1,5 +1,7 @@
 # Ace.dart Changes
 
+## 0.4.2-dev+6.9.2014
+
 ## 0.4.1+6.9.2014
 
 - Removed API docgen to allow `pub.dartlang.org` to automatically link to the
