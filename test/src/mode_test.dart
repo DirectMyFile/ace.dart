@@ -45,6 +45,7 @@ void testCreateModeForFile() {
     expect(mode.path, '${_ACE_MODE_PATH}$modeName');
   };
   verifyMode('flashy.as',           Mode.ACTIONSCRIPT);
+  verifyMode('config.cmd',          Mode.BATCHFILE);
   verifyMode('some/script.bat',     Mode.BATCHFILE);
   verifyMode('vm/allocator.c',      Mode.C_CPP);
   verifyMode('vm/allocator.cc',     Mode.C_CPP);
@@ -54,12 +55,15 @@ void testCreateModeForFile() {
   verifyMode('vm/gc.cs',            Mode.CSHARP);
   verifyMode('twit/boot.css',       Mode.CSS);
   verifyMode('ftw.dart',            Mode.DART);
+  verifyMode('patch.diff',          Mode.DIFF);
   verifyMode('ready/set.go',        Mode.GOLANG);
+  verifyMode('notes.haml',          Mode.HAML);
   verifyMode('ro/bot.hx',           Mode.HAXE);
   verifyMode('aol.htm',             Mode.HTML);
   verifyMode('browser.html',        Mode.HTML);
   verifyMode('safe.hs',             Mode.HASKELL);
   verifyMode('config.ini',          Mode.INI);
+  verifyMode('index.jade',          Mode.JADE);
   verifyMode('midp/midlet.java',    Mode.JAVA);
   verifyMode('some/legacy.js',      Mode.JAVASCRIPT);  
   verifyMode('data.json',           Mode.JSON);
@@ -71,6 +75,7 @@ void testCreateModeForFile() {
   verifyMode('module.pm',           Mode.PERL);
   verifyMode('server/run.php',      Mode.PHP);
   verifyMode('build.properties',    Mode.PROPERTIES);
+  verifyMode('schema.proto',        Mode.PROTOBUF);
   verifyMode('goog/devserver.py',   Mode.PYTHON);
   verifyMode('converter.rb',        Mode.RUBY);
   verifyMode('cheeky.sass',         Mode.SASS);
