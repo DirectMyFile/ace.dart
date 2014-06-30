@@ -57,13 +57,13 @@ js.JsObject _jsCompletion(Completion c) {
 
 js.JsObject _jsDelta(d) {
   final jsMap = _jsMap({ 'action': d.action, 'range': _jsRange(d.range) });
-  if (d.action == 'insertLines' || d.action == 'removeLines') {
+  if (d.action == Delta.INSERT_LINES || d.action == Delta.REMOVE_LINES) {
     jsMap['lines'] = _jsArray(d.lines);
   }
-  if (d.action == 'insertText' || d.action == 'removeText') {
+  if (d.action == Delta.INSERT_TEXT || d.action == Delta.REMOVE_TEXT) {
     jsMap['text'] = d.text;
   }
-  if (d.action == 'removeLines') {
+  if (d.action == Delta.REMOVE_LINES) {
     jsMap['nl'] = d.nl;
   }
   return jsMap;
