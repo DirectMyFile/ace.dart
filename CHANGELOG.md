@@ -4,6 +4,9 @@
 
 - Added `.cmd`, `.diff`, `.haml`, `.jade`, and `.proto` to the extension map 
 used by the `new Mode.forFile` factory.
+- Removed the `Delta` subtypes and made `Delta` a concrete class as an 
+optimization; this is only a breaking change in the case where client code made
+use of the `runtimeType` of a delta (e.g. `delta as InsertLinesDelta`).
 
 ## 0.4.1+6.9.2014
 
