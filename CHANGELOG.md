@@ -2,6 +2,9 @@
 
 ## 0.4.2-dev+6.9.2014
 
+- Added `.cmd`, `.diff`, `.haml`, `.jade`, and `.proto` to the extension map 
+used by the `new Mode.forFile` factory.
+
 ## 0.4.1+6.9.2014
 
 - Removed API docgen to allow `pub.dartlang.org` to automatically link to the
