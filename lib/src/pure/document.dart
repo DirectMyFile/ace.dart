@@ -54,13 +54,13 @@ class _Document implements Document {
     for (int i = 0; i < deltas.length; i++) {
       final delta = deltas[i];
       final range = new Range.fromPoints(delta.range.start, delta.range.end);
-      if (delta.action == "insertLines") {
+      if (delta.action == Delta.INSERT_LINES) {
         insertLines(range.start.row, delta.lines);
-      } else if (delta.action == "insertText") {
+      } else if (delta.action == Delta.INSERT_TEXT) {
         insert(range.start, delta.text);
-      } else if (delta.action == "removeLines") {
+      } else if (delta.action == Delta.REMOVE_LINES) {
         this._removeLines(range.start.row, range.end.row - 1);
-      } else if (delta.action == "removeText") {
+      } else if (delta.action == Delta.REMOVE_TEXT) {
         this.remove(range);
       } else {
         throw new ArgumentError('$delta is not a valid type of delta');
@@ -314,13 +314,13 @@ class _Document implements Document {
     for (int i = deltas.length - 1; i >= 0; i--) {
       final delta = deltas[i];
       final range = new Range.fromPoints(delta.range.start, delta.range.end);
-      if (delta.action == "insertLines") {
+      if (delta.action == Delta.INSERT_LINES) {
         _removeLines(range.start.row, range.end.row - 1);
-      } else if (delta.action == "insertText") {
+      } else if (delta.action == Delta.INSERT_TEXT) {
         remove(range);
-      } else if (delta.action == "removeLines") {
+      } else if (delta.action == Delta.REMOVE_LINES) {
         _insertLines(range.start.row, delta.lines);
-      } else if (delta.action == "removeText") {
+      } else if (delta.action == Delta.REMOVE_TEXT) {
         insert(range.start, delta.text);
       } else {
         throw new ArgumentError('$delta is not a valid type of delta');
