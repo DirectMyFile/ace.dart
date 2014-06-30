@@ -163,10 +163,9 @@ void testLastVisibleRow() {
 void testInsert() {
   expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.onChange.listen(expectAsync((Delta delta) {
-    expect(delta, const isInstanceOf<InsertTextDelta>());
+    expect(delta.action, equals(Delta.INSERT_TEXT));
     expect(delta.range, equals(new Range(0, 0, 0, 5)));
-    InsertTextDelta insertTextDelta = delta;
-    expect(insertTextDelta.text, equals('snarf'));    
+    expect(delta.text, equals('snarf'));    
   }));
   editor.insert('snarf');
   expect(editor.cursorPosition, equals(const Point(0,5)));
@@ -275,10 +274,9 @@ void testNavigateWordRight() {
 void testRemoveToLineEnd() {
   expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.onChange.listen(expectAsync((Delta delta) {
-    expect(delta, const isInstanceOf<RemoveTextDelta>());
+    expect(delta.action, equals(Delta.REMOVE_TEXT));
     expect(delta.range, equals(new Range(0, 0, 0, 73)));
-    RemoveTextDelta removeTextDelta = delta;    
-    expect(removeTextDelta.text, equals(sampleTextLine0));
+    expect(delta.text, equals(sampleTextLine0));
   })); 
   editor.removeToLineEnd();
   expect(editor.cursorPosition, equals(const Point(0, 0)));
@@ -288,10 +286,9 @@ void testRemoveToLineEnd() {
 void testRemoveToLineStart() {
   editor.navigateLineEnd();
   editor.onChange.listen(expectAsync((Delta delta) {
-    expect(delta, const isInstanceOf<RemoveTextDelta>());
-    expect(delta.range, equals(new Range(0, 0, 0, 73)));
-    RemoveTextDelta removeTextDelta = delta;    
-    expect(removeTextDelta.text, equals(sampleTextLine0));
+    expect(delta.action, equals(Delta.REMOVE_TEXT));
+    expect(delta.range, equals(new Range(0, 0, 0, 73)));  
+    expect(delta.text, equals(sampleTextLine0));
   })); 
   editor.removeToLineStart();
   expect(editor.cursorPosition, equals(const Point(0, 0)));
@@ -302,10 +299,9 @@ void testRemoveWordLeft() {
   editor.setValue(sampleText, 1);
   expect(editor.cursorPosition, equals(const Point(5, 76)));  
   editor.onChange.listen(expectAsync((Delta delta) {
-    expect(delta, const isInstanceOf<RemoveTextDelta>());
+    expect(delta.action, equals(Delta.REMOVE_TEXT));
     expect(delta.range, equals(new Range(5, 75, 5, 76)));
-    RemoveTextDelta removeTextDelta = delta;
-    expect(removeTextDelta.text, equals('.'));
+    expect(delta.text, equals('.'));
   }));
   editor.removeWordLeft();
   expect(editor.cursorPosition, equals(const Point(5, 75)));  
@@ -315,10 +311,9 @@ void testRemoveWordLeft() {
 void testRemoveWordRight() {
   expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.onChange.listen(expectAsync((Delta delta) {
-    expect(delta, const isInstanceOf<RemoveTextDelta>());
+    expect(delta.action, equals(Delta.REMOVE_TEXT));
     expect(delta.range, equals(new Range(0, 0, 0, 5)));
-    RemoveTextDelta removeTextDelta = delta;
-    expect(removeTextDelta.text, equals('Lorem'));
+    expect(delta.text, equals('Lorem'));
   })); 
   editor.removeWordRight();
   expect(editor.cursorPosition, equals(const Point(0, 0)));  

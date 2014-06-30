@@ -322,10 +322,9 @@ void testIndentRows() {
 @Test()
 void testInsert() {
   session.onChange.listen(expectAsync((Delta delta) {
-    expect(delta, const isInstanceOf<InsertTextDelta>());
+    expect(delta.action, equals(Delta.INSERT_TEXT));
     expect(delta.range, equals(new Range(0, 0, 0, 5)));
-    InsertTextDelta insertTextDelta = delta;
-    expect(insertTextDelta.text, equals('snarf'));    
+    expect(delta.text, equals('snarf'));    
   }));
   final point = session.insert(const Point(0, 0), 'snarf');
   expect(point, equals(new Point(0, 5)));
@@ -398,10 +397,9 @@ void testDuplicateLines() {
 @Test()
 void testRemove() {
   session.onChange.listen(expectAsync((Delta delta) {
-    expect(delta, const isInstanceOf<RemoveTextDelta>());
+    expect(delta.action, equals(Delta.REMOVE_TEXT));
     expect(delta.range, equals(new Range(0, 0, 0, 10)));
-    RemoveTextDelta removeTextDelta = delta;
-    expect(removeTextDelta.text, equals(sampleTextLine0.substring(0, 10)));    
+    expect(delta.text, equals(sampleTextLine0.substring(0, 10)));    
   }));
   final point = session.remove(new Range(0, 0, 0, 10));
   expect(point, equals(const Point(0, 0)));
@@ -413,16 +411,14 @@ void testReplace() {
   session.onChange.listen(expectAsync((Delta delta) {    
     switch (onChangeCount++) {
       case 0:
-        expect(delta, const isInstanceOf<RemoveTextDelta>());
+        expect(delta.action, equals(Delta.REMOVE_TEXT));
         expect(delta.range, equals(new Range(3, 7, 3, 42)));
-        RemoveTextDelta removeTextDelta = delta;
-        expect(removeTextDelta.text, equals(sampleTextLine3.substring(7, 42)));
+        expect(delta.text, equals(sampleTextLine3.substring(7, 42)));
         break;
       case 1:
-        expect(delta, const isInstanceOf<InsertTextDelta>());
+        expect(delta.action, equals(Delta.INSERT_TEXT));
         expect(delta.range, equals(new Range(3, 7, 3, 13)));
-        InsertTextDelta insertTextDelta = delta;
-        expect(insertTextDelta.text, equals('pardon'));
+        expect(delta.text, equals('pardon'));
         break;
     }
   }, count: 2));

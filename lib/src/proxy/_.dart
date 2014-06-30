@@ -57,13 +57,13 @@ js.JsObject _jsCompletion(Completion c) {
 
 js.JsObject _jsDelta(d) {
   final jsMap = _jsMap({ 'action': d.action, 'range': _jsRange(d.range) });
-  if (d.action == 'insertLines' || d.action == 'removeLines') {
+  if (d.action == Delta.INSERT_LINES || d.action == Delta.REMOVE_LINES) {
     jsMap['lines'] = _jsArray(d.lines);
   }
-  if (d.action == 'insertText' || d.action == 'removeText') {
+  if (d.action == Delta.INSERT_TEXT || d.action == Delta.REMOVE_TEXT) {
     jsMap['text'] = d.text;
   }
-  if (d.action == 'removeLines') {
+  if (d.action == Delta.REMOVE_LINES) {
     jsMap['nl'] = d.nl;
   }
   return jsMap;
@@ -109,19 +109,9 @@ Annotation _annotation(proxy) => new Annotation(
 
 BindKey _bindKey(proxy) => new BindKey(mac: proxy['mac'], win: proxy['win']);
 
-Delta _delta(proxy) {
-  switch(proxy['action']) {
-    case 'insertLines': return new InsertLinesDelta(
-        _range(proxy['range']), _list(proxy['lines']));
-    case 'insertText': return new InsertTextDelta(
-        _range(proxy['range']), proxy['text']);
-    case 'removeLines': return new RemoveLinesDelta(
-        _range(proxy['range']), _list(proxy['lines']), proxy['nl']);
-    case 'removeText': return new RemoveTextDelta(
-        _range(proxy['range']), proxy['text']);
-    default: throw new UnsupportedError('Unknown action: ${proxy['action']}');
-  }
-}
+Delta _delta(proxy) => new Delta(proxy['action'], _range(proxy['range']), 
+      lines: proxy['lines'] == null ? null : _list(proxy['lines']), 
+      nl: proxy['nl'], text: proxy['text']);
 
 LinkEvent _linkEvent(proxy) {
   final t = proxy['token'];
