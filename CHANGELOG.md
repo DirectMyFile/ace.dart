@@ -1,6 +1,6 @@
 # Ace.dart Changes
 
-## 0.5.0-dev+6.9.2014
+## 0.5.0+6.9.2014
 
 - Added `.cmd`, `.diff`, `.haml`, `.jade`, and `.proto` to the extension map 
 used by the `new Mode.forFile` factory.
