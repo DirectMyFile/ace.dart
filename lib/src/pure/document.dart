@@ -55,11 +55,9 @@ class _Document implements Document {
       final delta = deltas[i];
       final range = new Range.fromPoints(delta.range.start, delta.range.end);
       if (delta.action == "insertLines") {
-        InsertLinesDelta _delta = delta;
-        insertLines(range.start.row, _delta.lines);
+        insertLines(range.start.row, delta.lines);
       } else if (delta.action == "insertText") {
-        InsertTextDelta _delta = delta;
-        insert(range.start, _delta.text);
+        insert(range.start, delta.text);
       } else if (delta.action == "removeLines") {
         this._removeLines(range.start.row, range.end.row - 1);
       } else if (delta.action == "removeText") {
@@ -163,8 +161,8 @@ class _Document implements Document {
       _lines.insert(position.row, lineText);
     }
     final end = new Point(position.row, position.column + text.length);
-    final delta = new InsertTextDelta(
-        new Range.fromPoints(position, end), text);
+    final delta = new Delta(Delta.INSERT_TEXT, 
+        new Range.fromPoints(position, end), text: text);
     _onChange.add(delta);
     return end;
   }
@@ -187,7 +185,7 @@ class _Document implements Document {
     }
     _lines.insertAll(row, lines);
     final range = new Range(row, 0, row + lines.length, 0);
-    final delta = new InsertLinesDelta(range, lines); 
+    final delta = new Delta(Delta.INSERT_LINES, range, lines: lines); 
     _onChange.add(delta);
     return (end == null) ? range.end : end;
   }
@@ -205,8 +203,8 @@ class _Document implements Document {
         position.row + 1, 
         line.substring(position.column, line.length));
     final end = new Point(position.row + 1, 0);
-    final delta = new InsertTextDelta(
-        new Range.fromPoints(position, end), newLineCharacter);
+    final delta = new Delta(Delta.INSERT_TEXT, 
+        new Range.fromPoints(position, end), text: newLineCharacter);
     _onChange.add(delta);
     return end;
   }
@@ -265,7 +263,7 @@ class _Document implements Document {
     final newLine = line.substring(0, startColumn) + 
         line.substring(endColumn, line.length);
     _lines.replaceRange(row, row + 1, [newLine]);    
-    final delta = new RemoveTextDelta(range, removed);
+    final delta = new Delta(Delta.REMOVE_TEXT, range, text: removed);
     _onChange.add(delta);
     return range.start;
   }
@@ -279,7 +277,8 @@ class _Document implements Document {
   List<String> _removeLines(int startRow, int endRow) {
     final range = new Range(startRow, 0, endRow + 1, 0);
     final removed = _spliceList(_lines, startRow, endRow - startRow + 1);
-    final delta = new RemoveLinesDelta(range, removed, newLineCharacter);
+    final delta = new Delta(Delta.REMOVE_LINES, range, lines: removed, 
+        nl: newLineCharacter);
     _onChange.add(delta);
     return removed;
   }
@@ -290,7 +289,7 @@ class _Document implements Document {
     final range = new Range(row, firstLine.length, row + 1, 0);
     final line = firstLine + secondLine;
     _spliceList(_lines, row, 2, [line]);
-    final delta = new RemoveTextDelta(range, newLineCharacter);
+    final delta = new Delta(Delta.REMOVE_TEXT, range, text: newLineCharacter);
     _onChange.add(delta);
   }
   
@@ -320,11 +319,9 @@ class _Document implements Document {
       } else if (delta.action == "insertText") {
         remove(range);
       } else if (delta.action == "removeLines") {
-        RemoveLinesDelta _delta = delta;
-        _insertLines(range.start.row, _delta.lines);
+        _insertLines(range.start.row, delta.lines);
       } else if (delta.action == "removeText") {
-        RemoveTextDelta _delta = delta;
-        insert(range.start, _delta.text);
+        insert(range.start, delta.text);
       } else {
         throw new ArgumentError('$delta is not a valid type of delta');
       }

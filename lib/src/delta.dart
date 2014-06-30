@@ -1,50 +1,38 @@
 part of ace;
 
 /// A change in a [Document].
-abstract class Delta {
+class Delta {
+  
+  static const INSERT_LINES = 'insertLines';
+  static const INSERT_TEXT  = 'insertText';
+  static const REMOVE_LINES = 'removeLines';
+  static const REMOVE_TEXT  = 'removeText';
   
   /// The action that triggered this change.
-  final String action;
-  
-  /// The [Range] of this change within the document.
-  final Range range;  
+  final String action; 
     
-  Delta._(this.action, this.range);
-}
-
-class InsertLinesDelta extends Delta {  
-  
-  /// The lines inserted in the document by this change.
+  /// The lines inserted in or removed from the document by this change; may be 
+  /// `null`.
+  /// 
+  /// This field is non-null if the [action] is either [INSERT_LINES] or 
+  /// [REMOVE_LINES].
   final Iterable<String> lines;
-  
-  InsertLinesDelta(Range range, this.lines) : super._('insertLines', range);
-}
 
-class InsertTextDelta extends Delta {
-    
-  /// The text inserted in the document by this change.
-  final String text;
-  
-  InsertTextDelta(Range range, this.text) : super._('insertText', range);
-}
-
-class RemoveLinesDelta extends Delta {
-  
-  /// The lines removed from the document by this change.
-  final Iterable<String> lines;
-  
   /// The value of the document's newline character during this change as 
-  /// defined by [Document.newLineCharacter].
+  /// defined by [Document.newLineCharacter]; may be `null`.
+  /// 
+  /// This field is non-null if the [action] is [REMOVE_LINES] only.
   final String nl;
   
-  RemoveLinesDelta(Range range, this.lines, this.nl)
-  : super._('removeLines', range);
-}
+  /// The [Range] of this change within the document.
+  final Range range;
 
-class RemoveTextDelta extends Delta {
-  
-  /// The text removed from the document by this change.
+  /// The text inserted in or removed from the document by this change; may be 
+  /// `null`.
+  /// 
+  /// This field is non-null if the [action] is either [INSERT_TEXT] or 
+  /// [REMOVE_TEXT].
   final String text;
   
-  RemoveTextDelta(Range range, this.text) : super._('removeText', range);
+  Delta(this.action, this.range, {this.lines, this.nl, this.text});
 }
