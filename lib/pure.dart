@@ -79,4 +79,6 @@ class _PureImplementation extends Implementation {
   Editor edit(element) => throw new UnimplementedError();
   
   require(String modulePath) => throw new UnimplementedError();
+  
+  Config get config => throw new UnimplementedError();
 }

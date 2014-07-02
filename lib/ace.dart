@@ -6,6 +6,7 @@ part 'src/anchor.dart';
 part 'src/annotation.dart';
 part 'src/command.dart';
 part 'src/command_manager.dart';
+part 'src/config.dart';
 part 'src/delta.dart';
 part 'src/disposable.dart';
 part 'src/document.dart';
@@ -50,6 +51,8 @@ part 'src/virtual_renderer.dart';
 /// This library delegates to the implementation, to allow for multiple 
 /// implementations including mocks for console-based testing.
 Implementation implementation;
+
+Config get config => implementation.config;
 
 /// Creates a new [EditSession] with the given [text] and language [mode].
 EditSession createEditSession(String text, Mode mode) {

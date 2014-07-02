@@ -56,4 +56,6 @@ abstract class Implementation {
   }
   
   require(String modulePath);
+  
+  Config get config;
 }

@@ -4,6 +4,7 @@ import 'package:bench/bench.dart' as bench;
 import 'package:unittest/html_enhanced_config.dart';
 import 'src/anchor_test.dart';
 import 'src/command_manager_test.dart';
+import 'src/config_test.dart';
 import 'src/document_test.dart';
 import 'src/editor_test.dart';
 import 'src/edit_session_test.dart';

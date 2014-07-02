@@ -9,6 +9,7 @@ part 'src/proxy/_.dart';
 part 'src/proxy/anchor.dart';
 part 'src/proxy/command.dart';
 part 'src/proxy/command_manager.dart';
+part 'src/proxy/config.dart';
 part 'src/proxy/document.dart';
 part 'src/proxy/editor.dart';
 part 'src/proxy/edit_session.dart';
@@ -124,4 +125,6 @@ class _ProxyImplementation extends Implementation {
     }    
     return module;
   }
+  
+  Config get config => new _ConfigProxy();
 }
