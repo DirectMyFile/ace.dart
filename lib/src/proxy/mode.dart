@@ -13,7 +13,7 @@ class _ModeProxy extends HasProxy implements Mode {
   get _mode => _hasProxy ? _proxy : path;
 
   _ModeProxy(String path) 
-  : super.async(_loadModule('mode', path).then((module) => 
+  : super.async(config.loadModule('mode', path).then((module) => 
       new Future.value(new js.JsObject(module['Mode']))))
   , path = path;
   

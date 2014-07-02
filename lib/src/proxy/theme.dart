@@ -28,6 +28,6 @@ class _ThemeProxy extends HasProxy implements Theme {
   get _theme => _hasProxy ? _proxy : path;
   
   _ThemeProxy(String path) 
-  : super.async(_loadModule('theme', path))
+  : super.async(config.loadModule('theme', path))
   , path = path;
 }

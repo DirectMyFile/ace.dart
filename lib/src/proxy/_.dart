@@ -5,14 +5,6 @@ get _context => js.context;
 get _modules => _ace['define']['modules'];
 final js.JsFunction _Object = _context['Object'];
 
-Future<js.JsObject> _loadModule(String moduleType, String modulePath) {
-  final completer = new Completer<js.JsObject>();
-  _ace['config'].callMethod('loadModule', 
-      [_jsify([moduleType, modulePath]),
-      (module) => completer.complete(module)]);
-  return completer.future;
-}
-
 js.JsObject _jsArray(list) => new js.JsArray.from(list);
 
 js.JsObject _jsObject() => new js.JsObject(_Object);

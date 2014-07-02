@@ -15,7 +15,7 @@ class _KeyboardHandlerProxy extends HasProxy implements KeyboardHandler {
   
   _KeyboardHandlerProxy(String path) 
   : super.async(
-      _loadModule('keybinding', path)
+      config.loadModule('keybinding', path)
       .then((module) => new Future.value(module['handler'])))
   , path = path;
 
