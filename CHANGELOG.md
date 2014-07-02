@@ -1,6 +1,8 @@
 # Ace.dart Changes
 
-## 0.5.1-dev+6.9.2014
+## 0.5.1-dev+7.1.2014
+
+- Updated to ace-builds version 07.01.2014.
 
 ## 0.5.0+6.9.2014
 
