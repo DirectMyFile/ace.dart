@@ -1,6 +1,6 @@
 # Ace.dart Changes
 
-## 0.5.1-dev+7.1.2014
+## 0.5.1+7.1.2014
 
 - Updated to ace-builds version 07.01.2014.
 - Added the `Config` abstract class and the `ace.config` top-level getter.
