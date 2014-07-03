@@ -29,10 +29,7 @@ void testCreateModeNamed() {
     expect(mode.name, modeName);
     expect(mode.path, '${_ACE_MODE_PATH}$modeName');
   };
-  Mode.MODES
-  // TODO: https://github.com/ajaxorg/ace/pull/2013
-  .where((mode) => mode != Mode.APPLESCRIPT)
-  .forEach((String modeName) => verifyMode(modeName));
+  Mode.MODES.forEach((String modeName) => verifyMode(modeName));
 }
 
 @Test()
