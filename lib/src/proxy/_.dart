@@ -1,8 +1,8 @@
 part of ace.proxy;
 
-get _ace => _context['ace'];
-get _context => js.context;
-get _modules => _ace['define']['modules'];
+js.JsObject get _ace => _context['ace'];
+js.JsObject get _context => js.context;
+js.JsObject get _modules => _ace['define']['modules'];
 final js.JsFunction _Object = _context['Object'];
 
 js.JsObject _jsArray(list) => new js.JsArray.from(list);
