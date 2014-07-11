@@ -7,16 +7,10 @@ import 'package:ace/proxy.dart';
 
 part 'src/annotations.dart';
 part 'src/autocomplete.dart';
+part 'src/documents.dart';
 part 'src/key_bindings.dart';
 part 'src/modes.dart';
 part 'src/themes.dart';
-
-const SAMPLE_CODE =
-'''
-main() {
-  var x = "All this is syntax highlighted";          
-}
-''';
 
 ace.Editor editor = ace.edit(querySelector('#editor'));
 Element controls = querySelector('#controls');
@@ -27,10 +21,11 @@ main() {
   editor
   ..theme = new ace.Theme.named(ace.Theme.CHROME)
   ..session.mode = new ace.Mode.named(ace.Mode.DART)
-  ..setValue(SAMPLE_CODE);
+  ..setValue(DOCUMENT_DART, -1);
   
   showAnnotations();
   enableAutocomplete();
+  controls.append(buildDocuments());
   controls.append(buildModes());
   controls.append(buildThemes());
   controls.append(buildKeyBindings());
