@@ -24,13 +24,13 @@ body {
 
 #controls {
   height: 100%;
-  width: 200px;
+  width: 240px;
   padding: 4px;
 }
 
 #editor-container { 
   height: 100%;
-  width: calc(100% - 200px);        
+  width: calc(100% - 240px);        
 }
 
 #editor {

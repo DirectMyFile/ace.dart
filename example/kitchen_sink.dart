@@ -8,7 +8,8 @@ import 'package:ace/proxy.dart';
 part 'src/annotations.dart';
 part 'src/autocomplete.dart';
 part 'src/key_bindings.dart';
-part 'src/mode.dart';
+part 'src/modes.dart';
+part 'src/themes.dart';
 
 const SAMPLE_CODE =
 '''
@@ -31,5 +32,6 @@ main() {
   showAnnotations();
   enableAutocomplete();
   controls.append(buildModes());
+  controls.append(buildThemes());
   controls.append(buildKeyBindings());
 }
