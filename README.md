@@ -2,7 +2,8 @@
 
 [Dart language][dart] bindings for the [Ace][ace] code editor.
 
-[![Build Status][status]][badge] | [Dart API][api] | [JavaScript API][ace-api]
+[![Build Status][status]][badge] | [Dart API][api] | [JavaScript API][ace-api] 
+| [Demo][demo]
 
 _Ace.dart uses the MIT license as described in the [LICENSE][license] file, and 
 follows [semantic versioning][]._
@@ -36,6 +37,7 @@ should continue to function.
 [api]: http://dartdocs.org
 [badge]: https://drone.io/github.com/rmsmith/ace.dart/latest
 [dart]: http://www.dartlang.org/
+[demo]: http://rmsmith.github.io/ace.dart/examples/kitchen_sink.html
 [license]: https://github.com/rmsmith/ace.dart/blob/master/LICENSE
 [semantic versioning]: http://semver.org/
 [status]: https://drone.io/github.com/rmsmith/ace.dart/status.png
