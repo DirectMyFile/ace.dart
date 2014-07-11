@@ -14,6 +14,7 @@ Element buildThemes() {
   });
   final control = new DivElement()
   ..append(new SpanElement()..text = 'Theme ')
-  ..append(select);
+  ..append(select)
+  ..classes = ['control'];
   return control;
 }

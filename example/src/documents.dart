@@ -15,7 +15,8 @@ Element buildDocuments() {
   });
   final control = new DivElement()
   ..append(new SpanElement()..text = 'Document ')
-  ..append(select);
+  ..append(select)
+  ..classes = ['control'];
   return control;
 }
 

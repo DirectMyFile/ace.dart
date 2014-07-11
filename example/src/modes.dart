@@ -15,6 +15,7 @@ Element buildModes() {
   });  
   final control = new DivElement()
   ..append(new SpanElement()..text = 'Mode ')
-  ..append(modesSelect);
+  ..append(modesSelect)
+  ..classes = ['control'];
   return control;
 }

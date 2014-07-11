@@ -16,6 +16,7 @@ Element buildKeyBindings() {
   });
   final control = new DivElement()
   ..append(new SpanElement()..text = 'Key binding ')
-  ..append(select);
+  ..append(select)
+  ..classes = ['control'];
   return control;
 }

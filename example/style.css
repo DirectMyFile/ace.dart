@@ -24,7 +24,7 @@ body {
 
 #controls {
   height: 100%;
-  width: 240px;
+  width: 240px;  
   padding: 4px;
 }
 
@@ -36,4 +36,10 @@ body {
 #editor {
   height: 100%;
   width: 100%;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;  
 }
