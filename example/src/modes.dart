@@ -1,4 +1,4 @@
-part of ace.example.kitchen_sink;
+part of ace.kitchen_sink;
 
 SelectElement modesSelect = new SelectElement();
 

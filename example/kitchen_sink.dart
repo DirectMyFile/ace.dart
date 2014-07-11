@@ -1,4 +1,4 @@
-library ace.example.kitchen_sink;
+library ace.kitchen_sink;
 
 import 'dart:async';
 import 'dart:html';

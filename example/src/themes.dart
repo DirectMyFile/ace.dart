@@ -1,4 +1,4 @@
-part of ace.example.kitchen_sink;
+part of ace.kitchen_sink;
 
 Element buildThemes() {  
   final select = new SelectElement();
