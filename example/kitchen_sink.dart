@@ -5,7 +5,6 @@ import 'dart:html';
 import 'package:ace/ace.dart' as ace;
 import 'package:ace/proxy.dart';
 
-part 'src/annotations.dart';
 part 'src/autocomplete.dart';
 part 'src/documents.dart';
 part 'src/key_bindings.dart';
@@ -23,7 +22,6 @@ main() {
   ..session.mode = new ace.Mode.named(ace.Mode.DART)
   ..setValue(DOCUMENT_DART, -1);
   
-  showAnnotations();
   enableAutocomplete();
   controls.append(buildDocuments());
   controls.append(buildModes());
