@@ -2,6 +2,9 @@
 
 ## 0.5.2-dev+7.1.2014
 
+- Added a `gh-pages` branch to host the live demo application and added a link 
+to the demo in the `README`.
+
 ## 0.5.1+7.1.2014
 
 - Updated to ace-builds version 07.01.2014.
