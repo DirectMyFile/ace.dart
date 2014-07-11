@@ -1,0 +1,39 @@
+html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+body {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif, Tahoma, Verdana, sans-serif;
+    font-size: 12px;
+    background: rgb(14, 98, 165);
+    color: white;
+}
+
+#container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+#controls {
+  height: 100%;
+  width: 200px;
+  padding: 4px;
+}
+
+#editor-container { 
+  height: 100%;
+  width: calc(100% - 200px);        
+}
+
+#editor {
+  height: 100%;
+  width: 100%;
+}
