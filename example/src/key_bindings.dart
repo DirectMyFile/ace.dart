@@ -1,6 +1,6 @@
 part of ace.example.kitchen_sink;
 
-Element keyBindings() {  
+Element buildKeyBindings() {  
   final select = new SelectElement();
   for (String name in ace.KeyboardHandler.BINDINGS) {
     final value = (name == ace.KeyboardHandler.DEFAULT) ? 'ace' : name;
@@ -15,7 +15,7 @@ Element keyBindings() {
     editor.keyboardHandler = new ace.KeyboardHandler.named(value);
   });
   final control = new DivElement()
-  ..append(new SpanElement()..text = 'Key binding')
+  ..append(new SpanElement()..text = 'Key binding ')
   ..append(select);
   return control;
 }
