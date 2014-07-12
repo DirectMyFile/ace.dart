@@ -24,7 +24,8 @@ const Map<ace.Mode, String> DOCUMENTS = const {
   ace.Mode.CSS        : DOCUMENT_CSS,
   ace.Mode.DART       : DOCUMENT_DART,
   ace.Mode.HTML       : DOCUMENT_HTML,
-  ace.Mode.JAVASCRIPT : DOCUMENT_JAVASCRIPT
+  ace.Mode.JAVASCRIPT : DOCUMENT_JAVASCRIPT,
+  ace.Mode.TYPESCRIPT : DOCUMENT_TYPESCRIPT
 };
 
 const String DOCUMENT_CSS =
@@ -109,5 +110,81 @@ function foo(items, nada) {
     for (var i=0; i<items.length; i++) {
         alert(items[i] + "juhu\n");
     } // Real Tab.
+}
+''';
+
+const String DOCUMENT_TYPESCRIPT =
+r'''
+class Greeter {
+  greeting: string;
+  constructor (message: string) {
+    this.greeting = message;
+  }
+  greet() {
+    return "Hello, " + this.greeting;
+  }
+}   
+
+var greeter = new Greeter("world");
+
+var button = document.createElement('button')
+button.innerText = "Say Hello"
+button.onclick = function() {
+  alert(greeter.greet())
+}
+
+document.body.appendChild(button)
+
+class Snake extends Animal {
+   move() {
+       alert("Slithering...");
+       super(5);
+   }
+}
+
+class Horse extends Animal {
+   move() {
+       alert("Galloping...");
+       super.move(45);
+   }
+}
+
+module Sayings {
+    export class Greeter {
+        greeting: string;
+        constructor (message: string) {
+            this.greeting = message;
+        }
+        greet() {
+            return "Hello, " + this.greeting;
+        }
+    }
+}
+module Mankala {
+   export class Features {
+       public turnContinues = false;
+       public seedStoredCount = 0;
+       public capturedCount = 0;
+       public spaceCaptured = NoSpace;
+
+       public clear() {
+           this.turnContinues = false;
+           this.seedStoredCount = 0;
+           this.capturedCount = 0;
+           this.spaceCaptured = NoSpace;
+       }
+
+       public toString() {
+           var stringBuilder = "";
+           if (this.turnContinues) {
+               stringBuilder += " turn continues,";
+           }
+           stringBuilder += " stores " + this.seedStoredCount;
+           if (this.capturedCount > 0) {
+               stringBuilder += " captures " + this.capturedCount + " from space " + this.spaceCaptured;
+           }
+           return stringBuilder;
+       }
+   }
 }
 ''';
