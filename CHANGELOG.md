@@ -1,7 +1,8 @@
 # Ace.dart Changes
 
-## 0.5.2-dev+7.1.2014
+## 0.5.2-dev+7.9.2014
 
+- Updated to ace-builds version 07.09.2014.
 - Added a `gh-pages` branch to host the live demo application and added a link 
 to the demo in the `README`.
 

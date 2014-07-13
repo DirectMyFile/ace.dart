@@ -53,6 +53,7 @@ void testCreateModeForFile() {
   verifyMode('twit/boot.css',       Mode.CSS);
   verifyMode('ftw.dart',            Mode.DART);
   verifyMode('patch.diff',          Mode.DIFF);
+  verifyMode('.gitignore',          Mode.GITIGNORE);
   verifyMode('ready/set.go',        Mode.GOLANG);
   verifyMode('notes.haml',          Mode.HAML);
   verifyMode('ro/bot.hx',           Mode.HAXE);
