@@ -2,8 +2,7 @@
 
 [Dart language][dart] bindings for the [Ace][ace] code editor.
 
-[![Build Status][status]][badge] | [Dart API][api] | [JavaScript API][ace-api] 
-| [Demo][demo]
+[![Build Status][status]][badge] | [API][api] | [Demo][demo]
 
 _Ace.dart uses the MIT license as described in the [LICENSE][license] file, and 
 follows [semantic versioning][]._
@@ -30,7 +29,6 @@ As long as the version of `ace.js` you use is compatible, the Dart wrapper code
 should continue to function.
 
 [ace]: http://ace.ajax.org/
-[ace-api]: http://ace.ajax.org/#nav=api
 [ace-builds]: https://github.com/ajaxorg/ace-builds/
 [ace-license]: https://github.com/rmsmith/ace.dart/blob/master/lib/src/js/LICENSE
 [ace-readme]: https://github.com/rmsmith/ace.dart/blob/master/lib/src/js/README.md
