@@ -54,6 +54,7 @@ void testCreateModeForFile() {
   verifyMode('ftw.dart',            Mode.DART);
   verifyMode('patch.diff',          Mode.DIFF);
   verifyMode('.gitignore',          Mode.GITIGNORE);
+  verifyMode('vertex.glsl',         Mode.GLSL);
   verifyMode('ready/set.go',        Mode.GOLANG);
   verifyMode('notes.haml',          Mode.HAML);
   verifyMode('ro/bot.hx',           Mode.HAXE);

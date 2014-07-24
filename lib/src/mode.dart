@@ -251,6 +251,7 @@ abstract class Mode extends Disposable {
     'dart'      : DART,
     'diff'      : DIFF,
     'gitignore' : GITIGNORE,
+    'glsl'      : GLSL,
     'go'        : GOLANG,
     'h'         : C_CPP,
     'haml'      : HAML,
