@@ -55,6 +55,8 @@ void testCreateModeForFile() {
   verifyMode('patch.diff',          Mode.DIFF);
   verifyMode('.gitignore',          Mode.GITIGNORE);
   verifyMode('vertex.glsl',         Mode.GLSL);
+  verifyMode('vshader.vert',        Mode.GLSL);
+  verifyMode('fshader.frag',        Mode.GLSL);
   verifyMode('ready/set.go',        Mode.GOLANG);
   verifyMode('notes.haml',          Mode.HAML);
   verifyMode('ro/bot.hx',           Mode.HAXE);

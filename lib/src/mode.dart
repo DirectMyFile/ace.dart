@@ -250,6 +250,7 @@ abstract class Mode extends Disposable {
     'css'       : CSS,
     'dart'      : DART,
     'diff'      : DIFF,
+    'frag'      : GLSL,
     'gitignore' : GITIGNORE,
     'glsl'      : GLSL,
     'go'        : GOLANG,
@@ -282,6 +283,7 @@ abstract class Mode extends Disposable {
     'svg'       : SVG,
     'ts'        : TYPESCRIPT,
     'vala'      : VALA,
+    'vert'      : GLSL,
     'xml'       : XML,
     'yaml'      : YAML
   };

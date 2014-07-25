@@ -2,6 +2,8 @@
 
 ## 0.5.3-dev+7.9.2014
 
+- Added `.glsl`, `.frag`, and `.vert` to the default mode extension map.
+
 ## 0.5.2+7.9.2014
 
 - Updated to ace-builds version 07.09.2014.
