@@ -1,6 +1,6 @@
 # Ace.dart Changes
 
-## 0.5.3-dev+7.9.2014
+## 0.5.3+7.9.2014
 
 - Added `.glsl`, `.frag`, and `.vert` to the default mode extension map.
 
