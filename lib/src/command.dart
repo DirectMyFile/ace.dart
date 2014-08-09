@@ -46,7 +46,7 @@ abstract class Command extends Disposable {
   /// The select action is one of the values in [SELECT_ACTIONS].
   String get multiSelectAction;
   
-  factory Command(String name, BindKey bindKey, exec(Editor), 
+  factory Command(String name, BindKey bindKey, exec(Editor editor), 
       {bool readOnly: false, String scrollIntoView: SCROLL_NONE, 
       String multiSelectAction: SELECT_NONE}) {
     assert(SCROLL_ACTIONS.contains(scrollIntoView));

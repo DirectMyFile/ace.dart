@@ -9,7 +9,7 @@ abstract class Implementation {
   AutoCompleter createAutoCompleter(Future<List<Completion>> getCompletions(
       Editor editor, EditSession session, Point position, String prefix));
   
-  Command createCommand(String name, BindKey bindKey, exec(Editor), 
+  Command createCommand(String name, BindKey bindKey, exec(Editor editor), 
       {bool readOnly: false, String scrollIntoView, String multiSelectAction});
   
   CommandManager createCommandManager(String platform, 

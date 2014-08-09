@@ -9,7 +9,7 @@ class _Command extends Disposable implements Command {
   final String scrollIntoView;
   final String multiSelectAction;
   
-  _Command(this.name, this.bindKey, exec(Editor), 
+  _Command(this.name, this.bindKey, exec(Editor editor), 
       {this.readOnly: false, this.scrollIntoView, this.multiSelectAction})
   : this.exec = exec;
 }

@@ -29,7 +29,7 @@ class _PureImplementation extends Implementation {
       Editor editor, EditSession session, Point position, String prefix)) =>
       throw new UnimplementedError();
   
-  Command createCommand(String name, BindKey bindKey, exec(Editor), 
+  Command createCommand(String name, BindKey bindKey, exec(Editor editor), 
       {bool readOnly: false, String scrollIntoView, String multiSelectAction}) 
       => new _Command(name, bindKey, exec, readOnly: readOnly, 
           scrollIntoView: scrollIntoView, multiSelectAction: multiSelectAction);
