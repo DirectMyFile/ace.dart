@@ -30,4 +30,5 @@ main() {
   controls.append(buildKeyBindings());
   controls.append(buildShowInvisibles());
   controls.append(buildShowGutter());
+  controls.append(buildShowPrintMargin());
 }

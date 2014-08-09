@@ -6,6 +6,9 @@ Element buildShowInvisibles() =>
 Element buildShowGutter() => 
     _buildEditorOption('showGutter', 'Show Gutter ', true);
 
+Element buildShowPrintMargin() =>
+    _buildEditorOption('showPrintMargin', 'Show Print Margin ', true);
+
 Element _buildEditorOption(String name, String desc, bool defaultValue) {
   final input = new InputElement();
   input
