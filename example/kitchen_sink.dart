@@ -9,6 +9,7 @@ part 'src/autocomplete.dart';
 part 'src/documents.dart';
 part 'src/key_bindings.dart';
 part 'src/modes.dart';
+part 'src/options.dart';
 part 'src/themes.dart';
 
 ace.Editor editor = ace.edit(querySelector('#editor'));
@@ -27,4 +28,6 @@ main() {
   controls.append(buildModes());
   controls.append(buildThemes());
   controls.append(buildKeyBindings());
+  controls.append(buildShowInvisibles());
+  controls.append(buildShowGutter());
 }
