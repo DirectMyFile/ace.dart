@@ -326,11 +326,11 @@ abstract class Editor extends Disposable implements OptionsProvider {
 }
 
 class LinkEvent {
-  /// The document character position the mouse cursor was at the time of the
-  /// event.
+  
+  /// The document character position of the cursor at the time of this event.
   final Point position;
 
-  /// The relevant token to the link event.
+  /// The relevant token for this link event.
   final Token token;
 
   LinkEvent(this.position, this.token);
