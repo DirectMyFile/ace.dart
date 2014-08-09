@@ -31,4 +31,5 @@ main() {
   controls.append(buildShowInvisibles());
   controls.append(buildShowGutter());
   controls.append(buildShowPrintMargin());
+  controls.append(buildUseSoftTabs());
 }
