@@ -32,7 +32,7 @@ should continue to function.
 [ace-builds]: https://github.com/ajaxorg/ace-builds/
 [ace-license]: https://github.com/rmsmith/ace.dart/blob/master/lib/src/js/LICENSE
 [ace-readme]: https://github.com/rmsmith/ace.dart/blob/master/lib/src/js/README.md
-[api]: http://dartdocs.org
+[api]: http://www.dartdocs.org/documentation/ace/latest/
 [badge]: https://drone.io/github.com/rmsmith/ace.dart/latest
 [dart]: http://www.dartlang.org/
 [demo]: http://rmsmith.github.io/ace.dart/examples/kitchen_sink.html
