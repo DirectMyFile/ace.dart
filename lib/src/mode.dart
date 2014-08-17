@@ -27,10 +27,12 @@ abstract class Mode extends Disposable {
   static const DJANGO               = 'django';
   static const DOCKERFILE           = 'dockerfile';
   static const DOT                  = 'dot';
+  static const EIFFEL               = 'eiffel';
   static const EJS                  = 'ejs';
   static const ERLANG               = 'erlang';
   static const FORTH                = 'forth';
   static const FTL                  = 'ftl';
+  static const GCODE                = 'gcode';
   static const GHERKIN              = 'gherkin';
   static const GITIGNORE            = 'gitignore';
   static const GLSL                 = 'glsl';
@@ -77,6 +79,7 @@ abstract class Mode extends Disposable {
   static const PHP                  = 'php';
   static const PLAIN_TEXT           = 'plain_text';
   static const POWERSHELL           = 'powershell';
+  static const PRAAT                = 'praat';
   static const PROLOG               = 'prolog';
   static const PROPERTIES           = 'properties';
   static const PROTOBUF             = 'protobuf';
@@ -148,10 +151,12 @@ abstract class Mode extends Disposable {
     DJANGO, 
     DOCKERFILE, 
     DOT, 
+    EIFFEL,
     EJS, 
     ERLANG, 
     FORTH, 
     FTL, 
+    GCODE,
     GHERKIN, 
     GITIGNORE, 
     GLSL, 
@@ -198,6 +203,7 @@ abstract class Mode extends Disposable {
     PHP, 
     PLAIN_TEXT, 
     POWERSHELL, 
+    PRAAT,
     PROLOG, 
     PROPERTIES, 
     PROTOBUF, 
