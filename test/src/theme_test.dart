@@ -27,5 +27,5 @@ void testCreateThemeNamed() {
     expect(theme.name, themeName);
     expect(theme.path, '${_ACE_THEME_PATH}$themeName');
   };
-  Theme.THEMES.forEach((String themeName) => verifyTheme(themeName));
+  Theme.THEMES.forEach(verifyTheme);
 }
