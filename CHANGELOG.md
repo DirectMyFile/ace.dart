@@ -2,6 +2,8 @@
 
 ## 0.5.5-dev+17.8.2014
 
+- Fixed a stack overflow error when calling some getters on a loaded `Theme`.
+
 ## 0.5.4+17.8.2014
 
 - Updated to ace-builds version 17.08.2014.

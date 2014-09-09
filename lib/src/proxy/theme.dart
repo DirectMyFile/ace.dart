@@ -4,17 +4,17 @@ class _ThemeProxy extends HasProxy implements Theme {
   
   String get cssClass {
     if (!isLoaded) throw new StateError('$path is not yet loaded.');
-    return _proxy[cssClass];
+    return _proxy['cssClass'];
   }
   
   String get cssText {
     if (!isLoaded) throw new StateError('$path is not yet loaded.');
-    return _proxy[cssText];
+    return _proxy['cssText'];
   }
   
   bool get isDark {
     if (!isLoaded) throw new StateError('$path is not yet loaded.');
-    return _proxy[isDark];
+    return _proxy['isDark'];
   }
   
   bool get isLoaded => _hasProxy;
