@@ -45,6 +45,7 @@ abstract class Mode extends Disposable {
   static const HTML                 = 'html';
   static const HTML_RUBY            = 'html_ruby';
   static const INI                  = 'ini';
+  static const IO                   = 'io';
   static const JACK                 = 'jack';
   static const JADE                 = 'jade';
   static const JAVA                 = 'java';
@@ -169,6 +170,7 @@ abstract class Mode extends Disposable {
     HTML, 
     HTML_RUBY, 
     INI, 
+    IO,
     JACK, 
     JADE, 
     JAVA, 
