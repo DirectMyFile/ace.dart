@@ -1,6 +1,6 @@
 # Ace.dart Changes
 
-## 0.5.5-dev+20.9.2014
+## 0.5.5+20.9.2014
 
 - Updated to ace-builds version 20.09.2014.
 - Fixed a stack overflow error when calling some getters on a loaded `Theme`.
