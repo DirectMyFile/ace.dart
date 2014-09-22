@@ -6,9 +6,9 @@ class _FoldProxy extends _RangeListProxy implements Fold {
   
   Range get range => _range(_proxy['range']);
   
-  _FoldProxy(Range range, Placeholder placeholder)
+  _FoldProxy(Range range, _PlaceholderProxy placeholder)
   : this._(new js.JsObject(_modules['ace/edit_session/fold']['Fold'],
-      [_jsRange(range), (placeholder as _PlaceholderProxy)._proxy]));
+      [_jsRange(range), placeholder._proxy]));
   
   _FoldProxy._(proxy) : super._(proxy);
 }

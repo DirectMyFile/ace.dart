@@ -179,9 +179,9 @@ class _EditorProxy extends HasProxy implements Editor {
   
   String get value => call('getValue');
   
-  _EditorProxy(VirtualRenderer renderer, EditSession session) 
+  _EditorProxy(_VirtualRendererProxy renderer, _EditSessionProxy session) 
     : this._(new js.JsObject(_modules['ace/editor']['Editor'],
-        [(renderer as HasProxy).jsProxy, (session as HasProxy).jsProxy]));
+        [renderer.jsProxy, session.jsProxy]));
   
   _EditorProxy._(js.JsObject proxy) : super(proxy);
   

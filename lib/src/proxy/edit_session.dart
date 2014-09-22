@@ -177,9 +177,9 @@ class _EditSessionProxy extends HasProxy implements EditSession {
     get wrapLimit => call('getWrapLimit');
     set wrapLimit(int wrapLimit) => call('setWrapLimit', [wrapLimit]);
       
-  _EditSessionProxy(Document document, Mode mode) 
+  _EditSessionProxy(_DocumentProxy document, _ModeProxy mode) 
   : this._(new js.JsObject(_context['ace']['EditSession'], 
-      [(document as _DocumentProxy)._proxy, (mode as _ModeProxy)._mode]));
+      [document._proxy, mode._mode]));
   
   _EditSessionProxy._(js.JsObject proxy) : super(proxy); 
   

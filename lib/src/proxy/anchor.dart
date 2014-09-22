@@ -15,9 +15,9 @@ class _AnchorProxy extends HasProxy implements Anchor {
   
   Point get position => _point(call('getPosition'));
   
-  _AnchorProxy(Document document, int row, int column) 
+  _AnchorProxy(_DocumentProxy document, int row, int column) 
   : this._(new js.JsObject(_modules['ace/anchor']['Anchor'], 
-      [(document as _DocumentProxy)._proxy, row, column]));
+      [document._proxy, row, column]));
   
   _AnchorProxy._(proxy) : super(proxy);
   

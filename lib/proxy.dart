@@ -55,8 +55,8 @@ class _ProxyImplementation extends Implementation {
   Document createDocument(String text) => new _DocumentProxy(text);
   
   Editor createEditor(VirtualRenderer renderer, EditSession session) {
-    assert(renderer is HasProxy);
-    assert(session is HasProxy);
+    assert(renderer is _VirtualRendererProxy);
+    assert(session is _EditSessionProxy);
     return new _EditorProxy(renderer, session);
   }
   

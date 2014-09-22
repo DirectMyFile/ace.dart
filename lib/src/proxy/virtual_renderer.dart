@@ -24,9 +24,9 @@ class _VirtualRendererProxy extends HasProxy implements VirtualRenderer {
     get showGutter => call('getShowGutter');
     set showGutter(bool value) => call('setShowGutter', [value]);
     
-  _VirtualRendererProxy(container, Theme theme) 
+  _VirtualRendererProxy(container, _ThemeProxy theme) 
   : this._(new js.JsObject(_modules['ace/virtual_renderer'][VirtualRenderer], 
-      [container, (theme as _ThemeProxy)._theme]));
+      [container, theme._theme]));
     
   _VirtualRendererProxy._(js.JsObject proxy) : super(proxy);
   
