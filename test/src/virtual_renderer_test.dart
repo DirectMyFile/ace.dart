@@ -7,12 +7,14 @@ import 'package:ace/proxy.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 
+Editor editor;
 VirtualRenderer renderer;
 @Setup
 setup() {
   implementation = ACE_PROXY_IMPLEMENTATION;
   html.document.body.append(new html.Element.div()..id = 'editor');  
-  renderer = edit(html.querySelector('#editor')).renderer;
+  editor = edit(html.querySelector('#editor'));
+  renderer = editor.renderer;
 }
 
 @Teardown
@@ -93,4 +95,9 @@ void testTextToScreenCoordinates() {
   var screenCoords = renderer.textToScreenCoordinates(0, 0);
   expect(screenCoords.row, greaterThan(0));
   expect(screenCoords.column, greaterThan(0));
+}
+
+@Test()
+void testLineHeight() {
+  expect(renderer.lineHeight, greaterThan(editor.fontSize));
 }

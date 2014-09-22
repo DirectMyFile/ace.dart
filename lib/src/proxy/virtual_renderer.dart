@@ -8,6 +8,8 @@ class _VirtualRendererProxy extends HasProxy implements VirtualRenderer {
   
   int get lastVisibleRow => call('getLastVisibleRow');
   
+  int get lineHeight => jsProxy['lineHeight'];
+  
   bool
     get fixedWidthGutter => call('getOption', ['fixedWidthGutter']);
     set fixedWidthGutter(bool fixedWidthGutter) => 

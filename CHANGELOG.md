@@ -2,7 +2,8 @@
 
 ## 0.5.6-dev+20.9.2014
 
-- Added the `textToScreenCoordinates` method to `VirtualRenderer`.
+- Added the `lineHeight` getter and the `textToScreenCoordinates` method to 
+`VirtualRenderer`.
 
 ## 0.5.5+20.9.2014
 
