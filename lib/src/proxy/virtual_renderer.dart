@@ -40,5 +40,10 @@ class _VirtualRendererProxy extends HasProxy implements VirtualRenderer {
   void setOptions(Map<String, dynamic> options) => 
       call('setOptions', [_jsify(options)]);
   
+  Point textToScreenCoordinates(int row, int column) {
+    final js.JsObject proxy = call('textToScreenCoordinates', [row, column]);
+    return new Point(proxy['pageX'], proxy['pageY']);
+  }
+  
   void updateFull({bool force: false}) => call('updateFull', [force]);
 }

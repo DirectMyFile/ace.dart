@@ -29,6 +29,10 @@ abstract class VirtualRenderer extends Disposable implements OptionsProvider {
   factory VirtualRenderer(container, Theme theme) => 
       implementation.createVirtualRenderer(container, theme);
   
+  /// Returns a point containing the `pageX` and `pageY` coordinates for the
+  /// given document [row] and [column].
+  Point textToScreenCoordinates(int row, int column);
+  
   /// Updates all of the layers, for all the rows.
   /// 
   /// By default this schedules an asynchronous update.  If [force] is `true`

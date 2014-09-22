@@ -87,3 +87,10 @@ void testSetOptions() {
   expect(renderer.fixedWidthGutter, isTrue);
   expect(renderer.printMarginColumn, equals(76));
 }
+
+@Test()
+void testTextToScreenCoordinates() {
+  var screenCoords = renderer.textToScreenCoordinates(0, 0);
+  expect(screenCoords.row, greaterThan(0));
+  expect(screenCoords.column, greaterThan(0));
+}
