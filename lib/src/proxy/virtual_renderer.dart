@@ -44,7 +44,7 @@ class _VirtualRendererProxy extends HasProxy implements VirtualRenderer {
   
   Point textToScreenCoordinates(int row, int column) {
     final js.JsObject proxy = call('textToScreenCoordinates', [row, column]);
-    return new Point(proxy['pageX'], proxy['pageY']);
+    return new Point(proxy['pageY'], proxy['pageX']);
   }
   
   void updateFull({bool force: false}) => call('updateFull', [force]);
