@@ -1,5 +1,7 @@
 # Ace.dart Changes
 
+## 0.5.7-dev+20.9.2014
+
 ## 0.5.6+20.9.2014
 
 - Added the `lineHeight` getter and the `textToScreenCoordinates` method to 
