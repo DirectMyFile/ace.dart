@@ -1,5 +1,4 @@
-# Ace.dart [![Build Status][status]][status badge] [![Pub][pub badge]][pub] 
-[API][api] [Demo][demo]
+# Ace.dart [![Build Status][status]][status badge] [![Pub][pub badge]][pub] [API][api] [Demo][demo]
 
 [Dart language][dart] bindings for the [Ace][ace] code editor.
 
