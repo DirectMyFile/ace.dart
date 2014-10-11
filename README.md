@@ -1,8 +1,7 @@
-# Ace.dart [![Build Status][status]][status badge] [![Pub][pub badge]][pub]
+# Ace.dart [![Build Status][status]][status badge] [![Pub][pub badge]][pub] 
+[API][api] [Demo][demo]
 
 [Dart language][dart] bindings for the [Ace][ace] code editor.
-
-[API][api] | [Demo][demo]
 
 _Ace.dart uses the MIT license as described in the [LICENSE][license] file, and 
 follows [semantic versioning][]._
