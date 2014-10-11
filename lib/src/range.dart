@@ -19,17 +19,12 @@ class Range implements Comparable<Range> {
   bool get isMultiLine => start.row != end.row;
   
   Range(int startRow, int startColumn, int endRow, int endColumn)
-  : this.fromPoints(
-      new Point(startRow, startColumn), 
+  : this.fromPoints(new Point(startRow, startColumn), 
       new Point(endRow, endColumn));
   
   /// Constructs a new [Range] that is a copy of the given [other].
   Range.copy(Range other) 
-    : this(
-        other.start.row, 
-        other.start.column, 
-        other.end.row, 
-        other.end.column);
+  : this(other.start.row, other.start.column, other.end.row, other.end.column);
   
   Range.fromPoints(this.start, this.end);
   
@@ -39,11 +34,9 @@ class Range implements Comparable<Range> {
   /// given [ranges] and an [end] point that comes last among all the given 
   /// [ranges].
   /// 
-  /// If the given [ranges] is an empty iterable this throws an [ArgumentError].
+  /// It is an error for the given [ranges] to be an empty iterable.
   factory Range.union(Iterable<Range> ranges)  {
-    if (ranges.isEmpty) {
-      throw new ArgumentError('ranges must not be empty.');
-    }
+    assert(ranges.isNotEmpty);
     final initialValue = new Range.copy(ranges.first);    
     return ranges.skip(1).fold(initialValue, (Range value, Range e) {
       final cmp = value.compareTo(e);

@@ -170,7 +170,7 @@ void testUnionConstructor() {
 }
 
 @Test()
-@ExpectError(isArgumentError)
+@ExpectError()
 void testUnionConstructorThrowsOnEmpty() {
   new Range.union([]);
 }
