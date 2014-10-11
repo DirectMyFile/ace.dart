@@ -68,10 +68,8 @@ class Range implements Comparable<Range> {
   ///     0   if the point comes within this range
   ///     1   if the point comes after this range   
   int compare(int row, int column) {
-    if (!isMultiLine) {
-      if (row == start.row) {        
-        return column < start.column ? -1 : (column > end.column ? 1 : 0);
-      };
+    if (!isMultiLine && row == start.row) {        
+      return column < start.column ? -1 : (column > end.column ? 1 : 0);
     }
     if (row < start.row)  return -1;
     if (row > end.row)    return 1;
