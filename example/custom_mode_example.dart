@@ -7,20 +7,22 @@ import 'package:ace/proxy.dart';
 
 ace.Editor editor = ace.edit(querySelector('#editor'));
 
+String customDoc = 
+'''In this super simple custom mode, everything is considered a keyword
+Except numbers. Like 42.
+"Oh, and strings. Either the double kind with 'inner single quotes' "
+and also the 'single kind, with "double inners" allowable'.
+//Comments are only comments if the mode dicates they are 
+/*which this one doesnt!*/
+
+See the javascript package for details about creating custom modes.
+''';
+
 void main() {
   ace.implementation = ACE_PROXY_IMPLEMENTATION;
-  ace.config.setModuleUrl('ace/mode/test','mode-test.js');
+  ace.config.setModuleUrl('ace/mode/custom','mode-custom.js');
   editor
   ..theme = new ace.Theme.named(ace.Theme.VIBRANT_INK)
-  ..session = ace.createEditSession(
-      '''//this is a micro language that doesn't do much
-x = 5 //but it can do assignments!
-s = "double quoted string with 'single quotes'"
-s2 = 'single quoted string with "double quotes"'
-// ... it should be doing SOMETHING though :S
-''',
-      new ace.Mode.named('test')
-//      new ace.Mode('test')
-  );
+  ..session = ace.createEditSession(customDoc, new ace.Mode.named('custom'));
       
 }
