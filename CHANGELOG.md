@@ -2,6 +2,9 @@
 
 ## 0.5.8-dev+9.10.2014
 
+- Added annotations and token information to the `kitchen_sink` example and a
+new `custom_mode_example` (thanks @jackd).
+
 ## 0.5.7+9.10.2014
 
 - Updated to ace-builds version 09.10.2014.
