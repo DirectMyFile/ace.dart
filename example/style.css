@@ -43,3 +43,20 @@ body {
   align-items: center;
   justify-content: space-between;  
 }
+
+.info-custom-css{
+  background-color: #fcf8e3;
+  color: #3a87ad;
+}
+
+.warning-custom-css{
+  color: #c09853;
+  /*background-color: #fcf8e3;*/
+  background-color: yellow;
+}
+
+.error-custom-css{
+  color: #D8000C;
+  /*background-color: #FFBABA;*/
+  background-color: red;
+}
