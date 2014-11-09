@@ -2,7 +2,7 @@ part of ace.kitchen_sink;
 
 InputElement _rowInput;
 
-Element buildLineSelector(){
+Element buildLineSelector() {
   _rowInput = new InputElement(type: 'number')
     ..value = '5'
     ..text = "Line number:";
@@ -16,7 +16,7 @@ Element buildLineSelector(){
 
 SelectElement _annotationTypeSelector = new SelectElement();
 
-Element buildAnnotationSelector(){
+Element buildAnnotationSelector() {
   final annotationSelector = new DivElement();
   for (String type in [ace.Annotation.INFO, 
                        ace.Annotation.WARNING, 
@@ -34,24 +34,24 @@ Element buildAnnotationSelector(){
 }
 
 bool _decorateGutter = false;
-Element buildGutterOption(){
+Element buildGutterOption() {
   return _buildOption("Use gutter decoration", _decorateGutter, (b){
     _decorateGutter = b;
   });
 }
 
-Element buildInsertAnnotationButton(){
+Element buildInsertAnnotationButton() {
   final textMap = {
                        ace.Annotation.INFO: 'just some information',
                        ace.Annotation.WARNING: 'maybe something is wrong',
                        ace.Annotation.ERROR: 'Oh dear...'
   };
-  return new ButtonElement()..onClick.listen((_){
+  return new ButtonElement()..onClick.listen((_) {
     int row;
-    try{
+    try {
       row = int.parse(_rowInput.value);
       _rowInput.value = (row + 1).toString();
-    }catch(e){
+    } catch(e) {
       print('row number must be an integer');
     }
     if (_decorateGutter){
@@ -66,18 +66,17 @@ Element buildInsertAnnotationButton(){
   })..text = "Insert annotation";
 }
 
-Element buildClearAnnotationButton(){
+Element buildClearAnnotationButton() {
   final cssClasses = ['info-custom-css',
                       'warning-custom-css',
                       'error-custom-css'];
   
   return new ButtonElement()
   ..text = "Clear annotations"
-  ..onClick.listen((_){
+  ..onClick.listen((_) {
     var rows = editor.session.getAnnotations().map((annot) => annot.row);
-    for (var row in rows){
-      for (var cssClass in cssClasses){
-        print(row);
+    for (var row in rows) {
+      for (var cssClass in cssClasses) {
         editor.session.removeGutterDecoration(row, cssClass);
       }
     }

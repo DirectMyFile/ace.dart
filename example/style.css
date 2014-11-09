@@ -51,12 +51,10 @@ body {
 
 .warning-custom-css{
   color: #c09853;
-  /*background-color: #fcf8e3;*/
   background-color: yellow;
 }
 
 .error-custom-css{
   color: #D8000C;
-  /*background-color: #FFBABA;*/
   background-color: red;
 }

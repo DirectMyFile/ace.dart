@@ -30,7 +30,6 @@ mkdir -p examples
 cd build/example/
 cp -r . ../../examples
 cd ../../
-
 git add -A
 git diff-index --quiet HEAD || git commit -m"auto commit from drone"
 git remote set-url origin git@github.com:rmsmith/ace.dart.git

@@ -24,5 +24,4 @@ void main() {
   editor
   ..theme = new ace.Theme.named(ace.Theme.VIBRANT_INK)
   ..session = ace.createEditSession(customDoc, new ace.Mode.named('custom'));
-      
 }
