@@ -29,6 +29,8 @@ abstract class Mode extends Disposable {
   static const DOT                  = 'dot';
   static const EIFFEL               = 'eiffel';
   static const EJS                  = 'ejs';
+  static const ELIXIR               = 'elixir';
+  static const ELM                  = 'elm';
   static const ERLANG               = 'erlang';
   static const FORTH                = 'forth';
   static const FTL                  = 'ftl';
@@ -154,6 +156,8 @@ abstract class Mode extends Disposable {
     DOT, 
     EIFFEL,
     EJS, 
+    ELIXIR,
+    ELM,
     ERLANG, 
     FORTH, 
     FTL, 
