@@ -1,5 +1,5 @@
 name: ace
-version: 0.5.8-dev+8.11.14
+version: 0.5.8+8.11.14
 author: Ross Smith <rms@rossis.red>
 description: Dart bindings for the Ace code editor.
 homepage: https://github.com/rmsmith/ace.dart
