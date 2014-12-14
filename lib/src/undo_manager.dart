@@ -34,6 +34,12 @@ abstract class UndoManager extends Disposable {
   /// Returns the range of the operation that is performed, or `null` if 
   /// [hasUndo] is _false_.
   Range undo({bool select: true});
+
+  /// Marks the current status clean.
+  void markClean();
+
+  /// Returns if the current status is clean.
+  bool get isClean;
 }
 
 class UndoManagerDelta {
