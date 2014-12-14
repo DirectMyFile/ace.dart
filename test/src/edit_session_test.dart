@@ -239,6 +239,7 @@ void testGetUndoManager() {
   expect(undoManager, isNotNull);
   expect(undoManager.hasUndo, isFalse);
   expect(undoManager.hasRedo, isFalse);
+  expect(undoManager.isClean, isTrue);
 }
 
 class MockUndoManager extends UndoManagerBase {  

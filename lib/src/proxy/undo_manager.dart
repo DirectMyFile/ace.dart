@@ -16,6 +16,10 @@ class _UndoManagerProxy extends HasProxy implements UndoManager {
   void reset() => call('reset');
   
   Range undo({bool select: true}) => _range(call('undo', [!select]));
+
+  void markClean() => call('markClean');
+
+  bool get isClean => call('isClean');
 }
 
 /// A base class for implementing [UndoManager].
@@ -41,6 +45,8 @@ abstract class UndoManagerBase extends HasProxy implements UndoManager {
     _proxy['redo'] = ([bool dontSelect = false]) => redo(select: !dontSelect);
     _proxy['reset'] = () => reset();
     _proxy['undo'] = ([bool dontSelect = false]) => undo(select: !dontSelect); 
+    _proxy['markClean'] = () => markClean;
+    _proxy['isClean'] = () => isClean;
   }
   
   Future _onDispose() {
@@ -50,6 +56,8 @@ abstract class UndoManagerBase extends HasProxy implements UndoManager {
     _proxy.deleteProperty('redo');
     _proxy.deleteProperty('reset');
     _proxy.deleteProperty('undo');
+    _proxy.deleteProperty('markClean');
+    _proxy.deleteProperty('isClean');
     return new Future.value();
   }
 }
