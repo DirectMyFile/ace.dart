@@ -45,7 +45,7 @@ abstract class UndoManagerBase extends HasProxy implements UndoManager {
     _proxy['redo'] = ([bool dontSelect = false]) => redo(select: !dontSelect);
     _proxy['reset'] = () => reset();
     _proxy['undo'] = ([bool dontSelect = false]) => undo(select: !dontSelect); 
-    _proxy['markClean'] = () => markClean;
+    _proxy['markClean'] = markClean;
     _proxy['isClean'] = () => isClean;
   }
   
