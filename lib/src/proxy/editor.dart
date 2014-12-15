@@ -91,6 +91,10 @@ class _EditorProxy extends HasProxy implements Editor {
     get fadeFoldWidgets => call('getFadeFoldWidgets');
     set fadeFoldWidgets(bool value) => call('setFadeFoldWidgets', [value]);
   
+  bool
+    get showFoldWidgets => call('getShowFoldWidgets');
+    set showFoldWidgets(bool value) => call('setShowFoldWidgets', [value]);
+  
   int get firstVisibleRow => call('getFirstVisibleRow');
   
   int get lastVisibleRow => call('getLastVisibleRow');

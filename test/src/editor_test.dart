@@ -364,6 +364,14 @@ void testFadeFoldWidgets() {
 }
 
 @Test()
+void testShowFoldWidgets() {
+  editor.showFoldWidgets = true;
+  expect(editor.showFoldWidgets, equals(true));
+  editor.showFoldWidgets = false;
+  expect(editor.showFoldWidgets, equals(false));
+}
+
+@Test()
 void testScrollSpeed() {
   editor.scrollSpeed = 7;
   expect(editor.scrollSpeed, equals(7));
