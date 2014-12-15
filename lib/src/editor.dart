@@ -51,6 +51,9 @@ abstract class Editor extends Disposable implements OptionsProvider {
   /// Whether to fade in/out the fold widgets on mouse hover.
   bool fadeFoldWidgets;
   
+  /// Returns `true` if the fold widgets are shown.
+  bool showFoldWidgets;
+  
   /// The index of the first visible row.
   int get firstVisibleRow;
   
