@@ -1,17 +1,17 @@
 # Ace.dart Changes
 
-## 0.5.9-dev+8.11.14
+## 0.5.9-dev+20.12.14
 
+- Updated to ace-builds version 20.12.14.
 - Added the `showFoldWidgets` getter/setter to `Editor`.
 - Added the `isClean` getter and the `markClean` method to `UndoManager`.
-(thanks @devoncarew)
 
 ## 0.5.8+8.11.14
 
 - Updated to ace-builds version 08.11.14.
-- Started wiki documentation (thanks @jackd).
+- Started wiki documentation. (@jackd)
 - Added annotations and token information to the `kitchen_sink` example and a
-new `custom_mode_example` (thanks @jackd).
+new `custom_mode_example`. (@jackd)
 
 ## 0.5.7+9.10.2014
 

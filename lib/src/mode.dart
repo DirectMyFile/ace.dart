@@ -69,6 +69,7 @@ abstract class Mode extends Disposable {
   static const LUCENE               = 'lucene';
   static const MAKEFILE             = 'makefile';
   static const MARKDOWN             = 'markdown';
+  static const MASK                 = 'mask';
   static const MATLAB               = 'matlab';
   static const MEL                  = 'mel';
   static const MUSHCODE             = 'mushcode';
@@ -196,6 +197,7 @@ abstract class Mode extends Disposable {
     LUCENE, 
     MAKEFILE, 
     MARKDOWN, 
+    MASK,
     MATLAB, 
     MEL, 
     MUSHCODE, 
