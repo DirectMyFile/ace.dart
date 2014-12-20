@@ -1,6 +1,6 @@
 # Ace.dart Changes
 
-## 0.5.9-dev+20.12.14
+## 0.5.9+20.12.14
 
 - Updated to ace-builds version 20.12.14.
 - Added the `showFoldWidgets` getter/setter to `Editor`.
@@ -68,7 +68,7 @@ correct API docs for each version at `dartdocs.org`.
 - Added the `scrollToLine` and `scrollToRow` methods to `Editor`.
 - Added the `getTokenAt` and `getTokens` methods to `EditSession` and the 
 `Token` class.
-- Added linking extension support; multiselect must be turned off to use:
+- Added linking extension support; multiselect must be turned off: (@umop)
 
 ```dart
 ace.require('ace/ext/linking');
