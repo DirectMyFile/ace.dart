@@ -1,6 +1,10 @@
 # Ace.dart Changes
 
-## 0.5.10-dev+20.12.14
+## 0.5.10+20.12.14
+
+- Suppressed a console warning introduced by ace-builds 20.12.14; it appears 
+that "Automatically scrolling cursor into view after selection change" is 
+deprecated functionality and will be disabled in the next build of ace.js.
 
 ## 0.5.9+20.12.14
 
