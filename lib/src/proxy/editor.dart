@@ -187,7 +187,10 @@ class _EditorProxy extends HasProxy implements Editor {
     : this._(new js.JsObject(_modules['ace/editor']['Editor'],
         [renderer.jsProxy, session.jsProxy]));
   
-  _EditorProxy._(js.JsObject proxy) : super(proxy);
+  _EditorProxy._(js.JsObject proxy) : super(proxy) {
+    // TODO: suppress warning: https://github.com/rmsmith/ace.dart/issues/53
+    proxy[r'$blockScrolling'] = double.INFINITY;
+  }
   
   Future _onDispose() {    
     final List<Future> f = new List<Future>();
