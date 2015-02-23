@@ -26,7 +26,7 @@ requiring any change to this package:
 </script>
 ```
 
-As long as the version of `ace.js` you use is compatible, the Dart wrapper code
+As long as the version of `ace.js` you use is compatible (e.g. `src-noconflict` or `src-min-noconflict`), the Dart wrapper code
 should continue to function.
 
 [ace]: http://ace.ajax.org/
