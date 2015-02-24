@@ -14,7 +14,7 @@ This package maintains a copy of the latest [ace-builds][] `src-min-noconflict`
 governed by its own [LICENSE][ace-license].
 
 The `ace-builds` occur approximately once per month, and the version currently 
-in use by this package is maintained in the version string metadata.  For 
+tested by this package is maintained in the version string metadata.  For 
 example, in `ace.dart` version `0.0.4+9.11.2013` we test against a copy of 
 `ace-builds` version `9.11.2013`.
 
