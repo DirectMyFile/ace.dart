@@ -3,6 +3,7 @@ part of ace;
 abstract class Mode extends Disposable {
   
   static const ABAP                 = 'abap';
+  static const ABC                  = 'abc';
   static const ACTIONSCRIPT         = 'actionscript';
   static const ADA                  = 'ada';
   static const APACHE_CONF          = 'apache_conf';
@@ -131,6 +132,7 @@ abstract class Mode extends Disposable {
   /// modes.
   static const List<String> MODES = const [ 
     ABAP, 
+    ABC,
     ACTIONSCRIPT, 
     ADA, 
     APACHE_CONF, 
@@ -189,7 +191,7 @@ abstract class Mode extends Disposable {
     LESS, 
     LIQUID, 
     LISP, 
-    LIVESCRIPT, 
+    LIVESCRIPT,
     LOGIQL, 
     LSL, 
     LUA, 
