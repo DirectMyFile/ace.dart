@@ -24,8 +24,7 @@ applications.  You are responsible for including a version of `ace.js` in your
 application's html:
 
 ```html
-<script type="text/javascript" charset="utf-8" src="path/to/your/ace.js">
-</script>
+<script type="text/javascript" charset="utf-8" src="path/to/your/ace.js"></script>
 ```
 
 As long as the version of `ace.js` you use is compatible (e.g. `src-noconflict` 
