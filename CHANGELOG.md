@@ -1,6 +1,15 @@
 # Ace.dart Changes
 
-## 0.5.11-dev+20.12.14
+## 0.6.0-dev+20.12.14
+
+- Removed the `ace-builds` js files from the `lib/` directory.  Many users will
+not require all of the files (themes, modes, etc...) for their application and 
+currently there is no easy way to exclude these files from an application built 
+with `pub build`.  Also, some users may need or want to use their own version of 
+`ace.js` to pull in bug fixes or other modifications.  It was therefore decided 
+to use the latest `ace-builds` in this package for the tests and examples 
+_only_.  Each application is now responsible for including its own copy of the 
+Javascript files it desires.
 
 ## 0.5.10+20.12.14
 
