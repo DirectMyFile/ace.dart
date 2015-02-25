@@ -99,5 +99,5 @@ void testTextToScreenCoordinates() {
 
 @Test()
 void testLineHeight() {
-  expect(renderer.lineHeight, greaterThan(editor.fontSize));
+  expect(renderer.lineHeight, greaterThanOrEqualTo(editor.fontSize));
 }
