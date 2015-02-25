@@ -1,6 +1,6 @@
 # Ace.dart Changes
 
-## 0.6.0-dev+24.2.15
+## 0.6.0+24.2.15
 
 - Updated to ace-builds version 24.02.2015.
 - Removed the `ace-builds` js files from the `lib/` directory.  Many users will
