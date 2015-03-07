@@ -59,6 +59,7 @@ abstract class Mode extends Disposable {
   static const JSX                  = 'jsx';
   static const JULIA                = 'julia';
   static const LATEX                = 'latex';
+  static const LEAN                 = 'lean';
   static const LESS                 = 'less';
   static const LIQUID               = 'liquid';
   static const LISP                 = 'lisp';
@@ -73,6 +74,7 @@ abstract class Mode extends Disposable {
   static const MASK                 = 'mask';
   static const MATLAB               = 'matlab';
   static const MEL                  = 'mel';
+  static const MIPS_ASSEMBLER       = 'mips_assembler';
   static const MUSHCODE             = 'mushcode';
   static const MYSQL                = 'mysql';
   static const NIX                  = 'nix';
@@ -187,7 +189,8 @@ abstract class Mode extends Disposable {
     JSP, 
     JSX, 
     JULIA, 
-    LATEX, 
+    LATEX,
+    LEAN,
     LESS, 
     LIQUID, 
     LISP, 
@@ -201,7 +204,8 @@ abstract class Mode extends Disposable {
     MARKDOWN, 
     MASK,
     MATLAB, 
-    MEL, 
+    MEL,
+    MIPS_ASSEMBLER,
     MUSHCODE, 
     MYSQL, 
     NIX, 
