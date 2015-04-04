@@ -1,6 +1,8 @@
 # Ace.dart Changes
 
-## 0.6.2-dev+3.3.15
+## 0.6.2-dev+3.4.15
+
+- Updated to ace-builds version 03.04.15.
 
 ## 0.6.1+3.3.15
 
