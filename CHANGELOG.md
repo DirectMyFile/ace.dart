@@ -1,6 +1,8 @@
 # Ace.dart Changes
 
-## 0.6.3-dev+3.4.15
+## 0.7.0-dev+3.4.15
+
+- Removed the `ace.pure` library.
 
 ## 0.6.2+3.4.15
 

@@ -1,9 +1,8 @@
-@TestGroup('Document', runs: IMPLEMENTATIONS)
+@TestGroup('Document')
 library ace.test.document;
 
 import 'package:ace/ace.dart';
 import 'package:ace/proxy.dart';
-import 'package:ace/pure.dart';
 import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 import '_.dart';
@@ -12,9 +11,7 @@ Document document;
 
 @Setup
 setup(TestRun run) { 
-  implementation = (run.id == PURE) 
-      ? ACE_PURE_IMPLEMENTATION 
-      : ACE_PROXY_IMPLEMENTATION;
+  implementation = ACE_PROXY_IMPLEMENTATION;
   document = new Document(text: sampleText);
 }
 

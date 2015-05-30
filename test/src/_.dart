@@ -2,10 +2,6 @@ library ace.test._;
 
 import 'package:ace/ace.dart';
 
-const PROXY = 'proxy';
-const PURE = 'pure';
-const IMPLEMENTATIONS = const [PROXY, PURE];
-
 const String sampleTextLine0 = 
 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod ';
 
