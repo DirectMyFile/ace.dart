@@ -2,8 +2,6 @@
 
 Dart language bindings for the [Ace][ace] code editor.
 
-[API][api] | [Demo][demo]
-
 _Ace.dart uses the MIT license as described in the [LICENSE][license] file, and 
 follows [semantic versioning][]._
 
@@ -32,8 +30,5 @@ or `src-min-noconflict`), the Dart wrapper code should continue to function.
 [ace]: http://ace.ajax.org/
 [ace-builds]: https://github.com/ajaxorg/ace-builds/
 [ace-license]: https://github.com/rmsmith/ace.dart/blob/master/js/LICENSE
-[api]: http://www.dartdocs.org/documentation/ace/latest/
-[demo]: http://rmsmith.github.io/ace.dart/examples/kitchen_sink.html
 [license]: https://github.com/rmsmith/ace.dart/blob/master/LICENSE
 [semantic versioning]: http://semver.org/
-
