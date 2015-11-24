@@ -1,5 +1,8 @@
 # Ace.dart
 
+*If you are interested in maintaining this package please open an issue on 
+GitHub.*
+
 Dart language bindings for the [Ace][ace] code editor.
 
 _Ace.dart uses the MIT license as described in the [LICENSE][license] file, and 
