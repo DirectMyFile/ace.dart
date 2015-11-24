@@ -1,11 +1,9 @@
-@TestGroup('Editor')
 library ace.test.editor;
 
 import 'dart:async';
 import 'dart:html' as html;
 import 'package:ace/ace.dart';
 import 'package:ace/proxy.dart';
-import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 import '_.dart';
 import 'mocks.dart';
@@ -16,7 +14,6 @@ Editor editor;
 Editor editorWithMockRenderer;
 MockVirtualRenderer mockRenderer;
 
-@Setup
 void setup() {
   implementation = ACE_PROXY_IMPLEMENTATION;
   container = new html.Element.div();
@@ -29,7 +26,6 @@ void setup() {
   editorWithMockRenderer = new Editor(mockRenderer, session);
 }
 
-@Teardown
 void teardown() {
   html.document.body.children.remove(container);  
   editor.dispose();  
@@ -41,45 +37,10 @@ void teardown() {
   mockRenderer = null;
 }
 
-@Test()
 void testEditElement() {
   expect(editor, isNotNull);
 }
 
-@Test()
-@ExpectError()
-void testEditNullThrows() {  
-  final Editor a = edit(null);
-}
-
-@Test()
-void testDispose() {
-  expectDone(editor.onBlur);
-  expectDone(editor.onChange);
-  expectDone(editor.onChangeSelection);
-  expectDone(editor.onChangeSession);
-  expectDone(editor.onCopy);
-  expectDone(editor.onFocus);
-  expectDone(editor.onPaste);
-  editor.dispose();
-}
-
-@Test()
-@ExpectError()
-void testDisposeTwiceThrows() {
-  editor.dispose();
-  editor.dispose();
-}
-
-@Test()
-@ExpectError(isNoSuchMethodError)
-testCallMethodOnDisposedEditorThrows() {
-  return editor.dispose().then((_) {
-    editor.blur();
-  });  
-}
-
-@Test()
 void testBlur() {
   editor.focus();
   editor.onBlur.listen(expectAsync((e) {
@@ -89,7 +50,6 @@ void testBlur() {
   editor.blur();
 }
 
-@Test()
 void testFocus() {
   editor.blur();
   editor.onFocus.listen(expectAsync((e) {
@@ -99,7 +59,6 @@ void testFocus() {
   editor.focus();
 }
 
-@Test()
 void testValue() {
   expect(editor.value, equals(sampleText));
   // 0 = select all
@@ -119,7 +78,6 @@ void testValue() {
   expect(editor.selectionRange, equals(new Range(0, 3, 0, 3)));
 }
 
-@Test()
 void testBlockIndent() {
   expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.session.tabSize = 4;
@@ -127,7 +85,6 @@ void testBlockIndent() {
   expect(editor.cursorPosition, equals(const Point(0, 4)));
 }
 
-@Test()
 void testBlockOutdent() {
   expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.session.tabSize = 4;
@@ -137,7 +94,6 @@ void testBlockOutdent() {
   expect(editor.cursorPosition, equals(const Point(0, 0)));
 }
 
-@Test()
 void testIndent() {
   expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.session.tabSize = 6;
@@ -145,21 +101,16 @@ void testIndent() {
   expect(editor.cursorPosition, equals(const Point(0, 6)));
 }
 
-@Test()
 void testFirstVisibleRow() {
   mockRenderer.getters[#firstVisibleRow] = () => 42;
   expect(editorWithMockRenderer.firstVisibleRow, equals(42));
-  expect(mockRenderer.calls(#firstVisibleRow), once);
 }
 
-@Test()
 void testLastVisibleRow() {
   mockRenderer.getters[#lastVisibleRow] = () => 18;
   expect(editorWithMockRenderer.lastVisibleRow, equals(18));
-  expect(mockRenderer.calls(#lastVisibleRow), once);
 }
 
-@Test()
 void testInsert() {
   expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.onChange.listen(expectAsync((Delta delta) {
@@ -171,7 +122,6 @@ void testInsert() {
   expect(editor.cursorPosition, equals(const Point(0,5)));
 }
 
-@Test()
 void testNavigateDown() {
   expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.navigateDown(3);
@@ -179,7 +129,6 @@ void testNavigateDown() {
   expect(editor.selection.isEmpty, isTrue);
 }
 
-@Test()
 void testNavigateFileEnd() {
   expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.navigateFileEnd();
@@ -189,7 +138,6 @@ void testNavigateFileEnd() {
   expect(editor.selection.isEmpty, isTrue);
 }
 
-@Test()
 void testNavigateFileStart() {
   editor.navigateFileEnd();
   final lastTextLine = sampleTextLines.length - 1;
@@ -200,7 +148,6 @@ void testNavigateFileStart() {
   expect(editor.selection.isEmpty, isTrue);
 }
 
-@Test()
 void testNavigateLeft() {
   editor.navigateLineEnd();
   expect(editor.cursorPosition, equals(new Point(0, sampleTextLine0.length)));
@@ -210,7 +157,6 @@ void testNavigateLeft() {
   expect(editor.selection.isEmpty, isTrue);
 }
 
-@Test()
 void testNavigateLineEnd() {
   expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.navigateLineEnd();
@@ -218,7 +164,6 @@ void testNavigateLineEnd() {
   expect(editor.selection.isEmpty, isTrue);
 }
 
-@Test()
 void testNavigateLineStart() {
   editor.navigateLineEnd();
   expect(editor.cursorPosition, equals(new Point(0, sampleTextLine0.length)));
@@ -227,7 +172,6 @@ void testNavigateLineStart() {
   expect(editor.selection.isEmpty, isTrue);
 }
 
-@Test()
 void testNavigateRight() {
   expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.navigateRight(6);
@@ -235,7 +179,6 @@ void testNavigateRight() {
   expect(editor.selection.isEmpty, isTrue);
 }
 
-@Test()
 void testNavigateTo() {
   expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.navigateTo(4, 25);
@@ -243,7 +186,6 @@ void testNavigateTo() {
   expect(editor.selection.isEmpty, isTrue);
 }
 
-@Test()
 void testNavigateUp() {
   editor.navigateDown(4);
   expect(editor.cursorPosition, equals(const Point(4, 0)));
@@ -252,7 +194,6 @@ void testNavigateUp() {
   expect(editor.selection.isEmpty, isTrue);
 }
 
-@Test()
 void testNavigateWordLeft() {
   Point start = sampleTextWordStart(0, 5);
   editor.navigateTo(start.row, start.column);
@@ -262,7 +203,6 @@ void testNavigateWordLeft() {
   expect(editor.selection.isEmpty, isTrue);
 }
 
-@Test()
 void testNavigateWordRight() {
   expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.navigateWordRight();
@@ -270,7 +210,6 @@ void testNavigateWordRight() {
   expect(editor.selection.isEmpty, isTrue);
 }
 
-@Test()
 void testRemoveToLineEnd() {
   expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.onChange.listen(expectAsync((Delta delta) {
@@ -282,7 +221,6 @@ void testRemoveToLineEnd() {
   expect(editor.cursorPosition, equals(const Point(0, 0)));
 }
 
-@Test()
 void testRemoveToLineStart() {
   editor.navigateLineEnd();
   editor.onChange.listen(expectAsync((Delta delta) {
@@ -294,7 +232,6 @@ void testRemoveToLineStart() {
   expect(editor.cursorPosition, equals(const Point(0, 0)));
 }
 
-@Test()
 void testRemoveWordLeft() {
   editor.setValue(sampleText, 1);
   expect(editor.cursorPosition, equals(const Point(5, 76)));  
@@ -307,7 +244,6 @@ void testRemoveWordLeft() {
   expect(editor.cursorPosition, equals(const Point(5, 75)));  
 }
 
-@Test()
 void testRemoveWordRight() {
   expect(editor.cursorPosition, equals(const Point(0, 0)));
   editor.onChange.listen(expectAsync((Delta delta) {
@@ -319,13 +255,11 @@ void testRemoveWordRight() {
   expect(editor.cursorPosition, equals(const Point(0, 0)));  
 }
 
-@Test()
 void testPrintMarginColumn() {
   editor.printMarginColumn = 42;
   expect(editor.printMarginColumn, equals(42));
 }
 
-@Test()
 void testSetShowPrintMargin() {
   editor.showPrintMargin = true;
   expect(editor.showPrintMargin, isTrue);
@@ -333,7 +267,6 @@ void testSetShowPrintMargin() {
   expect(editor.showPrintMargin, isFalse);
 }
 
-@Test()
 void testSetShowInvisibles() {
   editor.showInvisibles = true;
   expect(editor.showInvisibles, isTrue);
@@ -341,7 +274,6 @@ void testSetShowInvisibles() {
   expect(editor.showInvisibles, isFalse);
 }
 
-@Test()
 void testSetTheme() {
   editor.theme = new Theme.named(Theme.MERBIVORE);
   expect(editor.theme.name, equals(Theme.MERBIVORE));
@@ -349,13 +281,11 @@ void testSetTheme() {
   expect(editor.theme.name, equals(Theme.CHAOS));
 }
 
-@Test()
 void testDragDelay() {
   editor.dragDelay = 42;
   expect(editor.dragDelay, equals(42));
 }
 
-@Test()
 void testFadeFoldWidgets() {
   editor.fadeFoldWidgets = true;
   expect(editor.fadeFoldWidgets, equals(true));
@@ -363,7 +293,6 @@ void testFadeFoldWidgets() {
   expect(editor.fadeFoldWidgets, equals(false));
 }
 
-@Test()
 void testShowFoldWidgets() {
   editor.showFoldWidgets = true;
   expect(editor.showFoldWidgets, equals(true));
@@ -371,13 +300,11 @@ void testShowFoldWidgets() {
   expect(editor.showFoldWidgets, equals(false));
 }
 
-@Test()
 void testScrollSpeed() {
   editor.scrollSpeed = 7;
   expect(editor.scrollSpeed, equals(7));
 }
 
-@Test()
 void testHighlightActiveLine() {
   editor.highlightActiveLine = true;
   expect(editor.highlightActiveLine, isTrue);
@@ -385,7 +312,6 @@ void testHighlightActiveLine() {
   expect(editor.highlightActiveLine, isFalse);
 }
 
-@Test()
 void testHighlightGutterLine() {
   editor.highlightGutterLine = true;
   expect(editor.highlightGutterLine, isTrue);
@@ -393,7 +319,6 @@ void testHighlightGutterLine() {
   expect(editor.highlightGutterLine, isFalse);
 }
 
-@Test()
 void testHighlightSelectedWord() {
   editor.highlightSelectedWord = true;
   expect(editor.highlightSelectedWord, isTrue);
@@ -401,7 +326,6 @@ void testHighlightSelectedWord() {
   expect(editor.highlightSelectedWord, isFalse);
 }
 
-@Test()
 void testSetOverwrite() {
   final bool initialValue = editor.overwrite;
   editor.session.onChangeOverwrite.listen(expectAsync((_) {
@@ -410,7 +334,6 @@ void testSetOverwrite() {
   editor.overwrite = !initialValue;
 }
 
-@Test()
 void testToggleOverwrite() {
   final bool initialValue = editor.overwrite;
   editor.session.onChangeOverwrite.listen(expectAsync((_) {
@@ -419,7 +342,6 @@ void testToggleOverwrite() {
   editor.toggleOverwrite();
 }
 
-@Test()
 void testSetSession() {
   final EditSession initialSession = editor.session;
   final EditSession newSession = createEditSession('snarf', 
@@ -431,7 +353,6 @@ void testSetSession() {
   editor.session = newSession;
 }
 
-@Test()
 void testGetCopyText() {
   editor.selection.selectLineEnd();
   final start = const Point(0, 0);
@@ -445,7 +366,6 @@ void testGetCopyText() {
   expect(copyText, equals(sampleTextLine0));
 }
 
-@Test()
 void testFontSize() {
   editor.fontSize = 14;
   expect(editor.fontSize, 14);
@@ -453,14 +373,12 @@ void testFontSize() {
   expect(editor.fontSize, 10);
 }
 
-@Test()
 void testToLowerCase() {
   editor.selection.selectLineEnd();
   editor.toLowerCase();
   expect(editor.copyText, equals(sampleTextLine0.toLowerCase()));
 }
 
-@Test()
 void testToUpperCase() {
   editor.selection.moveCursorDown();
   editor.selection.selectLineEnd();
@@ -468,7 +386,6 @@ void testToUpperCase() {
   expect(editor.copyText, equals(sampleTextLine1.toUpperCase()));
 }
 
-@Test()
 void testSetReadOnly() {
   editor.readOnly = true;
   expect(editor.readOnly, isTrue);
@@ -476,7 +393,6 @@ void testSetReadOnly() {
   expect(editor.readOnly, isFalse);
 }
 
-@Test()
 void testUndoRedo() {
   final verify = expectAsync(() {
     expect(editor.session.undoManager.hasUndo, isTrue);
@@ -495,21 +411,17 @@ void testUndoRedo() {
   new Future.delayed(const Duration(seconds: 1), verify); 
 }
 
-@Test()
 void testSelectAll() {
   Point endCursor = new Point(sampleTextLines.length - 1, 
       sampleTextLines[sampleTextLines.length - 1].length);  
   expect(editor.cursorPosition, equals(const Point(0, 0)));
   expect(editor.selectionRange, equals(new Range(0, 0, 0, 0)));
-  // TODO: investigate why `onChangeSelection` fires 3 times.
-  expectNEvents(editor.onChangeSelection, 3);
   editor.selectAll();
   expect(editor.cursorPosition, equals(endCursor));
   expect(editor.selectionRange, 
       equals(new Range.fromPoints(const Point(0, 0), endCursor)));
 }
 
-@Test()
 void testClearSelection() {
   editor.selectAll();
   expect(editor.copyText, equals(sampleText));
@@ -521,7 +433,6 @@ void testClearSelection() {
   expect(editor.selectionRange.isEmpty, isTrue);
 }
 
-@Test()
 void testCopyLinesDown() {
   editor.clearSelection();
   editor.navigateTo(2, 14);
@@ -538,7 +449,6 @@ void testCopyLinesDown() {
   }
 }
 
-@Test()
 void testCopyLinesUp() {
   editor.clearSelection();
   editor.navigateTo(4, 21);
@@ -555,13 +465,11 @@ void testCopyLinesUp() {
   }
 }
 
-@Test()
 void testGetOption() {
   editor.fontSize = 42;
   expect(editor.getOption('fontSize'), equals(42));
 }
 
-@Test()
 void testGetOptions() {
   editor.fontSize = 13;
   editor.printMarginColumn = 57;
@@ -571,20 +479,17 @@ void testGetOptions() {
   expect(options['printMarginColumn'], equals(57));
 }
 
-@Test()
 void testSetOption() {
   editor.setOption('fontSize', 11);
   expect(editor.fontSize, equals(11));
 }
 
-@Test()
 void testSetOptions() {
   editor.setOptions({ 'fontSize' : 8, 'printMarginColumn' : 76 });
   expect(editor.fontSize, equals(8));
   expect(editor.printMarginColumn, equals(76));
 }
 
-@Test()
 void testGetKeyBinding() {
   var keyBinding = editor.keyBinding;
   expect(keyBinding, isNotNull);
@@ -592,7 +497,6 @@ void testGetKeyBinding() {
   expect(keyBinding.keyboardHandler.path, null);
 }
 
-@Test()
 void testSetKeyboardHandlerDefault() {
   editor.keyboardHandler = new KeyboardHandler.named(KeyboardHandler.DEFAULT)
   ..onLoad.then(expectAsync((_) {
@@ -600,7 +504,6 @@ void testSetKeyboardHandlerDefault() {
   }));
 }
 
-@Test()
 void testSetKeyboardHandlerEmacs() {
   editor.keyboardHandler = new KeyboardHandler.named(KeyboardHandler.EMACS)
   ..onLoad.then(expectAsync((_) {
@@ -608,7 +511,6 @@ void testSetKeyboardHandlerEmacs() {
   }));  
 }
 
-@Test()
 void testSetKeyboardHandlerVim() {
   editor.keyboardHandler = new KeyboardHandler.named(KeyboardHandler.VIM)
   ..onLoad.then(expectAsync((_) {
@@ -616,7 +518,6 @@ void testSetKeyboardHandlerVim() {
   }));  
 }
 
-@Test()
 void testSetKeyBindingKeyboardHandlerDefault() {
   var handler = new KeyboardHandler.named(KeyboardHandler.DEFAULT);
   editor.keyBinding.keyboardHandler = handler;
@@ -626,7 +527,6 @@ void testSetKeyBindingKeyboardHandlerDefault() {
   }));
 }
 
-@Test()
 void testSetKeyBindingKeyboardHandlerEmacs() {
   var handler = new KeyboardHandler.named(KeyboardHandler.EMACS);
   editor.keyBinding.keyboardHandler = handler;
@@ -636,7 +536,6 @@ void testSetKeyBindingKeyboardHandlerEmacs() {
   }));
 }
 
-@Test()
 void testSetKeyBindingKeyboardHandlerVim() {
   var handler = new KeyboardHandler.named(KeyboardHandler.VIM);
   editor.keyBinding.keyboardHandler = handler;
@@ -645,7 +544,6 @@ void testSetKeyBindingKeyboardHandlerVim() {
   }));
 }
 
-@Test()
 void testTransposeLetters() {
   editor.setValue('snarf', 1);
   editor.transposeLetters();
@@ -658,7 +556,6 @@ void testTransposeLetters() {
   expect(editor.value, equals('sanfr'));
 }
 
-@Test()
 void testGotoLine() {
   editor.setValue('line 1\nline 2');
   editor.gotoLine(2, 2, false);
@@ -683,7 +580,6 @@ void testGotoLine() {
   expect(editor.cursorPosition, equals(const Point(1, 6)));
 }
 
-@Test()
 void testPaste() {
   editor.onPaste.listen(expectAsync((String text) {
     expect(text, equals('42'));
@@ -693,7 +589,6 @@ void testPaste() {
   expect(editor.value, equals('snarf42'));
 }
 
-@Test()
 void testGetCommandManager() {
   final cm = editor.commands;
   expect(cm, isNotNull);
@@ -701,7 +596,6 @@ void testGetCommandManager() {
   expect(commands, isNot(isEmpty));
 }
 
-@Test()
 void testExecCommand() {
   final c = new Command(
       'paste-answer',
@@ -715,7 +609,6 @@ void testExecCommand() {
   expect(editor.value, equals('snarf42'));
 }
 
-@Test()
 void testScrollToLine() {
   // TODO: force resize to workaround known issue:
   // https://groups.google.com/forum/#!topic/ace-discuss/Dyz8U2N16HQ
@@ -725,7 +618,6 @@ void testScrollToLine() {
   expect(editor.session.scrollTop, greaterThanOrEqualTo(2 * editor.fontSize));
 }
 
-@Test()
 void testScrollToRow() {
   // TODO: force resize to workaround known issue:
   // https://groups.google.com/forum/#!topic/ace-discuss/Dyz8U2N16HQ

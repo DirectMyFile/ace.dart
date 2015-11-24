@@ -1,17 +1,13 @@
-@TestGroup('Range')
 library ace.test.range;
 
 import 'package:ace/ace.dart';
 import 'package:ace/proxy.dart';
-import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 
-@Setup
 setup() {  
   implementation = ACE_PROXY_IMPLEMENTATION;
 }
 
-@Test()
 void testRangeCtor() {
   final range = new Range(1, 2, 3, 4);
   expect(range.start.row, equals(1));
@@ -20,7 +16,6 @@ void testRangeCtor() {
   expect(range.end.column, equals(4));
 }
 
-@Test()
 void testRangeFromPointsCtor() {
   final range = new Range.fromPoints(const Point(1, 2), const Point(3, 4));
   expect(range.start.row, equals(1));
@@ -29,7 +24,6 @@ void testRangeFromPointsCtor() {
   expect(range.end.column, equals(4));
 }
 
-@Test('Test the `==` operator.')
 void testRangeEquals() {
   var x = new Range(1, 1, 2, 2);
   var y = new Range(1, 1, 2, 2);
@@ -52,13 +46,11 @@ void testRangeEquals() {
   expect(w.hashCode, isNot(equals(x.hashCode)));
 }
 
-@Test('Test the `toString` method.')
 void testRangeToString() {
   var p = new Range(1, 1, 2, 2);
   expect(p.toString(), equals("Range: [1/1] -> [2/2]"));
 }
 
-@Test()
 void testRangeIsEmpty() {
   final notEmpty = new Range(1, 2, 1, 6);
   final empty = new Range(1, 2, 1, 2);
@@ -66,7 +58,6 @@ void testRangeIsEmpty() {
   expect(empty.isEmpty, isTrue);
 }
 
-@Test()
 void testRangeIsMultiLine() {
   final notMultiLine = new Range(1, 2, 1, 6);
   final multiLine = new Range(1, 2, 2, 6);
@@ -74,7 +65,6 @@ void testRangeIsMultiLine() {
   expect(multiLine.isMultiLine, isTrue);
 }
 
-@Test()
 void testCompare() {
   var a = new Range(1, 2, 3, 4);
   expect(a.compare(0, 0), equals(-1));
@@ -92,7 +82,6 @@ void testCompare() {
   expect(a.compare(4, 3), equals(1));
 }
 
-@Test()
 void testOverlappingRangesIntersects() {
   var r1 = new Range(0, 0, 2, 2);
   var r2 = new Range(2, 1, 3, 2);
@@ -100,7 +89,6 @@ void testOverlappingRangesIntersects() {
   expect(r2.intersects(r1), isTrue);
 }
 
-@Test()
 void testTouchingRangesIntersect() {
   var r1 = new Range(0, 0, 2, 2);
   var r2 = new Range(2, 2, 3, 2);
@@ -108,7 +96,6 @@ void testTouchingRangesIntersect() {
   expect(r2.intersects(r1), isTrue);
 }
 
-@Test()
 void testAdjacentRangesDoNotIntersect() {
   var r1 = new Range(1, 0, 2, 1);
   var r2 = new Range(2, 2, 3, 4);
@@ -116,7 +103,6 @@ void testAdjacentRangesDoNotIntersect() {
   expect(r2.intersects(r1), isFalse);
 }
 
-@Test()
 void testIsEnd() {
   var r = new Range(1, 2, 3, 4);
   expect(r.isEnd(1, 2), isFalse);
@@ -124,7 +110,6 @@ void testIsEnd() {
   expect(r.isEnd(3, 4), isTrue);
 }
 
-@Test()
 void testIsStart() {
   var r = new Range(1, 2, 3, 4);
   expect(r.isStart(1, 2), isTrue);
@@ -132,7 +117,6 @@ void testIsStart() {
   expect(r.isStart(3, 4), isFalse);
 }
 
-@Test()
 void testContains() {
   var r = new Range(1, 2, 3, 4);
   expect(r.contains(1, 1), isFalse);
@@ -143,7 +127,6 @@ void testContains() {
   expect(r.contains(4, 4), isFalse);
 }
 
-@Test()
 void testContainsRange() {
   var r = new Range(1, 2, 3, 4);
   expect(r.containsRange(new Range(2, 2, 2, 2)), isTrue);
@@ -154,7 +137,6 @@ void testContainsRange() {
   expect(r.containsRange(new Range(0, 2, 3, 4)), isFalse);
 }
 
-@Test()
 void testUnionConstructor() {
   var r1 = new Range(0, 1, 2, 2);
   var r2 = new Range(2, 2, 3, 2);  
@@ -167,10 +149,4 @@ void testUnionConstructor() {
   expect(r2, equals(new Range(2, 2, 3, 2)));
   expect(r3, equals(new Range(0, 0, 2, 3)));
   expect(r4, equals(new Range(0, 0, 3, 1)));
-}
-
-@Test()
-@ExpectError()
-void testUnionConstructorThrowsOnEmpty() {
-  new Range.union([]);
 }

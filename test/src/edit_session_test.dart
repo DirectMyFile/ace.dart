@@ -1,15 +1,12 @@
-@TestGroup('EditSession')
 library ace.test.edit_session;
 
-import 'dart:async';
 import 'package:ace/ace.dart';
 import 'package:ace/proxy.dart';
-import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 import '_.dart';
 
 EditSession session;
-@Setup
+
 setup() {
   implementation = ACE_PROXY_IMPLEMENTATION;
   session = new EditSession(
@@ -17,20 +14,17 @@ setup() {
       new Mode('ace/mode/text'));
 }
 
-@Test()
 void testEditSessionCtor() {
   expect(session, isNotNull);
   expect(session.value, equals(sampleText));  
 }
 
-@Test()
 void testCreateEditSession() {  
   session = createEditSession(sampleText, new Mode('ace/mode/dart'));
   expect(session, isNotNull); 
   expect(session.value, equals(sampleText));
 }
 
-@Test()
 void testCreateEditSessionModeIsLoaded() {  
   final mode = new Mode.named(Mode.DART);
   mode.onLoad.then(expectAsync((_) {
@@ -41,24 +35,6 @@ void testCreateEditSessionModeIsLoaded() {
   }));
 }
 
-@Test()
-void testDispose() {
-  expectDone(session.onChange);
-  expectDone(session.onChangeAnnotation);
-  expectDone(session.onChangeBackMarker);
-  expectDone(session.onChangeBreakpoint);
-  expectDone(session.onChangeFold);
-  expectDone(session.onChangeFrontMarker);
-  expectDone(session.onChangeOverwrite);
-  expectDone(session.onChangeScrollLeft);
-  expectDone(session.onChangeScrollTop);
-  expectDone(session.onChangeTabSize);
-  expectDone(session.onChangeWrapLimit);
-  expectDone(session.onChangeWrapMode);
-  session.dispose();
-}
-
-@Test()
 void testDocument() {
   expect(session.document, const isInstanceOf<Document>());
   expect(session.document.value, equals(sampleText));
@@ -68,23 +44,19 @@ void testDocument() {
   expect(session.value, equals(newText));
 }
 
-@Test()
 void testGetLength() {
   expect(session.length, equals(6));
 }
 
-@Test()
 void testGetTextRange() {
   expect(session.getTextRange(new Range(0, 0, 0, sampleTextLine0.length)),
       equals(sampleTextLine0));
 }
 
-@Test()
 void testGetWordRange() {
   expect(session.getWordRange(0, 0), equals(new Range(0, 0, 0, 5)));
 }
 
-@Test()
 void testValue() {
   final text = 'do re me fa so la ti do';
   session.value = text;
@@ -94,7 +66,6 @@ void testValue() {
   expect(session.value, equals(sampleText));
 }
 
-@Test()
 void testSetTabSize() {
   session.onChangeTabSize.listen(expectAsync((_) {    
     expect(session.tabSize, equals(7));    
@@ -102,7 +73,6 @@ void testSetTabSize() {
   session.tabSize = 7;
 }
 
-@Test()
 void testUndoSelect() {
   session.undoSelect = true;
   expect(session.undoSelect, isTrue);
@@ -110,7 +80,6 @@ void testUndoSelect() {
   expect(session.undoSelect, isFalse);
 }
 
-@Test()
 void testUseSoftTabs() {
   session.useSoftTabs = true;
   session.tabSize = 5;
@@ -121,7 +90,6 @@ void testUseSoftTabs() {
   expect(session.tabString, equals('\t'));
 }
 
-@Test()
 void testIsTabStop() {
   session.useSoftTabs = true;
   session.tabSize = 7;
@@ -133,9 +101,7 @@ void testIsTabStop() {
   }
 }
 
-@Test()
 void testUseWrapMode() {
-  expectTwoEvents(session.onChangeWrapMode);
   session.useWrapMode = true;
   expect(session.useWrapMode, isTrue);
   session.useWrapMode = true; // Should not fire an event.
@@ -144,7 +110,6 @@ void testUseWrapMode() {
   expect(session.useWrapMode, isFalse);
 }
 
-@Test()
 void testSetWrapLimit() {
   session.useWrapMode = true;
   session.onChangeWrapMode.listen(expectAsync((_) {  
@@ -155,7 +120,6 @@ void testSetWrapLimit() {
   session.wrapLimit = 42;
 }
 
-@Test()
 void testSetWrapLimitRange() {
   session.useWrapMode = true;
   session.onChangeWrapMode.listen(expectAsync((_) {    
@@ -166,7 +130,6 @@ void testSetWrapLimitRange() {
   session.setWrapLimitRange(min: 63, max: 65);
 }
 
-@Test()
 void testSetWrapLimitRangeMin() {
   session.useWrapMode = true;
   session.onChangeWrapMode.listen(expectAsync((_) { 
@@ -177,7 +140,6 @@ void testSetWrapLimitRangeMin() {
   session.setWrapLimitRange(min: 63);
 }
 
-@Test()
 void testSetWrapLimitRangeMax() {
   session.useWrapMode = true;
   session.onChangeWrapMode.listen(expectAsync((_) {    
@@ -188,7 +150,6 @@ void testSetWrapLimitRangeMax() {
   session.setWrapLimitRange(max: 65);
 }
 
-@Test()
 void testAdjustWrapLimit() {
   session.useWrapMode = true;
   session.setWrapLimitRange(min: 63, max: 65);  
@@ -199,7 +160,6 @@ void testAdjustWrapLimit() {
   expect(session.wrapLimit, equals(64));
 }
 
-@Test()
 void testSetScrollLeft() {
   session.onChangeScrollLeft.listen(expectAsync((num scrollLeft) {
     expect(scrollLeft, equals(13));
@@ -208,7 +168,6 @@ void testSetScrollLeft() {
   session.scrollLeft = 13;
 }
 
-@Test()
 void testSetScrollTop() {
   session.onChangeScrollTop.listen(expectAsync((num scrollTop) {
     expect(scrollTop, equals(42));
@@ -217,7 +176,6 @@ void testSetScrollTop() {
   session.scrollTop = 42;
 }
 
-@Test()
 void testSetOverwrite() {
   final bool initialValue = session.overwrite;
   session.onChangeOverwrite.listen(expectAsync((_) {
@@ -226,7 +184,6 @@ void testSetOverwrite() {
   session.overwrite = !initialValue;
 }
 
-@Test()
 void testToggleOverwrite() {
   final bool initialValue = session.overwrite;
   session.onChangeOverwrite.listen(expectAsync((_) {
@@ -235,7 +192,6 @@ void testToggleOverwrite() {
   session.toggleOverwrite();
 }
 
-@Test()
 void testGetUndoManager() {
   // The EditSession ctor does not wire up an UndoManager but this does.
   session = createEditSession(sampleText, new Mode('ace/mode/dart'));
@@ -246,28 +202,6 @@ void testGetUndoManager() {
   expect(undoManager.isClean, isTrue);
 }
 
-class MockUndoManager extends UndoManagerBase {  
-  final mock = new Mock<UndoManager>();
-  noSuchMethod(Invocation invocation) => mock.noSuchMethod(invocation);
-}
-
-@Test()
-void testSetUndoManager() {
-  final undoManager = new MockUndoManager();
-  session.undoManager = undoManager;
-  session.value = 'snarf';    
-  session.insert(const Point(0, 0), 'ahoy');
-  expect(undoManager.mock.calls(#reset), once);  
-  final verify = expectAsync(() {
-    expect(undoManager.mock.calls(#onExecuted), once);
-  });
-  // The UndoManager is notified internally after some delay; there does not 
-  // seem to be any event that we can observe to reliably know when the 
-  // UndoManager is updated.
-  new Future.delayed(const Duration(seconds: 1), verify); 
-}
-
-@Test()
 void testNewLineMode() {
   session.newLineMode = 'windows';
   expect(session.newLineMode, 'windows');
@@ -279,19 +213,16 @@ void testNewLineMode() {
   expect(session.document.newLineMode, 'auto');
 }
 
-@Test()
 void testGetLine() {
   for (int i = 0; i < sampleTextLines.length - 1; i++)
     expect(session.getLine(i), equals(sampleTextLines[i]));
 }
 
-@Test()
-testGetAWordRange() {
+void testGetAWordRange() {
   final range = session.getAWordRange(0, 0);
   expect(range, equals(new Range(0, 0, 0, 6)));
 }
 
-@Test()
 void testGetRowLength() {
   expect(session.getRowLength(0), 1);
   int desiredLimit = 20;
@@ -302,13 +233,11 @@ void testGetRowLength() {
       equals((sampleTextLine0.length / desiredLimit).ceil()));
 }
 
-@Test()
 void testScreenLength() {
   // Verify that we can invoke `EditSession.screenLength`.
   expect(session.screenLength, greaterThan(1));
 }
 
-@Test()
 void testIndentRows() {
   final prefix = 'I_AM_YOUR_PREFIX';
   session.indentRows(3, 4, prefix);
@@ -324,7 +253,6 @@ void testIndentRows() {
   expect(session.getLine(5), equals(sampleTextLine5));
 }
 
-@Test()
 void testInsert() {
   session.onChange.listen(expectAsync((Delta delta) {
     expect(delta.action, equals(Delta.INSERT_TEXT));
@@ -335,7 +263,6 @@ void testInsert() {
   expect(point, equals(new Point(0, 5)));
 }
 
-@Test()
 void testMoveLinesDown() {  
   final verify = () {
     expect(session.getLine(0), equals(sampleTextLine0));
@@ -351,7 +278,6 @@ void testMoveLinesDown() {
   verify();
 }
 
-@Test()
 void testMoveLinesUp() {
   final verify = () {
     expect(session.getLine(0), equals(sampleTextLine0));
@@ -367,7 +293,6 @@ void testMoveLinesUp() {
   verify();
 }
 
-@Test()
 void testDocumentToScreenColumn() {
   int desiredLimit = 40;
   session.useWrapMode = true;  
@@ -376,7 +301,6 @@ void testDocumentToScreenColumn() {
   expect(session.documentToScreenColumn(0, 41), equals(1));  
 }
 
-@Test()
 void testDocumentToScreenRow() {
   int desiredLimit = 20;
   session.useWrapMode = true;  
@@ -385,7 +309,6 @@ void testDocumentToScreenRow() {
   expect(session.documentToScreenRow(0, 41), equals(2));  
 }
 
-@Test() 
 void testDuplicateLines() {
   session.duplicateLines(0, 2);
   expect(session.getLine(0), equals(sampleTextLine0));
@@ -399,7 +322,6 @@ void testDuplicateLines() {
   expect(session.getLine(8), equals(sampleTextLine5));  
 }
 
-@Test()
 void testRemove() {
   session.onChange.listen(expectAsync((Delta delta) {
     expect(delta.action, equals(Delta.REMOVE_TEXT));
@@ -410,7 +332,6 @@ void testRemove() {
   expect(point, equals(const Point(0, 0)));
 }
 
-@Test()
 void testReplace() {
   int onChangeCount = 0;
   session.onChange.listen(expectAsync((Delta delta) {    
@@ -431,24 +352,10 @@ void testReplace() {
   expect(point, equals(const Point(3, 13)));
 }
 
-@Test()
-void testAddGutterDecoration() {
-  expectOneEvent(session.onChangeBreakpoint); 
-  session.addGutterDecoration(0, 'cssnarf');
-}
-
-@Test()
-void testRemoveGutterDecoration() {
-  expectOneEvent(session.onChangeBreakpoint); 
-  session.removeGutterDecoration(0, 'cssnarf');
-}
-
-@Test()
 void testGetAnnotations() {
   expect(session.getAnnotations(), isEmpty); 
 }
 
-@Test()
 void testSetAnnotations() {
   session.onChangeAnnotation.listen(expectAsync((_) {
     final annotations = session.getAnnotations();
@@ -470,7 +377,6 @@ void testSetAnnotations() {
   ]);
 }
 
-@Test()
 void testClearAnnotations() {
   session.setAnnotations([const Annotation(row: 42, text: 'foo')]);
   final annotations = session.getAnnotations();
@@ -483,12 +389,10 @@ void testClearAnnotations() {
   session.clearAnnotations();
 }
 
-@Test() 
 void testGetBreakpoints() {
   expect(session.getBreakpoints(), isEmpty);
 }
 
-@Test()
 void testSetBreakpoint() {
   session.onChangeBreakpoint.listen(expectAsync((_) {
     expect(session.getBreakpoints()[2], equals('ace_breakpoint'));
@@ -496,7 +400,6 @@ void testSetBreakpoint() {
   session.setBreakpoint(2);
 }
 
-@Test()
 void testSetBreakpoints() {
   session.onChangeBreakpoint.listen(expectAsync((_) {
     final breakpoints = session.getBreakpoints();
@@ -507,7 +410,6 @@ void testSetBreakpoints() {
   session.setBreakpoints([2, 3, 4]);
 }
 
-@Test()
 void testSetBreakpointWithClassName() {
   session.onChangeBreakpoint.listen(expectAsync((_) {
     expect(session.getBreakpoints()[4], equals('fancy_breakpoint'));
@@ -515,7 +417,6 @@ void testSetBreakpointWithClassName() {
   session.setBreakpoint(4, className: 'fancy_breakpoint');
 }
 
-@Test()
 void testClearBreakpoint() {
   session.setBreakpoint(3);
   expect(session.getBreakpoints()[3], isNotNull);
@@ -525,7 +426,6 @@ void testClearBreakpoint() {
   session.clearBreakpoint(3);
 }
 
-@Test()
 void testClearBreakpoints() {
   session.setBreakpoints([1, 4]);
   expect(session.getBreakpoints()[1], isNotNull);
@@ -536,7 +436,6 @@ void testClearBreakpoints() {
   session.clearBreakpoints();
 }
 
-@Test()
 void testScreenToDocumentPosition() {
   int desiredLimit = 20;
   session.useWrapMode = true;  
@@ -554,7 +453,6 @@ void _verifyFold(Fold actual, Fold expected) {
   expect(actual.placeholder.length, expected.placeholder.length);
 }
   
-@Test()
 void testAddFold() {
   Fold f = new Fold(
       new Range(0, 0, 0, 5),
@@ -570,7 +468,6 @@ void testAddFold() {
   _verifyFold(folds[0], f);
 }
 
-@Test()
 void testRemoveFold() {
   Fold f = new Fold(
       new Range(0, 8, 1, 15),
@@ -585,12 +482,9 @@ void testRemoveFold() {
   expect(session.getAllFolds(), isEmpty);
 }
 
-@Test()
 void testAddBackMarker() {
   final range = new Range(1, 2, 3, 4);
   final className = 'snarf';
-  expectOneEvent(session.onChangeBackMarker);
-  expectNoEvents(session.onChangeFrontMarker);
   final markerId = session.addMarker(range, className);
   expect(markerId, isNotNull);
   expect(session.getMarkers(inFront: true), isEmpty);
@@ -604,12 +498,9 @@ void testAddBackMarker() {
   expect(marker.type, Marker.LINE);
 }
 
-@Test()
 void testAddFrontMarker() {
   final range = new Range(5, 6, 7, 8);
   final className = 'foo';
-  expectOneEvent(session.onChangeFrontMarker);
-  expectNoEvents(session.onChangeBackMarker);
   final markerId = session.addMarker(range, className, inFront: true);
   expect(markerId, isNotNull);
   expect(session.getMarkers(), isEmpty);
@@ -623,7 +514,6 @@ void testAddFrontMarker() {
   expect(marker.type, Marker.LINE);
 }
 
-@Test()
 void testRemoveBackMarker() {
   final range = new Range(1, 2, 3, 4);
   final className = 'snarf';
@@ -631,14 +521,11 @@ void testRemoveBackMarker() {
   expect(markerId, isNotNull);
   expect(session.getMarkers(inFront: true), isEmpty);
   expect(session.getMarkers().length, 1);
-  expectOneEvent(session.onChangeBackMarker);
-  expectNoEvents(session.onChangeFrontMarker);
   session.removeMarker(markerId);
   expect(session.getMarkers(inFront: true), isEmpty);
   expect(session.getMarkers(), isEmpty);
 }
 
-@Test()
 void testRemoveFrontMarker() {
   final range = new Range(5, 6, 7, 8);
   final className = 'foo';
@@ -646,20 +533,16 @@ void testRemoveFrontMarker() {
   expect(markerId, isNotNull);
   expect(session.getMarkers(), isEmpty);
   expect(session.getMarkers(inFront: true).length, 1);
-  expectOneEvent(session.onChangeFrontMarker);
-  expectNoEvents(session.onChangeBackMarker);
   session.removeMarker(markerId);
   expect(session.getMarkers(inFront: true), isEmpty);
   expect(session.getMarkers(), isEmpty);
 }
 
-@Test()
 void testGetOption() {
   session.tabSize = 7;
   expect(session.getOption('tabSize'), equals(7));
 }
 
-@Test()
 void testGetOptions() {
   session.tabSize = 3;
   final tsMode = new Mode.named(Mode.TYPESCRIPT);
@@ -670,13 +553,11 @@ void testGetOptions() {
   expect(options['mode'], equals(tsMode.path));
 }
 
-@Test()
 void testSetOption() {
   session.setOption('tabSize', 1);
   expect(session.tabSize, equals(1));
 }
 
-@Test()
 void testSetOptions() {
   final hamlMode = new Mode.named(Mode.HAML);
   session.setOptions({ 'tabSize' : 5, 'mode' : hamlMode.path });
@@ -684,7 +565,6 @@ void testSetOptions() {
   expect(session.mode.path, equals(hamlMode.path));
 }
 
-@Test()
 void testGetTokenAt() {
   Token t = session.getTokenAt(2);
   expect(t.type, equals(Token.TEXT));
@@ -693,7 +573,6 @@ void testGetTokenAt() {
   expect(t.start, isZero);
 }
 
-@Test()
 void testGetTokens() {
   List<Token> tokens = session.getTokens(2);
   expect(tokens.length, equals(1));

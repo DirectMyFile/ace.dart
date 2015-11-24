@@ -1,20 +1,16 @@
-@TestGroup('Mode')
 library ace.test.mode;
 
 import 'package:ace/ace.dart';
 import 'package:ace/proxy.dart';
-import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 import '_.dart';
 
 const _ACE_MODE_PATH = 'ace/mode/';
 
-@Setup
 setup() {
   implementation = ACE_PROXY_IMPLEMENTATION;
 }
 
-@Test()
 void testCreateModeNamed() {
   final verifyMode = (String modeName) {
     final mode = new Mode.named(modeName);
@@ -32,11 +28,9 @@ void testCreateModeNamed() {
   Mode.MODES.forEach(verifyMode);
 }
 
-@Test()
 void testCreateModeForFile() {
   final verifyMode = (String filePath, String modeName) {
     final mode = new Mode.forFile(filePath);
-    expectThen(mode.onLoad);
     expect(mode, isNotNull);
     expect(mode.name, modeName);
     expect(mode.path, '${_ACE_MODE_PATH}$modeName');

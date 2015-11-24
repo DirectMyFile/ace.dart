@@ -1,19 +1,16 @@
-@TestGroup('RangeList')
 library ace.test.range_list;
 
 import 'package:ace/ace.dart';
 import 'package:ace/proxy.dart';
-import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 
 RangeList rangeList;
-@Setup
+
 setup() {  
   implementation = ACE_PROXY_IMPLEMENTATION;
   rangeList = new RangeList();
 }
 
-@Test()
 void testPointIndex() {
   rangeList.ranges = [
       new Range(1,2,3,4),
@@ -30,7 +27,6 @@ void testPointIndex() {
   expect(rangeList.pointIndex(const Point(18, 9)), -4);
 }
 
-@Test()
 void testPointIndexExcludeEdges() {
   rangeList.ranges = [
       new Range(1,2,3,4),
@@ -49,7 +45,6 @@ void testPointIndexExcludeEdges() {
   expect(rangeList.pointIndex(const Point(18, 9), excludeEdges: true), -5);
 }
 
-@Test()
 void testAdd() {
   rangeList.addList([
       new Range(9,0,9,1),
@@ -69,7 +64,6 @@ void testAdd() {
   expect(rangeList.ranges[4], new Range(7,8,7,8));
 }
 
-@Test()
 void testAddEmpty() {
   rangeList.addList([
       new Range(7,10,7,10),
@@ -83,7 +77,6 @@ void testAddEmpty() {
   expect(rangeList.ranges[2], new Range(9,10,9,10));
 }
 
-@Test()
 void testMerge() {
   rangeList.addList([
       new Range(1,2,3,4),
@@ -116,7 +109,6 @@ void testMerge() {
   expect(rangeList.ranges.length, 2);
 }
 
-@Test()
 void testRemove() {
   rangeList.addList([
       new Range(1,2,3,4),

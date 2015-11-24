@@ -1,32 +1,21 @@
-@TestGroup('Document')
 library ace.test.document;
 
 import 'package:ace/ace.dart';
 import 'package:ace/proxy.dart';
-import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 import '_.dart';
 
 Document document;
 
-@Setup
-setup(TestRun run) { 
+setup() { 
   implementation = ACE_PROXY_IMPLEMENTATION;
   document = new Document(text: sampleText);
 }
 
-@Test()
-void testDispose() {
-  expectDone(document.onChange);
-  document.dispose();
-}
-
-@Test()
 void testGetLength() {
   expect(document.length, equals(6));
 }
 
-@Test()
 void testGetAllLines() {
   final lines = document.getAllLines();
   expect(lines.length, equals(6));
@@ -34,7 +23,6 @@ void testGetAllLines() {
     expect(lines[i], equals(sampleTextLines[i]));
 }
 
-@Test()
 void testGetLines() {
   final lines = document.getLines(2, 5);
   expect(lines.length, equals(4));
@@ -44,13 +32,11 @@ void testGetLines() {
   expect(lines[3], equals(sampleTextLine5));
 }
 
-@Test()
 void testGetLine() {
   for (int i = 0; i < sampleTextLines.length - 1; i++)
     expect(document.getLine(i), equals(sampleTextLines[i]));
 }
 
-@Test()
 void testIndexToPosition() {
   int index = 
       sampleTextLine0.length + 
@@ -66,7 +52,6 @@ void testIndexToPosition() {
       equals(const Point(3, 0)));
 }
 
-@Test()
 void testInsert() {
   document.onChange.listen(expectAsync((Delta delta) {
     expect(delta.action, equals(Delta.INSERT_TEXT));
@@ -77,7 +62,6 @@ void testInsert() {
   expect(point, equals(const Point(0, 5)));
 }
 
-@Test()
 void testInsertInLine() {
   document.onChange.listen(expectAsync((Delta delta) {
     expect(delta.action, equals(Delta.INSERT_TEXT));
@@ -88,7 +72,6 @@ void testInsertInLine() {
   expect(point, equals(const Point(0, 5)));
 }
 
-@Test()
 void testInsertLines() {
   document.onChange.listen(expectAsync((Delta delta) {
     expect(delta.action, equals(Delta.INSERT_LINES));
@@ -100,7 +83,6 @@ void testInsertLines() {
   expect(point, equals(const Point(2, 0)));
 }
 
-@Test()
 void testInsertNewLine() {
   document.onChange.listen(expectAsync((Delta delta) {
     expect(delta.action, equals(Delta.INSERT_TEXT));
@@ -111,7 +93,6 @@ void testInsertNewLine() {
   expect(point, equals(const Point(1, 0)));
 }
 
-@Test()
 void testIsNewLine() {
   expect(document.isNewLine('\r\n'), isTrue);
   expect(document.isNewLine('\r'), isTrue);
@@ -119,7 +100,6 @@ void testIsNewLine() {
   expect(document.isNewLine('\n\r'), isFalse);
 }
 
-@Test()
 void testNewLineMode() {
   document.newLineMode = 'windows';
   expect(document.newLineMode, 'windows');
@@ -131,7 +111,6 @@ void testNewLineMode() {
   expect(document.newLineMode, 'auto');
 }
 
-@Test()
 void testPositionToIndex() {
   expect(document.positionToIndex(const Point(3, 0)),
       equals(
@@ -146,7 +125,6 @@ void testPositionToIndex() {
           2 * document.newLineCharacter.length));
 }
 
-@Test()
 void testRemove() {
   document.onChange.listen(expectAsync((Delta delta) {
     expect(delta.action, equals(Delta.REMOVE_TEXT));
@@ -157,7 +135,6 @@ void testRemove() {
   expect(point, equals(const Point(0, 0)));
 }
 
-@Test()
 void testRemoveInLine() {
   document.onChange.listen(expectAsync((Delta delta) {
     expect(delta.action, equals(Delta.REMOVE_TEXT));
@@ -168,7 +145,6 @@ void testRemoveInLine() {
   expect(point, equals(const Point(0, 10)));
 }
 
-@Test()
 void testRemoveLines() {
   document.onChange.listen(expectAsync((Delta delta) {
     expect(delta.action, equals(Delta.REMOVE_LINES));
@@ -182,7 +158,6 @@ void testRemoveLines() {
   expect(lines[1], equals(sampleTextLine3));
 }
 
-@Test()
 void testRemoveNewLine() {
   document.onChange.listen(expectAsync((Delta delta) {
     expect(delta.action, equals(Delta.REMOVE_TEXT));
@@ -192,7 +167,6 @@ void testRemoveNewLine() {
   document.removeNewLine(3);  
 }
 
-@Test()
 void testReplace() {
   int onChangeCount = 0;
   document.onChange.listen(expectAsync((Delta delta) {    
@@ -213,13 +187,11 @@ void testReplace() {
   expect(point, equals(const Point(0, 15)));
 }
 
-@Test()
 void testApplyDeltas() {
   final observedDeltas = new List<Delta>();
   final applyToNewDocument = () {
     var newDocument = new Document(text: sampleText);
-    expect(newDocument.getAllLines(), isNot(equals(document.getAllLines())));        
-    expectNEvents(newDocument.onChange, 3);    
+    expect(newDocument.getAllLines(), isNot(equals(document.getAllLines()))); 
     newDocument.applyDeltas(observedDeltas);
     expect(newDocument.getAllLines(), equals(document.getAllLines()));
   };    
@@ -233,7 +205,6 @@ void testApplyDeltas() {
   document.insertNewLine(const Point(0, 2));
 }
 
-@Test()
 void testRevertDeltas() {
   final deltas = new List<Delta>();
   int observedDeltaCount = 0;
@@ -248,14 +219,12 @@ void testRevertDeltas() {
   expect(document.value, isNot(equals(sampleText)));
 }
 
-@Test()
 void testCreateAnchor() {
   final Anchor anchor = document.createAnchor(1, 42);
   expect(anchor, isNotNull);
   expect(anchor.position, equals(const Point(1, 42)));
 }
 
-@Test()
 void testSplitTextContainsNewlineLiterals() {
   final dogfood = 
 r'''
@@ -268,7 +237,6 @@ if ("aaa".split(/a/).length == 0)
   expect(doc.value, equals(dogfood));
 }
 
-@Test()
 void testDocumentStartsWithNewline() {
   final startsWithNewLine =
 r'''

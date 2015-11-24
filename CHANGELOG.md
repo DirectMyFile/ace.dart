@@ -2,6 +2,7 @@
 
 ## 0.7.0-dev+3.4.15
 
+- Migrated tests to the `unittest` package.
 - Removed the `ace.pure` library.
 
 ## 0.6.2+3.4.15

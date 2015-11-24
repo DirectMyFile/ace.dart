@@ -1,15 +1,13 @@
-@TestGroup('CommandManager')
 library ace.test.command_manager;
 
 import 'package:ace/ace.dart';
 import 'package:ace/proxy.dart';
-import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 
 int commandExecCount;
 Command command;
 CommandManager manager;
-@Setup
+
 setup() {
   implementation = ACE_PROXY_IMPLEMENTATION;  
   commandExecCount = 0;
@@ -22,7 +20,6 @@ setup() {
   manager = new CommandManager('mac', [command]);
 }
 
-@Test()
 void testCtor() {
   expect(command, isNotNull);
   expect(manager, isNotNull);
@@ -34,18 +31,16 @@ void testCtor() {
   expect(commands[0].multiSelectAction, isNull);
 }
 
-@Test()
 void testRemoveCommand() {
   manager.removeCommand(command.name);
   expect(manager.getCommands(), isEmpty);
 }
 
-@Test()
 void testAddCommand() {
   final c = new Command(
       'find',
       const BindKey(mac: 'Command-F', win: 'Ctrl-F'),
-      noop);
+      (_) {});
   manager.addCommand(c);
   final commands = manager.getCommands();
   expect(commands.length, equals(2));
@@ -53,7 +48,6 @@ void testAddCommand() {
   expect(find.bindKey, const BindKey(mac: 'Command-F', win: 'Ctrl-F'));
 }
 
-@Test()
 void testAddCommandSameName() {
   int count = 0;
   final c = new Command(
@@ -71,7 +65,6 @@ void testAddCommandSameName() {
   expect(count, equals(1));
 }
 
-@Test()
 void testExec() {
   expect(commandExecCount, isZero);
   expect(manager.exec(command.name), isTrue);

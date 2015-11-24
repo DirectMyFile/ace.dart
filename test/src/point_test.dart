@@ -1,24 +1,19 @@
-@TestGroup('Point')
 library ace.test.point;
 
 import 'package:ace/ace.dart';
 import 'package:ace/proxy.dart';
-import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 
-@Setup
 setup() {
   implementation = ACE_PROXY_IMPLEMENTATION;
 }
 
-@Test()
 void testPointCtor() {
   final point = const Point(1, 2);
   expect(point.row, equals(1));
   expect(point.column, equals(2));
 }
 
-@Test('Test the `==` operator.')
 void testPointEquals() {
   var x = const Point(1, 2);
   var y = const Point(1, 2);
@@ -41,7 +36,6 @@ void testPointEquals() {
   expect(w.hashCode, isNot(equals(x.hashCode)));
 }
 
-@Test('Test the `toString` method.')
 void testPointToString() {
   var p = const Point(1, 2);
   expect(p.toString(), equals("Point: [1/2]"));

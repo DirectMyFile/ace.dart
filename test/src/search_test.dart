@@ -1,16 +1,13 @@
-@TestGroup('Search')
 library ace.test.search;
 
 import 'package:ace/ace.dart';
 import 'package:ace/proxy.dart';
-import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 import '_.dart';
 
 Search search;
 EditSession session;
 
-@Setup
 setup() {
   implementation = ACE_PROXY_IMPLEMENTATION;
   search = new Search();
@@ -18,7 +15,6 @@ setup() {
       new Mode('ace/mode/text'));
 }
 
-@Test()
 void testSearchCtor() {
   final Search search = new Search();
   expect(search, isNotNull);
@@ -33,7 +29,6 @@ void testSearchCtor() {
   expect(search.options.wrap, isFalse);
 }
 
-@Test()
 void testSetOptions() {
   search.options = new SearchOptions(backwards: true,
                                      caseSensitive: true,
@@ -55,19 +50,16 @@ void testSetOptions() {
   expect(search.options.wrap, isTrue);
 }
 
-@Test()
 void testFind() {
   search.options = new SearchOptions(needle: 'Lorem');
   expect(search.find(session), equals(new Range(0, 0, 0, 5)));  
 }
 
-@Test()
 void testFindMissingNeedle() {
   search.options = new SearchOptions(needle: 'not gonna find me');
   expect(search.find(session), isNull);
 }
 
-@Test()
 void testFindCaseSensitive() {
   search.options = new SearchOptions(needle: 'lorem');
   expect(search.find(session), equals(new Range(0, 0, 0, 5)));
@@ -76,14 +68,12 @@ void testFindCaseSensitive() {
   expect(search.find(session), isNull);
 }
 
-@Test()
 void testFindStartAfterNeedle() {
   search.options = new SearchOptions(needle: 'Lorem',
       start: new Range(0, 6, 0, 6));
   expect(search.find(session), isNull);
 }
 
-@Test()
 void testFindBackwards() {
   search.options = new SearchOptions(needle: 'Lorem',
       backwards: true,
@@ -91,7 +81,6 @@ void testFindBackwards() {
   expect(search.find(session), equals(new Range(0, 0, 0, 5)));  
 }
 
-@Test()
 void testFindAll() {
   search.options = new SearchOptions(needle: 'ut');
   final ranges = search.findAll(session);
@@ -102,7 +91,6 @@ void testFindAll() {
   expect(ranges.elementAt(3), equals(new Range(3, 17, 3, 19)));
 }
 
-@Test()
 void testFindAllWholeWord() {
   search.options = new SearchOptions(needle: 'ut',
       wholeWord: true);
@@ -113,7 +101,6 @@ void testFindAllWholeWord() {
   expect(ranges.elementAt(2), equals(new Range(2, 48, 2, 50)));
 }
 
-@Test()
 void testFindAllMissingNeedle() {
   search.options = new SearchOptions(needle: 'not gonna find me');
   expect(search.findAll(session), isEmpty);

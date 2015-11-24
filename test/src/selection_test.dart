@@ -1,16 +1,13 @@
-@TestGroup('Selection')
 library ace.test.selection;
 
 import 'package:ace/ace.dart';
 import 'package:ace/proxy.dart';
-import 'package:bench/bench.dart';
 import 'package:unittest/unittest.dart';
 import '_.dart';
 
 EditSession session;
 Selection selection;
 
-@Setup
 setup() {
   implementation = ACE_PROXY_IMPLEMENTATION;
   session = new EditSession(new Document(text: sampleText), 
@@ -18,7 +15,6 @@ setup() {
   selection = new Selection(session);
 }
 
-@Test()
 void testSelectionCtor() {
   final Selection selection = new Selection(session);
   expect(selection, isNotNull);
@@ -27,14 +23,6 @@ void testSelectionCtor() {
   expect(selection.isMultiLine, isFalse);
 }
 
-@Test()
-void testDispose() {
-  expectDone(selection.onChangeCursor);
-  expectDone(selection.onChangeSelection);
-  selection.dispose();
-}
-
-@Test()
 void testGetLineRange() {
   expect(selection.getLineRange(3), equals(new Range(3, 0, 4, 0)));
   expect(
@@ -48,19 +36,16 @@ void testMoveMethod(Function moveMethod,
                     Point beforeCursor: const Point(0, 0),
                     Point afterCursor: const Point(0, 0)}) {
   expect(selection.cursor, equals(beforeCursor));
-  expectOneEvent(selection.onChangeCursor);
   Function.apply(moveMethod, positionalArgs);
   expect(selection.cursor, equals(afterCursor));
 }
 
-@Test()
 void testMoveCursorBy() {
   testMoveMethod(selection.moveCursorBy, 
       positionalArgs: [3, 20],
       afterCursor: const Point(3, 20));
 }
 
-@Test()
 void testMoveCursorByNegative() {
   selection.moveCursorTo(4, 25);  
   testMoveMethod(selection.moveCursorBy, 
@@ -69,7 +54,6 @@ void testMoveCursorByNegative() {
       afterCursor: const Point(3, 6));
 }
 
-@Test()
 void testMoveCursorDown() {
   selection.moveCursorTo(0, 15);  
   testMoveMethod(selection.moveCursorDown,
@@ -77,14 +61,12 @@ void testMoveCursorDown() {
       afterCursor: const Point(1, 15));
 }
 
-@Test()
 void testMoveCursorFileEnd() {
   int lastRow = sampleTextLines.length - 1;
   testMoveMethod(selection.moveCursorFileEnd,
       afterCursor: new Point(lastRow, sampleTextLines[lastRow].length));
 }
 
-@Test()
 void testMoveCursorFileStart() {
   selection.moveCursorTo(3, 37); 
   testMoveMethod(selection.moveCursorFileStart,
@@ -92,7 +74,6 @@ void testMoveCursorFileStart() {
       afterCursor: const Point(0, 0));
 }
 
-@Test()
 void testMoveCursorLeft() {
   selection.moveCursorTo(4, 4);  
   testMoveMethod(selection.moveCursorLeft,
@@ -100,7 +81,6 @@ void testMoveCursorLeft() {
       afterCursor: const Point(4, 3));
 }
 
-@Test()
 void testMoveCursorLineEnd() {
   selection.moveCursorTo(3, 3);  
   testMoveMethod(selection.moveCursorLineEnd,
@@ -108,7 +88,6 @@ void testMoveCursorLineEnd() {
       afterCursor: new Point(3, sampleTextLine3.length));
 }
 
-@Test()
 void testMoveCursorLineStart() {
   selection.moveCursorTo(3, 3);  
   testMoveMethod(selection.moveCursorLineStart,
@@ -116,7 +95,6 @@ void testMoveCursorLineStart() {
       afterCursor: new Point(3, 0));
 }
 
-@Test()
 void testMoveCursorRight() {
   selection.moveCursorTo(2, 63);  
   testMoveMethod(selection.moveCursorRight,
@@ -124,14 +102,12 @@ void testMoveCursorRight() {
       afterCursor: const Point(2, 64));
 }
 
-@Test()
 void testMoveCursorTo() {
   testMoveMethod(selection.moveCursorTo, 
       positionalArgs: [4, 42],
       afterCursor: const Point(4, 42));
 }
 
-@Test()
 void testMoveCursorToScreen() {
   int desiredLimit = 20;
   session.useWrapMode = true;  
@@ -145,7 +121,6 @@ void testMoveCursorToScreen() {
       afterCursor: word);
 }
 
-@Test()
 void testMoveCursorUp() {
   selection.moveCursorTo(1, 52);  
   testMoveMethod(selection.moveCursorUp,
@@ -153,7 +128,6 @@ void testMoveCursorUp() {
       afterCursor: const Point(0, 52));
 }
 
-@Test()
 void testMoveCursorWordLeft() {
   Point start = sampleTextWordStart(2, 4);
   selection.moveCursorTo(start.row, start.column);  
@@ -162,7 +136,6 @@ void testMoveCursorWordLeft() {
       afterCursor: sampleTextWordStart(2, 3));
 }
 
-@Test()
 void testMoveCursorWordRight() {
   Point start = sampleTextWordStart(4, 6);
   selection.moveCursorTo(start.row, start.column);  
@@ -181,16 +154,12 @@ void testSelectMethod(Function selectionMethod,
   expect(selection.cursor, equals(beforeCursor));
   expect(selection.range, 
       equals(new Range.fromPoints(beforeCursor, beforeCursor)));
-  // TODO: investigate why `onChangeSelection` fires 2 times.
-  expectTwoEvents(selection.onChangeSelection);
-  expectOneEvent(selection.onChangeCursor);
   Function.apply(selectionMethod, positionalArgs);
   expect(selection.cursor, equals(afterCursor));
   expect(selection.range, 
       equals(new Range.fromPoints(afterRangeStart, afterRangeEnd)));
 }
 
-@Test()
 void testSelectAll() {  
   Point endCursor = new Point(sampleTextLines.length - 1, 
       sampleTextLines[sampleTextLines.length - 1].length);  
@@ -200,7 +169,6 @@ void testSelectAll() {
       afterRangeEnd: endCursor);
 }
 
-@Test()
 void testSelectAWord() {
   Point endCursor = new Point(0, sampleTextWords[0][0].length + 1/*space*/);
   
@@ -209,7 +177,6 @@ void testSelectAWord() {
       afterRangeEnd: endCursor);
 }
 
-@Test()
 void testSelectDown() {
   selection.moveCursorTo(2, 20);  
   Point startCursor = const Point(2, 20);
@@ -222,7 +189,6 @@ void testSelectDown() {
       afterRangeEnd: endCursor);
 }
 
-@Test()
 void testSelectFileEnd() {
   selection.moveCursorTo(1, 10);  
   Point startCursor = const Point(1, 10);
@@ -236,7 +202,6 @@ void testSelectFileEnd() {
       afterRangeEnd: endCursor);
 }
 
-@Test()
 void testSelectFileStart() {  
   selection.moveCursorTo(2, 2);  
   Point startCursor = const Point(2, 2);
@@ -246,7 +211,6 @@ void testSelectFileStart() {
       afterRangeEnd: startCursor);
 }
 
-@Test()
 void testSelectLeft() {
   selection.moveCursorTo(1, 14);  
   Point startCursor = const Point(1, 14);
@@ -259,7 +223,6 @@ void testSelectLeft() {
       afterRangeEnd: startCursor);
 }
 
-@Test()
 void testSelectLine() {
   selection.moveCursorBy(0, 21);  
   Point startCursor = const Point(0, 21);
@@ -270,7 +233,6 @@ void testSelectLine() {
       afterRangeEnd: const Point(1, 0));
 }
 
-@Test()
 void testSelectLineEnd() {
   selection.moveCursorBy(0, 15);
   Point startCursor = const Point(0, 15);
@@ -283,7 +245,6 @@ void testSelectLineEnd() {
       afterRangeEnd: endCursor);
 }
 
-@Test()
 void testSelectLineStart() {
   selection.moveCursorBy(0, 42);
   Point startCursor = const Point(0, 42);
@@ -293,7 +254,6 @@ void testSelectLineStart() {
       afterRangeEnd: startCursor);
 }
 
-@Test()
 void testSelectRight() {
   selection.moveCursorTo(1, 14);  
   Point startCursor = const Point(1, 14);
@@ -306,7 +266,6 @@ void testSelectRight() {
       afterRangeEnd: endCursor);
 }
 
-@Test()
 void testSelectTo() {
   selection.moveCursorBy(0, 15);
   Point startCursor = const Point(0, 15);
@@ -320,7 +279,6 @@ void testSelectTo() {
       afterRangeEnd: endCursor);
 }
 
-@Test()
 void testSelectUp() {
   selection.moveCursorTo(2, 20);  
   Point startCursor = const Point(2, 20);
@@ -333,7 +291,6 @@ void testSelectUp() {
       afterRangeEnd: startCursor);
 }
 
-@Test()
 void testSelectWord() {
   selection.moveCursorTo(3, 4);
   Point startCursor = const Point(3, 4);  
@@ -347,7 +304,6 @@ void testSelectWord() {
       afterRangeEnd: afterRangeEnd);
 }
 
-@Test()
 void testSelectWordLeft() {
   Point start = sampleTextWordStart(3, 2);  
   selection.moveCursorTo(start.row, start.column);  
@@ -362,7 +318,6 @@ void testSelectWordLeft() {
       afterRangeEnd: afterRangeEnd);
 }
 
-@Test()
 void testSelectWordRight() {
   Point start = sampleTextWordEnd(4, 6);  
   selection.moveCursorTo(start.row, start.column);  
