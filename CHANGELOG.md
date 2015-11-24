@@ -1,6 +1,6 @@
 # Ace.dart Changes
 
-## 0.7.0-dev+3.4.15
+## 0.7.0+3.4.15
 
 - Migrated tests to the `unittest` package.
 - Removed the `ace.pure` library.
