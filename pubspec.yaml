@@ -1,6 +1,6 @@
 name: ace
 version: 0.7.0-dev+3.4.15
-author: Ross Smith <rms@rossis.red>
+author: Ace.dart Authors
 description: Dart bindings for the Ace code editor.
 homepage: https://github.com/rmsmith/ace.dart
 environment:
