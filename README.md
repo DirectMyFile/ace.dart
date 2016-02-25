@@ -1,7 +1,6 @@
 # Ace.dart
 
-*If you are interested in maintaining this package please open an issue on 
-GitHub.*
+*I no longer use this code, so it has fallen into disrepair.  If you use this code and are interested in maintaining it please open an issue to let me know.*
 
 Dart language bindings for the [Ace][ace] code editor.
 
