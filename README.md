@@ -1,4 +1,4 @@
-**I no longer use this code, so it has fallen into disrepair.  If you use this code and are interested in maintaining it please open an issue to let me know.**
+**no longer maintained**
 
 # Ace.dart
 

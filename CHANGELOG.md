@@ -1,5 +1,9 @@
 # Ace.dart Changes
 
+## 0.7.1+3.4.15
+
+- No longer maintained.
+
 ## 0.7.0+3.4.15
 
 - Migrated tests to the `unittest` package.

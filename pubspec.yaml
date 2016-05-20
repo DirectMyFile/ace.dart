@@ -1,8 +1,8 @@
 name: ace
-version: 0.7.0+3.4.15
+version: 0.7.1+3.4.15
 author: Ace.dart Authors
 description: Dart bindings for the Ace code editor.
-homepage: https://github.com/rmsmith/ace.dart
+homepage: https://pub.dartlang.org/packages/ace
 environment:
   sdk: '>=1.0.0 <2.0.0'
 dev_dependencies:
