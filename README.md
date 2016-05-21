@@ -4,13 +4,13 @@
 
 Dart language bindings for the [Ace][ace] code editor.
 
-_Ace.dart uses the MIT license as described in the [LICENSE][license] file, and 
+_Ace.dart uses the MIT license as described in the LICENSE file, and 
 follows [semantic versioning][]._
 
 ## Ace.js
 
 This package maintains a copy of the latest [ace-builds][] `src-min-noconflict` 
-governed by its own [LICENSE][ace-license].
+governed by its own LICENSE.
 
 The `ace-builds` occur approximately once per month, and the version currently 
 tested by this package is maintained in the version string metadata.  For 
@@ -31,6 +31,4 @@ or `src-min-noconflict`), the Dart wrapper code should continue to function.
 
 [ace]: http://ace.ajax.org/
 [ace-builds]: https://github.com/ajaxorg/ace-builds/
-[ace-license]: https://github.com/rmsmith/ace.dart/blob/master/js/LICENSE
-[license]: https://github.com/rmsmith/ace.dart/blob/master/LICENSE
 [semantic versioning]: http://semver.org/
