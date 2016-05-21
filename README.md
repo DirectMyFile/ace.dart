@@ -1,5 +1,3 @@
-**no longer maintained**
-
 # Ace.dart
 
 Dart language bindings for the [Ace][ace] code editor.
